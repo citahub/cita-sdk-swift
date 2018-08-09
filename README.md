@@ -1,5 +1,7 @@
 # NervosSwift
 
+NervosSwift is a native Swift framework for working with Smart Contract and integrating with clients on Nervos network.
+
 ## RPC API
 
 https://docs.nervos.org/cita/#/rpc_guide/rpc
