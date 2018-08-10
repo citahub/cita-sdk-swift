@@ -19,3 +19,9 @@ extension NervosProvider {
         return NervosProvider(defaultProviderURL)!
     }
 }
+
+extension Nervos {
+    static var `default`: Nervos {
+        return Nervos(provider: NervosProvider.defaultProvider)
+    }
+}
