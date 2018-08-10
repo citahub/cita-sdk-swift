@@ -7,15 +7,14 @@
 //
 
 import Foundation
-import web3swift
 import BigInt
 import Result
 
-public class AppChain: Web3OptionsInheritable {
+public class AppChain: NervosOptionsInheritable {
     var provider: NervosProvider
     weak var nervos: Nervos?
 
-    public var options: Web3Options {
+    public var options: NervosOptions {
         return nervos!.options
     }
 
@@ -35,11 +34,11 @@ extension AppChain {
         return Result.failure(NervosError.processingError("Not implemented"))
     }
 
-    public func sendRawTransaction(_ transaction: EthereumTransaction) -> Result<TransactionSendingResult, NervosError> {
+    public func sendRawTransaction(_ transaction: Transaction) -> Result<TransactionSendingResult, NervosError> {
         return Result.failure(NervosError.processingError("Not implemented"))
     }
 
-    public func sendRawTransaction(_ transaction: EthereumTransaction, privateKey: String) -> Result<TransactionSendingResult, NervosError> {
+    public func sendRawTransaction(_ transaction: Transaction, privateKey: String) -> Result<TransactionSendingResult, NervosError> {
         return Result.failure(NervosError.processingError("Not implemented"))
     }
 
@@ -76,7 +75,7 @@ extension AppChain {
         return Result.failure(NervosError.processingError("Not implemented"))
     }
 
-    func call(_ transaction: EthereumTransaction, options: NervosOptions, onBlock: String = "latest") -> Result<Data, NervosError> {
+    func call(_ transaction: Transaction, options: NervosOptions, onBlock: String = "latest") -> Result<Data, NervosError> {
         return Result.failure(NervosError.processingError("Not implemented"))
     }
 
@@ -88,7 +87,7 @@ extension AppChain {
         return Result.failure(NervosError.processingError("Not implemented"))
     }
 
-    public func getTransactionCount(address: EthereumAddress, onBlock: String = "latest") -> Result<BigUInt, NervosError> {
+    public func getTransactionCount(address: Address, onBlock: String = "latest") -> Result<BigUInt, NervosError> {
         return Result.failure(NervosError.processingError("Not implemented"))
     }
 
@@ -100,7 +99,7 @@ extension AppChain {
         return Result.failure(NervosError.processingError("Not implemented"))
     }
 
-    public func getBalance(address: EthereumAddress, onBlock: String = "latest") -> Result<BigUInt, NervosError> {
+    public func getBalance(address: Address, onBlock: String = "latest") -> Result<BigUInt, NervosError> {
         return Result.failure(NervosError.processingError("Not implemented"))
     }
 
