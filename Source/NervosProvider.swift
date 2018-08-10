@@ -34,16 +34,16 @@ public class NervosProvider {
             return Promise(error: NervosError.nodeError("RPC request is invalid.Perhaps method is nil?"))
         }
 
-        return NervosProvider.post(request, providerURL: self.url, queue: queue, session: self.session)
+        return NervosProvider.post(request, providerURL: url, queue: queue, session: session)
     }
 
     public func sendAsync(_ requests: RequestBatch, queue: DispatchQueue = .main) -> Promise<ResponseBatch> {
-        return NervosProvider.post(requests, providerURL: self.url, queue: queue, session: self.session)
+        return NervosProvider.post(requests, providerURL: url, queue: queue, session: session)
     }
 }
 
 extension NervosProvider {
-    static func post(_ request: Request, providerURL: URL, queue: DispatchQueue = .main, session: URLSession) -> Promise<Response> {
+    static func post(_ request: Request, providerURL: URL, queue: DispatchQueue, session: URLSession) -> Promise<Response> {
         let rp = Promise<Data>.pending()
         var task: URLSessionTask? = nil
         queue.async {

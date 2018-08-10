@@ -15,19 +15,30 @@ extension NervosProvider {
         return URL(string: "http://121.196.200.225:1337")!
     }
 
+    static var deadProviderURL: URL {
+        return URL(string: "http://111.111.111.111:1111")!
+    }
+
     static var defaultProvider: NervosProvider {
         return NervosProvider(defaultProviderURL)!
     }
+
+    static var deadProvider: NervosProvider {
+        return NervosProvider(deadProviderURL)!
+    }
 }
 
-extension Nervos {
-    static var `default`: Nervos {
-        return Nervos(provider: NervosProvider.defaultProvider)
-    }
+struct DefaultNervos {
+    static let instance: Nervos = Nervos(provider: NervosProvider.defaultProvider)
+    static let deadInstance: Nervos = Nervos(provider: NervosProvider.deadProvider)
 }
 
 extension XCTestCase {
     var nervos: Nervos {
-        return Nervos.default
+        return DefaultNervos.instance
+    }
+
+    var nobody: Nervos {
+        return DefaultNervos.deadInstance
     }
 }

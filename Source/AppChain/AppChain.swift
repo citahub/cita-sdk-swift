@@ -24,10 +24,32 @@ public class AppChain: NervosOptionsInheritable {
     }
 }
 
-// API
+// MARK: - API helpers
+extension AppChain {
+    func responseError(_ response: Response) -> NervosError {
+        if let error = response.error {
+            return NervosError.nodeError(error.message)
+        }
+        return NervosError.nodeError("Invalid value from Nervos node")
+    }
+
+    func handle<T>(_ error: Error) -> Result<T, NervosError> {
+        if let err = error as? NervosError {
+            return Result.failure(err)
+        }
+        return Result.failure(NervosError.generalError(error))
+    }
+}
+
+// MARK: - API
 extension AppChain {
     public func peerCount() -> Result<BigUInt, NervosError> {
-        return Result.failure(NervosError.processingError("Not implemented"))
+        do {
+            let result = try peerCountPromise().wait()
+            return Result(result)
+        } catch {
+            return handle(error)
+        }
     }
 
     public func blockNumber() -> Result<BigUInt, NervosError> {

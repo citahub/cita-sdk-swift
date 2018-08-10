@@ -8,6 +8,7 @@
 
 import Foundation
 import web3swift
+import PromiseKit
 
 public protocol NervosOptionsInheritable {
     var options: NervosOptions { get }
@@ -36,6 +37,10 @@ public class Nervos: NervosOptionsInheritable {
     // as account listing, transaction signing, etc. are done locally using private keys and accounts found in a manager.
     public func addKeystoreManager(_ manager: KeystoreManager?) {
         provider.attachedKeystoreManager = manager
+    }
+
+    public func dispatch(_ request: Request) -> Promise<Response> {
+        return requestDispatcher.addToQueue(request: request)
     }
 }
 
