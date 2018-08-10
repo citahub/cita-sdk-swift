@@ -25,3 +25,9 @@ extension Nervos {
         return Nervos(provider: NervosProvider.defaultProvider)
     }
 }
+
+extension XCTestCase {
+    var nervos: Nervos {
+        return Nervos.default
+    }
+}

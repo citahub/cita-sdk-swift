@@ -12,5 +12,6 @@ import XCTest
 class NervosTests: XCTestCase {
     func testDefaultInstance() {
         XCTAssertNotNil(Nervos.default)
+        XCTAssertEqual(nervos.provider.url, Nervos.default.provider.url)
     }
 }
