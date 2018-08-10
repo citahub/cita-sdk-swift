@@ -132,8 +132,8 @@
 		1A67ED49211D089000DCE871 /* AppChain */ = {
 			isa = PBXGroup;
 			children = (
-				1A67ED5A211D1C3C00DCE871 /* AppChain.swift */,
 				1A67ED5E211D55E500DCE871 /* MetaData.swift */,
+				1A67ED5A211D1C3C00DCE871 /* AppChain.swift */,
 			);
 			path = AppChain;
 			sourceTree = "<group>";

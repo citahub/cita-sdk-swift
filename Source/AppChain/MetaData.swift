@@ -12,7 +12,7 @@ import BigInt
 public struct MetaData: Decodable {
     public var chainId: BigUInt
     public var chainName: String
-    public var Operator: String
+    public var `operator`: String
     public var website: String
     public var genesisTimestamp: BigUInt
     public var validators: [String]
@@ -24,7 +24,7 @@ public struct MetaData: Decodable {
     enum CodingKeys: String, CodingKey {
         case chainId
         case chainName
-        case Operator = "operator"
+        case `operator`
         case website
         case genesisTimestamp
         case validators
@@ -40,32 +40,25 @@ public struct MetaData: Decodable {
         guard let chainId = try decodeIntToBigUInt(container, key: .chainId) else { throw NervosError.dataError }
         self.chainId = chainId
 
-        let chainname = try container.decode(String.self, forKey: .chainName)
-        self.chainName = chainname
+        self.chainName = try container.decode(String.self, forKey: .chainName)
 
-        let Operator = try container.decode(String.self, forKey: .Operator)
-        self.Operator = Operator
+        self.operator = try container.decode(String.self, forKey: .operator)
 
-        let website = try container.decode(String.self, forKey: .website)
-        self.website = website
+        self.website = try container.decode(String.self, forKey: .website)
 
         guard let genesisTimestamp = try decodeIntToBigUInt(container, key: .genesisTimestamp) else { throw NervosError.dataError }
         self.genesisTimestamp = genesisTimestamp
 
-        let validators = try container.decode([String].self, forKey: .validators)
-        self.validators = validators
+        self.validators = try container.decode([String].self, forKey: .validators)
 
         guard let blockInterval = try decodeIntToBigUInt(container, key: .blockInterval) else { throw NervosError.dataError }
         self.blockInterval = blockInterval
 
-        let token_name = try container.decode(String.self, forKey: .tokenName)
-        self.tokenName = token_name
+        self.tokenName = try container.decode(String.self, forKey: .tokenName)
 
-        let token_symbol = try container.decode(String.self, forKey: .tokenSymbol)
-        self.tokenSymbol = token_symbol
+        self.tokenSymbol = try container.decode(String.self, forKey: .tokenSymbol)
 
-        let token_avatar = try container.decode(String.self, forKey: .tokenAvatar)
-        self.tokenAvatar = token_avatar
+        self.tokenAvatar = try container.decode(String.self, forKey: .tokenAvatar)
     }
 }
 
