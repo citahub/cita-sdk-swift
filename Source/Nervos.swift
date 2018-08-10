@@ -31,19 +31,10 @@ public class Nervos: Web3OptionsInheritable {
     // Keystore manager can be bound to Web3 instance. If some manager is bound all further account related functions, such
     // as account listing, transaction signing, etc. are done locally using private keys and accounts found in a manager.
     public func addKeystoreManager(_ manager: KeystoreManager?) {
-        self.provider.attachedKeystoreManager = manager
+        provider.attachedKeystoreManager = manager
     }
 }
 
-public enum NervosError: Error {
-    case transactionSerializationError
-    case connectionError
-    case dataError
-    case walletError
-    case inputError(String)
-    case nodeError(String)
-    case processingError(String)
-    case keystoreError(AbstractKeystoreError)
-    case generalError(Error)
-    case unknownError
-}
+public typealias NervosError = Web3Error
+
+public typealias NervosOptions = Web3Options

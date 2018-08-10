@@ -56,7 +56,7 @@ public enum Method: String, Encodable {
     }
 }
 
-public struct JSONRPCRequestFabric {
+public struct RequestFabric {
     public static func prepareRequest(_ method: Method, parameters: [Encodable]) -> Request {
         var request = Request()
         request.method = method
