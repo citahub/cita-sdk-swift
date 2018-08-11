@@ -20,7 +20,7 @@ platform :ios, '9.0'
 target 'YourTargetName' do
   use_frameworks!
 
-  pod 'NervosSwift', git: 'https://github.com/cryptape/NervosSwiftNext'
+  pod 'NervosSwift', git: 'https://github.com/cryptape/nervos-swift-next'
 end
 ```
 
