@@ -11,7 +11,7 @@ import XCTest
 
 class NervosProviderTests: XCTestCase {
     func testDefaultProvider() {
-        XCTAssertNotNil(NervosProvider.defaultProvider)
+        XCTAssertNotNil(NervosProvider.testnetProvider)
     }
 
     func testOnlySupportHTTP() {
