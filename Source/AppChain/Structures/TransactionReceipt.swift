@@ -8,22 +8,18 @@
 
 import Foundation
 import BigInt
-import web3swift
 
-public typealias TransactionReceipt = web3swift.TransactionReceipt
-// TODO: implement Vervos.TransactionReceipt
-/*
 public struct TransactionReceipt: Decodable {
     public var transactionHash: Data
-    public var transactionIndex: BigUInt
     public var blockHash: Data
     public var blockNumber: BigUInt
+    public var transactionIndex: BigUInt
+    public var contractAddress: Address?
     public var cumulativeGasUsed: BigUInt
     public var gasUsed: BigUInt
-    public var contractAddress: EthereumAddress?
     public var logs: [EventLog]
+    public var logsBloom: BloomFilter?
     public var root: String?
-    public var logsBloom: EthereumBloomFilter?
     public var errorMessage: String?
 
     enum CodingKeys: String, CodingKey {
@@ -35,8 +31,8 @@ public struct TransactionReceipt: Decodable {
         case cumulativeGasUsed
         case gasUsed
         case logs
-        case root
         case logsBloom
+        case root
         case errorMessage
     }
 
@@ -54,7 +50,7 @@ public struct TransactionReceipt: Decodable {
         guard let transactionHash = try DecodeUtils.decodeHexToData(container, key: .transactionHash) else { throw NervosError.dataError }
         self.transactionHash = transactionHash
 
-        let contractAddress = try container.decodeIfPresent(EthereumAddress.self, forKey: .contractAddress)
+        let contractAddress = try container.decodeIfPresent(Address.self, forKey: .contractAddress)
         if contractAddress != nil {
             self.contractAddress = contractAddress
         }
@@ -67,18 +63,16 @@ public struct TransactionReceipt: Decodable {
 
         let logsData = try DecodeUtils.decodeHexToData(container, key: .logsBloom, allowOptional: true)
         if logsData != nil && logsData!.count > 0 {
-            self.logsBloom = EthereumBloomFilter(logsData!)
+            self.logsBloom = BloomFilter(logsData!)
         }
 
-        let logs = try container.decode([EventLog].self, forKey: .logs)
-        self.logs = logs
-
-        root = try container.decode(String.self, forKey: .root)
-        errorMessage = try container.decode(String.self, forKey: .errorMessage)
+        logs = try container.decode([EventLog].self, forKey: .logs)
+        root = try container.decodeIfPresent(String.self, forKey: .root)
+        errorMessage = try container.decodeIfPresent(String.self, forKey: .errorMessage)
     }
 
-    public init(transactionHash: Data, blockHash: Data, blockNumber: BigUInt, transactionIndex: BigUInt, contractAddress: EthereumAddress?,
-                cumulativeGasUsed: BigUInt, gasUsed: BigUInt, logs: [EventLog], root: String?, logsBloom: EthereumBloomFilter?) {
+    public init(transactionHash: Data, blockHash: Data, blockNumber: BigUInt, transactionIndex: BigUInt, contractAddress: Address?,
+                cumulativeGasUsed: BigUInt, gasUsed: BigUInt, logs: [EventLog], logsBloom: BloomFilter?, root: String?, errorMessage: String?) {
         self.transactionHash = transactionHash
         self.blockHash = blockHash
         self.blockNumber = blockNumber
@@ -87,8 +81,8 @@ public struct TransactionReceipt: Decodable {
         self.cumulativeGasUsed = cumulativeGasUsed
         self.gasUsed = gasUsed
         self.logs = logs
-        self.root = root
         self.logsBloom = logsBloom
+        self.root = root
+        self.errorMessage = errorMessage
     }
 }
-*/

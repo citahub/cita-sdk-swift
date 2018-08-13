@@ -27,17 +27,11 @@ public struct TransactionDetails: Decodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        self.hash = try DecodeUtils.decodeHexToData(container, key: .hash)!
+        hash = try DecodeUtils.decodeHexToData(container, key: .hash)!
         content = try container.decode(String.self, forKey: .content)
-
-        let blockHash = try DecodeUtils.decodeHexToData(container, key: .blockHash, allowOptional: true)
-        self.blockHash = blockHash
-
-        let blockNumber = try DecodeUtils.decodeHexToBigUInt(container, key: .blockNumber, allowOptional: true)
-        self.blockNumber = blockNumber
-
-        let index = try DecodeUtils.decodeHexToBigUInt(container, key: .index, allowOptional: true)
-        self.index = index
+        blockHash = try DecodeUtils.decodeHexToData(container, key: .blockHash, allowOptional: true)
+        blockNumber = try DecodeUtils.decodeHexToBigUInt(container, key: .blockNumber, allowOptional: true)
+        index = try DecodeUtils.decodeHexToBigUInt(container, key: .index, allowOptional: true)
     }
 
     public init? (_ json: [String: AnyObject]) {
