@@ -32,27 +32,33 @@ public enum Method: String, Encodable {
     case getBlockHeader
     case getStateProof
 
-    public var requiredNumOfParameters: Int {
-        switch self {
-        case .call:
-            return 2
-        case .getTransactionCount:
-            return 2
-        case .getBalance:
-            return 2
-        case .getCode:
-            return 2
-        case .getBlockByHash:
-            return 2
-        case .getBlockByNumber:
-            return 2
-        case .peerCount:
-            return 0
-        case .blockNumber:
-            return 0
-        default:
-            return 1
-        }
+    var requiredNumOfParameters: Int {
+        let mapping: [Method: Int] = [
+            .peerCount: 0,
+            .blockNumber: 0,
+            .sendRawTransaction: 1,
+            .getBlockByHash: 2,
+            .getBlockByNumber: 2,
+            .getTransactionReceipt: 1,
+            .getLogs: 1,
+            .call: 2,
+            .getTransaction: 1,
+            .getTransactionCount: 2,
+            .getCode: 2,
+            .getAbi: 2,
+            .getBalance: 2,
+            .newFilter: 1,
+            .newBlockFilter: 0,
+            .uninstallFilter: 1,
+            .getFilterChanges: 1,
+            .getFilterLogs: 1,
+            .getTransactionProof: 1,
+            .getMetaData: 1,
+            .getBlockHeader: 1,
+            .getStateProof: 3
+        ]
+
+        return mapping[self] ?? 0
     }
 }
 
