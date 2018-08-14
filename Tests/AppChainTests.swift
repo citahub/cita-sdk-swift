@@ -82,12 +82,12 @@ class AppChainTests: XCTestCase {
     }
 
     func testCall() {
-        var tx = TransactionParameters(from: "0xca35b7d915458ef540ade6068dfe2f44e8fa733c", to: "0xb93b22a67D724A3487C2BD83a4aaac66F1B7C882")
-        tx.data = "0x6d4ce63c"
+        var tx = TransactionParameters(from: "0x46a23e25df9a0f6c18729dda9ad1af3b6a131160", to: "0x6fc32e7bdcb8040c4f587c3e9e6cfcee4025ea58")
+        tx.data = "0x9507d39a000000000000000000000000000000000000000000000000000001653656eae7"
         let result = nervos.appChain.call(transaction: tx)
         switch result {
         case .success(let data):
-            XCTAssertTrue(!data.isEmpty)
+            XCTAssertEqual(data, "0x0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000568656c6c6f000000000000000000000000000000000000000000000000000000")
         case .failure(let error):
             XCTFail(error.localizedDescription)
         }
