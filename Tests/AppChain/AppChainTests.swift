@@ -91,7 +91,7 @@ class AppChainTests: XCTestCase {
     }
 
     func testGetLogs() {
-        var filter = EventFilterParameters()
+        var filter = Filter()
         filter.fromBlock = "0x0"
         filter.topics = [["0xe4af93ca7e370881e6f1b57272e42a3d851d3cc6d951b4f4d2e7a963914468a2", "0xa84557f35aab907f9be7974487619dd4c05be1430bf704d0c274a7b3efa50d5a", "0x00000000000000000000000000000000000000000000000000000165365f092d"]]
         let result = nervos.appChain.getLogs(filter: filter)
@@ -106,7 +106,7 @@ class AppChainTests: XCTestCase {
     }
 
     func testCall() {
-        let request = CallRequestParameters(from: "0x46a23e25df9a0f6c18729dda9ad1af3b6a131160", to: "0x6fc32e7bdcb8040c4f587c3e9e6cfcee4025ea58", data: "0x9507d39a000000000000000000000000000000000000000000000000000001653656eae7")
+        let request = CallRequest(from: "0x46a23e25df9a0f6c18729dda9ad1af3b6a131160", to: "0x6fc32e7bdcb8040c4f587c3e9e6cfcee4025ea58", data: "0x9507d39a000000000000000000000000000000000000000000000000000001653656eae7")
         let result = nervos.appChain.call(request: request)
         switch result {
         case .success(let data):

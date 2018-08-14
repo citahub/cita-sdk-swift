@@ -57,11 +57,11 @@ extension AppChain {
         return apiPromise(.getTransactionReceipt, parameters: [txhash])
     }
 
-    func getLogsPromise(filter: EventFilterParameters) -> Promise<[EventLog]> {
+    func getLogsPromise(filter: Filter) -> Promise<[EventLog]> {
         return apiPromise(.getLogs, parameters: [filter])
     }
 
-    func callPromise(request: CallRequestParameters, blockNumber: String) -> Promise<String> {
+    func callPromise(request: CallRequest, blockNumber: String) -> Promise<String> {
         return apiPromise(.call, parameters: [request, blockNumber])
     }
 
