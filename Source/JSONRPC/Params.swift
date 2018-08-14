@@ -9,7 +9,6 @@
 import Foundation
 
 /// Transaction parameters JSON structure for interaction with AppChain.
-/// TODO: update to adapt AppChain tx params.
 public struct TransactionParameters: Codable {
     public var data: String?
     public var from: String?

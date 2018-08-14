@@ -116,8 +116,13 @@ extension AppChain {
         }
     }
 
-    func call(transaction: Transaction, options: NervosOptions, blockNumber: String = "latest") -> Result<Data, NervosError> {
-        return Result.failure(NervosError.processingError("Not implemented"))
+    func call(transaction: TransactionParameters, blockNumber: String = "latest") -> Result<String, NervosError> {
+        do {
+            let result = try callPromise(transaction: transaction, blockNumber: blockNumber).wait()
+            return Result(result)
+        } catch {
+            return handle(error)
+        }
     }
 
     public func getTransaction(txhash: Data) -> Result<TransactionDetails, NervosError> {

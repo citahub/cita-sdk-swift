@@ -61,10 +61,9 @@ extension AppChain {
         return apiPromise(.getLogs, parameters: [filter])
     }
 
-    /*
-     func callPromise() -> Promise<T> {
-     return apiPromise(., parameters: [])
-     } */
+    func callPromise(transaction: TransactionParameters, blockNumber: String) -> Promise<String> {
+        return apiPromise(.call, parameters: [transaction, blockNumber])
+    }
 
     func getTransactionPromise(txhash: String) -> Promise<TransactionDetails> {
         return apiPromise(.getTransaction, parameters: [txhash])

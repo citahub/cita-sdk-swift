@@ -82,7 +82,15 @@ class AppChainTests: XCTestCase {
     }
 
     func testCall() {
-        // TODO
+        var tx = TransactionParameters(from: "0xca35b7d915458ef540ade6068dfe2f44e8fa733c", to: "0xb93b22a67D724A3487C2BD83a4aaac66F1B7C882")
+        tx.data = "0x6d4ce63c"
+        let result = nervos.appChain.call(transaction: tx)
+        switch result {
+        case .success(let data):
+            XCTAssertTrue(!data.isEmpty)
+        case .failure(let error):
+            XCTFail(error.localizedDescription)
+        }
     }
 
     func testGetTransaction() {
