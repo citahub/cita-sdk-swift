@@ -119,9 +119,9 @@ extension AppChain {
         }
     }
 
-    func call(transaction: TransactionParameters, blockNumber: String = "latest") -> Result<String, NervosError> {
+    func call(request: CallRequestParameters, blockNumber: String = "latest") -> Result<String, NervosError> {
         do {
-            let result = try callPromise(transaction: transaction, blockNumber: blockNumber).wait()
+            let result = try callPromise(request: request, blockNumber: blockNumber).wait()
             return Result(result)
         } catch {
             return handle(error)
