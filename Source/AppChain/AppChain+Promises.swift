@@ -41,8 +41,8 @@ extension AppChain {
         return apiPromise(.blockNumber, parameters: [])
     }
 
-    func sendRawTransactionPromise(signedData: String) -> Promise<String> {
-        return apiPromise(.sendRawTransaction, parameters: [signedData])
+    func sendRawTransactionPromise(signedTx: String) -> Promise<TransactionSendingResult> {
+        return apiPromise(.sendRawTransaction, parameters: [signedTx])
     }
 
     func getBlockByHashPromise(hash: String, fullTransactions: Bool) -> Promise<Block> {

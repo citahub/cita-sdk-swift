@@ -54,10 +54,13 @@ extension AppChain {
         }
     }
 
-    public func sendRawTransaction(signedData: Data) -> Result<String, NervosError> {
-        // TODO: verify if this works
+    public func sendRawTransaction(signedTx: Data) -> Result<TransactionSendingResult, NervosError> {
+        return sendRawTransaction(signedTx: signedTx.toHexString().addHexPrefix())
+    }
+
+    public func sendRawTransaction(signedTx: String) -> Result<TransactionSendingResult, NervosError> {
         do {
-            let result = try sendRawTransactionPromise(signedData: signedData.toHexString().addHexPrefix()).wait()
+            let result = try sendRawTransactionPromise(signedTx: signedTx).wait()
             return Result(result)
         } catch {
             return handle(error)

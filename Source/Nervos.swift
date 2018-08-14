@@ -44,9 +44,9 @@ public class Nervos: NervosOptionsInheritable {
     }
 }
 
+public typealias Utils = Web3Utils
 public typealias NervosError = Web3Error
 public typealias NervosOptions = Web3Options
 public typealias Address = EthereumAddress
-public typealias TransactionSendingResult = web3swift.TransactionSendingResult
 public typealias EventLog = web3swift.EventLog
 public typealias BloomFilter = web3swift.EthereumBloomFilter

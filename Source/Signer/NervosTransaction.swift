@@ -12,55 +12,51 @@ import secp256k1_ios
 
 public enum TransactionError: Error {
     case privateKeyIsNull
-    case signatureFaild
+    case signatureIncorrect
     case unknownError
 }
 
 public struct NervosTransaction: CustomStringConvertible {
     public var to: Address
-    public var nonce: BigUInt
-    public var quota = BigUInt(100000)
-    public var validUntilBlock: BigUInt
-    public var version: BigUInt
+    public var nonce: String
     public var data: Data
     public var value: BigUInt
+    public var validUntilBlock: BigUInt
+    public var quota: BigUInt
+    public var version: BigUInt
     public var chainId: BigUInt
 
-    /*
-    public init(to: Address, nonce: BigUInt, quota: BigUInt, validUntilBlock: BigUInt, version: BigUInt, data: Data, value: BigUInt, chainId: BigUInt) {
-        self.nonce = nonce
+    public init(
+        to: Address,
+        nonce: String,
+        data: Data,
+        value: BigUInt = 0,
+        validUntilBlock: BigUInt,
+        quota: BigUInt = 100000,
+        version: BigUInt = 0,
+        chainId: BigUInt
+    ) {
         self.to = to
-        self.quota = quota
-        self.validUntilBlock = validUntilBlock
-        self.version = version
+        self.nonce = nonce
         self.data = data
         self.value = value
+        self.validUntilBlock = validUntilBlock
+        self.quota = quota
+        self.version = version
         self.chainId = chainId
-    }*/
+    }
 
     public var description: String {
         return [
             "Transaction",
-            "nonce: " + String(nonce),
-            "to: " + String(to.address),
-            "quota: " + String(quota),
-            "valid_until_block: " + String(validUntilBlock),
-            "version: " + String(version),
+            "to: " + to.address,
+            "nonce: " + nonce,
             "data: " + data.toHexString(),
             "value: " + value.description,
-            "chain_id: " + String(chainId)
+            "validUntilBlock: " + validUntilBlock.description,
+            "quota: " + String(quota),
+            "version: " + String(version),
+            "chainId: " + String(chainId)
         ].joined(separator: "\n")
-    }
-
-    static func createRawTransactionRequest(transaction: NervosTransaction, privateKey: String) -> Request? {
-        let txSignStr = try! NervosTransactionSigner.sign(transaction: transaction, with: privateKey)
-        var request = Request()
-        request.method = Method.sendRawTransaction
-
-        let params = [txSignStr] as [Encodable]
-        let pars = Params(params: params)
-        request.params = pars
-        if !request.isValid { return nil }
-        return request
     }
 }

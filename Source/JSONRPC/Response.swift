@@ -50,6 +50,7 @@ public struct Response: Decodable {
         EventLog.self,
         TransactionDetails.self,
         TransactionReceipt.self,
+        TransactionSendingResult.self,
         Block.self,
         MetaData.self,
         String.self,
@@ -80,6 +81,8 @@ public struct Response: Decodable {
         } else if let rawValue = try? container.decodeIfPresent(Block.self, forKey: .result) {
             result = rawValue
         } else if let rawValue = try? container.decodeIfPresent(TransactionReceipt.self, forKey: .result) {
+            result = rawValue
+        } else if let rawValue = try? container.decodeIfPresent(TransactionSendingResult.self, forKey: .result) {
             result = rawValue
         } else if let rawValue = try? container.decodeIfPresent(TransactionDetails.self, forKey: .result) {
             result = rawValue

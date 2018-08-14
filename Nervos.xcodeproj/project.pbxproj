@@ -29,11 +29,12 @@
 		1AD65F8E2121795B00AA4C84 /* TransactionReceipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65F8D2121795B00AA4C84 /* TransactionReceipt.swift */; };
 		1AD65F9021217AC000AA4C84 /* DecodeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65F8F21217AC000AA4C84 /* DecodeUtils.swift */; };
 		1AD65F922121822600AA4C84 /* TransactionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65F912121822600AA4C84 /* TransactionDetails.swift */; };
-		1AD65F942121846900AA4C84 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65F932121846900AA4C84 /* Data+Extension.swift */; };
 		1AD65F97212294C800AA4C84 /* NervosTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65F96212294C800AA4C84 /* NervosTransaction.swift */; };
 		1AD65F9B2122983A00AA4C84 /* Transaction.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65F9A2122983A00AA4C84 /* Transaction.pb.swift */; };
 		1AD65F9D2122999900AA4C84 /* Secp251k1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65F9C2122999900AA4C84 /* Secp251k1.swift */; };
 		1AD65F9F21229AF500AA4C84 /* NervosTransactionSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65F9E21229AF500AA4C84 /* NervosTransactionSigner.swift */; };
+		1AD65FA12122A1F900AA4C84 /* TransactionSendingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65FA02122A1F900AA4C84 /* TransactionSendingResult.swift */; };
+		1AD65FA62122AF4400AA4C84 /* NervosTransactionSignerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65FA42122AF2F00AA4C84 /* NervosTransactionSignerTest.swift */; };
 		4561825AA44494F0A0169D68 /* Pods_NervosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B2550BBCC89EE6098537770 /* Pods_NervosTests.framework */; };
 		516C5C2B6C66E1C77AB15B57 /* Pods_Nervos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC1BC44472A0BC7ED1CA017 /* Pods_Nervos.framework */; };
 /* End PBXBuildFile section */
@@ -74,11 +75,12 @@
 		1AD65F8D2121795B00AA4C84 /* TransactionReceipt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionReceipt.swift; sourceTree = "<group>"; };
 		1AD65F8F21217AC000AA4C84 /* DecodeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeUtils.swift; sourceTree = "<group>"; };
 		1AD65F912121822600AA4C84 /* TransactionDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetails.swift; sourceTree = "<group>"; };
-		1AD65F932121846900AA4C84 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
 		1AD65F96212294C800AA4C84 /* NervosTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NervosTransaction.swift; sourceTree = "<group>"; };
 		1AD65F9A2122983A00AA4C84 /* Transaction.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.pb.swift; sourceTree = "<group>"; };
 		1AD65F9C2122999900AA4C84 /* Secp251k1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secp251k1.swift; sourceTree = "<group>"; };
 		1AD65F9E21229AF500AA4C84 /* NervosTransactionSigner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NervosTransactionSigner.swift; sourceTree = "<group>"; };
+		1AD65FA02122A1F900AA4C84 /* TransactionSendingResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSendingResult.swift; sourceTree = "<group>"; };
+		1AD65FA42122AF2F00AA4C84 /* NervosTransactionSignerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NervosTransactionSignerTest.swift; sourceTree = "<group>"; };
 		2592D768976DDA03188738F7 /* Pods-NervosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NervosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NervosTests/Pods-NervosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		624397CF46A1E8EBCAD0932D /* Pods-Nervos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nervos.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nervos/Pods-Nervos.release.xcconfig"; sourceTree = "<group>"; };
 		6B2550BBCC89EE6098537770 /* Pods_NervosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NervosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,9 +148,10 @@
 		1A67ED3B211BEAFD00DCE871 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				1AD65FA22122AF0E00AA4C84 /* AppChain */,
+				1AD65FA32122AF1700AA4C84 /* Signer */,
 				1A67ED3C211BEAFD00DCE871 /* NervosProviderTests.swift */,
 				1A67ED5C211D1FF900DCE871 /* NervosTests.swift */,
-				1A588539211DC759007043F1 /* AppChainTests.swift */,
 				1A64297E211C63E000352209 /* Config.swift */,
 				1A67ED3E211BEAFD00DCE871 /* Info.plist */,
 			);
@@ -181,7 +184,6 @@
 			isa = PBXGroup;
 			children = (
 				1A67ED58211D151100DCE871 /* String+Extension.swift */,
-				1AD65F932121846900AA4C84 /* Data+Extension.swift */,
 				1AB5C6D9212125A200148587 /* Int+Extension.swift */,
 				1AD65F8F21217AC000AA4C84 /* DecodeUtils.swift */,
 				1AD65F9C2122999900AA4C84 /* Secp251k1.swift */,
@@ -196,6 +198,7 @@
 				1AB5C6DB2121751400148587 /* Block.swift */,
 				1AD65F8D2121795B00AA4C84 /* TransactionReceipt.swift */,
 				1AD65F912121822600AA4C84 /* TransactionDetails.swift */,
+				1AD65FA02122A1F900AA4C84 /* TransactionSendingResult.swift */,
 			);
 			path = Structures;
 			sourceTree = "<group>";
@@ -206,6 +209,22 @@
 				1AD65F9A2122983A00AA4C84 /* Transaction.pb.swift */,
 				1AD65F96212294C800AA4C84 /* NervosTransaction.swift */,
 				1AD65F9E21229AF500AA4C84 /* NervosTransactionSigner.swift */,
+			);
+			path = Signer;
+			sourceTree = "<group>";
+		};
+		1AD65FA22122AF0E00AA4C84 /* AppChain */ = {
+			isa = PBXGroup;
+			children = (
+				1A588539211DC759007043F1 /* AppChainTests.swift */,
+			);
+			path = AppChain;
+			sourceTree = "<group>";
+		};
+		1AD65FA32122AF1700AA4C84 /* Signer */ = {
+			isa = PBXGroup;
+			children = (
+				1AD65FA42122AF2F00AA4C84 /* NervosTransactionSignerTest.swift */,
 			);
 			path = Signer;
 			sourceTree = "<group>";
@@ -431,7 +450,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AB5C6D8212112DA00148587 /* AppChain+Promises.swift in Sources */,
-				1AD65F942121846900AA4C84 /* Data+Extension.swift in Sources */,
 				1A67ED59211D151100DCE871 /* String+Extension.swift in Sources */,
 				1AD65F9B2122983A00AA4C84 /* Transaction.pb.swift in Sources */,
 				1AB5C6DC2121751400148587 /* Block.swift in Sources */,
@@ -446,6 +464,7 @@
 				1AD65F9F21229AF500AA4C84 /* NervosTransactionSigner.swift in Sources */,
 				1A67ED54211D122000DCE871 /* Method.swift in Sources */,
 				1A67ED4D211D0AA600DCE871 /* RequestDispatcher.swift in Sources */,
+				1AD65FA12122A1F900AA4C84 /* TransactionSendingResult.swift in Sources */,
 				1AB5C6DA212125A200148587 /* Int+Extension.swift in Sources */,
 				1A64297D211C5E0700352209 /* NervosProvider.swift in Sources */,
 				1AD65F9D2122999900AA4C84 /* Secp251k1.swift in Sources */,
@@ -460,6 +479,7 @@
 			files = (
 				1A67ED3D211BEAFD00DCE871 /* NervosProviderTests.swift in Sources */,
 				1A58853A211DC759007043F1 /* AppChainTests.swift in Sources */,
+				1AD65FA62122AF4400AA4C84 /* NervosTransactionSignerTest.swift in Sources */,
 				1A64297F211C63E000352209 /* Config.swift in Sources */,
 				1A67ED5D211D1FF900DCE871 /* NervosTests.swift in Sources */,
 			);

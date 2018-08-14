@@ -11,7 +11,7 @@ import Foundation
 public struct NervosTransactionSigner {
     public static func sign(transaction: NervosTransaction, with privateKey: String) throws -> String {
         var tx = Transaction()
-        tx.nonce = transaction.description
+        tx.nonce = transaction.nonce
         tx.to = transaction.to.address
         tx.quota = UInt64(transaction.quota)
         tx.data = transaction.data
@@ -19,6 +19,7 @@ public struct NervosTransactionSigner {
         tx.value = Data(hex: transaction.value.toHexString())
         tx.chainID = UInt32(transaction.chainId)
         tx.validUntilBlock = UInt64(transaction.validUntilBlock)
+
         let binaryData: Data = try! tx.serializedData()
         guard let privateKeyData = Data.fromHex(privateKey) else {
             throw TransactionError.privateKeyIsNull
@@ -26,7 +27,7 @@ public struct NervosTransactionSigner {
         let protobufHash = binaryData.sha3(.keccak256)
         let (compressedSignature, _) = Secp256k1.signForRecovery(hash: protobufHash, privateKey: privateKeyData, useExtraEntropy: false)
         guard let signature = compressedSignature else {
-            throw TransactionError.unknownError
+            throw TransactionError.signatureIncorrect
         }
 
         var unverifiedTx = UnverifiedTransaction()
