@@ -39,22 +39,25 @@ public struct Response: Decodable {
         public var message: String
     }
 
-    internal var decodableTypes: [Decodable.Type] = [[EventLog].self,
-                                                     [TransactionDetails].self,
-                                                     [TransactionReceipt].self,
-                                                     [Block].self,
-                                                     [String].self,
-                                                     [Int].self,
-                                                     [Bool].self,
-                                                     EventLog.self,
-                                                     TransactionDetails.self,
-                                                     TransactionReceipt.self,
-                                                     Block.self,
-                                                     String.self,
-                                                     Int.self,
-                                                     Bool.self,
-                                                     [String: String].self,
-                                                     [String: Int].self]
+    internal var decodableTypes: [Decodable.Type] = [
+        [EventLog].self,
+        [TransactionDetails].self,
+        [TransactionReceipt].self,
+        [Block].self,
+        [String].self,
+        [Int].self,
+        [Bool].self,
+        EventLog.self,
+        TransactionDetails.self,
+        TransactionReceipt.self,
+        Block.self,
+        MetaData.self,
+        String.self,
+        Int.self,
+        Bool.self,
+        [String: String].self,
+        [String: Int].self
+    ]
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: ResponseKeys.self)
@@ -83,6 +86,8 @@ public struct Response: Decodable {
         } else if let rawValue = try? container.decodeIfPresent([EventLog].self, forKey: .result) {
             result = rawValue
         } else if let rawValue = try? container.decodeIfPresent([Block].self, forKey: .result) {
+            result = rawValue
+        } else if let rawValue = try? container.decodeIfPresent(MetaData.self, forKey: .result) {
             result = rawValue
         } else if let rawValue = try? container.decodeIfPresent([TransactionReceipt].self, forKey: .result) {
             result = rawValue
