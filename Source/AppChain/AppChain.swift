@@ -107,8 +107,13 @@ extension AppChain {
         }
     }
 
-    public func getLogs(filter: [String: Any]) -> Result<[Any], NervosError> {
-        return Result.failure(NervosError.processingError("Not implemented"))
+    public func getLogs(filter: EventFilterParameters) -> Result<[EventLog], NervosError> {
+        do {
+            let result = try getLogsPromise(filter: filter).wait()
+            return Result(result)
+        } catch {
+            return handle(error)
+        }
     }
 
     func call(transaction: Transaction, options: NervosOptions, blockNumber: String = "latest") -> Result<Data, NervosError> {

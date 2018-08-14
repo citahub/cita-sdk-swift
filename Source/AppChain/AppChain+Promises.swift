@@ -57,10 +57,9 @@ extension AppChain {
         return apiPromise(.getTransactionReceipt, parameters: [txhash])
     }
 
-    /*
-    func getLogsPromise(_ filter: [String: Any]) -> Promise<[Any]> {
+    func getLogsPromise(filter: EventFilterParameters) -> Promise<[EventLog]> {
         return apiPromise(.getLogs, parameters: [filter])
-    }*/
+    }
 
     /*
      func callPromise() -> Promise<T> {

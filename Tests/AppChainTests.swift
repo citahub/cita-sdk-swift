@@ -68,6 +68,23 @@ class AppChainTests: XCTestCase {
         }
     }
 
+    func testGetLogs() {
+        var filter = EventFilterParameters()
+        filter.fromBlock = "0x0"
+        filter.topics = [["0x8fb1356be6b2a4e49ee94447eb9dcb8783f51c41dcddfe7919f945017d163bf3"]]
+        let result = nervos.appChain.getLogs(filter: filter)
+        switch result {
+        case .success(let logs):
+            XCTAssertTrue(logs.count >= 0)
+        case .failure(let error):
+            XCTFail(error.localizedDescription)
+        }
+    }
+
+    func testCall() {
+        // TODO
+    }
+
     func testGetTransaction() {
         let txhash = "0x3466dafafb88dd0399999af3a449c923e0a48ac2bcda85396a813714079fea54"
         let result = nervos.appChain.getTransaction(txhash: txhash)
