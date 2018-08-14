@@ -71,11 +71,13 @@ class AppChainTests: XCTestCase {
     func testGetLogs() {
         var filter = EventFilterParameters()
         filter.fromBlock = "0x0"
-        filter.topics = [["0x8fb1356be6b2a4e49ee94447eb9dcb8783f51c41dcddfe7919f945017d163bf3"]]
+        filter.topics = [["0xe4af93ca7e370881e6f1b57272e42a3d851d3cc6d951b4f4d2e7a963914468a2", "0xa84557f35aab907f9be7974487619dd4c05be1430bf704d0c274a7b3efa50d5a", "0x00000000000000000000000000000000000000000000000000000165365f092d"]]
         let result = nervos.appChain.getLogs(filter: filter)
         switch result {
         case .success(let logs):
-            XCTAssertTrue(logs.count >= 0)
+            XCTAssert(logs.count >= 105)
+            let log = logs.first { $0.blockNumber == BigUInt(380100) }!
+            XCTAssertEqual(log.blockHash.toHexString().addHexPrefix(), "0x037b6a982420b6cf61883545343708b82cb306371f919996903011fb891f3645")
         case .failure(let error):
             XCTFail(error.localizedDescription)
         }
