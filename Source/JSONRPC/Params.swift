@@ -23,6 +23,19 @@ public struct TransactionParameters: Codable {
     }
 }
 
+/// CallRequest
+public struct CallRequestParameters: Codable {
+    public var from: String?
+    public var to: String
+    public var data: String?
+
+    public init(from: String?, to: String, data: String? = nil) {
+        self.from = from
+        self.to = to
+        self.data = data
+    }
+}
+
 /// Event filter parameters JSON structure for interaction with AppChain.
 public struct EventFilterParameters: Codable {
     public var fromBlock: String?
@@ -38,7 +51,9 @@ public struct Params: Encodable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.unkeyedContainer()
         for par in params {
-            if let p = par as? TransactionParameters {
+            if let p = par as? CallRequestParameters {
+                try container.encode(p)
+            } else if let p = par as? TransactionParameters {
                 try container.encode(p)
             } else if let p = par as? String {
                 try container.encode(p)

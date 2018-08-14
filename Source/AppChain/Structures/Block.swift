@@ -16,8 +16,7 @@ public struct Block: Decodable {
     // header
     // public var transactions: [TransactionInBlock]
 
-    enum CodingKeys: String, CodingKey
-    {
+    enum CodingKeys: String, CodingKey {
         case version
         case hash
        // case header
