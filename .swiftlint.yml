@@ -9,6 +9,7 @@ included:
 excluded:
   - Pods
   - Tests
+  - Source/Signer/Transaction.pb.swift
 
 function_body_length:
   - 100 # warning
