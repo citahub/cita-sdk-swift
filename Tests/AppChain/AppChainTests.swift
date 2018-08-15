@@ -50,8 +50,7 @@ class AppChainTests: XCTestCase {
         let result = nervos.appChain.sendRawTransaction(signedTx: signed)
         switch result {
         case .success(let result):
-            XCTAssertTrue(result.hash.hasPrefix("0x"))
-            XCTAssertEqual(66, result.hash.count)
+            XCTAssertEqual(32, result.hash.count)
         case .failure(let error):
             XCTFail(error.localizedDescription)
         }
@@ -62,7 +61,7 @@ class AppChainTests: XCTestCase {
         let result = nervos.appChain.getBlockByHash(hash: hash, fullTransactions: true)
         switch result {
         case .success(let block):
-            XCTAssertEqual(block.hash, hash)
+            XCTAssertEqual(block.hash.toHexString().addHexPrefix(), hash)
         case .failure(let error):
             XCTFail(error.localizedDescription)
         }
@@ -74,7 +73,7 @@ class AppChainTests: XCTestCase {
         let result = nervos.appChain.getBlockByNumber(number: number, fullTransactions: true)
         switch result {
         case .success(let block):
-            XCTAssertEqual(block.hash, hash)
+            XCTAssertEqual(block.hash.toHexString().addHexPrefix(), hash)
         case .failure(let error):
             XCTFail(error.localizedDescription)
         }
