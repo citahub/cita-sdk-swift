@@ -94,15 +94,15 @@ extension AppChain {
     }
 
     func uninstallFilterPromise(filterID: BigUInt) -> Promise<Bool> {
-       return apiPromise(.uninstallFilter, parameters: [filterID])
+       return apiPromise(.uninstallFilter, parameters: [filterID.toHexString().addHexPrefix()])
     }
 
     func getFilterChangesPromise(filterID: BigUInt) -> Promise<[EventLog]> {
-        return apiPromise(.getFilterChanges, parameters: [filterID])
+        return apiPromise(.getFilterChanges, parameters: [filterID.toHexString().addHexPrefix()])
     }
 
     func getFilterLogsPromise(filterID: BigUInt) -> Promise<[EventLog]> {
-        return apiPromise(.getFilterLogs, parameters: [filterID])
+        return apiPromise(.getFilterLogs, parameters: [filterID.toHexString().addHexPrefix()])
     }
 
     func getTransactionProofPromise(txhash: String) -> Promise<String> {
