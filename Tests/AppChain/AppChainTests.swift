@@ -188,6 +188,68 @@ class AppChainTests: XCTestCase {
         }
     }
 
+    func testNewFilter() {
+        var filter = Filter()
+        filter.fromBlock = "0x0"
+        filter.topics = [["0xe4af93ca7e370881e6f1b57272e42a3d851d3cc6d951b4f4d2e7a963914468a2", "0xa84557f35aab907f9be7974487619dd4c05be1430bf704d0c274a7b3efa50d5a", "0x00000000000000000000000000000000000000000000000000000165365f092d"]]
+        let result = nervos.appChain.newFilter(filter: filter)
+        switch result {
+        case .success(let id):
+            XCTAssertTrue(id > 0)
+        case .failure(let error):
+            XCTFail(error.localizedDescription)
+        }
+    }
+
+    func testNewBlockFilter() {
+        let result = nervos.appChain.newBlockFilter()
+        switch result {
+        case .success(let id):
+            XCTAssertTrue(id > 0)
+        case .failure(let error):
+            XCTFail(error.localizedDescription)
+        }
+    }
+
+    func testUninstallFilter() {
+        guard case .success(let filterID ) = nervos.appChain.newBlockFilter() else { return XCTFail() }
+        var result = nervos.appChain.uninstallFilter(filterID: filterID)
+        switch result {
+        case .success(let uninstalled):
+            XCTAssertTrue(uninstalled)
+        case .failure(let error):
+            XCTFail(error.localizedDescription)
+        }
+
+        result = nervos.appChain.uninstallFilter(filterID: filterID)
+        switch result {
+        case .success(let uninstalled):
+            XCTAssertFalse(uninstalled)
+        case .failure(let error):
+            XCTFail(error.localizedDescription)
+        }
+    }
+
+    func testGetFilterChanges() {
+        let result = nervos.appChain.getFilterChanges(filterID: 1)
+        switch result {
+        case .success(let changes):
+            XCTAssertTrue(changes.count >= 0)
+        case .failure(let error):
+            XCTFail(error.localizedDescription)
+        }
+    }
+
+    func testGetFilterLogs() {
+        let result = nervos.appChain.getFilterLogs(filterID: 1)
+        switch result {
+        case .success(let changes):
+            XCTAssertTrue(changes.count >= 0)
+        case .failure(let error):
+            XCTFail(error.localizedDescription)
+        }
+    }
+
     func testGetTransactionProof() {
         let result = nervos.appChain.getTransactionProof(txhash: "0x3466dafafb88dd0399999af3a449c923e0a48ac2bcda85396a813714079fea54")
         switch result {
