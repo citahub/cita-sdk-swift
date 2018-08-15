@@ -81,34 +81,29 @@ extension AppChain {
         return apiPromise(.getAbi, parameters: [address.lowercased(), blockNumber])
     }
 
-     func getBalancePromise(address: String, blockNumber: String) -> Promise<BigUInt> {
-        return apiPromise(.getBalance, parameters: [address.lowercased(), blockNumber])
-     }
+    func getBalancePromise(address: String, blockNumber: String) -> Promise<BigUInt> {
+       return apiPromise(.getBalance, parameters: [address.lowercased(), blockNumber])
+    }
 
-    /*
-     func newFilterPromise() -> Promise<T> {
-     return apiPromise(., parameters: [])
-     } */
+    func newFilterPromise(filter: Filter) -> Promise<BigUInt> {
+       return apiPromise(.newFilter, parameters: [filter])
+    }
 
-    /*
-     func newBlockFilterPromise() -> Promise<T> {
-     return apiPromise(., parameters: [])
-     } */
+    func newBlockFilterPromise() -> Promise<BigUInt> {
+       return apiPromise(.newBlockFilter, parameters: [])
+    }
 
-    /*
-     func uninstallFilterPromise() -> Promise<T> {
-     return apiPromise(., parameters: [])
-     } */
+    func uninstallFilterPromise(filterID: BigUInt) -> Promise<Bool> {
+       return apiPromise(.uninstallFilter, parameters: [filterID])
+    }
 
-    /*
-     func getFilterChangesPromise() -> Promise<T> {
-     return apiPromise(., parameters: [])
-     } */
+    func getFilterChangesPromise(filterID: BigUInt) -> Promise<[EventLog]> {
+        return apiPromise(.getFilterChanges, parameters: [filterID])
+    }
 
-    /*
-     func getFilterLogsPromise() -> Promise<T> {
-     return apiPromise(., parameters: [])
-     } */
+    func getFilterLogsPromise(filterID: BigUInt) -> Promise<[EventLog]> {
+        return apiPromise(.getFilterLogs, parameters: [filterID])
+    }
 
     func getTransactionProofPromise(txhash: String) -> Promise<String> {
         return apiPromise(.getTransactionProof, parameters: [txhash])

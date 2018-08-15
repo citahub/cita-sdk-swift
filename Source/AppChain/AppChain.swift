@@ -193,26 +193,49 @@ extension AppChain {
         }
     }
 
-    // TODO: implement filters.
-
     public func newFilter(filter: Filter) -> Result<BigUInt, NervosError> {
-        return Result.failure(NervosError.processingError("Not implemented"))
+        do {
+            let result = try newFilterPromise(filter: filter).wait()
+            return Result(result)
+        } catch {
+            return handle(error)
+        }
     }
 
     public func newBlockFilter() -> Result<BigUInt, NervosError> {
-        return Result.failure(NervosError.processingError("Not implemented"))
+        do {
+            let result = try newBlockFilterPromise().wait()
+            return Result(result)
+        } catch {
+            return handle(error)
+        }
     }
 
     public func uninstallFilter(filterID: BigUInt) -> Result<Bool, NervosError> {
-        return Result.failure(NervosError.processingError("Not implemented"))
+        do {
+            let result = try uninstallFilterPromise(filterID: filterID).wait()
+            return Result(result)
+        } catch {
+            return handle(error)
+        }
     }
 
-    public func getFilterChanges(filterID: BigUInt) -> Result<[Any], NervosError> {
-        return Result.failure(NervosError.processingError("Not implemented"))
+    public func getFilterChanges(filterID: BigUInt) -> Result<[EventLog], NervosError> {
+        do {
+            let result = try getFilterChangesPromise(filterID: filterID).wait()
+            return Result(result)
+        } catch {
+            return handle(error)
+        }
     }
 
-    public func getFilterLogs(filterID: BigUInt) -> Result<[Any], NervosError> {
-        return Result.failure(NervosError.processingError("Not implemented"))
+    public func getFilterLogs(filterID: BigUInt) -> Result<[EventLog], NervosError> {
+        do {
+            let result = try getFilterLogsPromise(filterID: filterID).wait()
+            return Result(result)
+        } catch {
+            return handle(error)
+        }
     }
 
     public func getTransactionProof(txhash: Data) -> Result<String, NervosError> {
