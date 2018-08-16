@@ -13,7 +13,7 @@ import PromiseKit
 /// Nervos HTTP Provider.
 public class NervosProvider {
     public var attachedKeystoreManager: KeystoreManager?
-    public var url: URL
+    public let url: URL
 
     public var session: URLSession = { () -> URLSession in
         let config = URLSessionConfiguration.default
