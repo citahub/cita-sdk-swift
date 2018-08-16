@@ -43,9 +43,9 @@ $ pod install
 
 ### web3swift
 
-NervosSwift is built based on [BANKEX/web3swift](https://github.com/BANKEX/web3swift). While it's unnecessary to import `web3swift` when using NervosSwift, the following classes are simply typealias of web3swift's Ethereum types:
+NervosSwift is built based on [BANKEX/web3swift](https://github.com/BANKEX/web3swift). While it's not required to import `web3swift` when using NervosSwift, please note the following classes are simply typealias of web3swift's Ethereum types:
 
-| NervosSwift Types | web3swift Type      |
+| NervosSwift Type  | web3swift Type      |
 |:-----------------:|:-------------------:|
 | Utils             | Web3Utils           |
 | NervosError       | Web3Error           |
@@ -86,7 +86,7 @@ Before sending a raw transaction over JSON-RPC API, create a `NervosTransaction`
 let privateKey = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
 let tx = NervosTransaction(
     to: Address("0x0000000000000000000000000000000000000000")!,
-    nonce: "12345", // Generate a random or unique nonce string
+    nonce: "12345", // Generate a random/unique nonce string
     data: Data.fromHex("6060604...")!,
     validUntilBlock: 999999,
     chainId: 1
