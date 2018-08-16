@@ -98,6 +98,24 @@ guard let signed = try? NervosTransactionSigner.sign(transaction: tx, with: priv
 
 ## RPC API Reference
 
+All JSON-RPC API return `Result<Value, NervosError>`, where `Value` is the actual type of the result when the call is successful.
+
+A common flow to call an API and handle the result is as follows:
+
+```swift
+let result = nervos.appChain.peerCount()
+switch result {
+case .success(let count):
+    print("AppChain peer count: \(count)")
+case .failure(let error):
+    print(error.localizedDescription)
+}
+```
+
+### Important Notices
+
+All JSON-RPC API functions are synchronous. But the underlying HTTP request might take some time to return, and in NervosSwift they're usually implemented in some `promise` way. It's generally better to call API function in a background queue so it won't block the main thread.
+
 TODO
 
 ## License
