@@ -35,8 +35,8 @@ private extension AppChain {
 }
 
 // MARK: - API
-extension AppChain {
-    public func peerCount() -> Result<BigUInt, NervosError> {
+public extension AppChain {
+    func peerCount() -> Result<BigUInt, NervosError> {
         do {
             let result = try peerCountPromise().wait()
             return Result(result)
@@ -45,7 +45,7 @@ extension AppChain {
         }
     }
 
-    public func blockNumber() -> Result<BigUInt, NervosError> {
+    func blockNumber() -> Result<BigUInt, NervosError> {
         do {
             let result = try blockNumberPromise().wait()
             return Result(result)
@@ -54,11 +54,11 @@ extension AppChain {
         }
     }
 
-    public func sendRawTransaction(signedTx: Data) -> Result<TransactionSendingResult, NervosError> {
+    func sendRawTransaction(signedTx: Data) -> Result<TransactionSendingResult, NervosError> {
         return sendRawTransaction(signedTx: signedTx.toHexString().addHexPrefix())
     }
 
-    public func sendRawTransaction(signedTx: String) -> Result<TransactionSendingResult, NervosError> {
+    func sendRawTransaction(signedTx: String) -> Result<TransactionSendingResult, NervosError> {
         do {
             let result = try sendRawTransactionPromise(signedTx: signedTx).wait()
             return Result(result)
@@ -67,11 +67,11 @@ extension AppChain {
         }
     }
 
-    public func getBlockByHash(hash: Data, fullTransactions: Bool = false) -> Result<Block, NervosError> {
+    func getBlockByHash(hash: Data, fullTransactions: Bool = false) -> Result<Block, NervosError> {
         return getBlockByHash(hash: hash.toHexString().addHexPrefix(), fullTransactions: fullTransactions)
     }
 
-    public func getBlockByHash(hash: String, fullTransactions: Bool = false) -> Result<Block, NervosError> {
+    func getBlockByHash(hash: String, fullTransactions: Bool = false) -> Result<Block, NervosError> {
         do {
             let result = try getBlockByHashPromise(hash: hash, fullTransactions: fullTransactions).wait()
             return Result(result)
@@ -80,15 +80,15 @@ extension AppChain {
         }
     }
 
-    public func getBlockByNumber(number: UInt64, fullTransactions: Bool = false) -> Result<Block, NervosError> {
+    func getBlockByNumber(number: UInt64, fullTransactions: Bool = false) -> Result<Block, NervosError> {
         return getBlockByNumber(number: number.toHexString().addHexPrefix(), fullTransactions: fullTransactions)
     }
 
-    public func getBlockByNumber(number: BigUInt, fullTransactions: Bool = false) -> Result<Block, NervosError> {
+    func getBlockByNumber(number: BigUInt, fullTransactions: Bool = false) -> Result<Block, NervosError> {
         return getBlockByNumber(number: number.toHexString().addHexPrefix(), fullTransactions: fullTransactions)
     }
 
-    public func getBlockByNumber(number: String, fullTransactions: Bool = false) -> Result<Block, NervosError> {
+    func getBlockByNumber(number: String, fullTransactions: Bool = false) -> Result<Block, NervosError> {
         do {
             let result = try getBlockByNumberPromise(number: number.addHexPrefix(), fullTransactions: fullTransactions).wait()
             return Result(result)
@@ -97,11 +97,11 @@ extension AppChain {
         }
     }
 
-    public func getTransactionReceipt(txhash: Data) -> Result<TransactionReceipt, NervosError> {
+    func getTransactionReceipt(txhash: Data) -> Result<TransactionReceipt, NervosError> {
         return getTransactionReceipt(txhash: txhash.toHexString().addHexPrefix())
     }
 
-    public func getTransactionReceipt(txhash: String) -> Result<TransactionReceipt, NervosError> {
+    func getTransactionReceipt(txhash: String) -> Result<TransactionReceipt, NervosError> {
         do {
             let result = try getTransactionReceiptPromise(txhash: txhash).wait()
             return Result(result)
@@ -110,7 +110,7 @@ extension AppChain {
         }
     }
 
-    public func getLogs(filter: Filter) -> Result<[EventLog], NervosError> {
+    func getLogs(filter: Filter) -> Result<[EventLog], NervosError> {
         do {
             let result = try getLogsPromise(filter: filter).wait()
             return Result(result)
@@ -128,11 +128,11 @@ extension AppChain {
         }
     }
 
-    public func getTransaction(txhash: Data) -> Result<TransactionDetails, NervosError> {
+    func getTransaction(txhash: Data) -> Result<TransactionDetails, NervosError> {
         return getTransaction(txhash: txhash.toHexString().addHexPrefix())
     }
 
-    public func getTransaction(txhash: String) -> Result<TransactionDetails, NervosError> {
+    func getTransaction(txhash: String) -> Result<TransactionDetails, NervosError> {
         do {
             let result = try getTransactionPromise(txhash: txhash).wait()
             return Result(result)
@@ -141,11 +141,11 @@ extension AppChain {
         }
     }
 
-    public func getTransactionCount(address: Address, blockNumber: String = "latest") -> Result<BigUInt, NervosError> {
+    func getTransactionCount(address: Address, blockNumber: String = "latest") -> Result<BigUInt, NervosError> {
         return getTransactionCount(address: address.address, blockNumber: blockNumber)
     }
 
-    public func getTransactionCount(address: String, blockNumber: String = "latest") -> Result<BigUInt, NervosError> {
+    func getTransactionCount(address: String, blockNumber: String = "latest") -> Result<BigUInt, NervosError> {
         do {
             let result = try getTransactionCountlPromise(address: address, blockNumber: blockNumber).wait()
             return Result(result)
@@ -154,11 +154,11 @@ extension AppChain {
         }
     }
 
-    public func getCode(address: Address, blockNumber: String = "latest") -> Result<String, NervosError> {
+    func getCode(address: Address, blockNumber: String = "latest") -> Result<String, NervosError> {
         return getCode(address: address.address, blockNumber: blockNumber)
     }
 
-    public func getCode(address: String, blockNumber: String = "latest") -> Result<String, NervosError> {
+    func getCode(address: String, blockNumber: String = "latest") -> Result<String, NervosError> {
         do {
             let result = try getCodePromise(address: address, blockNumber: blockNumber).wait()
             return Result(result)
@@ -167,11 +167,11 @@ extension AppChain {
         }
     }
 
-    public func getAbi(address: Address, blockNumber: String = "latest") -> Result<String, NervosError> {
+    func getAbi(address: Address, blockNumber: String = "latest") -> Result<String, NervosError> {
         return getAbi(address: address.address, blockNumber: blockNumber)
     }
 
-    public func getAbi(address: String, blockNumber: String = "latest") -> Result<String, NervosError> {
+    func getAbi(address: String, blockNumber: String = "latest") -> Result<String, NervosError> {
         do {
             let result = try getAbiPromise(address: address, blockNumber: blockNumber).wait()
             return Result(result)
@@ -180,11 +180,11 @@ extension AppChain {
         }
     }
 
-    public func getBalance(address: Address, blockNumber: String = "latest") -> Result<BigUInt, NervosError> {
+    func getBalance(address: Address, blockNumber: String = "latest") -> Result<BigUInt, NervosError> {
         return getBalance(address: address.address, blockNumber: blockNumber)
     }
 
-    public func getBalance(address: String, blockNumber: String = "latest") -> Result<BigUInt, NervosError> {
+    func getBalance(address: String, blockNumber: String = "latest") -> Result<BigUInt, NervosError> {
         do {
             let result = try getBalancePromise(address: address, blockNumber: blockNumber).wait()
             return Result(result)
@@ -193,7 +193,7 @@ extension AppChain {
         }
     }
 
-    public func newFilter(filter: Filter) -> Result<BigUInt, NervosError> {
+    func newFilter(filter: Filter) -> Result<BigUInt, NervosError> {
         do {
             let result = try newFilterPromise(filter: filter).wait()
             return Result(result)
@@ -202,7 +202,7 @@ extension AppChain {
         }
     }
 
-    public func newBlockFilter() -> Result<BigUInt, NervosError> {
+    func newBlockFilter() -> Result<BigUInt, NervosError> {
         do {
             let result = try newBlockFilterPromise().wait()
             return Result(result)
@@ -211,7 +211,7 @@ extension AppChain {
         }
     }
 
-    public func uninstallFilter(filterID: BigUInt) -> Result<Bool, NervosError> {
+    func uninstallFilter(filterID: BigUInt) -> Result<Bool, NervosError> {
         do {
             let result = try uninstallFilterPromise(filterID: filterID).wait()
             return Result(result)
@@ -220,7 +220,7 @@ extension AppChain {
         }
     }
 
-    public func getFilterChanges(filterID: BigUInt) -> Result<[EventLog], NervosError> {
+    func getFilterChanges(filterID: BigUInt) -> Result<[EventLog], NervosError> {
         do {
             let result = try getFilterChangesPromise(filterID: filterID).wait()
             return Result(result)
@@ -229,7 +229,7 @@ extension AppChain {
         }
     }
 
-    public func getFilterLogs(filterID: BigUInt) -> Result<[EventLog], NervosError> {
+    func getFilterLogs(filterID: BigUInt) -> Result<[EventLog], NervosError> {
         do {
             let result = try getFilterLogsPromise(filterID: filterID).wait()
             return Result(result)
@@ -238,11 +238,11 @@ extension AppChain {
         }
     }
 
-    public func getTransactionProof(txhash: Data) -> Result<String, NervosError> {
+    func getTransactionProof(txhash: Data) -> Result<String, NervosError> {
         return getTransactionProof(txhash: txhash.toHexString().addHexPrefix())
     }
 
-    public func getTransactionProof(txhash: String) -> Result<String, NervosError> {
+    func getTransactionProof(txhash: String) -> Result<String, NervosError> {
         do {
             let result = try getTransactionProofPromise(txhash: txhash).wait()
             return Result(result)
@@ -251,11 +251,11 @@ extension AppChain {
         }
     }
 
-    public func getMetaData(_ blockNumber: BigUInt) -> Result<MetaData, NervosError> {
+   func getMetaData(_ blockNumber: BigUInt) -> Result<MetaData, NervosError> {
         return getMetaData(blockNumber: blockNumber.toHexString().addHexPrefix())
     }
 
-    public func getMetaData(blockNumber: String = "latest") -> Result<MetaData, NervosError> {
+    func getMetaData(blockNumber: String = "latest") -> Result<MetaData, NervosError> {
         do {
             let result = try getMetaDataPromise(blockNumber: blockNumber).wait()
             return Result(result)
@@ -264,11 +264,11 @@ extension AppChain {
         }
     }
 
-    public func getBlockHeader(blockNumber: BigUInt) -> Result<String, NervosError> {
+    func getBlockHeader(blockNumber: BigUInt) -> Result<String, NervosError> {
         return getBlockHeader(blockNumber: blockNumber.toHexString().addHexPrefix())
     }
 
-    public func getBlockHeader(blockNumber: String = "latest") -> Result<String, NervosError> {
+    func getBlockHeader(blockNumber: String = "latest") -> Result<String, NervosError> {
         // TODO: verify if this works
         do {
             let result = try getBlockHeaderPromise(blockNumber: blockNumber).wait()
@@ -278,11 +278,11 @@ extension AppChain {
         }
     }
 
-    public func getStateProof(address: Address, key: String, blockNumber: String = "latest") -> Result<String, NervosError> {
+    func getStateProof(address: Address, key: String, blockNumber: String = "latest") -> Result<String, NervosError> {
         return getStateProof(address: address.address, key: key, blockNumber: blockNumber)
     }
 
-    public func getStateProof(address: String, key: String, blockNumber: String = "latest") -> Result<String, NervosError> {
+    func getStateProof(address: String, key: String, blockNumber: String = "latest") -> Result<String, NervosError> {
         // TODO: verify if this works
         do {
             let result = try getStateProofPromise(address: address, key: key, blockNumber: blockNumber).wait()
