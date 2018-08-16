@@ -25,7 +25,7 @@ public class AppChain: NervosOptionsInheritable {
 }
 
 // MARK: - API helpers
-extension AppChain {
+private extension AppChain {
     func handle<T>(_ error: Error) -> Result<T, NervosError> {
         if let err = error as? NervosError {
             return Result.failure(err)
