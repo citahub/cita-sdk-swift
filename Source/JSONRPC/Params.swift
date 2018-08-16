@@ -8,23 +8,8 @@
 
 import Foundation
 
-/// Transaction parameters JSON structure for interaction with AppChain.
-public struct TransactionParameters: Codable {
-    public var data: String?
-    public var from: String?
-    public var gas: String?
-    public var gasPrice: String?
-    public var to: String?
-    public var value: String? = "0x0"
-
-    public init(from: String?, to: String?) {
-        self.from = from
-        self.to = to
-    }
-}
-
 /// CallRequest
-public struct CallRequestParameters: Codable {
+public struct CallRequest: Codable {
     public var from: String?
     public var to: String
     public var data: String?
@@ -37,7 +22,7 @@ public struct CallRequestParameters: Codable {
 }
 
 /// Event filter parameters JSON structure for interaction with AppChain.
-public struct EventFilterParameters: Codable {
+public struct Filter: Codable {
     public var fromBlock: String?
     public var toBlock: String?
     public var topics: [[String?]?]?
@@ -51,15 +36,13 @@ public struct Params: Encodable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.unkeyedContainer()
         for par in params {
-            if let p = par as? CallRequestParameters {
+            if let p = par as? CallRequest {
                 try container.encode(p)
-            } else if let p = par as? TransactionParameters {
+            } else if let p = par as? Filter {
                 try container.encode(p)
             } else if let p = par as? String {
                 try container.encode(p)
             } else if let p = par as? Bool {
-                try container.encode(p)
-            } else if let p = par as? EventFilterParameters {
                 try container.encode(p)
             }
         }

@@ -110,7 +110,7 @@ extension AppChain {
         }
     }
 
-    public func getLogs(filter: EventFilterParameters) -> Result<[EventLog], NervosError> {
+    public func getLogs(filter: Filter) -> Result<[EventLog], NervosError> {
         do {
             let result = try getLogsPromise(filter: filter).wait()
             return Result(result)
@@ -119,7 +119,7 @@ extension AppChain {
         }
     }
 
-    func call(request: CallRequestParameters, blockNumber: String = "latest") -> Result<String, NervosError> {
+    func call(request: CallRequest, blockNumber: String = "latest") -> Result<String, NervosError> {
         do {
             let result = try callPromise(request: request, blockNumber: blockNumber).wait()
             return Result(result)
@@ -193,26 +193,49 @@ extension AppChain {
         }
     }
 
-    // TODO: implement filters.
-
-    public func newFilter(filter: [String: Any]) -> Result<BigUInt, NervosError> {
-        return Result.failure(NervosError.processingError("Not implemented"))
+    public func newFilter(filter: Filter) -> Result<BigUInt, NervosError> {
+        do {
+            let result = try newFilterPromise(filter: filter).wait()
+            return Result(result)
+        } catch {
+            return handle(error)
+        }
     }
 
     public func newBlockFilter() -> Result<BigUInt, NervosError> {
-        return Result.failure(NervosError.processingError("Not implemented"))
+        do {
+            let result = try newBlockFilterPromise().wait()
+            return Result(result)
+        } catch {
+            return handle(error)
+        }
     }
 
-    public func uninstallFilter(filterID: String) -> Result<Bool, NervosError> {
-        return Result.failure(NervosError.processingError("Not implemented"))
+    public func uninstallFilter(filterID: BigUInt) -> Result<Bool, NervosError> {
+        do {
+            let result = try uninstallFilterPromise(filterID: filterID).wait()
+            return Result(result)
+        } catch {
+            return handle(error)
+        }
     }
 
-    public func getFilterChanges(filterID: String) -> Result<[Any], NervosError> {
-        return Result.failure(NervosError.processingError("Not implemented"))
+    public func getFilterChanges(filterID: BigUInt) -> Result<[EventLog], NervosError> {
+        do {
+            let result = try getFilterChangesPromise(filterID: filterID).wait()
+            return Result(result)
+        } catch {
+            return handle(error)
+        }
     }
 
-    public func getFilterLogs(filterID: String) -> Result<[Any], NervosError> {
-        return Result.failure(NervosError.processingError("Not implemented"))
+    public func getFilterLogs(filterID: BigUInt) -> Result<[EventLog], NervosError> {
+        do {
+            let result = try getFilterLogsPromise(filterID: filterID).wait()
+            return Result(result)
+        } catch {
+            return handle(error)
+        }
     }
 
     public func getTransactionProof(txhash: Data) -> Result<String, NervosError> {

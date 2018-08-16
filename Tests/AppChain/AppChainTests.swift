@@ -50,8 +50,7 @@ class AppChainTests: XCTestCase {
         let result = nervos.appChain.sendRawTransaction(signedTx: signed)
         switch result {
         case .success(let result):
-            XCTAssertTrue(result.hash.hasPrefix("0x"))
-            XCTAssertEqual(66, result.hash.count)
+            XCTAssertEqual(32, result.hash.count)
         case .failure(let error):
             XCTFail(error.localizedDescription)
         }
@@ -62,7 +61,7 @@ class AppChainTests: XCTestCase {
         let result = nervos.appChain.getBlockByHash(hash: hash, fullTransactions: true)
         switch result {
         case .success(let block):
-            XCTAssertEqual(block.hash, hash)
+            XCTAssertEqual(block.hash.toHexString().addHexPrefix(), hash)
         case .failure(let error):
             XCTFail(error.localizedDescription)
         }
@@ -74,7 +73,7 @@ class AppChainTests: XCTestCase {
         let result = nervos.appChain.getBlockByNumber(number: number, fullTransactions: true)
         switch result {
         case .success(let block):
-            XCTAssertEqual(block.hash, hash)
+            XCTAssertEqual(block.hash.toHexString().addHexPrefix(), hash)
         case .failure(let error):
             XCTFail(error.localizedDescription)
         }
@@ -91,7 +90,7 @@ class AppChainTests: XCTestCase {
     }
 
     func testGetLogs() {
-        var filter = EventFilterParameters()
+        var filter = Filter()
         filter.fromBlock = "0x0"
         filter.topics = [["0xe4af93ca7e370881e6f1b57272e42a3d851d3cc6d951b4f4d2e7a963914468a2", "0xa84557f35aab907f9be7974487619dd4c05be1430bf704d0c274a7b3efa50d5a", "0x00000000000000000000000000000000000000000000000000000165365f092d"]]
         let result = nervos.appChain.getLogs(filter: filter)
@@ -106,7 +105,7 @@ class AppChainTests: XCTestCase {
     }
 
     func testCall() {
-        let request = CallRequestParameters(from: "0x46a23e25df9a0f6c18729dda9ad1af3b6a131160", to: "0x6fc32e7bdcb8040c4f587c3e9e6cfcee4025ea58", data: "0x9507d39a000000000000000000000000000000000000000000000000000001653656eae7")
+        let request = CallRequest(from: "0x46a23e25df9a0f6c18729dda9ad1af3b6a131160", to: "0x6fc32e7bdcb8040c4f587c3e9e6cfcee4025ea58", data: "0x9507d39a000000000000000000000000000000000000000000000000000001653656eae7")
         let result = nervos.appChain.call(request: request)
         switch result {
         case .success(let data):
@@ -183,6 +182,68 @@ class AppChainTests: XCTestCase {
         switch result {
         case .success(let balance):
             XCTAssertTrue(balance.toHexString().addHexPrefix() == "0xffffffffffffffffffffebdd17")
+        case .failure(let error):
+            XCTFail(error.localizedDescription)
+        }
+    }
+
+    func testNewFilter() {
+        var filter = Filter()
+        filter.fromBlock = "0x0"
+        filter.topics = [["0xe4af93ca7e370881e6f1b57272e42a3d851d3cc6d951b4f4d2e7a963914468a2", "0xa84557f35aab907f9be7974487619dd4c05be1430bf704d0c274a7b3efa50d5a", "0x00000000000000000000000000000000000000000000000000000165365f092d"]]
+        let result = nervos.appChain.newFilter(filter: filter)
+        switch result {
+        case .success(let id):
+            XCTAssertTrue(id > 0)
+        case .failure(let error):
+            XCTFail(error.localizedDescription)
+        }
+    }
+
+    func testNewBlockFilter() {
+        let result = nervos.appChain.newBlockFilter()
+        switch result {
+        case .success(let id):
+            XCTAssertTrue(id > 0)
+        case .failure(let error):
+            XCTFail(error.localizedDescription)
+        }
+    }
+
+    func testUninstallFilter() {
+        guard case .success(let filterID ) = nervos.appChain.newBlockFilter() else { return XCTFail() }
+        var result = nervos.appChain.uninstallFilter(filterID: filterID)
+        switch result {
+        case .success(let uninstalled):
+            XCTAssertTrue(uninstalled)
+        case .failure(let error):
+            XCTFail(error.localizedDescription)
+        }
+
+        result = nervos.appChain.uninstallFilter(filterID: filterID)
+        switch result {
+        case .success(let uninstalled):
+            XCTAssertFalse(uninstalled)
+        case .failure(let error):
+            XCTFail(error.localizedDescription)
+        }
+    }
+
+    func testGetFilterChanges() {
+        let result = nervos.appChain.getFilterChanges(filterID: 1)
+        switch result {
+        case .success(let changes):
+            XCTAssertTrue(changes.count >= 0)
+        case .failure(let error):
+            XCTFail(error.localizedDescription)
+        }
+    }
+
+    func testGetFilterLogs() {
+        let result = nervos.appChain.getFilterLogs(filterID: 1)
+        switch result {
+        case .success(let changes):
+            XCTAssertTrue(changes.count >= 0)
         case .failure(let error):
             XCTFail(error.localizedDescription)
         }

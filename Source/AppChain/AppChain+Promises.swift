@@ -57,11 +57,11 @@ extension AppChain {
         return apiPromise(.getTransactionReceipt, parameters: [txhash])
     }
 
-    func getLogsPromise(filter: EventFilterParameters) -> Promise<[EventLog]> {
+    func getLogsPromise(filter: Filter) -> Promise<[EventLog]> {
         return apiPromise(.getLogs, parameters: [filter])
     }
 
-    func callPromise(request: CallRequestParameters, blockNumber: String) -> Promise<String> {
+    func callPromise(request: CallRequest, blockNumber: String) -> Promise<String> {
         return apiPromise(.call, parameters: [request, blockNumber])
     }
 
@@ -81,34 +81,29 @@ extension AppChain {
         return apiPromise(.getAbi, parameters: [address.lowercased(), blockNumber])
     }
 
-     func getBalancePromise(address: String, blockNumber: String) -> Promise<BigUInt> {
-        return apiPromise(.getBalance, parameters: [address.lowercased(), blockNumber])
-     }
+    func getBalancePromise(address: String, blockNumber: String) -> Promise<BigUInt> {
+       return apiPromise(.getBalance, parameters: [address.lowercased(), blockNumber])
+    }
 
-    /*
-     func newFilterPromise() -> Promise<T> {
-     return apiPromise(., parameters: [])
-     } */
+    func newFilterPromise(filter: Filter) -> Promise<BigUInt> {
+       return apiPromise(.newFilter, parameters: [filter])
+    }
 
-    /*
-     func newBlockFilterPromise() -> Promise<T> {
-     return apiPromise(., parameters: [])
-     } */
+    func newBlockFilterPromise() -> Promise<BigUInt> {
+       return apiPromise(.newBlockFilter, parameters: [])
+    }
 
-    /*
-     func uninstallFilterPromise() -> Promise<T> {
-     return apiPromise(., parameters: [])
-     } */
+    func uninstallFilterPromise(filterID: BigUInt) -> Promise<Bool> {
+       return apiPromise(.uninstallFilter, parameters: [filterID.toHexString().addHexPrefix()])
+    }
 
-    /*
-     func getFilterChangesPromise() -> Promise<T> {
-     return apiPromise(., parameters: [])
-     } */
+    func getFilterChangesPromise(filterID: BigUInt) -> Promise<[EventLog]> {
+        return apiPromise(.getFilterChanges, parameters: [filterID.toHexString().addHexPrefix()])
+    }
 
-    /*
-     func getFilterLogsPromise() -> Promise<T> {
-     return apiPromise(., parameters: [])
-     } */
+    func getFilterLogsPromise(filterID: BigUInt) -> Promise<[EventLog]> {
+        return apiPromise(.getFilterLogs, parameters: [filterID.toHexString().addHexPrefix()])
+    }
 
     func getTransactionProofPromise(txhash: String) -> Promise<String> {
         return apiPromise(.getTransactionProof, parameters: [txhash])
