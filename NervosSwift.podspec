@@ -21,4 +21,5 @@ Pod::Spec.new do |s|
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
 
   s.dependency 'web3swift', '~> 1.1.1'
+  s.dependency 'SwiftProtobuf', '~> 1.0.3'
 end
