@@ -251,7 +251,7 @@ public extension AppChain {
         }
     }
 
-   func getMetaData(_ blockNumber: BigUInt) -> Result<MetaData, NervosError> {
+   func getMetaData(blockNumber: BigUInt) -> Result<MetaData, NervosError> {
         return getMetaData(blockNumber: blockNumber.toHexString().addHexPrefix())
     }
 
