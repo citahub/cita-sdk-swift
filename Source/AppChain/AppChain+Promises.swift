@@ -11,7 +11,7 @@ import BigInt
 import PromiseKit
 
 // MARK: - Promise helpers
-extension AppChain {
+private extension AppChain {
     func responseError(_ response: Response) -> NervosError {
         if let error = response.error {
             return NervosError.nodeError(error.message)
@@ -32,7 +32,7 @@ extension AppChain {
 }
 
 // MARK: - API Promises
-extension AppChain {
+internal extension AppChain {
     func peerCountPromise() -> Promise<BigUInt> {
         return apiPromise(.peerCount, parameters: [])
     }

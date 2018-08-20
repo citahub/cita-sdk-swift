@@ -69,7 +69,7 @@ public struct Response: Decodable {
             self.init(id: id, jsonrpc: jsonrpc, result: nil, error: errorMessage)
             return
         }
-        var result: Any? = nil
+        var result: Any?
         if let rawValue = try? container.decodeIfPresent(String.self, forKey: .result) {
             result = rawValue
         } else if let rawValue = try? container.decodeIfPresent(Int.self, forKey: .result) {

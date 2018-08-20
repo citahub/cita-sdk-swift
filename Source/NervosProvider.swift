@@ -13,7 +13,7 @@ import PromiseKit
 /// Nervos HTTP Provider.
 public class NervosProvider {
     public var attachedKeystoreManager: KeystoreManager?
-    public var url: URL
+    public let url: URL
 
     public var session: URLSession = { () -> URLSession in
         let config = URLSessionConfiguration.default
@@ -45,7 +45,7 @@ public class NervosProvider {
 extension NervosProvider {
     static func post(_ request: Request, providerURL: URL, queue: DispatchQueue, session: URLSession) -> Promise<Response> {
         let rp = Promise<Data>.pending()
-        var task: URLSessionTask? = nil
+        var task: URLSessionTask?
         queue.async {
             do {
                 let encoder = JSONEncoder()
@@ -82,7 +82,7 @@ extension NervosProvider {
 
     static func post(_ request: RequestBatch, providerURL: URL, queue: DispatchQueue = .main, session: URLSession) -> Promise<ResponseBatch> {
         let rp = Promise<Data>.pending()
-        var task: URLSessionTask? = nil
+        var task: URLSessionTask?
         queue.async {
             do {
                 let encoder = JSONEncoder()

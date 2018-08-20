@@ -28,7 +28,7 @@ public class Nervos: NervosOptionsInheritable {
 
     private var appChainInstance: AppChain?
 
-    public init(provider: NervosProvider, queue: OperationQueue? = nil, requestDispatcher: RequestDispatcher? = nil) {
+    public init(provider: NervosProvider, requestDispatcher: RequestDispatcher? = nil) {
         self.provider = provider
         self.requestDispatcher = requestDispatcher ?? RequestDispatcher(provider: provider, queue: DispatchQueue.global(qos: .userInteractive), policy: .batch(32))
     }
