@@ -173,7 +173,7 @@ public extension AppChain {
         }
     }
 
-    /// Executes a new call immediately on a contract.
+    /// Execute a new call immediately on a contract.
     ///
     /// - Parameters:
     ///    - request: A call request.
