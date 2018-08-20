@@ -91,8 +91,8 @@ let tx = NervosTransaction(
     validUntilBlock: 999999,
     chainId: 1
 )
-guard let signed = try? NervosTransactionSigner.sign(transaction: tx, with: privateKey) else
-  print("Sign fail")
+guard let signed = try? NervosTransactionSigner.sign(transaction: tx, with: privateKey) else {
+    print("Sign fail")
 }
 ```
 
