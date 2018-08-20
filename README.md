@@ -98,7 +98,7 @@ guard let signed = try? NervosTransactionSigner.sign(transaction: tx, with: priv
 
 ## RPC API Reference
 
-All JSON-RPC API return `Result<Value, NervosError>`, where `Value` is the actual type of the result when the call is successful.
+All JSON-RPC APIs return `Result<Value, NervosError>`, where `Value` is the actual type of the result when the call is successful.
 
 A common flow to call an API and handle the result is as follows:
 
