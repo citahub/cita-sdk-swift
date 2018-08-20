@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A42225E212AA59700DF1994 /* AppChain+API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A42225D212AA59700DF1994 /* AppChain+API.swift */; };
 		1A58853A211DC759007043F1 /* AppChainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A588539211DC759007043F1 /* AppChainTests.swift */; };
 		1A64297D211C5E0700352209 /* NervosProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A64297C211C5E0700352209 /* NervosProvider.swift */; };
 		1A64297F211C63E000352209 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A64297E211C63E000352209 /* Config.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A42225D212AA59700DF1994 /* AppChain+API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppChain+API.swift"; sourceTree = "<group>"; };
 		1A588539211DC759007043F1 /* AppChainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppChainTests.swift; sourceTree = "<group>"; };
 		1A64297C211C5E0700352209 /* NervosProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NervosProvider.swift; sourceTree = "<group>"; };
 		1A64297E211C63E000352209 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 			children = (
 				1AB5C6DD2121760800148587 /* Structures */,
 				1A67ED5A211D1C3C00DCE871 /* AppChain.swift */,
+				1A42225D212AA59700DF1994 /* AppChain+API.swift */,
 				1AB5C6D7212112DA00148587 /* AppChain+Promises.swift */,
 			);
 			path = AppChain;
@@ -463,6 +466,7 @@
 				1AD65F9021217AC000AA4C84 /* DecodeUtils.swift in Sources */,
 				1AD65F9F21229AF500AA4C84 /* NervosTransactionSigner.swift in Sources */,
 				1A67ED54211D122000DCE871 /* Method.swift in Sources */,
+				1A42225E212AA59700DF1994 /* AppChain+API.swift in Sources */,
 				1A67ED4D211D0AA600DCE871 /* RequestDispatcher.swift in Sources */,
 				1AD65FA12122A1F900AA4C84 /* TransactionSendingResult.swift in Sources */,
 				1AB5C6DA212125A200148587 /* Int+Extension.swift in Sources */,
