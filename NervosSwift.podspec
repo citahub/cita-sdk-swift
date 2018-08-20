@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
 
   s.swift_version = '4.1'
   s.module_name = 'Nervos'
-  s.ios.deployment_target = "9.0"
+  s.ios.deployment_target = "10.0"
   s.source_files = "Source/**/*.{h,swift}"
   s.public_header_files = "Source/**/*.{h}"
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }

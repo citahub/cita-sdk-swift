@@ -17,7 +17,7 @@ Refer to [docs.nervos.org/cita](https://docs.nervos.org/cita/#/rpc_guide/rpc) fo
 ### Prerequisites
 
 * Swift 4.1
-* iOS 9 and above
+* iOS 10 and above
 * [CocoaPods](https://cocoapods.org)
 
 ### Installation
@@ -26,7 +26,7 @@ To integrate NervosSwift into your Xcode project using CocoaPods, specify it in 
 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '9.0'
+platform :ios, '10.0'
 
 target 'YourTargetName' do
   use_frameworks!
