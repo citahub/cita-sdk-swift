@@ -11,10 +11,9 @@ import web3swift
 import PromiseKit
 
 /// Nervos HTTP Provider.
-public class NervosProvider: Web3Provider {
-    public var network: Networks? // Not used, always nil.
+public class NervosProvider {
     public var attachedKeystoreManager: KeystoreManager?
-    public var url: URL
+    public let url: URL
 
     public var session: URLSession = { () -> URLSession in
         let config = URLSessionConfiguration.default
@@ -22,31 +21,31 @@ public class NervosProvider: Web3Provider {
         return urlSession
     }()
 
-    public init?(_ httpProviderURL: URL, keystoreManager manager: KeystoreManager? = nil) {
-        guard ["http", "https"].contains(httpProviderURL.scheme) else {
+    public init?(_ url: URL, keystoreManager: KeystoreManager? = nil) {
+        guard ["http", "https"].contains(url.scheme) else {
             return nil
         }
-        url = httpProviderURL
-        attachedKeystoreManager = manager
+        self.url = url
+        attachedKeystoreManager = keystoreManager
     }
 
-    public func sendAsync(_ request: JSONRPCrequest, queue: DispatchQueue = .main) -> Promise<JSONRPCresponse> {
+    public func sendAsync(_ request: Request, queue: DispatchQueue = .main) -> Promise<Response> {
         guard request.isValid else {
-            return Promise(error: Web3Error.nodeError("RPC request is invalid.Perhaps method is nil?"))
+            return Promise(error: NervosError.nodeError("RPC request is invalid.Perhaps method is nil?"))
         }
 
-        return NervosProvider.post(request, providerURL: self.url, queue: queue, session: self.session)
+        return NervosProvider.post(request, providerURL: url, queue: queue, session: session)
     }
 
-    public func sendAsync(_ requests: JSONRPCrequestBatch, queue: DispatchQueue = .main) -> Promise<JSONRPCresponseBatch> {
-        return NervosProvider.post(requests, providerURL: self.url, queue: queue, session: self.session)
+    public func sendAsync(_ requests: RequestBatch, queue: DispatchQueue = .main) -> Promise<ResponseBatch> {
+        return NervosProvider.post(requests, providerURL: url, queue: queue, session: session)
     }
 }
 
 extension NervosProvider {
-    static func post(_ request: JSONRPCrequest, providerURL: URL, queue: DispatchQueue = .main, session: URLSession) -> Promise<JSONRPCresponse> {
+    static func post(_ request: Request, providerURL: URL, queue: DispatchQueue, session: URLSession) -> Promise<Response> {
         let rp = Promise<Data>.pending()
-        var task: URLSessionTask? = nil
+        var task: URLSessionTask?
         queue.async {
             do {
                 let encoder = JSONEncoder()
@@ -62,7 +61,7 @@ extension NervosProvider {
                         return
                     }
                     guard data != nil else {
-                        rp.resolver.reject(Web3Error.nodeError("Node response is empty"))
+                        rp.resolver.reject(NervosError.nodeError("Node response is empty"))
                         return
                     }
                     rp.resolver.fulfill(data!)
@@ -72,18 +71,18 @@ extension NervosProvider {
                 rp.resolver.reject(error)
             }
         }
-        return rp.promise.ensure(on: queue) { task = nil }.map(on: queue) { (data: Data) throws -> JSONRPCresponse in
-            let parsedResponse = try JSONDecoder().decode(JSONRPCresponse.self, from: data)
+        return rp.promise.ensure(on: queue) { task = nil }.map(on: queue) { (data: Data) throws -> Response in
+            let parsedResponse = try JSONDecoder().decode(Response.self, from: data)
             if parsedResponse.error != nil {
-                throw Web3Error.nodeError("Received an error message from node\n" + String(describing: parsedResponse.error!))
+                throw NervosError.nodeError("Received an error message from node\n" + String(describing: parsedResponse.error!))
             }
             return parsedResponse
         }
     }
 
-    static func post(_ request: JSONRPCrequestBatch, providerURL: URL, queue: DispatchQueue = .main, session: URLSession) -> Promise<JSONRPCresponseBatch> {
+    static func post(_ request: RequestBatch, providerURL: URL, queue: DispatchQueue = .main, session: URLSession) -> Promise<ResponseBatch> {
         let rp = Promise<Data>.pending()
-        var task: URLSessionTask? = nil
+        var task: URLSessionTask?
         queue.async {
             do {
                 let encoder = JSONEncoder()
@@ -99,7 +98,7 @@ extension NervosProvider {
                         return
                     }
                     guard data != nil, data!.count != 0 else {
-                        rp.resolver.reject(Web3Error.nodeError("Node response is empty"))
+                        rp.resolver.reject(NervosError.nodeError("Node response is empty"))
                         return
                     }
                     rp.resolver.fulfill(data!)
@@ -109,8 +108,8 @@ extension NervosProvider {
                 rp.resolver.reject(error)
             }
         }
-        return rp.promise.ensure(on: queue) { task = nil }.map(on: queue) { (data: Data) throws -> JSONRPCresponseBatch in
-            return try JSONDecoder().decode(JSONRPCresponseBatch.self, from: data)
+        return rp.promise.ensure(on: queue) { task = nil }.map(on: queue) { (data: Data) throws -> ResponseBatch in
+            return try JSONDecoder().decode(ResponseBatch.self, from: data)
         }
     }
 }
