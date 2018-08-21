@@ -6,7 +6,7 @@ NervosSwift is a native Swift framework for working with Smart Contract and inte
 
 * HTTP provider for connecting to Nervos testnet or any AppChain network.
 * Implementation of Nervos JSON-RPC API over HTTP.
-* Signer for sining a Nervos transaction.
+* Signer for signing a Nervos transaction.
 
 ## RPC API
 
