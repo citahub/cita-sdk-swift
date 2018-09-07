@@ -34,7 +34,7 @@ public struct TransactionDetails: Decodable {
         index = try DecodeUtils.decodeHexToBigUInt(container, key: .index, allowOptional: true)
     }
 
-    public init? (_ json: [String: AnyObject]) {
+    public init?(_ json: [String: AnyObject]) {
         guard let hash = json["hash"] as? String else { return nil }
         self.hash = Data.fromHex(hash)!
 

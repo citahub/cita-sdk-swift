@@ -116,11 +116,12 @@ class AppChainTests: XCTestCase {
     }
 
     func testGetTransaction() {
-        let txhash = "0x9825e6ac8e0872fe0aeec5da13516d506f5e86373e61f2ed77fc171e87e8c010"
+        let txhash = "0xa73316ce4c692b046c02521c45104fa486aba484e665bd1c43e8e7495442dfea"
         let result = nervos.appChain.getTransaction(txhash: txhash)
         switch result {
         case .success(let tx):
             XCTAssertEqual(tx.hash.toHexString().addHexPrefix(), txhash)
+            XCTAssertEqual(tx.unsignedTransaction?.sender.address, "0xb531ef3178998dbb97518468ddfec2867346bc63")
         case .failure(let error):
             XCTFail(error.localizedDescription)
         }

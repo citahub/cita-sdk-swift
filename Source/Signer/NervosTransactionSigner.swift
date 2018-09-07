@@ -20,7 +20,7 @@ public struct NervosTransactionSigner {
         tx.chainID = UInt32(transaction.chainId)
         tx.validUntilBlock = UInt64(transaction.validUntilBlock)
 
-        let binaryData: Data = try! tx.serializedData()
+        let binaryData = try! tx.serializedData()
         guard let privateKeyData = Data.fromHex(privateKey) else {
             throw TransactionError.privateKeyIsNull
         }
@@ -34,7 +34,7 @@ public struct NervosTransactionSigner {
         unverifiedTx.transaction = tx
         unverifiedTx.signature = signature
         unverifiedTx.crypto = .secp
-        let unverifiedData: Data = try! unverifiedTx.serializedData()
+        let unverifiedData = try! unverifiedTx.serializedData()
         return unverifiedData.toHexString().addHexPrefix()
     }
 }

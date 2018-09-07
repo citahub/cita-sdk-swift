@@ -19,4 +19,8 @@ extension BigUInt {
     func toHexString() -> String {
         return String(self, radix: 16)
     }
+
+    static func fromHex(_ hex: String) -> BigUInt? {
+        return BigUInt(hex.stripHexPrefix(), radix: 16)
+    }
 }
