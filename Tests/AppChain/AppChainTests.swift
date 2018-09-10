@@ -295,7 +295,7 @@ class AppChainTests: XCTestCase {
 }
 
 extension AppChainTests {
-    func testInvalidNode() {
+    func xtestInvalidNode() {
         let result = nobody.appChain.peerCount()
         switch result {
         case .success(let count):
