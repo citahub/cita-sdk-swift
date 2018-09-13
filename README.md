@@ -91,8 +91,9 @@ let privateKey = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
 let tx = NervosTransaction(
     to: Address("0x0000000000000000000000000000000000000000")!,
     nonce: "12345", // Generate a random/unique nonce string
-    data: Data.fromHex("6060604...")!,
+    quota: 1_000_000,
     validUntilBlock: 999999,
+    data: Data.fromHex("6060604...")!,
     chainId: 1
 )
 guard let signed = try? NervosTransactionSigner.sign(transaction: tx, with: privateKey) else {
