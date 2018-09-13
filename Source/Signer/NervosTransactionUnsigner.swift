@@ -41,12 +41,12 @@ public struct UnsignedTransaction {
         transaction = NervosTransaction(
             to: Address(tx.to.addHexPrefix())!,
             nonce: tx.nonce,
+            quota: BigUInt(tx.quota),
+            validUntilBlock: BigUInt(tx.validUntilBlock),
             data: tx.data,
             value: BigUInt.fromHex(tx.value.toHexString())!,
-            validUntilBlock: BigUInt(tx.validUntilBlock),
-            quota: BigUInt(tx.quota),
-            version: BigUInt(tx.version),
-            chainId: BigUInt(tx.chainID)
+            chainId: BigUInt(tx.chainID),
+            version: BigUInt(tx.version)
         )
         sender = Sender(
             address: Utils.publicToAddress(publicKey)!.address.lowercased(),

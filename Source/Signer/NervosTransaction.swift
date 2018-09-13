@@ -17,39 +17,39 @@ public enum TransactionError: Error {
 }
 
 public struct NervosTransaction: CustomStringConvertible {
-    public var to: Address
+    public var to: Address?
     public var nonce: String
+    public var quota: BigUInt
+    public var validUntilBlock: BigUInt
     public var data: Data
     public var value: BigUInt
-    public var validUntilBlock: BigUInt
-    public var quota: BigUInt
-    public var version: BigUInt
     public var chainId: BigUInt
+    public var version: BigUInt
 
     public init(
-        to: Address,
+        to: Address? = nil,
         nonce: String,
+        quota: BigUInt = 1_000_000,
+        validUntilBlock: BigUInt,
         data: Data,
         value: BigUInt = 0,
-        validUntilBlock: BigUInt,
-        quota: BigUInt = 100000,
-        version: BigUInt = 0,
-        chainId: BigUInt
+        chainId: BigUInt,
+        version: BigUInt = 0
     ) {
         self.to = to
         self.nonce = nonce
+        self.quota = quota
+        self.validUntilBlock = validUntilBlock
         self.data = data
         self.value = value
-        self.validUntilBlock = validUntilBlock
-        self.quota = quota
-        self.version = version
         self.chainId = chainId
+        self.version = version
     }
 
     public var description: String {
         return [
             "Transaction",
-            "to: " + to.address,
+            "to: " + (to?.address ?? ""),
             "nonce: " + nonce,
             "data: " + data.toHexString(),
             "value: " + value.description,

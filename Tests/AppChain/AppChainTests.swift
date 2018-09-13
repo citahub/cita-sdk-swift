@@ -39,8 +39,8 @@ class AppChainTests: XCTestCase {
         let tx = NervosTransaction(
             to: Address("0x0000000000000000000000000000000000000000")!,
             nonce: UUID().uuidString,
-            data: Data.fromHex("6060604052341561000f57600080fd5b5b60646000819055507f8fb1356be6b2a4e49ee94447eb9dcb8783f51c41dcddfe7919f945017d163bf3336064604051808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018281526020019250505060405180910390a15b5b610178806100956000396000f30060606040526000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806360fe47b1146100495780636d4ce63c1461006c575b600080fd5b341561005457600080fd5b61006a6004808035906020019091905050610095565b005b341561007757600080fd5b61007f610142565b6040518082815260200191505060405180910390f35b7fc6d8c0af6d21f291e7c359603aa97e0ed500f04db6e983b9fce75a91c6b8da6b816040518082815260200191505060405180910390a1806000819055507ffd28ec3ec2555238d8ad6f9faf3e4cd10e574ce7e7ef28b73caa53f9512f65b93382604051808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018281526020019250505060405180910390a15b50565b6000805490505b905600a165627a7a723058207fbd8b51e2ecdeb2425f642d6602a4ff030351102fd7afbed80318e61fa462670029")!,
             validUntilBlock: currentBlock + 88,
+            data: Data.fromHex("6060604052341561000f57600080fd5b60d38061001d6000396000f3006060604052600436106049576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806360fe47b114604e5780636d4ce63c14606e575b600080fd5b3415605857600080fd5b606c60048080359060200190919050506094565b005b3415607857600080fd5b607e609e565b6040518082815260200191505060405180910390f35b8060008190555050565b600080549050905600a165627a7a723058202d9a0979adf6bf48461f24200e635bc19cd1786efbcfc0608eb1d76114d405860029")!,
             chainId: metaData.chainId
         )
         guard let signed = try? NervosTransactionSigner.sign(transaction: tx, with: privateKey) else {
@@ -54,6 +54,19 @@ class AppChainTests: XCTestCase {
         case .failure(let error):
             XCTFail(error.localizedDescription)
         }
+    }
+
+    func testSendRawTransactionPaddingValue() {
+        let sender = Utils.publicToAddress(Utils.privateToPublic(Data.fromHex("0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")!)!)!.address.lowercased()
+        XCTAssertEqual(sender, "0x46a23e25df9a0f6c18729dda9ad1af3b6a131160")
+
+        let oldTxhash = "0x691d87b74f223f1ae27a87c41eed820a79b47781c345a1f4bdc5c59577a588ca" // 0.17 without value padding
+        let oldTxOnChain = nervos.appChain.getTransaction(txhash: oldTxhash).value!
+        XCTAssertNotEqual(sender, oldTxOnChain.unsignedTransaction!.sender.address)
+
+        let newTxhash = "0x8550131b9ffdcdca8839e96b89cb1d3846a20daf9fbe8f57e9f61e2ebfeae3ca" // 0.18 with value padding and address fix
+        let newTxOnChain = nervos.appChain.getTransaction(txhash: newTxhash).value!
+        XCTAssertEqual(sender, newTxOnChain.unsignedTransaction!.sender.address)
     }
 
     func testGetBlockByHash() {
