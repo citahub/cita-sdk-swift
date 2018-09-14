@@ -39,7 +39,7 @@ public struct UnsignedTransaction {
 
     init(unverifiedTransaction tx: Transaction, publicKey: Data) {
         transaction = NervosTransaction(
-            to: Address(tx.to.addHexPrefix())!,
+            to: Address(tx.to.addHexPrefix()),
             nonce: tx.nonce,
             quota: BigUInt(tx.quota),
             validUntilBlock: BigUInt(tx.validUntilBlock),
