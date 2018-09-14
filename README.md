@@ -121,6 +121,29 @@ case .failure(let error):
 
 All JSON-RPC API functions are synchronous. But the underlying HTTP request might take some time to return, and in NervosSwift they're usually implemented in some `promise` way. It's generally better to call API function in a background queue so it won't block the main thread.
 
+* [peerCount](#peercount)
+* [blockNumber](#blocknumber)
+* [sendRawTransaction](#sendrawtransaction)
+* [getBlockByHash](#getblockbyhash)
+* [getBlockByNumber](#getblockbynumber)
+* [getTransactionReceipt](#gettransactionreceipt)
+* [getLogs](#getlogs)
+* [call](#call)
+* [getTransaction](#gettransaction)
+* [getTransactionCount](#gettransactioncount)
+* [getCode](#getcode)
+* [getAbi](#getabi)
+* [getBalance](#getbalance)
+* [newFilter](#newfilter)
+* [newBlockFilter](#newblockfilter)
+* [uninstallFilter](#uninstallfilter)
+* [getFilterChanges](#getfilterchanges)
+* [getFilterLogs](#getfilterlogs)
+* [getTransactionProof](#gettransactionproof)
+* [getMetaData](#getmetadata)
+* [getBlockHeader](#getblockheader)
+* [getStateProof](#getstateproof)
+
 ### peerCount
 
 ```swift
