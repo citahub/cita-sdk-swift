@@ -440,6 +440,7 @@ public extension AppChain {
     }
 
     /// Get block header by a given block height.
+    /// Note: Require 0.18.
     ///
     /// - Parameter blockNumber: The block height.
     ///
@@ -449,12 +450,12 @@ public extension AppChain {
     }
 
     /// Get block header by a given block height.
+    /// Note: Require 0.18.
     ///
     /// - Parameter blockNumber: The block height, hex string integer or "latest".
     ///
     /// - Returns: block header of the given block height.
     func getBlockHeader(blockNumber: String = "latest") -> Result<String, NervosError> {
-        // TODO: verify if this works
         do {
             let result = try getBlockHeaderPromise(blockNumber: blockNumber).wait()
             return Result(result)
@@ -464,6 +465,7 @@ public extension AppChain {
     }
 
     /// Get state proof of special value. Include address, account proof, key, value proof.
+    /// Note: Require 0.18.
     ///
     /// - Parameters:
     ///    - address: An address.
@@ -476,6 +478,7 @@ public extension AppChain {
     }
 
     /// Get state proof of special value. Include address, account proof, key, value proof.
+    /// Note: Require 0.18.
     ///
     /// - Parameters:
     ///    - address: An address.
@@ -484,7 +487,6 @@ public extension AppChain {
     ///
     /// - Returns: State proof of special value. Include address, account proof, key, value proof.
     func getStateProof(address: String, key: String, blockNumber: String = "latest") -> Result<String, NervosError> {
-        // TODO: verify if this works
         do {
             let result = try getStateProofPromise(address: address, key: key, blockNumber: blockNumber).wait()
             return Result(result)

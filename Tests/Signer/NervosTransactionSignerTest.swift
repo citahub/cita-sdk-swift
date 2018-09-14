@@ -29,7 +29,6 @@ class NervosTransactionSignerTests: XCTestCase {
     }
 
     func testSignAnotherTx() {
-        /// Onchain tx: 0xa3b741737121628b98e683948202dcd8392caa1431707a7c47425e6c3b86f630
         let privateKey = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         let tx = NervosTransaction(
             nonce: "57a4558948eb422bab36f1ca0f0354e7",
