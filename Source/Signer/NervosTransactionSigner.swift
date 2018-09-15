@@ -7,20 +7,23 @@
 //
 
 import Foundation
+import BigInt
 
 public struct NervosTransactionSigner {
     public static func sign(transaction: NervosTransaction, with privateKey: String) throws -> String {
         var tx = Transaction()
         tx.nonce = transaction.nonce
-        tx.to = transaction.to.address
+        if let to = transaction.to {
+            tx.to = to.address.stripHexPrefix().lowercased()
+        }
         tx.quota = UInt64(transaction.quota)
         tx.data = transaction.data
         tx.version = UInt32(transaction.version)
-        tx.value = Data(hex: transaction.value.toHexString())
+        tx.value = convert(value: transaction.value)
         tx.chainID = UInt32(transaction.chainId)
         tx.validUntilBlock = UInt64(transaction.validUntilBlock)
 
-        let binaryData: Data = try! tx.serializedData()
+        let binaryData = try! tx.serializedData()
         guard let privateKeyData = Data.fromHex(privateKey) else {
             throw TransactionError.privateKeyIsNull
         }
@@ -34,7 +37,15 @@ public struct NervosTransactionSigner {
         unverifiedTx.transaction = tx
         unverifiedTx.signature = signature
         unverifiedTx.crypto = .secp
-        let unverifiedData: Data = try! unverifiedTx.serializedData()
+        let unverifiedData = try! unverifiedTx.serializedData()
         return unverifiedData.toHexString().addHexPrefix()
+    }
+
+    /// Value must be encoded as fixed length (32) bytes
+    static func convert(value: BigUInt) -> Data {
+        let bytes = [UInt8](hex: value.toHexString())
+        assert(bytes.count <= 32)
+        let padding = [UInt8](repeating: 0, count: 32 - bytes.count)
+        return Data(bytes: padding + bytes)
     }
 }

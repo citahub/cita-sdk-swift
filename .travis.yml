@@ -1,0 +1,5 @@
+language: objective-c
+osx_image: xcode10
+xcode_workspace: Nervos.xcworkspace
+xcode_scheme: Nervos
+xcode_destination: platform=iOS Simulator,OS=11.3,name=iPhone X

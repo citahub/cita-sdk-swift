@@ -1,5 +1,9 @@
 # NervosSwift
 
+[![Travis](https://travis-ci.org/cryptape/nervos-swift.svg?branch=develop)](https://travis-ci.org/cryptape/nervos-swift)
+[![Swift](https://img.shields.io/badge/Swift-4.1-orange.svg?style=flat)](https://developer.apple.com/swift/)
+[![AppChain](https://img.shields.io/badge/made%20for-Nervos%20AppChain-blue.svg)](https://appchain.nervos.org)
+
 NervosSwift is a native Swift framework for working with Smart Contract and integrating with clients on Nervos network.
 
 ## Features
@@ -87,8 +91,9 @@ let privateKey = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
 let tx = NervosTransaction(
     to: Address("0x0000000000000000000000000000000000000000")!,
     nonce: "12345", // Generate a random/unique nonce string
-    data: Data.fromHex("6060604...")!,
+    quota: 1_000_000,
     validUntilBlock: 999999,
+    data: Data.fromHex("6060604...")!,
     chainId: 1
 )
 guard let signed = try? NervosTransactionSigner.sign(transaction: tx, with: privateKey) else {
@@ -115,6 +120,29 @@ case .failure(let error):
 ### Important Notices
 
 All JSON-RPC API functions are synchronous. But the underlying HTTP request might take some time to return, and in NervosSwift they're usually implemented in some `promise` way. It's generally better to call API function in a background queue so it won't block the main thread.
+
+* [peerCount](#peercount)
+* [blockNumber](#blocknumber)
+* [sendRawTransaction](#sendrawtransaction)
+* [getBlockByHash](#getblockbyhash)
+* [getBlockByNumber](#getblockbynumber)
+* [getTransactionReceipt](#gettransactionreceipt)
+* [getLogs](#getlogs)
+* [call](#call)
+* [getTransaction](#gettransaction)
+* [getTransactionCount](#gettransactioncount)
+* [getCode](#getcode)
+* [getAbi](#getabi)
+* [getBalance](#getbalance)
+* [newFilter](#newfilter)
+* [newBlockFilter](#newblockfilter)
+* [uninstallFilter](#uninstallfilter)
+* [getFilterChanges](#getfilterchanges)
+* [getFilterLogs](#getfilterlogs)
+* [getTransactionProof](#gettransactionproof)
+* [getMetaData](#getmetadata)
+* [getBlockHeader](#getblockheader)
+* [getStateProof](#getstateproof)
 
 ### peerCount
 
