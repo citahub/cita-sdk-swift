@@ -1,6 +1,6 @@
 # NervosSwift
 
-[![Travis](https://travis-ci.org/cryptape/nervos-swift.svg?branch=develop)](https://travis-ci.org/cryptape/nervos-swift)
+[![Travis](https://travis-ci.com/cryptape/nervos-swift.svg?branch=develop)](https://travis-ci.com/cryptape/nervos-swift)
 [![Swift](https://img.shields.io/badge/Swift-4.1-orange.svg?style=flat)](https://developer.apple.com/swift/)
 [![AppChain](https://img.shields.io/badge/made%20for-Nervos%20AppChain-blue.svg)](https://appchain.nervos.org)
 
