@@ -1,6 +1,6 @@
 # NervosSwift
 
-[![Travis](https://travis-ci.org/cryptape/nervos-swift.svg?branch=develop)](https://travis-ci.org/cryptape/nervos-swift)
+[![Travis](https://travis-ci.com/cryptape/nervos-swift.svg?branch=develop)](https://travis-ci.com/cryptape/nervos-swift)
 [![Swift](https://img.shields.io/badge/Swift-4.1-orange.svg?style=flat)](https://developer.apple.com/swift/)
 [![AppChain](https://img.shields.io/badge/made%20for-Nervos%20AppChain-blue.svg)](https://appchain.nervos.org)
 
@@ -48,6 +48,14 @@ Then, run the following command:
 ```bash
 $ pod install
 ```
+
+### Development
+
+To build NervosSwift, first run `pod install`, then open `Nervos.xcworkspace` with Xcode and build.
+
+#### Running Tests
+
+Copy `Tests/Config.example.json` to `Tests/Config.json`, then run tests from `NervosTests` target. Update `rpcServer` value of `Tests/Config.json` file if you want to test against an AppChain of your choice. By default `http://127.0.0.1:1337` is used.
 
 ### web3swift
 
