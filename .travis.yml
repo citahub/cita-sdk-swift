@@ -4,4 +4,4 @@ xcode_workspace: Nervos.xcworkspace
 xcode_scheme: Nervos
 xcode_destination: platform=iOS Simulator,OS=11.3,name=iPhone X
 before_install:
-  - cp Tests/Config.example.plist Tests/Config.plist
+  - echo '{"rpcServer": "'"$TEST_RPC_SERVER"'"}' > Tests/Config.json

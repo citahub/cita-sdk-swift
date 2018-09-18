@@ -12,8 +12,7 @@ import XCTest
 
 extension NervosProvider {
     static var testnetProviderURL: URL {
-        let envKey = "TEST_RPC_SERVER"
-        let testServer = ProcessInfo.processInfo.environment[envKey] ?? Config.shared[envKey] ?? "http://127.0.0.1:1337"
+        let testServer = Config.shared["rpcServer"] ?? "http://127.0.0.1:1337"
         return URL(string: testServer)!
     }
 
@@ -38,8 +37,10 @@ struct DefaultNervos {
 class Config {
     private let dict: [String: String]
     private init() {
-        if let path = Bundle(for: type(of: self)).path(forResource: "Config", ofType: "plist") {
-            dict = NSDictionary(contentsOfFile: path) as? [String: String] ?? [:]
+        if let path = Bundle(for: type(of: self)).path(forResource: "Config", ofType: "json") {
+            let data = try! Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+            let json = try! JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
+            dict = json as? [String: String] ?? [:]
         } else {
             dict = [:]
         }
