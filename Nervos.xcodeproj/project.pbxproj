@@ -692,7 +692,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2592D768976DDA03188738F7 /* Pods-NervosTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -711,7 +710,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 80F25F15A48449F02D1BECE8 /* Pods-NervosTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
