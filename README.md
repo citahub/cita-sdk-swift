@@ -18,11 +18,15 @@ Refer to [docs.nervos.org/cita](https://docs.nervos.org/cita/#/rpc_guide/rpc) fo
 
 ## Get Started
 
-### Prerequisites
+### System Requirements
 
-* Swift 4.1
-* iOS 10 and above
+To build NervosSwift, you'll need:
+
+* Swift 4.1 or later
+* Xcode 10 or later
 * [CocoaPods](https://cocoapods.org)
+
+NervosSwift supports iOS 10 and newer versions.
 
 ### Installation
 
