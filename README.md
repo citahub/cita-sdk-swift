@@ -49,6 +49,14 @@ Then, run the following command:
 $ pod install
 ```
 
+### Development
+
+To build NervosSwift, first run `pod install`, then open `Nervos.xcworkspace` with Xcode and build.
+
+#### Running Tests
+
+Copy `Tests/Config.example.json` to `Tests/Config.json`, then run tests from `NervosTests` target. Update `rpcServer` value of `Tests/Config.json` file if you want to test against an AppChain of your choice. By default `http://127.0.0.1:1337` is used.
+
 ### web3swift
 
 NervosSwift is built based on [BANKEX/web3swift](https://github.com/BANKEX/web3swift). While it's not required to import `web3swift` when using NervosSwift, please note the following classes are simply typealias of web3swift's Ethereum types:
