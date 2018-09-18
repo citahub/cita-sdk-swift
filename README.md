@@ -143,8 +143,6 @@ All JSON-RPC API functions are synchronous. But the underlying HTTP request migh
 * [getFilterLogs](#getfilterlogs)
 * [getTransactionProof](#gettransactionproof)
 * [getMetaData](#getmetadata)
-* [getBlockHeader](#getblockheader)
-* [getStateProof](#getstateproof)
 
 ### peerCount
 
@@ -376,31 +374,6 @@ func getTransactionProof(txhash: String) -> Result<String, NervosError>
 ///
 /// - Returns: Metadata of given block height.
 func getMetaData(blockNumber: String = "latest") -> Result<MetaData, NervosError>
-```
-
-### getBlockHeader
-
-```swift
-/// Get block header by a given block height.
-///
-/// - Parameter blockNumber: The block height, hex string integer or "latest".
-///
-/// - Returns: block header of the given block height.
-func getBlockHeader(blockNumber: String = "latest") -> Result<String, NervosError>
-```
-
-### getStateProof
-
-```swift
-/// Get state proof of special value. Include address, account proof, key, value proof.
-///
-/// - Parameters:
-///    - address: An address.
-///    - key: A key, position of the variable.
-///    - blockNumber: The block number, hex string integer, or the string "latest", "earliest".
-///
-/// - Returns: State proof of special value. Include address, account proof, key, value proof.
-func getStateProof(address: String, key: String, blockNumber: String = "latest") -> Result<String, NervosError>
 ```
 
 ## License
