@@ -26,6 +26,7 @@
 		1A67ED5B211D1C3C00DCE871 /* AppChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A67ED5A211D1C3C00DCE871 /* AppChain.swift */; };
 		1A67ED5D211D1FF900DCE871 /* NervosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A67ED5C211D1FF900DCE871 /* NervosTests.swift */; };
 		1A67ED5F211D55E500DCE871 /* MetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A67ED5E211D55E500DCE871 /* MetaData.swift */; };
+		1A6B2B232150F6F9003420A0 /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A6B2B212150F2C0003420A0 /* Config.plist */; };
 		1AB5C6D8212112DA00148587 /* AppChain+Promises.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB5C6D7212112DA00148587 /* AppChain+Promises.swift */; };
 		1AB5C6DA212125A200148587 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB5C6D9212125A200148587 /* Int+Extension.swift */; };
 		1AB5C6DC2121751400148587 /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB5C6DB2121751400148587 /* Block.swift */; };
@@ -75,6 +76,7 @@
 		1A67ED5A211D1C3C00DCE871 /* AppChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppChain.swift; sourceTree = "<group>"; };
 		1A67ED5C211D1FF900DCE871 /* NervosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NervosTests.swift; sourceTree = "<group>"; };
 		1A67ED5E211D55E500DCE871 /* MetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaData.swift; sourceTree = "<group>"; };
+		1A6B2B212150F2C0003420A0 /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
 		1AB5C6D7212112DA00148587 /* AppChain+Promises.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppChain+Promises.swift"; sourceTree = "<group>"; };
 		1AB5C6D9212125A200148587 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		1AB5C6DB2121751400148587 /* Block.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				1A67ED3C211BEAFD00DCE871 /* NervosProviderTests.swift */,
 				1A67ED5C211D1FF900DCE871 /* NervosTests.swift */,
 				1A64297E211C63E000352209 /* Config.swift */,
+				1A6B2B212150F2C0003420A0 /* Config.plist */,
 				1A67ED3E211BEAFD00DCE871 /* Info.plist */,
 			);
 			path = Tests;
@@ -361,6 +364,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A6B2B232150F6F9003420A0 /* Config.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
