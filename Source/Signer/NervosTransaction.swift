@@ -21,7 +21,7 @@ public struct NervosTransaction: CustomStringConvertible {
     public var quota: BigUInt
     public var validUntilBlock: BigUInt
     public var data: Data?
-    public var value: BigUInt
+    public var value: BigUInt // UInt256
     public var chainId: BigUInt
     public var version: BigUInt
 
