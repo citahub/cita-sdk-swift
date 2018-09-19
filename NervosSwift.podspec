@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.source       = { git: "https://github.com/cryptape/nervos-swift.git", tag: "v#{s.version.to_s}" }
   s.social_media_url = 'https://twitter.com/nervosnetwork'
 
-  s.swift_version = '4.1'
+  s.swift_version = '4.2'
   s.module_name = 'Nervos'
   s.ios.deployment_target = "10.0"
   s.source_files = "Source/**/*.{h,swift}"
