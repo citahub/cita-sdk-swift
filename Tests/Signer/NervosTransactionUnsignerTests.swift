@@ -31,6 +31,16 @@ class NervosTransactionUnsignerTests: XCTestCase {
         XCTAssertEqual(unsiged.transaction.version, tx.version)
     }
 
+    func testUnsignValue() {
+        let privateKey = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        [1, 2, 50].forEach { value in
+            let tx = NervosTransaction(nonce: "\(value)", validUntilBlock: 999_999, chainId: 1)
+            let signed = try! NervosTransactionSigner.sign(transaction: tx, with: privateKey)
+            let unsiged = try! NervosTransactionUnsigner.unsign(signed: signed)
+            XCTAssertEqual(unsiged.transaction.value, tx.value)
+        }
+    }
+
     func testUnsignContent() {
         let unsigned = try! NervosTransactionUnsigner.unsign(signed: "0x0ac1021220353761343535383934386562343232626162333666316361306630333534653718c0843d20e9df592af0016060604052341561000f57600080fd5b60d38061001d6000396000f3006060604052600436106049576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806360fe47b114604e5780636d4ce63c14606e575b600080fd5b3415605857600080fd5b606c60048080359060200190919050506094565b005b3415607857600080fd5b607e609e565b6040518082815260200191505060405180910390f35b8060008190555050565b600080549050905600a165627a7a723058202d9a0979adf6bf48461f24200e635bc19cd1786efbcfc0608eb1d76114d40586002932200000000000000000000000000000000000000000000000000000000000000000380112410167c108d0919a02a43219e3a52fe3cddbe0ac8b9d2271f429c2b09cdad481536596976aa166e66d2b30451a54e1a405bfbc5780538abf0caedbddd4dcbf732200")
         XCTAssertEqual(unsigned.transaction.quota, 1_000_000)

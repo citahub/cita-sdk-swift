@@ -61,4 +61,16 @@ class NervosTransactionSignerTests: XCTestCase {
             XCTAssertTrue(err is TransactionError)
         }
     }
+
+    func testValueConvert() {
+        let values: [BigUInt: String] = [
+            0:                          "0000000000000000000000000000000000000000000000000000000000000000",
+            1:                          "0000000000000000000000000000000000000000000000000000000000000001",
+            BigUInt(10).power(18):      "0000000000000000000000000000000000000000000000000de0b6b3a7640000"
+        ]
+        values.forEach { value, hex in
+            let result = NervosTransactionSigner.convert(value: value).toHexString()
+            XCTAssertEqual(result, hex)
+        }
+    }
 }

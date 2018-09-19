@@ -17,7 +17,7 @@ public struct NervosTransactionSigner {
             tx.to = to.address.stripHexPrefix().lowercased()
         }
         tx.quota = UInt64(transaction.quota)
-        tx.data = transaction.data
+        tx.data = transaction.data ?? Data()
         tx.version = UInt32(transaction.version)
         tx.value = convert(value: transaction.value)
         tx.chainID = UInt32(transaction.chainId)

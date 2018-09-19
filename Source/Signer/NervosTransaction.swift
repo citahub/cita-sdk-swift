@@ -8,7 +8,6 @@
 
 import Foundation
 import BigInt
-import secp256k1_ios
 
 public enum TransactionError: Error {
     case privateKeyIsNull
@@ -21,7 +20,7 @@ public struct NervosTransaction: CustomStringConvertible {
     public var nonce: String
     public var quota: BigUInt
     public var validUntilBlock: BigUInt
-    public var data: Data
+    public var data: Data?
     public var value: BigUInt
     public var chainId: BigUInt
     public var version: BigUInt
@@ -31,7 +30,7 @@ public struct NervosTransaction: CustomStringConvertible {
         nonce: String,
         quota: BigUInt = 1_000_000,
         validUntilBlock: BigUInt,
-        data: Data,
+        data: Data? = nil,
         value: BigUInt = 0,
         chainId: BigUInt,
         version: BigUInt = 0
@@ -51,7 +50,7 @@ public struct NervosTransaction: CustomStringConvertible {
             "Transaction",
             "to: " + (to?.address ?? ""),
             "nonce: " + nonce,
-            "data: " + data.toHexString(),
+            "data: " + (data?.toHexString() ?? "0x"),
             "value: " + value.description,
             "validUntilBlock: " + validUntilBlock.description,
             "quota: " + String(quota),
