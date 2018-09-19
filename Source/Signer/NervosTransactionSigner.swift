@@ -43,9 +43,16 @@ public struct NervosTransactionSigner {
 
     /// Value must be encoded as fixed length (32) bytes
     static func convert(value: BigUInt) -> Data {
-        let bytes = [UInt8](hex: value.toHexString())
-        assert(bytes.count <= 32)
-        let padding = [UInt8](repeating: 0, count: 32 - bytes.count)
-        return Data(bytes: padding + bytes)
+        let max = BigUInt("10", radix: 2)!.power(256) - 1
+        let zero = (0...63).map { _ in
+            return "0"
+        }.joined()
+        guard value <= max else {
+            return Data.fromHex(zero)!
+        }
+
+        let hex = value.toHexString()
+        let padding = zero.prefix(zero.count - hex.count)
+        return Data.fromHex(padding + hex)!
     }
 }
