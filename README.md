@@ -1,5 +1,9 @@
 # NervosSwift
 
+[![Travis](https://travis-ci.com/cryptape/nervos-swift.svg?branch=develop)](https://travis-ci.com/cryptape/nervos-swift)
+[![Swift](https://img.shields.io/badge/Swift-4.2-orange.svg?style=flat)](https://developer.apple.com/swift/)
+[![AppChain](https://img.shields.io/badge/made%20for-Nervos%20AppChain-blue.svg)](https://appchain.nervos.org)
+
 NervosSwift is a native Swift framework for working with Smart Contract and integrating with clients on Nervos network.
 
 ## Features
@@ -14,11 +18,15 @@ Refer to [docs.nervos.org/cita](https://docs.nervos.org/cita/#/rpc_guide/rpc) fo
 
 ## Get Started
 
-### Prerequisites
+### System Requirements
 
-* Swift 4.1
-* iOS 10 and above
+To build NervosSwift, you'll need:
+
+* Swift 4.2 or later
+* Xcode 10 or later
 * [CocoaPods](https://cocoapods.org)
+
+NervosSwift supports iOS 10 and newer versions.
 
 ### Installation
 
@@ -41,22 +49,32 @@ Then, run the following command:
 $ pod install
 ```
 
+### Development
+
+To build NervosSwift, first run `pod install`, then open `Nervos.xcworkspace` with Xcode and build.
+
+#### Running Tests
+
+Copy `Tests/Config.example.json` to `Tests/Config.json`, then run tests from `NervosTests` target. Update `rpcServer` value of `Tests/Config.json` file if you want to test against an AppChain of your choice. By default `http://127.0.0.1:1337` is used.
+
 ### web3swift
 
-NervosSwift is built based on [BANKEX/web3swift](https://github.com/BANKEX/web3swift). While it's not required to import `web3swift` when using NervosSwift, please note the following classes are simply typealias of web3swift's Ethereum types:
+NervosSwift is built upon [BANKEX/web3swift](https://github.com/BANKEX/web3swift). While it's not required to import `web3swift` when using NervosSwift, please note the following classes are simply typealias of web3swift's Ethereum types:
 
 | NervosSwift Type  | web3swift Type      |
 |:-----------------:|:-------------------:|
 | Utils             | Web3Utils           |
 | NervosError       | Web3Error           |
 | NervosOptions     | Web3Options         |
-| Address           | EthereumAddress     |
+| EthereumAddress   | EthereumAddress     |
 | EventLog          | EventLog            |
 | BloomFilter       | EthereumBloomFilter |
 
 ### Testnet
 
-For tests, use the recommended Nervos AppChain testnet http://121.196.200.225:1337.
+For test or development, you can follow the [CITA document](https://docs.nervos.org/cita/) to run a local chain. We also provide a Nervos AppChain testnet at http://121.196.200.225:1337 (or use https://node.cryptape.com).
+
+This testnet supports [CITA](https://github.com/cryptape/cita) version **v0.17**.
 
 ### NervosProvider
 
@@ -66,6 +84,7 @@ For tests, use the recommended Nervos AppChain testnet http://121.196.200.225:13
 import Nervos
 
 let testnetUrl = URL(string: "http://121.196.200.225:1337")! // Or use any other AppChain network
+// let testnetUrl = URL(string: "https://node.cryptape.com")! // Also available
 let provider = NervosProvider(testnetUrl)
 ```
 
@@ -84,11 +103,13 @@ Before sending a raw transaction over JSON-RPC API, create a `NervosTransaction`
 
 ```swift
 let privateKey = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+let currentBlock = nervos.appChain.blockNumber().value!
 let tx = NervosTransaction(
-    to: Address("0x0000000000000000000000000000000000000000")!,
-    nonce: "12345", // Generate a random/unique nonce string
+    to: Address("0x0000000000000000000000000000000000000000"),
+    nonce: UUID().uuidString, // Generate a random/unique nonce string
+    quota: 1_000_000, // Use 1,000,000 as default quota for sending a transaction
+    validUntilBlock: currentBlock + 88,
     data: Data.fromHex("6060604...")!,
-    validUntilBlock: 999999,
     chainId: 1
 )
 guard let signed = try? NervosTransactionSigner.sign(transaction: tx, with: privateKey) else {
@@ -116,6 +137,27 @@ case .failure(let error):
 
 All JSON-RPC API functions are synchronous. But the underlying HTTP request might take some time to return, and in NervosSwift they're usually implemented in some `promise` way. It's generally better to call API function in a background queue so it won't block the main thread.
 
+* [peerCount](#peercount)
+* [blockNumber](#blocknumber)
+* [sendRawTransaction](#sendrawtransaction)
+* [getBlockByHash](#getblockbyhash)
+* [getBlockByNumber](#getblockbynumber)
+* [getTransactionReceipt](#gettransactionreceipt)
+* [getLogs](#getlogs)
+* [call](#call)
+* [getTransaction](#gettransaction)
+* [getTransactionCount](#gettransactioncount)
+* [getCode](#getcode)
+* [getAbi](#getabi)
+* [getBalance](#getbalance)
+* [newFilter](#newfilter)
+* [newBlockFilter](#newblockfilter)
+* [uninstallFilter](#uninstallfilter)
+* [getFilterChanges](#getfilterchanges)
+* [getFilterLogs](#getfilterlogs)
+* [getTransactionProof](#gettransactionproof)
+* [getMetaData](#getmetadata)
+
 ### peerCount
 
 ```swift
@@ -131,7 +173,7 @@ func peerCount() -> Result<BigUInt, NervosError>
 /// Get the number of most recent block.
 ///
 /// - Returns: Current block height.
-func blockNumber() -> Result<BigUInt, NervosError>
+func blockNumber() -> Result<UInt64, NervosError>
 ```
 
 ### sendRawTransaction
@@ -346,31 +388,6 @@ func getTransactionProof(txhash: String) -> Result<String, NervosError>
 ///
 /// - Returns: Metadata of given block height.
 func getMetaData(blockNumber: String = "latest") -> Result<MetaData, NervosError>
-```
-
-### getBlockHeader
-
-```swift
-/// Get block header by a given block height.
-///
-/// - Parameter blockNumber: The block height, hex string integer or "latest".
-///
-/// - Returns: block header of the given block height.
-func getBlockHeader(blockNumber: String = "latest") -> Result<String, NervosError>
-```
-
-### getStateProof
-
-```swift
-/// Get state proof of special value. Include address, account proof, key, value proof.
-///
-/// - Parameters:
-///    - address: An address.
-///    - key: A key, position of the variable.
-///    - blockNumber: The block number, hex string integer, or the string "latest", "earliest".
-///
-/// - Returns: State proof of special value. Include address, account proof, key, value proof.
-func getStateProof(address: String, key: String, blockNumber: String = "latest") -> Result<String, NervosError>
 ```
 
 ## License

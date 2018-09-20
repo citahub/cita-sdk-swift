@@ -39,10 +39,10 @@ public extension AppChain {
     /// Get the number of most recent block.
     ///
     /// - Returns: Current block height.
-    func blockNumber() -> Result<BigUInt, NervosError> {
+    func blockNumber() -> Result<UInt64, NervosError> {
         do {
             let result = try blockNumberPromise().wait()
-            return Result(result)
+            return Result(UInt64(result)) // `blockNumber` returns BigUInt but is cast down to uint64
         } catch {
             return handle(error)
         }
@@ -440,21 +440,22 @@ public extension AppChain {
     }
 
     /// Get block header by a given block height.
+    /// Note: Require 0.18.
     ///
     /// - Parameter blockNumber: The block height.
     ///
     /// - Returns: block header of the given block height.
-    func getBlockHeader(blockNumber: BigUInt) -> Result<String, NervosError> {
+    func getBlockHeader(blockNumber: UInt64) -> Result<String, NervosError> {
         return getBlockHeader(blockNumber: blockNumber.toHexString().addHexPrefix())
     }
 
     /// Get block header by a given block height.
+    /// Note: Require 0.18.
     ///
     /// - Parameter blockNumber: The block height, hex string integer or "latest".
     ///
     /// - Returns: block header of the given block height.
     func getBlockHeader(blockNumber: String = "latest") -> Result<String, NervosError> {
-        // TODO: verify if this works
         do {
             let result = try getBlockHeaderPromise(blockNumber: blockNumber).wait()
             return Result(result)
@@ -464,6 +465,7 @@ public extension AppChain {
     }
 
     /// Get state proof of special value. Include address, account proof, key, value proof.
+    /// Note: Require 0.18.
     ///
     /// - Parameters:
     ///    - address: An address.
@@ -476,6 +478,7 @@ public extension AppChain {
     }
 
     /// Get state proof of special value. Include address, account proof, key, value proof.
+    /// Note: Require 0.18.
     ///
     /// - Parameters:
     ///    - address: An address.
@@ -484,7 +487,6 @@ public extension AppChain {
     ///
     /// - Returns: State proof of special value. Include address, account proof, key, value proof.
     func getStateProof(address: String, key: String, blockNumber: String = "latest") -> Result<String, NervosError> {
-        // TODO: verify if this works
         do {
             let result = try getStateProofPromise(address: address, key: key, blockNumber: blockNumber).wait()
             return Result(result)

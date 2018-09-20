@@ -10,7 +10,7 @@ import Foundation
 import BigInt
 
 public struct MetaData: Decodable {
-    public var chainId: BigUInt
+    public var chainId: UInt32
     public var chainName: String
     public var `operator`: String
     public var website: String
@@ -37,8 +37,7 @@ public struct MetaData: Decodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        guard let chainId = try DecodeUtils.decodeIntToBigUInt(container, key: .chainId) else { throw NervosError.dataError }
-        self.chainId = chainId
+        self.chainId = try container.decode(UInt32.self, forKey: .chainId)
 
         self.chainName = try container.decode(String.self, forKey: .chainName)
 
