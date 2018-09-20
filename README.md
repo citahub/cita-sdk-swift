@@ -59,14 +59,14 @@ Copy `Tests/Config.example.json` to `Tests/Config.json`, then run tests from `Ne
 
 ### web3swift
 
-NervosSwift is built based on [BANKEX/web3swift](https://github.com/BANKEX/web3swift). While it's not required to import `web3swift` when using NervosSwift, please note the following classes are simply typealias of web3swift's Ethereum types:
+NervosSwift is built upon [BANKEX/web3swift](https://github.com/BANKEX/web3swift). While it's not required to import `web3swift` when using NervosSwift, please note the following classes are simply typealias of web3swift's Ethereum types:
 
 | NervosSwift Type  | web3swift Type      |
 |:-----------------:|:-------------------:|
 | Utils             | Web3Utils           |
 | NervosError       | Web3Error           |
 | NervosOptions     | Web3Options         |
-| Address           | EthereumAddress     |
+| EthereumAddress   | EthereumAddress     |
 | EventLog          | EventLog            |
 | BloomFilter       | EthereumBloomFilter |
 
@@ -102,11 +102,12 @@ Before sending a raw transaction over JSON-RPC API, create a `NervosTransaction`
 
 ```swift
 let privateKey = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+let currentBlock = nervos.appChain.blockNumber().value!
 let tx = NervosTransaction(
-    to: Address("0x0000000000000000000000000000000000000000")!,
-    nonce: "12345", // Generate a random/unique nonce string
-    quota: 1_000_000,
-    validUntilBlock: 999_999,
+    to: Address("0x0000000000000000000000000000000000000000"),
+    nonce: UUID().uuidString, // Generate a random/unique nonce string
+    quota: 1_000_000, // Use 1,000,000 as default quota for sending a transaction
+    validUntilBlock: currentBlock + 88,
     data: Data.fromHex("6060604...")!,
     chainId: 1
 )
