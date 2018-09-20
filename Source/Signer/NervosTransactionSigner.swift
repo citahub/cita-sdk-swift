@@ -16,12 +16,12 @@ public struct NervosTransactionSigner {
         if let to = transaction.to {
             tx.to = to.address.stripHexPrefix().lowercased()
         }
-        tx.quota = UInt64(transaction.quota)
+        tx.quota = transaction.quota
         tx.data = transaction.data ?? Data()
-        tx.version = UInt32(transaction.version)
+        tx.version = transaction.version
         tx.value = convert(value: transaction.value)
-        tx.chainID = UInt32(transaction.chainId)
-        tx.validUntilBlock = UInt64(transaction.validUntilBlock)
+        tx.chainID = transaction.chainId
+        tx.validUntilBlock = transaction.validUntilBlock
 
         let binaryData = try! tx.serializedData()
         guard let privateKeyData = Data.fromHex(privateKey) else {
