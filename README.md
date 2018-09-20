@@ -72,7 +72,7 @@ NervosSwift is built upon [BANKEX/web3swift](https://github.com/BANKEX/web3swift
 
 ### Testnet
 
-For tests, use the recommended Nervos AppChain testnet http://121.196.200.225:1337.
+For tests or, use the recommended Nervos AppChain testnet http://121.196.200.225:1337 (or use https://node.cryptape.com).
 
 This testnet supports [CITA](https://github.com/cryptape/cita) version **v0.17**.
 
@@ -84,6 +84,7 @@ This testnet supports [CITA](https://github.com/cryptape/cita) version **v0.17**
 import Nervos
 
 let testnetUrl = URL(string: "http://121.196.200.225:1337")! // Or use any other AppChain network
+// let testnetUrl = URL(string: "https://node.cryptape.com")! // Also available
 let provider = NervosProvider(testnetUrl)
 ```
 
