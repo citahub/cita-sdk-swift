@@ -72,7 +72,7 @@ NervosSwift is built upon [BANKEX/web3swift](https://github.com/BANKEX/web3swift
 
 ### Testnet
 
-For tests or, use the recommended Nervos AppChain testnet http://121.196.200.225:1337 (or use https://node.cryptape.com).
+For test or development, you can follow the [CITA document](https://docs.nervos.org/cita/) to run a local chain. We also provide a Nervos AppChain testnet at http://121.196.200.225:1337 (or use https://node.cryptape.com).
 
 This testnet supports [CITA](https://github.com/cryptape/cita) version **v0.17**.
 
