@@ -12,7 +12,6 @@ import XCTest
 class NervosProviderTests: XCTestCase {
     func testDefaultProvider() {
         XCTAssertNotNil(NervosProvider.testnetProviderURL)
-        print("Test RPC server: " + NervosProvider.testnetProviderURL.description)
     }
 
     func testOnlySupportHTTP() {

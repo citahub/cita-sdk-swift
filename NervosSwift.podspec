@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "NervosSwift"
-  s.version      = "0.17.1"
+  s.version      = "0.17.2"
   s.summary      = "Nervos SDK implementation in Swift for iOS"
 
   s.description  = <<-DESC
