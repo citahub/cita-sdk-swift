@@ -1,7 +1,7 @@
 # NervosSwift
 
 [![Travis](https://travis-ci.com/cryptape/nervos-swift.svg?branch=develop)](https://travis-ci.com/cryptape/nervos-swift)
-[![Swift](https://img.shields.io/badge/Swift-4.1-orange.svg?style=flat)](https://developer.apple.com/swift/)
+[![Swift](https://img.shields.io/badge/Swift-4.2-orange.svg?style=flat)](https://developer.apple.com/swift/)
 [![AppChain](https://img.shields.io/badge/made%20for-Nervos%20AppChain-blue.svg)](https://appchain.nervos.org)
 
 NervosSwift is a native Swift framework for working with Smart Contract and integrating with clients on Nervos network.
@@ -22,7 +22,7 @@ Refer to [docs.nervos.org/cita](https://docs.nervos.org/cita/#/rpc_guide/rpc) fo
 
 To build NervosSwift, you'll need:
 
-* Swift 4.1 or later
+* Swift 4.2 or later
 * Xcode 10 or later
 * [CocoaPods](https://cocoapods.org)
 
@@ -106,7 +106,7 @@ let tx = NervosTransaction(
     to: Address("0x0000000000000000000000000000000000000000")!,
     nonce: "12345", // Generate a random/unique nonce string
     quota: 1_000_000,
-    validUntilBlock: 999999,
+    validUntilBlock: 999_999,
     data: Data.fromHex("6060604...")!,
     chainId: 1
 )
@@ -171,7 +171,7 @@ func peerCount() -> Result<BigUInt, NervosError>
 /// Get the number of most recent block.
 ///
 /// - Returns: Current block height.
-func blockNumber() -> Result<BigUInt, NervosError>
+func blockNumber() -> Result<UInt64, NervosError>
 ```
 
 ### sendRawTransaction
