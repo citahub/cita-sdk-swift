@@ -27,6 +27,7 @@
 		1A67ED5B211D1C3C00DCE871 /* AppChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A67ED5A211D1C3C00DCE871 /* AppChain.swift */; };
 		1A67ED5D211D1FF900DCE871 /* NervosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A67ED5C211D1FF900DCE871 /* NervosTests.swift */; };
 		1A67ED5F211D55E500DCE871 /* MetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A67ED5E211D55E500DCE871 /* MetaData.swift */; };
+		1AA6F63521527B25001DA165 /* IntExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA6F63421527B25001DA165 /* IntExtensionTests.swift */; };
 		1AB5C6D8212112DA00148587 /* AppChain+Promises.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB5C6D7212112DA00148587 /* AppChain+Promises.swift */; };
 		1AB5C6DA212125A200148587 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB5C6D9212125A200148587 /* Int+Extension.swift */; };
 		1AB5C6DC2121751400148587 /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB5C6DB2121751400148587 /* Block.swift */; };
@@ -77,6 +78,7 @@
 		1A67ED5A211D1C3C00DCE871 /* AppChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppChain.swift; sourceTree = "<group>"; };
 		1A67ED5C211D1FF900DCE871 /* NervosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NervosTests.swift; sourceTree = "<group>"; };
 		1A67ED5E211D55E500DCE871 /* MetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaData.swift; sourceTree = "<group>"; };
+		1AA6F63421527B25001DA165 /* IntExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtensionTests.swift; sourceTree = "<group>"; };
 		1AB5C6D7212112DA00148587 /* AppChain+Promises.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppChain+Promises.swift"; sourceTree = "<group>"; };
 		1AB5C6D9212125A200148587 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		1AB5C6DB2121751400148587 /* Block.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 		1A67ED3B211BEAFD00DCE871 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				1AA6F63321527B08001DA165 /* Utils */,
 				1AD65FA22122AF0E00AA4C84 /* AppChain */,
 				1AD65FA32122AF1700AA4C84 /* Signer */,
 				1A67ED3C211BEAFD00DCE871 /* NervosProviderTests.swift */,
@@ -197,6 +200,14 @@
 				1AB5C6D9212125A200148587 /* Int+Extension.swift */,
 				1AD65F8F21217AC000AA4C84 /* DecodeUtils.swift */,
 				1AD65F9C2122999900AA4C84 /* Secp251k1.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		1AA6F63321527B08001DA165 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				1AA6F63421527B25001DA165 /* IntExtensionTests.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -499,6 +510,7 @@
 				1AD65FA62122AF4400AA4C84 /* NervosTransactionSignerTest.swift in Sources */,
 				1A64297F211C63E000352209 /* Config.swift in Sources */,
 				1A67ED5D211D1FF900DCE871 /* NervosTests.swift in Sources */,
+				1AA6F63521527B25001DA165 /* IntExtensionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

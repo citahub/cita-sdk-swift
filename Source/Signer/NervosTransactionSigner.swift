@@ -17,7 +17,7 @@ public struct NervosTransactionSigner {
             tx.to = to.address.stripHexPrefix().lowercased()
         }
         tx.quota = UInt64(transaction.quota)
-        tx.data = transaction.data
+        tx.data = transaction.data ?? Data()
         tx.version = UInt32(transaction.version)
         tx.value = convert(value: transaction.value)
         tx.chainID = UInt32(transaction.chainId)
@@ -43,9 +43,6 @@ public struct NervosTransactionSigner {
 
     /// Value must be encoded as fixed length (32) bytes
     static func convert(value: BigUInt) -> Data {
-        let bytes = [UInt8](hex: value.toHexString())
-        assert(bytes.count <= 32)
-        let padding = [UInt8](repeating: 0, count: 32 - bytes.count)
-        return Data(bytes: padding + bytes)
+        return Data.fromHex(value.toUInt256Hex())!
     }
 }

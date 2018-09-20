@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import BigInt
 @testable import Nervos
 
 class NervosTransactionUnsignerTests: XCTestCase {
@@ -29,6 +30,30 @@ class NervosTransactionUnsignerTests: XCTestCase {
         XCTAssertEqual(unsiged.transaction.validUntilBlock, tx.validUntilBlock)
         XCTAssertEqual(unsiged.transaction.chainId, tx.chainId)
         XCTAssertEqual(unsiged.transaction.version, tx.version)
+    }
+
+    func testUnsignValue() {
+        let privateKey = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        let values: [BigUInt] = [
+            0,
+            1,
+            2,
+            50,
+            BigUInt(10).power(18),
+            BigUInt("10", radix: 2)!.power(256) - 1
+        ]
+        values.forEach { value in
+            let tx = NervosTransaction(nonce: "\(value)", validUntilBlock: 999_999, value: value, chainId: 1)
+            let signed = try! NervosTransactionSigner.sign(transaction: tx, with: privateKey)
+            let unsiged = try! NervosTransactionUnsigner.unsign(signed: signed)
+            XCTAssertEqual(unsiged.transaction.value, tx.value)
+        }
+
+        let overflow = BigUInt("10", radix: 2)!.power(256)
+        let tx = NervosTransaction(nonce: "\(overflow)", validUntilBlock: 999_999, value: overflow, chainId: 1)
+        let signed = try! NervosTransactionSigner.sign(transaction: tx, with: privateKey)
+        let unsiged = try! NervosTransactionUnsigner.unsign(signed: signed)
+        XCTAssertEqual(unsiged.transaction.value, 0)
     }
 
     func testUnsignContent() {
