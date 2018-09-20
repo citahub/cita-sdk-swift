@@ -27,6 +27,9 @@
 		1A67ED5B211D1C3C00DCE871 /* AppChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A67ED5A211D1C3C00DCE871 /* AppChain.swift */; };
 		1A67ED5D211D1FF900DCE871 /* NervosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A67ED5C211D1FF900DCE871 /* NervosTests.swift */; };
 		1A67ED5F211D55E500DCE871 /* MetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A67ED5E211D55E500DCE871 /* MetaData.swift */; };
+		1A6B2B2721533F43003420A0 /* Alias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6B2B2621533F43003420A0 /* Alias.swift */; };
+		1A6B2B2921533FA5003420A0 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6B2B2821533FA5003420A0 /* Address.swift */; };
+		1A6B2B2C21534CEF003420A0 /* AddressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6B2B2B21534CEF003420A0 /* AddressTests.swift */; };
 		1AA6F63521527B25001DA165 /* IntExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA6F63421527B25001DA165 /* IntExtensionTests.swift */; };
 		1AB5C6D8212112DA00148587 /* AppChain+Promises.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB5C6D7212112DA00148587 /* AppChain+Promises.swift */; };
 		1AB5C6DA212125A200148587 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB5C6D9212125A200148587 /* Int+Extension.swift */; };
@@ -78,6 +81,9 @@
 		1A67ED5A211D1C3C00DCE871 /* AppChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppChain.swift; sourceTree = "<group>"; };
 		1A67ED5C211D1FF900DCE871 /* NervosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NervosTests.swift; sourceTree = "<group>"; };
 		1A67ED5E211D55E500DCE871 /* MetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaData.swift; sourceTree = "<group>"; };
+		1A6B2B2621533F43003420A0 /* Alias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alias.swift; sourceTree = "<group>"; };
+		1A6B2B2821533FA5003420A0 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		1A6B2B2B21534CEF003420A0 /* AddressTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTests.swift; sourceTree = "<group>"; };
 		1AA6F63421527B25001DA165 /* IntExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtensionTests.swift; sourceTree = "<group>"; };
 		1AB5C6D7212112DA00148587 /* AppChain+Promises.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppChain+Promises.swift"; sourceTree = "<group>"; };
 		1AB5C6D9212125A200148587 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
@@ -147,8 +153,7 @@
 				1A67ED4E211D117B00DCE871 /* JSONRPC */,
 				1A67ED49211D089000DCE871 /* AppChain */,
 				1AD65F95212294AD00AA4C84 /* Signer */,
-				1A64297C211C5E0700352209 /* NervosProvider.swift */,
-				1A67ED4A211D08A700DCE871 /* Nervos.swift */,
+				1A6B2B2521533EFA003420A0 /* Nervos */,
 				1A67ED31211BEAFD00DCE871 /* Nervos.h */,
 				1A67ED32211BEAFD00DCE871 /* Info.plist */,
 			);
@@ -161,8 +166,7 @@
 				1AA6F63321527B08001DA165 /* Utils */,
 				1AD65FA22122AF0E00AA4C84 /* AppChain */,
 				1AD65FA32122AF1700AA4C84 /* Signer */,
-				1A67ED3C211BEAFD00DCE871 /* NervosProviderTests.swift */,
-				1A67ED5C211D1FF900DCE871 /* NervosTests.swift */,
+				1A6B2B2A21534CD1003420A0 /* Nervos */,
 				1A64297E211C63E000352209 /* Config.swift */,
 				1A4ED13721511FCB00C89A76 /* Config.json */,
 				1A67ED3E211BEAFD00DCE871 /* Info.plist */,
@@ -202,6 +206,27 @@
 				1AD65F9C2122999900AA4C84 /* Secp251k1.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		1A6B2B2521533EFA003420A0 /* Nervos */ = {
+			isa = PBXGroup;
+			children = (
+				1A64297C211C5E0700352209 /* NervosProvider.swift */,
+				1A67ED4A211D08A700DCE871 /* Nervos.swift */,
+				1A6B2B2621533F43003420A0 /* Alias.swift */,
+				1A6B2B2821533FA5003420A0 /* Address.swift */,
+			);
+			path = Nervos;
+			sourceTree = "<group>";
+		};
+		1A6B2B2A21534CD1003420A0 /* Nervos */ = {
+			isa = PBXGroup;
+			children = (
+				1A67ED3C211BEAFD00DCE871 /* NervosProviderTests.swift */,
+				1A67ED5C211D1FF900DCE871 /* NervosTests.swift */,
+				1A6B2B2B21534CEF003420A0 /* AddressTests.swift */,
+			);
+			path = Nervos;
 			sourceTree = "<group>";
 		};
 		1AA6F63321527B08001DA165 /* Utils */ = {
@@ -483,6 +508,7 @@
 				1A67ED5B211D1C3C00DCE871 /* AppChain.swift in Sources */,
 				1AD65F8E2121795B00AA4C84 /* TransactionReceipt.swift in Sources */,
 				1AD65F97212294C800AA4C84 /* NervosTransaction.swift in Sources */,
+				1A6B2B2921533FA5003420A0 /* Address.swift in Sources */,
 				1A67ED5F211D55E500DCE871 /* MetaData.swift in Sources */,
 				1A67ED50211D11C600DCE871 /* Request.swift in Sources */,
 				1AD65F9021217AC000AA4C84 /* DecodeUtils.swift in Sources */,
@@ -490,6 +516,7 @@
 				1A67ED54211D122000DCE871 /* Method.swift in Sources */,
 				1A0529C0214258EC00C847CA /* NervosTransactionUnsigner.swift in Sources */,
 				1A42225E212AA59700DF1994 /* AppChain+API.swift in Sources */,
+				1A6B2B2721533F43003420A0 /* Alias.swift in Sources */,
 				1A67ED4D211D0AA600DCE871 /* RequestDispatcher.swift in Sources */,
 				1AD65FA12122A1F900AA4C84 /* TransactionSendingResult.swift in Sources */,
 				1AB5C6DA212125A200148587 /* Int+Extension.swift in Sources */,
@@ -510,6 +537,7 @@
 				1AD65FA62122AF4400AA4C84 /* NervosTransactionSignerTest.swift in Sources */,
 				1A64297F211C63E000352209 /* Config.swift in Sources */,
 				1A67ED5D211D1FF900DCE871 /* NervosTests.swift in Sources */,
+				1A6B2B2C21534CEF003420A0 /* AddressTests.swift in Sources */,
 				1AA6F63521527B25001DA165 /* IntExtensionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

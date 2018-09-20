@@ -39,10 +39,10 @@ public extension AppChain {
     /// Get the number of most recent block.
     ///
     /// - Returns: Current block height.
-    func blockNumber() -> Result<BigUInt, NervosError> {
+    func blockNumber() -> Result<UInt64, NervosError> {
         do {
             let result = try blockNumberPromise().wait()
-            return Result(result)
+            return Result(UInt64(result)) // `blockNumber` returns BigUInt but is cast down to uint64
         } catch {
             return handle(error)
         }
@@ -445,7 +445,7 @@ public extension AppChain {
     /// - Parameter blockNumber: The block height.
     ///
     /// - Returns: block header of the given block height.
-    func getBlockHeader(blockNumber: BigUInt) -> Result<String, NervosError> {
+    func getBlockHeader(blockNumber: UInt64) -> Result<String, NervosError> {
         return getBlockHeader(blockNumber: blockNumber.toHexString().addHexPrefix())
     }
 

@@ -14,7 +14,6 @@ class NervosTransactionSignerTests: XCTestCase {
     func testSignTx() {
         let privateKey = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
         let tx = NervosTransaction(
-            // to: Address("0x0000000000000000000000000000000000000000")!,
             nonce: "12345",
             quota: 1_000_000,
             validUntilBlock: 999_999,
@@ -46,7 +45,7 @@ class NervosTransactionSignerTests: XCTestCase {
 
     func testSignTxWithWrongPrivateKey() {
         let tx = NervosTransaction(
-            to: Address("0x0000000000000000000000000000000000000000")!,
+            to: Address("0x0000000000000000000000000000000000000000"),
             nonce: "12345",
             quota: 1_000_000,
             validUntilBlock: 999_999,

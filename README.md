@@ -1,7 +1,7 @@
 # NervosSwift
 
 [![Travis](https://travis-ci.com/cryptape/nervos-swift.svg?branch=develop)](https://travis-ci.com/cryptape/nervos-swift)
-[![Swift](https://img.shields.io/badge/Swift-4.1-orange.svg?style=flat)](https://developer.apple.com/swift/)
+[![Swift](https://img.shields.io/badge/Swift-4.2-orange.svg?style=flat)](https://developer.apple.com/swift/)
 [![AppChain](https://img.shields.io/badge/made%20for-Nervos%20AppChain-blue.svg)](https://appchain.nervos.org)
 
 NervosSwift is a native Swift framework for working with Smart Contract and integrating with clients on Nervos network.
@@ -22,7 +22,7 @@ Refer to [docs.nervos.org/cita](https://docs.nervos.org/cita/#/rpc_guide/rpc) fo
 
 To build NervosSwift, you'll need:
 
-* Swift 4.1 or later
+* Swift 4.2 or later
 * Xcode 10 or later
 * [CocoaPods](https://cocoapods.org)
 
@@ -59,14 +59,14 @@ Copy `Tests/Config.example.json` to `Tests/Config.json`, then run tests from `Ne
 
 ### web3swift
 
-NervosSwift is built based on [BANKEX/web3swift](https://github.com/BANKEX/web3swift). While it's not required to import `web3swift` when using NervosSwift, please note the following classes are simply typealias of web3swift's Ethereum types:
+NervosSwift is built upon [BANKEX/web3swift](https://github.com/BANKEX/web3swift). While it's not required to import `web3swift` when using NervosSwift, please note the following classes are simply typealias of web3swift's Ethereum types:
 
 | NervosSwift Type  | web3swift Type      |
 |:-----------------:|:-------------------:|
 | Utils             | Web3Utils           |
 | NervosError       | Web3Error           |
 | NervosOptions     | Web3Options         |
-| Address           | EthereumAddress     |
+| EthereumAddress   | EthereumAddress     |
 | EventLog          | EventLog            |
 | BloomFilter       | EthereumBloomFilter |
 
@@ -102,11 +102,12 @@ Before sending a raw transaction over JSON-RPC API, create a `NervosTransaction`
 
 ```swift
 let privateKey = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+let currentBlock = nervos.appChain.blockNumber().value!
 let tx = NervosTransaction(
-    to: Address("0x0000000000000000000000000000000000000000")!,
-    nonce: "12345", // Generate a random/unique nonce string
-    quota: 1_000_000,
-    validUntilBlock: 999999,
+    to: Address("0x0000000000000000000000000000000000000000"),
+    nonce: UUID().uuidString, // Generate a random/unique nonce string
+    quota: 1_000_000, // Use 1,000,000 as default quota for sending a transaction
+    validUntilBlock: currentBlock + 88,
     data: Data.fromHex("6060604...")!,
     chainId: 1
 )
@@ -171,7 +172,7 @@ func peerCount() -> Result<BigUInt, NervosError>
 /// Get the number of most recent block.
 ///
 /// - Returns: Current block height.
-func blockNumber() -> Result<BigUInt, NervosError>
+func blockNumber() -> Result<UInt64, NervosError>
 ```
 
 ### sendRawTransaction
