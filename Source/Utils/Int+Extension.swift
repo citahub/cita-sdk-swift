@@ -22,9 +22,7 @@ extension BigUInt {
 
     func toUInt256Hex() -> String {
         let max = BigUInt("10", radix: 2)!.power(256) - 1
-        let zero = (0...63).map { _ in
-            return "0"
-        }.joined()
+        let zero = String(repeating: "0", count: 64)
         guard self <= max else {
             return zero
         }
