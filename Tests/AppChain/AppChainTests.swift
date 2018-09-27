@@ -66,7 +66,7 @@ class AppChainTests: XCTestCase {
     }
 
     func testGetBlockByHash() {
-        let hash = "0x3b19e0eeaf3b844c77a9dbb43628cf16007790f370e51281f12b10ab3a1ef225"
+        let hash = "0x60ee895fa92a5f094a28ac225f62b797c1d0d1349081b1f67c0e5c6358f66f8b"
         let result = nervos.appChain.getBlockByHash(hash: hash, fullTransactions: true)
         switch result {
         case .success(let block):
@@ -76,13 +76,23 @@ class AppChainTests: XCTestCase {
         }
     }
 
-    func testGetBlockByNumber() {
+    func testGetBlockByNumberNullProof() {
         let number = BigUInt(1)
-        let hash = "0x3b19e0eeaf3b844c77a9dbb43628cf16007790f370e51281f12b10ab3a1ef225"
         let result = nervos.appChain.getBlockByNumber(number: number, fullTransactions: true)
         switch result {
         case .success(let block):
-            XCTAssertEqual(block.hash.toHexString().addHexPrefix(), hash)
+            XCTAssertEqual(BigUInt.fromHex(block.header.number.toHexString())!, number)
+        case .failure(let error):
+            XCTFail(error.localizedDescription)
+        }
+    }
+
+    func testGetBlockByNumber() {
+        let number = BigUInt(2)
+        let result = nervos.appChain.getBlockByNumber(number: number, fullTransactions: true)
+        switch result {
+        case .success(let block):
+            XCTAssertEqual(BigUInt.fromHex(block.header.number.toHexString())!, number)
         case .failure(let error):
             XCTFail(error.localizedDescription)
         }
