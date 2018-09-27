@@ -70,19 +70,19 @@ internal extension AppChain {
     }
 
     func getTransactionCountlPromise(address: String, blockNumber: String) -> Promise<BigUInt> {
-        return apiPromise(.getTransactionCount, parameters: [address.lowercased(), blockNumber])
+        return apiPromise(.getTransactionCount, parameters: [address, blockNumber])
     }
 
     func getCodePromise(address: String, blockNumber: String) -> Promise<String> {
-        return apiPromise(.getCode, parameters: [address.lowercased(), blockNumber])
+        return apiPromise(.getCode, parameters: [address, blockNumber])
     }
 
     func getAbiPromise(address: String, blockNumber: String) -> Promise<String> {
-        return apiPromise(.getAbi, parameters: [address.lowercased(), blockNumber])
+        return apiPromise(.getAbi, parameters: [address, blockNumber])
     }
 
     func getBalancePromise(address: String, blockNumber: String) -> Promise<BigUInt> {
-       return apiPromise(.getBalance, parameters: [address.lowercased(), blockNumber])
+       return apiPromise(.getBalance, parameters: [address, blockNumber])
     }
 
     func newFilterPromise(filter: Filter) -> Promise<BigUInt> {
@@ -118,6 +118,6 @@ internal extension AppChain {
     }
 
     func getStateProofPromise(address: String, key: String, blockNumber: String) -> Promise<String> {
-     return apiPromise(.getStateProof, parameters: [address.lowercased(), key, blockNumber])
+     return apiPromise(.getStateProof, parameters: [address, key, blockNumber])
     }
 }

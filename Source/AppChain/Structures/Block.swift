@@ -12,7 +12,7 @@ import BigInt
 public struct BlockHeader: Decodable {
     public var timestamp: BigUInt
     public var prevHash: Data
-    public var proof: Tendermint
+    public var proof: Proof?
     public var stateRoot: Data
     public var transactionsRoot: Data
     public var receiptsRoot: Data
@@ -41,8 +41,7 @@ public struct BlockHeader: Decodable {
         guard let prevHash = try DecodeUtils.decodeHexToData(container, key: .prevHash) else { throw NervosError.dataError }
         self.prevHash = prevHash
 
-        let proof = try container.decode(Tendermint.self, forKey: .proof)
-        self.proof = proof
+        proof = try? container.decode(Proof.self, forKey: .proof)
 
         guard let stateRoot = try DecodeUtils.decodeHexToData(container, key: .stateRoot) else { throw NervosError.dataError }
         self.stateRoot = stateRoot
@@ -64,16 +63,16 @@ public struct BlockHeader: Decodable {
     }
 }
 
-public struct Tendermint: Decodable {
-    public var Tendermint: NervosProof
+public struct Proof: Decodable {
+    public var nervosProof: NervosProof
+
     enum CodingKeys: String, CodingKey {
-        case Tendermint
+        case Bft
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        let Tendermint = try container.decode(NervosProof.self, forKey: .Tendermint)
-        self.Tendermint = Tendermint
+        nervosProof = try container.decode(NervosProof.self, forKey: .Bft)
     }
 }
 

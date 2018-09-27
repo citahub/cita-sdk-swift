@@ -57,6 +57,8 @@ To build NervosSwift, first run `pod install`, then open `Nervos.xcworkspace` wi
 
 Copy `Tests/Config.example.json` to `Tests/Config.json`, then run tests from `NervosTests` target. Update `rpcServer` value of `Tests/Config.json` file if you want to test against an AppChain of your choice. By default `http://127.0.0.1:1337` is used.
 
+Note: serveral tests depend on onchain data and would fail when running on your own chain. We're going to improve the tests and fix that in the near future.
+
 ### web3swift
 
 NervosSwift is built upon [BANKEX/web3swift](https://github.com/BANKEX/web3swift). While it's not required to import `web3swift` when using NervosSwift, please note the following classes are simply typealias of web3swift's Ethereum types:
@@ -74,7 +76,7 @@ NervosSwift is built upon [BANKEX/web3swift](https://github.com/BANKEX/web3swift
 
 For test or development, you can follow the [CITA document](https://docs.nervos.org/cita/) to run a local chain. We also provide a Nervos AppChain testnet at http://121.196.200.225:1337 (or use https://node.cryptape.com).
 
-This testnet supports [CITA](https://github.com/cryptape/cita) version **v0.17**.
+This testnet supports [CITA](https://github.com/cryptape/cita) version **v0.18**.
 
 ### NervosProvider
 
@@ -157,6 +159,8 @@ All JSON-RPC API functions are synchronous. But the underlying HTTP request migh
 * [getFilterLogs](#getfilterlogs)
 * [getTransactionProof](#gettransactionproof)
 * [getMetaData](#getmetadata)
+* [getBlockHeader](#getblockheader)
+* [getStateProof](#getstateproof)
 
 ### peerCount
 
@@ -388,6 +392,31 @@ func getTransactionProof(txhash: String) -> Result<String, NervosError>
 ///
 /// - Returns: Metadata of given block height.
 func getMetaData(blockNumber: String = "latest") -> Result<MetaData, NervosError>
+```
+
+### getBlockHeader
+
+```swift
+/// Get block header by a given block height.
+///
+/// - Parameter blockNumber: The block height, hex string integer or "latest".
+///
+/// - Returns: block header of the given block height.
+func getBlockHeader(blockNumber: String = "latest") -> Result<String, NervosError>
+```
+
+### getStateProof
+
+```swift
+/// Get state proof of special value. Include address, account proof, key, value proof.
+///
+/// - Parameters:
+///    - address: An address.
+///    - key: A key, position of the variable.
+///    - blockNumber: The block number, hex string integer, or the string "latest", "earliest".
+///
+/// - Returns: State proof of special value. Include address, account proof, key, value proof.
+func getStateProof(address: String, key: String, blockNumber: String = "latest") -> Result<String, NervosError>
 ```
 
 ## License
