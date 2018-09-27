@@ -67,17 +67,12 @@ public struct Proof: Decodable {
     public var nervosProof: NervosProof
 
     enum CodingKeys: String, CodingKey {
-        case Tendermint
         case Bft
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        if let bft = try container.decodeIfPresent(NervosProof.self, forKey: .Bft) {
-            self.nervosProof = bft
-        } else {
-            self.nervosProof = try container.decode(NervosProof.self, forKey: .Tendermint)
-        }
+        nervosProof = try container.decode(NervosProof.self, forKey: .Bft)
     }
 }
 
