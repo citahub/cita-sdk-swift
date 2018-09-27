@@ -61,7 +61,7 @@ class AppChainTests: XCTestCase {
         XCTAssertEqual(sender, "0x46a23e25df9a0f6c18729dda9ad1af3b6a131160")
 
         let newTxhash = "0x28fdc784441fd59701496db2830a03cbd090bb058b5a695d1b56ddc3a9b9a823"
-        let newTxOnChain = nervos.appChain.getTransaction(txhash: newTxhash).value! // TODO: when passed in without 0x prefix it would fail
+        let newTxOnChain = nervos.appChain.getTransaction(txhash: newTxhash).value!
         XCTAssertEqual(sender, newTxOnChain.unsignedTransaction!.sender.address)
     }
 
