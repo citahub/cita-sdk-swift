@@ -57,7 +57,7 @@ class AppChainTests: XCTestCase {
     }
 
     func testSendRawTransactionPaddingValue() {
-        let sender = Utils.publicToAddress(Utils.privateToPublic(Data.fromHex("0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")!)!)!.address.lowercased()
+        let sender = Web3Utils.publicToAddress(Web3Utils.privateToPublic(Data.fromHex("0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")!)!)!.address.lowercased()
         XCTAssertEqual(sender, "0x46a23e25df9a0f6c18729dda9ad1af3b6a131160")
 
         let newTxhash = "0x28fdc784441fd59701496db2830a03cbd090bb058b5a695d1b56ddc3a9b9a823"
