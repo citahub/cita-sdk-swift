@@ -80,7 +80,7 @@ class AppChainTests: XCTestCase {
     }
 
     func testGetBlockByNumberNullProof() {
-        let number = BigUInt(1)
+        let number = BigUInt(0)
         let result = nervos.appChain.getBlockByNumber(number: number, fullTransactions: true)
         switch result {
         case .success(let block):
@@ -91,7 +91,7 @@ class AppChainTests: XCTestCase {
     }
 
     func testGetBlockByNumber() {
-        let number = BigUInt(2)
+        let number = BigUInt(1_000_000)
         let result = nervos.appChain.getBlockByNumber(number: number, fullTransactions: true)
         switch result {
         case .success(let block):
