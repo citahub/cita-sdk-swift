@@ -84,7 +84,7 @@ class AppChainTests: XCTestCase {
         let result = nervos.appChain.getBlockByNumber(number: number, fullTransactions: true)
         switch result {
         case .success(let block):
-            XCTAssertEqual(BigUInt.fromHex(block.header.number.toHexString())!, number)
+            XCTAssertEqual(block.header.number, number)
         case .failure(let error):
             XCTFail(error.localizedDescription)
         }
@@ -95,7 +95,7 @@ class AppChainTests: XCTestCase {
         let result = nervos.appChain.getBlockByNumber(number: number, fullTransactions: true)
         switch result {
         case .success(let block):
-            XCTAssertEqual(BigUInt.fromHex(block.header.number.toHexString())!, number)
+            XCTAssertEqual(block.header.number, number)
         case .failure(let error):
             XCTFail(error.localizedDescription)
         }

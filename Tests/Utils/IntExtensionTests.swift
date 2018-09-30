@@ -23,4 +23,16 @@ class IntExtensionTests: XCTestCase {
             XCTAssertEqual(value.toUInt256Hex(), hex)
         }
     }
+
+    func testBigIntToHex() {
+        [
+            0,
+            1,
+            1_000,
+            1_000_000
+        ].forEach { value in
+            let bigInt = BigUInt(value)
+            XCTAssertEqual(BigUInt.fromHex(bigInt.toHexString())!, bigInt)
+        }
+    }
 }

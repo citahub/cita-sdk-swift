@@ -16,6 +16,10 @@ extension UInt64 {
 }
 
 extension BigUInt {
+    static func fromHex(_ hex: String) -> BigUInt? {
+        return BigUInt(hex.stripHexPrefix(), radix: 16)
+    }
+
     func toHexString() -> String {
         return String(self, radix: 16)
     }
@@ -30,9 +34,5 @@ extension BigUInt {
         let hex = toHexString()
         let padding = zero.prefix(zero.count - hex.count)
         return padding + hex
-    }
-
-    static func fromHex(_ hex: String) -> BigUInt? {
-        return BigUInt(hex.stripHexPrefix(), radix: 16)
     }
 }
