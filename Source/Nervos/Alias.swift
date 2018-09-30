@@ -9,6 +9,7 @@
 import Foundation
 import web3swift
 
+public typealias Utils = AppChain.Utils
 public typealias Web3Utils = Web3.Utils
 public typealias NervosError = Web3Error
 public typealias NervosOptions = Web3Options

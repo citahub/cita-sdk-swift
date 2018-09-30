@@ -10,17 +10,17 @@ import Foundation
 import Result
 
 extension AppChain {
-    struct Utils {
+    public struct Utils {
 
     }
 }
 
 extension AppChain.Utils {
-    enum RequestType {
+    public enum RequestType {
         case getQuotaPrice
     }
 
-    static func contractMethod(method requestType: RequestType, nervos: Nervos) -> Result<String, NervosError> {
+    public static func contractMethod(method requestType: RequestType, nervos: Nervos) -> Result<String, NervosError> {
         let result = nervos.appChain.call(request: requestType.rawValue)
         switch result {
         case .success(let hex):
