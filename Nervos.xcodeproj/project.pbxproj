@@ -29,6 +29,7 @@
 		1A6B2B2721533F43003420A0 /* Alias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6B2B2621533F43003420A0 /* Alias.swift */; };
 		1A6B2B2921533FA5003420A0 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6B2B2821533FA5003420A0 /* Address.swift */; };
 		1A6B2B2C21534CEF003420A0 /* AddressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6B2B2B21534CEF003420A0 /* AddressTests.swift */; };
+		1A6B55072160EEBE001BA711 /* Config.json in Resources */ = {isa = PBXBuildFile; fileRef = 8990CDB62160682F00205129 /* Config.json */; };
 		1AA6F63521527B25001DA165 /* IntExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA6F63421527B25001DA165 /* IntExtensionTests.swift */; };
 		1AB5C6D8212112DA00148587 /* AppChain+Promises.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB5C6D7212112DA00148587 /* AppChain+Promises.swift */; };
 		1AB5C6DA212125A200148587 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB5C6D9212125A200148587 /* Int+Extension.swift */; };
@@ -45,7 +46,6 @@
 		4561825AA44494F0A0169D68 /* Pods_NervosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B2550BBCC89EE6098537770 /* Pods_NervosTests.framework */; };
 		516C5C2B6C66E1C77AB15B57 /* Pods_Nervos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC1BC44472A0BC7ED1CA017 /* Pods_Nervos.framework */; };
 		894DAAE1215F78FA00D8827F /* AppChain+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894DAAE0215F78FA00D8827F /* AppChain+Utils.swift */; };
-		8990CDB72160682F00205129 /* Config.json in Resources */ = {isa = PBXBuildFile; fileRef = 8990CDB62160682F00205129 /* Config.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,12 +165,12 @@
 		1A67ED3B211BEAFD00DCE871 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				8990CDB62160682F00205129 /* Config.json */,
 				1AA6F63321527B08001DA165 /* Utils */,
 				1AD65FA22122AF0E00AA4C84 /* AppChain */,
 				1AD65FA32122AF1700AA4C84 /* Signer */,
 				1A6B2B2A21534CD1003420A0 /* Nervos */,
 				1A64297E211C63E000352209 /* Config.swift */,
+				8990CDB62160682F00205129 /* Config.json */,
 				1A67ED3E211BEAFD00DCE871 /* Info.plist */,
 			);
 			path = Tests;
@@ -397,7 +397,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8990CDB72160682F00205129 /* Config.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +404,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A6B55072160EEBE001BA711 /* Config.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
