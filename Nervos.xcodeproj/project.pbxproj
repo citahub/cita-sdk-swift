@@ -30,6 +30,8 @@
 		1A6B2B2921533FA5003420A0 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6B2B2821533FA5003420A0 /* Address.swift */; };
 		1A6B2B2C21534CEF003420A0 /* AddressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6B2B2B21534CEF003420A0 /* AddressTests.swift */; };
 		1A6B55072160EEBE001BA711 /* Config.json in Resources */ = {isa = PBXBuildFile; fileRef = 8990CDB62160682F00205129 /* Config.json */; };
+		1A9204E02161B20B004B54DC /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9204DF2161B20B004B54DC /* Utils.swift */; };
+		1A9204E22161BC0D004B54DC /* UtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9204E12161BC0D004B54DC /* UtilsTests.swift */; };
 		1AA6F63521527B25001DA165 /* IntExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA6F63421527B25001DA165 /* IntExtensionTests.swift */; };
 		1AB5C6D8212112DA00148587 /* AppChain+Promises.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB5C6D7212112DA00148587 /* AppChain+Promises.swift */; };
 		1AB5C6DA212125A200148587 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB5C6D9212125A200148587 /* Int+Extension.swift */; };
@@ -45,7 +47,6 @@
 		1AD65FA62122AF4400AA4C84 /* NervosTransactionSignerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65FA42122AF2F00AA4C84 /* NervosTransactionSignerTest.swift */; };
 		4561825AA44494F0A0169D68 /* Pods_NervosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B2550BBCC89EE6098537770 /* Pods_NervosTests.framework */; };
 		516C5C2B6C66E1C77AB15B57 /* Pods_Nervos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC1BC44472A0BC7ED1CA017 /* Pods_Nervos.framework */; };
-		894DAAE1215F78FA00D8827F /* AppChain+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894DAAE0215F78FA00D8827F /* AppChain+Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,8 @@
 		1A6B2B2621533F43003420A0 /* Alias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alias.swift; sourceTree = "<group>"; };
 		1A6B2B2821533FA5003420A0 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		1A6B2B2B21534CEF003420A0 /* AddressTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTests.swift; sourceTree = "<group>"; };
+		1A9204DF2161B20B004B54DC /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		1A9204E12161BC0D004B54DC /* UtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsTests.swift; sourceTree = "<group>"; };
 		1AA6F63421527B25001DA165 /* IntExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtensionTests.swift; sourceTree = "<group>"; };
 		1AB5C6D7212112DA00148587 /* AppChain+Promises.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppChain+Promises.swift"; sourceTree = "<group>"; };
 		1AB5C6D9212125A200148587 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
@@ -102,7 +105,6 @@
 		6B2550BBCC89EE6098537770 /* Pods_NervosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NervosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EC1BC44472A0BC7ED1CA017 /* Pods_Nervos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nervos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80F25F15A48449F02D1BECE8 /* Pods-NervosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NervosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NervosTests/Pods-NervosTests.release.xcconfig"; sourceTree = "<group>"; };
-		894DAAE0215F78FA00D8827F /* AppChain+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppChain+Utils.swift"; sourceTree = "<group>"; };
 		8990CDB62160682F00205129 /* Config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Config.json; sourceTree = "<group>"; };
 		97660DCBF57208A1791D7CED /* Pods-Nervos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nervos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Nervos/Pods-Nervos.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -183,7 +185,6 @@
 				1A67ED5A211D1C3C00DCE871 /* AppChain.swift */,
 				1A42225D212AA59700DF1994 /* AppChain+API.swift */,
 				1AB5C6D7212112DA00148587 /* AppChain+Promises.swift */,
-				894DAAE0215F78FA00D8827F /* AppChain+Utils.swift */,
 			);
 			path = AppChain;
 			sourceTree = "<group>";
@@ -207,6 +208,7 @@
 				1AB5C6D9212125A200148587 /* Int+Extension.swift */,
 				1AD65F8F21217AC000AA4C84 /* DecodeUtils.swift */,
 				1AD65F9C2122999900AA4C84 /* Secp251k1.swift */,
+				1A9204DF2161B20B004B54DC /* Utils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -236,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				1AA6F63421527B25001DA165 /* IntExtensionTests.swift */,
+				1A9204E12161BC0D004B54DC /* UtilsTests.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -504,10 +507,10 @@
 			files = (
 				1AB5C6D8212112DA00148587 /* AppChain+Promises.swift in Sources */,
 				1A67ED59211D151100DCE871 /* String+Extension.swift in Sources */,
+				1A9204E02161B20B004B54DC /* Utils.swift in Sources */,
 				1AD65F9B2122983A00AA4C84 /* Transaction.pb.swift in Sources */,
 				1AB5C6DC2121751400148587 /* Block.swift in Sources */,
 				1A67ED4B211D08A700DCE871 /* Nervos.swift in Sources */,
-				894DAAE1215F78FA00D8827F /* AppChain+Utils.swift in Sources */,
 				1A67ED56211D12A200DCE871 /* Params.swift in Sources */,
 				1A67ED5B211D1C3C00DCE871 /* AppChain.swift in Sources */,
 				1AD65F8E2121795B00AA4C84 /* TransactionReceipt.swift in Sources */,
@@ -543,6 +546,7 @@
 				1A67ED5D211D1FF900DCE871 /* NervosTests.swift in Sources */,
 				1A6B2B2C21534CEF003420A0 /* AddressTests.swift in Sources */,
 				1AA6F63521527B25001DA165 /* IntExtensionTests.swift in Sources */,
+				1A9204E22161BC0D004B54DC /* UtilsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

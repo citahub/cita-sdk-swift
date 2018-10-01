@@ -179,7 +179,7 @@ public extension AppChain {
     ///    - request: A call request.
     ///    - blockNumber: A block number
     ///
-    /// - Returns: The transaction hash.
+    /// - Returns: The call result as hex string.
     func call(request: CallRequest, blockNumber: String = "latest") -> Result<String, NervosError> {
         do {
             let result = try callPromise(request: request, blockNumber: blockNumber).wait()
