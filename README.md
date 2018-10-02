@@ -65,7 +65,7 @@ NervosSwift is built upon [BANKEX/web3swift](https://github.com/BANKEX/web3swift
 
 | NervosSwift Type  | web3swift Type      |
 |:-----------------:|:-------------------:|
-| Utils             | Web3Utils           |
+| Web3Utils         | Web3Utils           |
 | NervosError       | Web3Error           |
 | NervosOptions     | Web3Options         |
 | EthereumAddress   | EthereumAddress     |
@@ -248,7 +248,7 @@ func getLogs(filter: Filter) -> Result<[EventLog], NervosError>
 ///    - request: A call request.
 ///    - blockNumber: A block number
 ///
-/// - Returns: The transaction hash.
+/// - Returns: The call result as hex string.
 func call(request: CallRequest, blockNumber: String = "latest") -> Result<String, NervosError>
 ```
 

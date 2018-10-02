@@ -16,8 +16,8 @@ public struct BlockHeader: Decodable {
     public var stateRoot: Data
     public var transactionsRoot: Data
     public var receiptsRoot: Data
-    public var gasUsed: Data
-    public var number: Data
+    public var gasUsed: BigUInt
+    public var number: BigUInt
     public var proposer: Data
 
     enum CodingKeys: String, CodingKey {
@@ -52,10 +52,10 @@ public struct BlockHeader: Decodable {
         guard let receiptsRoot = try DecodeUtils.decodeHexToData(container, key: .receiptsRoot) else { throw NervosError.dataError }
         self.receiptsRoot = receiptsRoot
 
-        guard let gasUsed = try DecodeUtils.decodeHexToData(container, key: .gasUsed) else { throw NervosError.dataError }
+        guard let gasUsed = try DecodeUtils.decodeHexToBigUInt(container, key: .gasUsed) else { throw NervosError.dataError }
         self.gasUsed = gasUsed
 
-        guard let number = try DecodeUtils.decodeHexToData(container, key: .number) else { throw NervosError.dataError }
+        guard let number = try DecodeUtils.decodeHexToBigUInt(container, key: .number) else { throw NervosError.dataError }
         self.number = number
 
         guard let proposer = try DecodeUtils.decodeHexToData(container, key: .proposer) else { throw NervosError.dataError }
