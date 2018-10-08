@@ -5,3 +5,4 @@ xcode_scheme: Nervos
 xcode_destination: platform=iOS Simulator,OS=11.3,name=iPhone X
 before_install:
   - echo "{\"rpcServer\":\"$TEST_RPC_SERVER\"}" > Tests/Config.json
+  - travis_wait pod repo update --silent

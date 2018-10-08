@@ -31,7 +31,7 @@ public class NervosProvider {
 
     public func sendAsync(_ request: Request, queue: DispatchQueue = .main) -> Promise<Response> {
         guard request.isValid else {
-            return Promise(error: NervosError.nodeError("RPC request is invalid.Perhaps method is nil?"))
+            return Promise(error: NervosError.nodeError(desc: "RPC request is invalid.Perhaps method is nil?"))
         }
 
         return NervosProvider.post(request, providerURL: url, queue: queue, session: session)
@@ -61,7 +61,7 @@ extension NervosProvider {
                         return
                     }
                     guard data != nil else {
-                        rp.resolver.reject(NervosError.nodeError("Node response is empty"))
+                        rp.resolver.reject(NervosError.nodeError(desc: "Node response is empty"))
                         return
                     }
                     rp.resolver.fulfill(data!)
@@ -74,7 +74,7 @@ extension NervosProvider {
         return rp.promise.ensure(on: queue) { task = nil }.map(on: queue) { (data: Data) throws -> Response in
             let parsedResponse = try JSONDecoder().decode(Response.self, from: data)
             if parsedResponse.error != nil {
-                throw NervosError.nodeError("Received an error message from node\n" + String(describing: parsedResponse.error!))
+                throw NervosError.nodeError(desc: "Received an error message from node\n" + String(describing: parsedResponse.error!))
             }
             return parsedResponse
         }
@@ -98,7 +98,7 @@ extension NervosProvider {
                         return
                     }
                     guard data != nil, data!.count != 0 else {
-                        rp.resolver.reject(NervosError.nodeError("Node response is empty"))
+                        rp.resolver.reject(NervosError.nodeError(desc: "Node response is empty"))
                         return
                     }
                     rp.resolver.fulfill(data!)

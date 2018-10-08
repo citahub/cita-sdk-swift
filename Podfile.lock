@@ -1,70 +1,76 @@
 PODS:
   - BigInt (3.1.0):
     - SipHash (~> 1.2)
-  - CryptoSwift (0.10.0)
-  - libsodium (1.0.12)
-  - PromiseKit (6.3.4):
-    - PromiseKit/CorePromise (= 6.3.4)
-    - PromiseKit/Foundation (= 6.3.4)
-    - PromiseKit/UIKit (= 6.3.4)
-  - PromiseKit/CorePromise (6.3.4)
-  - PromiseKit/Foundation (6.3.4):
+  - CryptoSwift (0.12.0)
+  - PromiseKit (6.5.0):
+    - PromiseKit/CorePromise (= 6.5.0)
+    - PromiseKit/Foundation (= 6.5.0)
+    - PromiseKit/UIKit (= 6.5.0)
+  - PromiseKit/CorePromise (6.5.0)
+  - PromiseKit/Foundation (6.5.0):
     - PromiseKit/CorePromise
-  - PromiseKit/UIKit (6.3.4):
+  - PromiseKit/UIKit (6.5.0):
     - PromiseKit/CorePromise
-  - Result (3.0.0)
-  - secp256k1_ios (0.1.3)
+  - Result (4.0.0)
+  - scrypt (2.0):
+    - CryptoSwift (~> 0.11)
+  - secp256k1_swift (1.0.3)
   - SipHash (1.2.2)
   - SwiftProtobuf (1.0.3)
-  - web3swift (1.1.1):
-    - BigInt (~> 3.1.0)
-    - CryptoSwift (~> 0.10.0)
-    - libsodium (~> 1.0.12)
-    - PromiseKit (~> 6.3.0)
-    - Result (~> 3.0.0)
-    - secp256k1_ios (~> 0.1.3)
+  - SwiftRLP (1.0.1):
+    - BigInt (~> 3.1)
+  - web3swift (1.1.10):
+    - BigInt (~> 3.1)
+    - CryptoSwift (~> 0.11)
+    - PromiseKit (~> 6.3)
+    - Result (~> 4.0)
+    - scrypt (~> 2.0)
+    - secp256k1_swift (~> 1.0.3)
+    - SwiftRLP (~> 1.0.1)
 
 DEPENDENCIES:
   - SwiftProtobuf (from `https://github.com/apple/swift-protobuf.git`, tag `1.0.3`)
-  - web3swift (from `https://github.com/BANKEX/web3swift`, tag `1.1.1`)
+  - web3swift (from `https://github.com/matterinc/web3swift`, tag `1.1.10`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - BigInt
     - CryptoSwift
-    - libsodium
     - PromiseKit
     - Result
-    - secp256k1_ios
+    - scrypt
+    - secp256k1_swift
     - SipHash
+    - SwiftRLP
 
 EXTERNAL SOURCES:
   SwiftProtobuf:
     :git: https://github.com/apple/swift-protobuf.git
     :tag: 1.0.3
   web3swift:
-    :git: https://github.com/BANKEX/web3swift
-    :tag: 1.1.1
+    :git: https://github.com/matterinc/web3swift
+    :tag: 1.1.10
 
 CHECKOUT OPTIONS:
   SwiftProtobuf:
     :git: https://github.com/apple/swift-protobuf.git
     :tag: 1.0.3
   web3swift:
-    :git: https://github.com/BANKEX/web3swift
-    :tag: 1.1.1
+    :git: https://github.com/matterinc/web3swift
+    :tag: 1.1.10
 
 SPEC CHECKSUMS:
   BigInt: 76b5dfdfa3e2e478d4ffdf161aeede5502e2742f
-  CryptoSwift: 6c778d69282bed3b4e975ff97a79d074f20bb011
-  libsodium: 9a8faa5ef2fa0d2d57bd7f7d79bf8fb7c1a9f0ea
-  PromiseKit: e1425568123ec844a944c93f2bcb29d511d39cf5
-  Result: 1b3e431f37cbcd3ad89c6aa9ab0ae55515fae3b6
-  secp256k1_ios: ac9ef04e761f43c58012b28548afa91493761f17
+  CryptoSwift: 1c07ca50843dd48bc54e6ea53d7a4dba3b645716
+  PromiseKit: 54ed7e56768b7e8d29072afe9384101c64a2b7ff
+  Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713
+  scrypt: 3fe5b1a3b0976f97cd87488673a8f7c65708cc84
+  secp256k1_swift: 4fc5c4b2d2c6d21ee8ccb868cdc92da12f38bed9
   SipHash: fad90a4683e420c52ef28063063dbbce248ea6d4
   SwiftProtobuf: 5ccc0e4054e37c75800e5744acb2aa80bb72b39c
-  web3swift: 4b4e4a0dd16e7081b7190bf8596c5638f313a498
+  SwiftRLP: 9de2c9512a9a6bf0909cd84cc143a7ff1aff7820
+  web3swift: 843dd5295d2ae755e6f80e9e0bdabe2868a5c7d8
 
-PODFILE CHECKSUM: b0325246720a57eb3729b757e3164b3287da31a7
+PODFILE CHECKSUM: 578b7ecbe226b294a3c888cfad183e90c1a6af04
 
 COCOAPODS: 1.5.3
