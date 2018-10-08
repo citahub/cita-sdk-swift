@@ -5,3 +5,5 @@ xcode_scheme: Nervos
 xcode_destination: platform=iOS Simulator,OS=11.3,name=iPhone X
 before_install:
   - echo "{\"rpcServer\":\"$TEST_RPC_SERVER\"}" > Tests/Config.json
+  - rvm use system
+  - sudo gem install cocoapods -v '1.5.3'  
