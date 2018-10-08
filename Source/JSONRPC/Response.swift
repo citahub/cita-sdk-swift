@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import web3swift
+//import web3swift
 import BigInt
 
 // swiftlint:disable cyclomatic_complexity

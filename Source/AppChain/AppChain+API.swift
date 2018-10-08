@@ -18,7 +18,7 @@ private extension AppChain {
         if let err = error as? NervosError {
             return Result.failure(err)
         }
-        return Result.failure(NervosError.generalError(error))
+        return Result.failure(NervosError.generalError(err: error))
     }
 }
 

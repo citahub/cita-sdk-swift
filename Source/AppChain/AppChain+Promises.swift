@@ -14,9 +14,9 @@ import PromiseKit
 private extension AppChain {
     func responseError(_ response: Response) -> NervosError {
         if let error = response.error {
-            return NervosError.nodeError(error.message)
+            return NervosError.nodeError(desc: error.message)
         }
-        return NervosError.nodeError("Invalid value from Nervos node")
+        return NervosError.nodeError(desc: "Invalid value from Nervos node")
     }
 
     func apiPromise<T>(_ method: Method, parameters: [Encodable]) -> Promise<T> {
