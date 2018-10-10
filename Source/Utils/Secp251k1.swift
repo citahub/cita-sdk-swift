@@ -1,7 +1,7 @@
 /// Adapted from https://github.com/BANKEX/web3swift/blob/5124e4c8eb7016a3a6c582644bc4adfe5759bafb/web3swift/Convenience/Classes/LibSecp256k1Extension.swift
 
 import Foundation
-import secp256k1_ios
+import secp256k1_swift
 import BigInt
 
 func toByteArray<T>(_ value: T) -> [UInt8] {

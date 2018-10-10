@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "NervosSwift"
-  s.version      = "0.17.2"
+  s.version      = "0.18.1"
   s.summary      = "Nervos SDK implementation in Swift for iOS"
 
   s.description  = <<-DESC
@@ -20,6 +20,6 @@ Pod::Spec.new do |s|
   s.public_header_files = "Source/**/*.{h}"
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
 
-  s.dependency 'web3swift', '~> 1.1.1'
+  s.dependency 'web3swift', '~> 1.1.10'
   s.dependency 'SwiftProtobuf', '~> 1.0.3'
 end

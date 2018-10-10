@@ -18,7 +18,7 @@ private extension AppChain {
         if let err = error as? NervosError {
             return Result.failure(err)
         }
-        return Result.failure(NervosError.generalError(error))
+        return Result.failure(NervosError.generalError(err: error))
     }
 }
 
@@ -91,7 +91,7 @@ public extension AppChain {
     /// - Returns: The block object matching the hash.
     func getBlockByHash(hash: String, fullTransactions: Bool = false) -> Result<Block, NervosError> {
         do {
-            let result = try getBlockByHashPromise(hash: hash, fullTransactions: fullTransactions).wait()
+            let result = try getBlockByHashPromise(hash: hash.addHexPrefix(), fullTransactions: fullTransactions).wait()
             return Result(result)
         } catch {
             return handle(error)
@@ -152,7 +152,7 @@ public extension AppChain {
     /// - Returns: The receipt of transaction matching the txhash.
     func getTransactionReceipt(txhash: String) -> Result<TransactionReceipt, NervosError> {
         do {
-            let result = try getTransactionReceiptPromise(txhash: txhash).wait()
+            let result = try getTransactionReceiptPromise(txhash: txhash.addHexPrefix()).wait()
             return Result(result)
         } catch {
             return handle(error)
@@ -179,7 +179,7 @@ public extension AppChain {
     ///    - request: A call request.
     ///    - blockNumber: A block number
     ///
-    /// - Returns: The transaction hash.
+    /// - Returns: The call result as hex string.
     func call(request: CallRequest, blockNumber: String = "latest") -> Result<String, NervosError> {
         do {
             let result = try callPromise(request: request, blockNumber: blockNumber).wait()
@@ -205,7 +205,7 @@ public extension AppChain {
     /// - Returns: A transaction details object.
     func getTransaction(txhash: String) -> Result<TransactionDetails, NervosError> {
         do {
-            let result = try getTransactionPromise(txhash: txhash).wait()
+            let result = try getTransactionPromise(txhash: txhash.addHexPrefix()).wait()
             return Result(result)
         } catch {
             return handle(error)
@@ -220,7 +220,7 @@ public extension AppChain {
     ///
     /// - Returns: The number of transactions.
     func getTransactionCount(address: Address, blockNumber: String = "latest") -> Result<BigUInt, NervosError> {
-        return getTransactionCount(address: address.address, blockNumber: blockNumber)
+        return getTransactionCount(address: address.address.lowercased(), blockNumber: blockNumber)
     }
 
     /// Get the number of transactions sent from an address.
@@ -232,7 +232,7 @@ public extension AppChain {
     /// - Returns: The number of transactions.
     func getTransactionCount(address: String, blockNumber: String = "latest") -> Result<BigUInt, NervosError> {
         do {
-            let result = try getTransactionCountlPromise(address: address, blockNumber: blockNumber).wait()
+            let result = try getTransactionCountlPromise(address: address.lowercased().addHexPrefix(), blockNumber: blockNumber).wait()
             return Result(result)
         } catch {
             return handle(error)
@@ -247,7 +247,7 @@ public extension AppChain {
     ///
     /// - Returns: The code at the given address.
     func getCode(address: Address, blockNumber: String = "latest") -> Result<String, NervosError> {
-        return getCode(address: address.address, blockNumber: blockNumber)
+        return getCode(address: address.address.lowercased(), blockNumber: blockNumber)
     }
 
     /// Get code at a given address.
@@ -259,7 +259,7 @@ public extension AppChain {
     /// - Returns: The code at the given address.
     func getCode(address: String, blockNumber: String = "latest") -> Result<String, NervosError> {
         do {
-            let result = try getCodePromise(address: address, blockNumber: blockNumber).wait()
+            let result = try getCodePromise(address: address.lowercased().addHexPrefix(), blockNumber: blockNumber).wait()
             return Result(result)
         } catch {
             return handle(error)
@@ -274,7 +274,7 @@ public extension AppChain {
     ///
     /// - Returns: The ABI at the given address.
     func getAbi(address: Address, blockNumber: String = "latest") -> Result<String, NervosError> {
-        return getAbi(address: address.address, blockNumber: blockNumber)
+        return getAbi(address: address.address.lowercased(), blockNumber: blockNumber)
     }
 
     /// Get ABI at a given address.
@@ -286,7 +286,7 @@ public extension AppChain {
     /// - Returns: The ABI at the given address.
     func getAbi(address: String, blockNumber: String = "latest") -> Result<String, NervosError> {
         do {
-            let result = try getAbiPromise(address: address, blockNumber: blockNumber).wait()
+            let result = try getAbiPromise(address: address.lowercased().addHexPrefix(), blockNumber: blockNumber).wait()
             return Result(result)
         } catch {
             return handle(error)
@@ -301,7 +301,7 @@ public extension AppChain {
     ///
     /// - Returns: The balance of the account of the give address.
     func getBalance(address: Address, blockNumber: String = "latest") -> Result<BigUInt, NervosError> {
-        return getBalance(address: address.address, blockNumber: blockNumber)
+        return getBalance(address: address.address.lowercased(), blockNumber: blockNumber)
     }
 
     /// Get the balance of the account of given address.
@@ -313,7 +313,7 @@ public extension AppChain {
     /// - Returns: The balance of the account of the give address.
     func getBalance(address: String, blockNumber: String = "latest") -> Result<BigUInt, NervosError> {
         do {
-            let result = try getBalancePromise(address: address, blockNumber: blockNumber).wait()
+            let result = try getBalancePromise(address: address.lowercased().addHexPrefix(), blockNumber: blockNumber).wait()
             return Result(result)
         } catch {
             return handle(error)
@@ -398,7 +398,7 @@ public extension AppChain {
     /// - Returns: A proof include transaction, receipt, receipt merkle tree proof, block header.
     ///     There will be a tool to verify the proof and extract some info.
     func getTransactionProof(txhash: Data) -> Result<String, NervosError> {
-        return getTransactionProof(txhash: txhash.toHexString().addHexPrefix())
+        return getTransactionProof(txhash: txhash.toHexString())
     }
 
     /// Get transaction proof by a given transaction hash.
@@ -409,7 +409,7 @@ public extension AppChain {
     ///     There will be a tool to verify the proof and extract some info.
     func getTransactionProof(txhash: String) -> Result<String, NervosError> {
         do {
-            let result = try getTransactionProofPromise(txhash: txhash).wait()
+            let result = try getTransactionProofPromise(txhash: txhash.addHexPrefix()).wait()
             return Result(result)
         } catch {
             return handle(error)
@@ -422,7 +422,7 @@ public extension AppChain {
     ///
     /// - Returns: Metadata of the given block height.
     func getMetaData(blockNumber: BigUInt) -> Result<MetaData, NervosError> {
-        return getMetaData(blockNumber: blockNumber.toHexString().addHexPrefix())
+        return getMetaData(blockNumber: blockNumber.toHexString())
     }
 
     /// Get AppChain metadata by a given block height.
@@ -474,7 +474,7 @@ public extension AppChain {
     ///
     /// - Returns: State proof of special value. Include address, account proof, key, value proof.
     func getStateProof(address: Address, key: String, blockNumber: String = "latest") -> Result<String, NervosError> {
-        return getStateProof(address: address.address, key: key, blockNumber: blockNumber)
+        return getStateProof(address: address.address.lowercased(), key: key, blockNumber: blockNumber)
     }
 
     /// Get state proof of special value. Include address, account proof, key, value proof.
@@ -488,7 +488,7 @@ public extension AppChain {
     /// - Returns: State proof of special value. Include address, account proof, key, value proof.
     func getStateProof(address: String, key: String, blockNumber: String = "latest") -> Result<String, NervosError> {
         do {
-            let result = try getStateProofPromise(address: address, key: key, blockNumber: blockNumber).wait()
+            let result = try getStateProofPromise(address: address.lowercased().addHexPrefix(), key: key, blockNumber: blockNumber).wait()
             return Result(result)
         } catch {
             return handle(error)
