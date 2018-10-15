@@ -24,11 +24,11 @@ extension BigUInt {
         return String(self, radix: 16)
     }
 
-    func toUInt256Hex() -> String {
+    func toUInt256Hex() -> String? {
         let max = BigUInt("10", radix: 2)!.power(256) - 1
         let zero = String(repeating: "0", count: 64)
         guard self <= max else {
-            return zero
+            return nil
         }
 
         let hex = toHexString()

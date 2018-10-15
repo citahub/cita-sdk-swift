@@ -61,17 +61,36 @@ class NervosTransactionSignerTests: XCTestCase {
         }
     }
 
+    func testSignTxWithOverflowValue() {
+        let tx = NervosTransaction(
+            to: Address("0x0000000000000000000000000000000000000000"),
+            nonce: "12345",
+            quota: 1_000_000,
+            validUntilBlock: 999_999,
+            value: BigUInt("10", radix: 2)!.power(256),
+            chainId: 1,
+            version: 0
+        )
+        do {
+            _ = try NervosTransactionSigner.sign(transaction: tx, with: "0xeeeeeeeeeeeeee")
+            XCTFail("Sign tx should fail")
+        } catch let err {
+            XCTAssertTrue(err is TransactionError)
+        }
+    }
+
     func testValueConvert() {
         let values: [BigUInt: String] = [
             0:                                          "0000000000000000000000000000000000000000000000000000000000000000",
             1:                                          "0000000000000000000000000000000000000000000000000000000000000001",
             BigUInt(10).power(18):                      "0000000000000000000000000000000000000000000000000de0b6b3a7640000",
             BigUInt("10", radix: 2)!.power(256) - 1:    "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
-            BigUInt("10", radix: 2)!.power(256):        "0000000000000000000000000000000000000000000000000000000000000000"
         ]
         values.forEach { value, hex in
-            let result = NervosTransactionSigner.convert(value: value).toHexString()
+            let result = NervosTransactionSigner.convert(value: value)!.toHexString()
             XCTAssertEqual(result, hex)
         }
+
+        XCTAssertNil(NervosTransactionSigner.convert(value: BigUInt("10", radix: 2)!.power(256)))
     }
 }
