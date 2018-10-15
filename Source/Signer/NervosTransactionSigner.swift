@@ -10,8 +10,14 @@ import Foundation
 import BigInt
 
 public struct NervosTransactionSigner {
+    // Sign a transaction using private key.
+    // Value of transaction may not exceed max of UInt256.
     public static func sign(transaction: NervosTransaction, with privateKey: String) throws -> String {
+        guard let value = convert(value: transaction.value) else {
+            throw TransactionError.valueOverflow
+        }
         var tx = Transaction()
+
         tx.nonce = transaction.nonce
         if let to = transaction.to {
             tx.to = to.address.stripHexPrefix().lowercased()
@@ -19,7 +25,7 @@ public struct NervosTransactionSigner {
         tx.quota = transaction.quota
         tx.data = transaction.data ?? Data()
         tx.version = transaction.version
-        tx.value = convert(value: transaction.value)
+        tx.value = value
         tx.chainID = transaction.chainId
         tx.validUntilBlock = transaction.validUntilBlock
 
@@ -41,8 +47,14 @@ public struct NervosTransactionSigner {
         return unverifiedData.toHexString().addHexPrefix()
     }
 
-    /// Value must be encoded as fixed length (32) bytes
-    static func convert(value: BigUInt) -> Data {
-        return Data.fromHex(value.toUInt256Hex())!
+    // Convert value to bytes32
+    // - Returns: Bytes32 data, or nil if value is larger than 256bit max.
+    // Value must be encoded as fixed length (32) bytes
+    static func convert(value: BigUInt) -> Data? {
+        if let hex = value.toUInt256Hex() {
+            return Data.fromHex(hex)!
+        }
+
+        return nil
     }
 }
