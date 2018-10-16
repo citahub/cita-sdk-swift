@@ -1,3 +1,3 @@
 [submodule "Tests/appchain-tests"]
 	path = Tests/appchain-tests
-	url = git@github.com:cryptape/appchain-tests.git
+	url = https://github.com/cryptape/appchain-tests.git
