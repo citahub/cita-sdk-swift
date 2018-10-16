@@ -61,4 +61,10 @@ extension XCTestCase {
     var nobody: Nervos {
         return DefaultNervos.deadInstance
     }
+
+    func load(jsonFile: String) -> Any {
+        let path = Bundle(for: type(of: self)).path(forResource: jsonFile, ofType: "json")!
+        let data = try! Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+        return try! JSONSerialization.jsonObject(with: data, options: [.allowFragments])
+    }
 }
