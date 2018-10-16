@@ -72,26 +72,11 @@ class NervosTransactionSignerTests: XCTestCase {
             version: 0
         )
         do {
-            _ = try NervosTransactionSigner.sign(transaction: tx, with: "0xeeeeeeeeeeeeee")
+            _ = try NervosTransactionSigner.sign(transaction: tx, with: "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
             XCTFail("Sign tx should fail")
         } catch let err {
             XCTAssertTrue(err is TransactionError)
         }
-    }
-
-    func testValueConvert() {
-        let values: [BigUInt: String] = [
-            0:                                          "0000000000000000000000000000000000000000000000000000000000000000",
-            1:                                          "0000000000000000000000000000000000000000000000000000000000000001",
-            BigUInt(10).power(18):                      "0000000000000000000000000000000000000000000000000de0b6b3a7640000",
-            BigUInt("10", radix: 2)!.power(256) - 1:    "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
-        ]
-        values.forEach { value, hex in
-            let result = NervosTransactionSigner.convert(value: value)!.toHexString()
-            XCTAssertEqual(result, hex)
-        }
-
-        XCTAssertNil(NervosTransactionSigner.convert(value: BigUInt("10", radix: 2)!.power(256)))
     }
 
     // Load and test all JSON fixtures
@@ -106,12 +91,20 @@ class NervosTransactionSignerTests: XCTestCase {
             } else {
                 address = nil
             }
+
+            let data: Data?
+            if let dataString = txData["data"] as? String {
+                data = Data.fromHex(dataString)
+            } else {
+                data = nil
+            }
+
             let tx = NervosTransaction(
                 to: address,
                 nonce: txData["nonce"] as? String ?? UUID().uuidString,
                 quota: UInt64(txData["quota"] as? String ?? "1000000")!,
                 validUntilBlock: UInt64(txData["validUntilBlock"] as? String ?? "999999")!,
-                data: Data.fromHex(txData["data"] as? String ?? ""),
+                data: data,
                 value: BigUInt(txData["value"] as? String ?? "0")!,
                 chainId: UInt32(txData["chainId"] as? String ?? "1")!,
                 version: UInt32(txData["version"] as? String ?? "0")!
@@ -130,5 +123,20 @@ class NervosTransactionSignerTests: XCTestCase {
                 XCTAssertEqual(signed, json["signed"] as! String)
             }
         }
+    }
+
+    func testValueConvert() {
+        let values: [BigUInt: String] = [
+            0:                                          "0000000000000000000000000000000000000000000000000000000000000000",
+            1:                                          "0000000000000000000000000000000000000000000000000000000000000001",
+            BigUInt(10).power(18):                      "0000000000000000000000000000000000000000000000000de0b6b3a7640000",
+            BigUInt("10", radix: 2)!.power(256) - 1:    "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+            ]
+        values.forEach { value, hex in
+            let result = NervosTransactionSigner.convert(value: value)!.toHexString()
+            XCTAssertEqual(result, hex)
+        }
+
+        XCTAssertNil(NervosTransactionSigner.convert(value: BigUInt("10", radix: 2)!.power(256)))
     }
 }
