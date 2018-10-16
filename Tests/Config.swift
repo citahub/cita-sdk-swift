@@ -71,4 +71,12 @@ extension XCTestCase {
         let data = try! Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
         return try! JSONSerialization.jsonObject(with: data, options: [.allowFragments])
     }
+
+    func jsonFiles(in folder: String) -> [String] {
+        let path = Bundle(for: type(of: self)).path(forResource: "appchain-tests/" + folder, ofType: "")!
+        let enumerator = FileManager.default.enumerator(atPath: path)!
+        return enumerator.allObjects.map { $0 as! String }
+            .filter { $0.hasSuffix(".json") }
+            .map { folder + "/" + $0.replacingOccurrences(of: ".json", with: "") }
+    }
 }
