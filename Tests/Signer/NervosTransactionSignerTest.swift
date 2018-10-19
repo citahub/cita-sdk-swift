@@ -72,10 +72,56 @@ class NervosTransactionSignerTests: XCTestCase {
             version: 0
         )
         do {
-            _ = try NervosTransactionSigner.sign(transaction: tx, with: "0xeeeeeeeeeeeeee")
+            _ = try NervosTransactionSigner.sign(transaction: tx, with: "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
             XCTFail("Sign tx should fail")
         } catch let err {
             XCTAssertTrue(err is TransactionError)
+        }
+    }
+
+    // Load and test all JSON fixtures
+    func testJSONFixtures() {
+        jsonFiles(in: "transactions").forEach { (file) in
+            let json = load(jsonFile: file) as! [String: Any]
+            let txData = json["tx"] as! [String: String?]
+
+            let address: Address?
+            if let to = txData["to"] as? String {
+                address = Address(to)
+            } else {
+                address = nil
+            }
+
+            let data: Data?
+            if let dataString = txData["data"] as? String {
+                data = Data.fromHex(dataString)
+            } else {
+                data = nil
+            }
+
+            let tx = NervosTransaction(
+                to: address,
+                nonce: txData["nonce"] as? String ?? UUID().uuidString,
+                quota: UInt64(txData["quota"] as? String ?? "1000000")!,
+                validUntilBlock: UInt64(txData["validUntilBlock"] as? String ?? "999999")!,
+                data: data,
+                value: BigUInt(txData["value"] as? String ?? "0")!,
+                chainId: UInt32(txData["chainId"] as? String ?? "1")!,
+                version: UInt32(txData["version"] as? String ?? "0")!
+            )
+            if let hasError = json["hasError"] as? Bool, hasError {
+                do {
+                    _ = try NervosTransactionSigner.sign(transaction: tx, with: txData["privateKey"] as? String ?? "0x")
+                    XCTFail("Sign tx should fail for \(file)")
+                } catch let err {
+                    XCTAssertTrue(err is TransactionError)
+                }
+            } else {
+                guard let signed = try? NervosTransactionSigner.sign(transaction: tx, with: json["privateKey"] as? String ?? "0x") else {
+                    return XCTFail("Sign tx failed for \(file)")
+                }
+                XCTAssertEqual(signed, json["signed"] as! String)
+            }
         }
     }
 
@@ -85,7 +131,7 @@ class NervosTransactionSignerTests: XCTestCase {
             1:                                          "0000000000000000000000000000000000000000000000000000000000000001",
             BigUInt(10).power(18):                      "0000000000000000000000000000000000000000000000000de0b6b3a7640000",
             BigUInt("10", radix: 2)!.power(256) - 1:    "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
-        ]
+            ]
         values.forEach { value, hex in
             let result = NervosTransactionSigner.convert(value: value)!.toHexString()
             XCTAssertEqual(result, hex)
