@@ -61,7 +61,7 @@ Note: serveral tests depend on onchain data and would fail when running on your 
 
 ### web3swift
 
-NervosSwift is built upon [BANKEX/web3swift](https://github.com/BANKEX/web3swift). While it's not required to import `web3swift` when using NervosSwift, please note the following classes are simply typealias of web3swift's Ethereum types:
+NervosSwift is built upon [matterinc/web3swift](https://github.com/matterinc/web3swift). While it's not required to import `web3swift` when using NervosSwift, please note the following classes are simply typealias of web3swift's Ethereum types:
 
 | NervosSwift Type  | web3swift Type      |
 |:-----------------:|:-------------------:|

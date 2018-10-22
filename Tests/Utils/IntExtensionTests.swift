@@ -16,12 +16,13 @@ class IntExtensionTests: XCTestCase {
             0:                                          "0000000000000000000000000000000000000000000000000000000000000000",
             1:                                          "0000000000000000000000000000000000000000000000000000000000000001",
             BigUInt(10).power(18):                      "0000000000000000000000000000000000000000000000000de0b6b3a7640000",
-            BigUInt("10", radix: 2)!.power(256) - 1:    "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
-            BigUInt("10", radix: 2)!.power(256):        "0000000000000000000000000000000000000000000000000000000000000000"
+            BigUInt("10", radix: 2)!.power(256) - 1:    "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
         ]
         values.forEach { value, hex in
-            XCTAssertEqual(value.toUInt256Hex(), hex)
+            XCTAssertEqual(value.toUInt256Hex()!, hex)
         }
+
+        XCTAssertNil(BigUInt("10", radix: 2)!.power(256).toUInt256Hex())
     }
 
     func testBigIntToHex() {
