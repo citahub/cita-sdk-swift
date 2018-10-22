@@ -44,7 +44,7 @@ extension Utils {
 
 extension Utils {
     public static func appendPersonalMessagePrefix(for message: Data) -> Data? {
-        var prefix = "\u{0019}Ethereum Signed Message:\n"
+        var prefix = "\u{19}Ethereum Signed Message:\n"
         prefix += String(message.count)
         guard let prefixData = prefix.data(using: .ascii) else {return nil}
         var data = Data()
