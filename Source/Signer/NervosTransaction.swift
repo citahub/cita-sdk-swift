@@ -12,6 +12,7 @@ import BigInt
 public enum TransactionError: Error {
     case privateKeyIsNull
     case signatureIncorrect
+    case valueOverflow
     case unknownError
 }
 
