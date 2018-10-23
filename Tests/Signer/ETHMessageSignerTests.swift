@@ -16,7 +16,7 @@ class ETHMessageSignerTest: XCTestCase {
         guard let sign = try? ETHMessageSigner.sign(message: data, privateKey: privateKey) else {
             return XCTFail("Sign message failed")
         }
-        XCTAssertEqual(sign, "")
+        XCTAssertEqual(sign, "0xc217f6f9b1550a005367c9fe1f32405a848938b5b7ed10c473211a7e496e37827556ee710fa6bb160c6ee6bb4c3377f6fc2b604d7ab143d1b0a356f4aea3c29c1c")
     }
 
     func testSignPersonalMessage() {
@@ -26,6 +26,6 @@ class ETHMessageSignerTest: XCTestCase {
         guard let sign = try? ETHMessageSigner.signPersonalMessage(message: data, privateKey: privateKey) else {
             return XCTFail("Sign personal message failed")
         }
-        XCTAssertEqual(sign, "")
+        XCTAssertEqual(sign, "0x1ca5ab8473c9967d4711d72b000efa7b45597b575932c499dd463209f794057317308aab8d42d01a835edf258792b7edb38a0307c3bc0f9d1e96c8861bcf14d51b")
     }
 }

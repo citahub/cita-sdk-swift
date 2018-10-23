@@ -35,9 +35,10 @@ public struct ETHMessageSigner {
             throw SignerError.privateKeyIsNull
         }
         let serializedSignature = Secp256k1.signForRecovery(hash: hash, privateKey: privateKeyData, useExtraEntropy: useExtraEntropy).serializedSignature
-        guard let signature = serializedSignature else {
+        guard var signature = serializedSignature else {
             throw SignerError.signatureIncorrect
         }
+        signature[64] += 27
         return signature
     }
 }
