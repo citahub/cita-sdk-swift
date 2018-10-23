@@ -1,16 +1,28 @@
 //
-//  NervosMessageSigner.swift
+//  ETHMessageSigner.swift
 //  Nervos
 //
-//  Created by XiaoLu on 2018/10/23.
+//  Created by XiaoLu on 2018/10/22.
 //  Copyright © 2018 Cryptape. All rights reserved.
 //
 
 import Foundation
-import secp256k1_swift
 
-struct NervosMessageSigner {
-    // TODO: Nervos sign personal message
+enum SignerError: Error {
+    case privateKeyIsNull
+    case signatureIncorrect
+    case messageSha3IsNull
+    case addPrefixFailed
+}
+
+public struct ETHMessageSigner {
+    public static func signPersonalMessage(message: Data, privateKey: String, useExtraEntropy: Bool = true) throws -> String? {
+        guard let message = Utils.appendPersonalMessagePrefix(for: message) else {
+            throw SignerError.addPrefixFailed
+        }
+        return try sign(message: message, privateKey: privateKey, useExtraEntropy: useExtraEntropy)
+    }
+
     public static func sign(message: Data, privateKey: String, useExtraEntropy: Bool = true) throws -> String? {
         guard let hash = Utils.hashMessage(message) else {
             throw SignerError.messageSha3IsNull
@@ -22,7 +34,7 @@ struct NervosMessageSigner {
         guard let privateKeyData = Data.fromHex(privateKey) else {
             throw SignerError.privateKeyIsNull
         }
-        let serializedSignature = SECP256K1.signForRecovery(hash: hash, privateKey: privateKeyData, useExtraEntropy: useExtraEntropy).serializedSignature
+        let serializedSignature = Secp256k1.signForRecovery(hash: hash, privateKey: privateKeyData, useExtraEntropy: useExtraEntropy).serializedSignature
         guard let signature = serializedSignature else {
             throw SignerError.signatureIncorrect
         }
