@@ -34,7 +34,7 @@ class ETHMessageSignerTest: XCTestCase {
             Data.fromHex("0x47173285a8d7341e5e972fc677286384f802f8ef42a5ec5f03bbfa254cb01fad")!: "0x04cd40a3ea7972c6f30142d02fd5ddcac438fe6c59e634cecb827fbee9d385fc",
         ]
         for (data, hash) in fixtures {
-            XCTAssertEqual(hash, ETHMessageSigner.hashMessage(data)!.toHexString().addHexPrefix())
+            XCTAssertEqual(hash, ETHMessageSigner.hashMessage(data).toHexString().addHexPrefix())
         }
     }
 
