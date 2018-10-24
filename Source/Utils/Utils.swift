@@ -43,26 +43,4 @@ extension Utils {
 }
 
 extension Utils {
-    public static func appendPersonalMessagePrefix(for message: Data) -> Data? {
-        var prefix = "\u{19}Ethereum Signed Message:\n"
-        prefix += String(message.count)
-        guard let prefixData = prefix.data(using: .ascii) else {return nil}
-        var data = Data()
-        if message.count >= prefixData.count && prefixData == message[0 ..< prefixData.count] {
-            data.append(message)
-        } else {
-            data.append(prefixData)
-            data.append(message)
-        }
-        return data
-    }
-
-    public static func hashPersonalMessage(_ personalMessage: Data) -> Data? {
-        guard let message = appendPersonalMessagePrefix(for: personalMessage) else { return nil }
-        return hashMessage(message)
-    }
-
-    public static func hashMessage(_ message: Data) -> Data? {
-        return message.sha3(.keccak256)
-    }
 }

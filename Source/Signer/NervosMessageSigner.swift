@@ -12,7 +12,7 @@ import secp256k1_swift
 struct NervosMessageSigner {
     // TODO: Nervos sign personal message
     public static func sign(message: Data, privateKey: String, useExtraEntropy: Bool = true) throws -> String? {
-        guard let hash = Utils.hashMessage(message) else {
+        guard let hash = ETHMessageSigner.hashMessage(message) else {
             throw SignerError.messageSha3IsNull
         }
         return try signHash(hash, privateKey: privateKey, useExtraEntropy: useExtraEntropy).toHexString().addHexPrefix()

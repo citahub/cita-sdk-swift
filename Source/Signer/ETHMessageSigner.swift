@@ -17,20 +17,31 @@ enum SignerError: Error {
 
 public struct ETHMessageSigner {
     public static func signPersonalMessage(message: Data, privateKey: String, useExtraEntropy: Bool = true) throws -> String? {
-        guard let message = Utils.appendPersonalMessagePrefix(for: message) else {
+        guard let message = appendPersonalMessagePrefix(for: message) else {
             throw SignerError.addPrefixFailed
         }
         return try sign(message: message, privateKey: privateKey, useExtraEntropy: useExtraEntropy)
     }
 
     public static func sign(message: Data, privateKey: String, useExtraEntropy: Bool = true) throws -> String? {
-        guard let hash = Utils.hashMessage(message) else {
+        guard let hash = hashMessage(message) else {
             throw SignerError.messageSha3IsNull
         }
         return try signHash(hash, privateKey: privateKey, useExtraEntropy: useExtraEntropy).toHexString().addHexPrefix()
     }
 
-    private static func signHash(_ hash: Data, privateKey: String, useExtraEntropy: Bool = true) throws -> Data {
+    public static func hashMessage(_ message: Data) -> Data? {
+        return message.sha3(.keccak256)
+    }
+
+    public static func hashPersonalMessage(_ personalMessage: Data) -> Data? {
+        guard let message = appendPersonalMessagePrefix(for: personalMessage) else { return nil }
+        return hashMessage(message)
+    }
+}
+
+private extension ETHMessageSigner {
+    static func signHash(_ hash: Data, privateKey: String, useExtraEntropy: Bool) throws -> Data {
         guard let privateKeyData = Data.fromHex(privateKey) else {
             throw SignerError.privateKeyIsNull
         }
@@ -40,5 +51,19 @@ public struct ETHMessageSigner {
         }
         signature[64] += 27
         return signature
+    }
+
+    static func appendPersonalMessagePrefix(for message: Data) -> Data? {
+        var prefix = "\u{19}Ethereum Signed Message:\n"
+        prefix += String(message.count)
+        guard let prefixData = prefix.data(using: .ascii) else { return nil }
+        var data = Data()
+        if message.count >= prefixData.count && prefixData == message[0 ..< prefixData.count] {
+            data.append(message)
+        } else {
+            data.append(prefixData)
+            data.append(message)
+        }
+        return data
     }
 }
