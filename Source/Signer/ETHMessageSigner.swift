@@ -47,13 +47,10 @@ private extension ETHMessageSigner {
     static func appendPersonalMessagePrefix(for message: Data) -> Data {
         let prefix = "\u{19}Ethereum Signed Message:\n\(message.count)"
         let prefixData = prefix.data(using: .ascii)!
-        var data = Data()
         if message.count >= prefixData.count && prefixData == message[0 ..< prefixData.count] {
-            data.append(message)
+            return message
         } else {
-            data.append(prefixData)
-            data.append(message)
+            return prefixData + message
         }
-        return data
     }
 }
