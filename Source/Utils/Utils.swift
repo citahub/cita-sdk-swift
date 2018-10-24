@@ -41,3 +41,6 @@ extension Utils {
         }
     }
 }
+
+extension Utils {
+}
