@@ -1,5 +1,5 @@
 //
-//  NervosTransactionUnsigner.swift
+//  Unsigner.swift
 //  AppChain
 //
 //  Created by James Chen on 2018/09/07.
@@ -9,9 +9,9 @@
 import Foundation
 import BigInt
 
-public struct NervosTransactionUnsigner {
+public struct Unsigner {
     /// Unsign a signed transaction.
-    public static func unsign(signed: String) throws -> UnsignedTransaction {
+    public func unsign(signed: String) throws -> UnsignedTransaction {
         guard let data = Data.fromHex(signed) else {
             throw TransactionError.signatureIncorrect
         }
@@ -58,7 +58,7 @@ public struct UnsignedTransaction {
 extension TransactionDetails {
     public var unsignedTransaction: UnsignedTransaction? {
         do {
-            return try NervosTransactionUnsigner.unsign(signed: content)
+            return try Unsigner().unsign(signed: content)
         } catch {
             return nil
         }

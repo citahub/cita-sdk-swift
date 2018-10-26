@@ -1,5 +1,5 @@
 //
-//  NervosTransactionSigner.swift
+//  Signer.swift
 //  AppChain
 //
 //  Created by Yate Fulham on 2018/08/14.
@@ -9,11 +9,11 @@
 import Foundation
 import BigInt
 
-public struct NervosTransactionSigner {
+public struct Signer {
     // Sign a transaction using private key.
     // Value of transaction may not exceed max of UInt256.
-    public static func sign(transaction: NervosTransaction, with privateKey: String) throws -> String {
-        guard let value = convert(value: transaction.value) else {
+    public func sign(transaction: NervosTransaction, with privateKey: String) throws -> String {
+        guard let value = Signer.convert(value: transaction.value) else {
             throw TransactionError.valueOverflow
         }
         var tx = Transaction()

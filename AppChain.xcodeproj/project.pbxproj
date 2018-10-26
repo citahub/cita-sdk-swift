@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0DC2B760B0374C6B5BDD0C98 /* Pods_AppChainTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EB2AACC437439C121F94134 /* Pods_AppChainTests.framework */; };
-		1A0529C0214258EC00C847CA /* NervosTransactionUnsigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0529BF214258EC00C847CA /* NervosTransactionUnsigner.swift */; };
-		1A0529C2214279A500C847CA /* NervosTransactionUnsignerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0529C1214279A500C847CA /* NervosTransactionUnsignerTests.swift */; };
+		1A0529C0214258EC00C847CA /* Unsigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0529BF214258EC00C847CA /* Unsigner.swift */; };
+		1A0529C2214279A500C847CA /* UnsignerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0529C1214279A500C847CA /* UnsignerTests.swift */; };
 		1A23CB002175A295001FECD6 /* appchain-tests in Resources */ = {isa = PBXBuildFile; fileRef = 1A23CAFE2175A271001FECD6 /* appchain-tests */; };
 		1A42225E212AA59700DF1994 /* AppChain+API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A42225D212AA59700DF1994 /* AppChain+API.swift */; };
 		1A58853A211DC759007043F1 /* AppChainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A588539211DC759007043F1 /* AppChainTests.swift */; };
@@ -44,9 +44,9 @@
 		1AD65F97212294C800AA4C84 /* NervosTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65F96212294C800AA4C84 /* NervosTransaction.swift */; };
 		1AD65F9B2122983A00AA4C84 /* Transaction.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65F9A2122983A00AA4C84 /* Transaction.pb.swift */; };
 		1AD65F9D2122999900AA4C84 /* Secp251k1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65F9C2122999900AA4C84 /* Secp251k1.swift */; };
-		1AD65F9F21229AF500AA4C84 /* NervosTransactionSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65F9E21229AF500AA4C84 /* NervosTransactionSigner.swift */; };
+		1AD65F9F21229AF500AA4C84 /* Signer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65F9E21229AF500AA4C84 /* Signer.swift */; };
 		1AD65FA12122A1F900AA4C84 /* TransactionSendingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65FA02122A1F900AA4C84 /* TransactionSendingResult.swift */; };
-		1AD65FA62122AF4400AA4C84 /* NervosTransactionSignerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65FA42122AF2F00AA4C84 /* NervosTransactionSignerTest.swift */; };
+		1AD65FA62122AF4400AA4C84 /* SignerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65FA42122AF2F00AA4C84 /* SignerTest.swift */; };
 		893532EE217D7D9B00404C0B /* ETHMessageSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893532ED217D7D9B00404C0B /* ETHMessageSigner.swift */; };
 		893532F2217DA03300404C0B /* ETHMessageSignerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893532F1217DA03300404C0B /* ETHMessageSignerTests.swift */; };
 		89733041217EB559001B8D93 /* NervosMessageSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89733040217EB559001B8D93 /* NervosMessageSigner.swift */; };
@@ -65,8 +65,8 @@
 
 /* Begin PBXFileReference section */
 		0EB2AACC437439C121F94134 /* Pods_AppChainTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppChainTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1A0529BF214258EC00C847CA /* NervosTransactionUnsigner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NervosTransactionUnsigner.swift; sourceTree = "<group>"; };
-		1A0529C1214279A500C847CA /* NervosTransactionUnsignerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NervosTransactionUnsignerTests.swift; sourceTree = "<group>"; };
+		1A0529BF214258EC00C847CA /* Unsigner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unsigner.swift; sourceTree = "<group>"; };
+		1A0529C1214279A500C847CA /* UnsignerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsignerTests.swift; sourceTree = "<group>"; };
 		1A23CAFE2175A271001FECD6 /* appchain-tests */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "appchain-tests"; sourceTree = "<group>"; };
 		1A42225D212AA59700DF1994 /* AppChain+API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppChain+API.swift"; sourceTree = "<group>"; };
 		1A588539211DC759007043F1 /* AppChainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppChainTests.swift; sourceTree = "<group>"; };
@@ -103,9 +103,9 @@
 		1AD65F96212294C800AA4C84 /* NervosTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NervosTransaction.swift; sourceTree = "<group>"; };
 		1AD65F9A2122983A00AA4C84 /* Transaction.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.pb.swift; sourceTree = "<group>"; };
 		1AD65F9C2122999900AA4C84 /* Secp251k1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secp251k1.swift; sourceTree = "<group>"; };
-		1AD65F9E21229AF500AA4C84 /* NervosTransactionSigner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NervosTransactionSigner.swift; sourceTree = "<group>"; };
+		1AD65F9E21229AF500AA4C84 /* Signer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signer.swift; sourceTree = "<group>"; };
 		1AD65FA02122A1F900AA4C84 /* TransactionSendingResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSendingResult.swift; sourceTree = "<group>"; };
-		1AD65FA42122AF2F00AA4C84 /* NervosTransactionSignerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NervosTransactionSignerTest.swift; sourceTree = "<group>"; };
+		1AD65FA42122AF2F00AA4C84 /* SignerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignerTest.swift; sourceTree = "<group>"; };
 		52649428F467A7C12F27B336 /* Pods-AppChainTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppChainTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AppChainTests/Pods-AppChainTests.release.xcconfig"; sourceTree = "<group>"; };
 		69F270D62F7F19A30770BD03 /* Pods-AppChainTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppChainTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppChainTests/Pods-AppChainTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6A425B554C4D9A6E8284FEAC /* Pods_AppChain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppChain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -269,8 +269,8 @@
 			children = (
 				1AD65F9A2122983A00AA4C84 /* Transaction.pb.swift */,
 				1AD65F96212294C800AA4C84 /* NervosTransaction.swift */,
-				1AD65F9E21229AF500AA4C84 /* NervosTransactionSigner.swift */,
-				1A0529BF214258EC00C847CA /* NervosTransactionUnsigner.swift */,
+				1AD65F9E21229AF500AA4C84 /* Signer.swift */,
+				1A0529BF214258EC00C847CA /* Unsigner.swift */,
 				89733040217EB559001B8D93 /* NervosMessageSigner.swift */,
 				893532ED217D7D9B00404C0B /* ETHMessageSigner.swift */,
 			);
@@ -288,8 +288,8 @@
 		1AD65FA32122AF1700AA4C84 /* Signer */ = {
 			isa = PBXGroup;
 			children = (
-				1AD65FA42122AF2F00AA4C84 /* NervosTransactionSignerTest.swift */,
-				1A0529C1214279A500C847CA /* NervosTransactionUnsignerTests.swift */,
+				1AD65FA42122AF2F00AA4C84 /* SignerTest.swift */,
+				1A0529C1214279A500C847CA /* UnsignerTests.swift */,
 				893532F1217DA03300404C0B /* ETHMessageSignerTests.swift */,
 			);
 			path = Signer;
@@ -536,9 +536,9 @@
 				1A67ED50211D11C600DCE871 /* Request.swift in Sources */,
 				893532EE217D7D9B00404C0B /* ETHMessageSigner.swift in Sources */,
 				1AD65F9021217AC000AA4C84 /* DecodeUtils.swift in Sources */,
-				1AD65F9F21229AF500AA4C84 /* NervosTransactionSigner.swift in Sources */,
+				1AD65F9F21229AF500AA4C84 /* Signer.swift in Sources */,
 				1A67ED54211D122000DCE871 /* Method.swift in Sources */,
-				1A0529C0214258EC00C847CA /* NervosTransactionUnsigner.swift in Sources */,
+				1A0529C0214258EC00C847CA /* Unsigner.swift in Sources */,
 				1A42225E212AA59700DF1994 /* AppChain+API.swift in Sources */,
 				1A6B2B2721533F43003420A0 /* Alias.swift in Sources */,
 				1A67ED4D211D0AA600DCE871 /* RequestDispatcher.swift in Sources */,
@@ -558,8 +558,8 @@
 				1A67ED3D211BEAFD00DCE871 /* NervosProviderTests.swift in Sources */,
 				1A58853A211DC759007043F1 /* AppChainTests.swift in Sources */,
 				893532F2217DA03300404C0B /* ETHMessageSignerTests.swift in Sources */,
-				1A0529C2214279A500C847CA /* NervosTransactionUnsignerTests.swift in Sources */,
-				1AD65FA62122AF4400AA4C84 /* NervosTransactionSignerTest.swift in Sources */,
+				1A0529C2214279A500C847CA /* UnsignerTests.swift in Sources */,
+				1AD65FA62122AF4400AA4C84 /* SignerTest.swift in Sources */,
 				1A64297F211C63E000352209 /* Config.swift in Sources */,
 				1A67ED5D211D1FF900DCE871 /* NervosTests.swift in Sources */,
 				1A6B2B2C21534CEF003420A0 /* AddressTests.swift in Sources */,
