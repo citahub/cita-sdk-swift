@@ -1,6 +1,6 @@
 //
 //  Utils.swift
-//  Nervos
+//  AppChain
 //
 //  Created by James Chen on 2018/10/01.
 //  Copyright © 2018 Cryptape. All rights reserved.
@@ -40,4 +40,7 @@ extension Utils {
             return nervos.appChain.call(request: requestType.rawValue)
         }
     }
+}
+
+extension Utils {
 }

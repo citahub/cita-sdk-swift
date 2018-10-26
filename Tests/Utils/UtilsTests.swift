@@ -1,13 +1,13 @@
 //
 //  UtilsTests.swift
-//  NervosTests
+//  AppChainTests
 //
 //  Created by James Chen on 2018/10/01.
 //  Copyright © 2018 Cryptape. All rights reserved.
 //
 
 import XCTest
-@testable import Nervos
+@testable import AppChain
 
 class UtilsTests: XCTestCase {
     func testGetQuotaPrice() {

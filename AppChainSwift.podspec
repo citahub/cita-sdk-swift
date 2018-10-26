@@ -1,20 +1,20 @@
 Pod::Spec.new do |s|
-  s.name         = "NervosSwift"
-  s.version      = "0.19.0"
-  s.summary      = "Nervos SDK implementation in Swift for iOS"
+  s.name         = "AppChainSwift"
+  s.version      = "0.19.2"
+  s.summary      = "Nervos AppChain SDK implementation in Swift for iOS"
 
   s.description  = <<-DESC
-  Nervos SDK implementation in Swift for iOS, intended for mobile developers of wallets and Dapps.
+  Nervos AppChain SDK implementation in Swift for iOS, intended for mobile developers of wallets and Dapps.
   DESC
 
-  s.homepage     = "https://github.com/cryptape/nervos-swift"
+  s.homepage     = "https://github.com/cryptape/appchain-swift"
   s.license      = "MIT"
   s.author       = { "Cryptape" => "contact@cryptape.com" }
-  s.source       = { git: "https://github.com/cryptape/nervos-swift.git", tag: "v#{s.version.to_s}" }
+  s.source       = { git: "https://github.com/cryptape/appchain-swift.git", tag: "v#{s.version.to_s}" }
   s.social_media_url = 'https://twitter.com/nervosnetwork'
 
   s.swift_version = '4.2'
-  s.module_name = 'Nervos'
+  s.module_name = 'AppChain'
   s.ios.deployment_target = "10.0"
   s.source_files = "Source/**/*.{h,swift}"
   s.public_header_files = "Source/**/*.{h}"

@@ -1,13 +1,13 @@
 //
 //  NervosProviderTests.swift
-//  NervosTests
+//  AppChainTests
 //
 //  Created by Yate Fulham on 2018/08/09.
 //  Copyright © 2018 Cryptape. All rights reserved.
 //
 
 import XCTest
-@testable import Nervos
+@testable import AppChain
 
 class NervosProviderTests: XCTestCase {
     func testDefaultProvider() {
