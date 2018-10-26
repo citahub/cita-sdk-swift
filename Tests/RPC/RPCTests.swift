@@ -1,5 +1,5 @@
 //
-//  AppChainTests.swift
+//  RPCTests.swift
 //  AppChainTests
 //
 //  Created by Yate Fulham on 2018/08/10.
@@ -10,7 +10,7 @@ import XCTest
 import BigInt
 @testable import AppChain
 
-class AppChainTests: XCTestCase {
+class RPCTests: XCTestCase {
     func testPeerCount() {
         let result = nervos.appChain.peerCount()
         switch result {

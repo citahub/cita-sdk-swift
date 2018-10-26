@@ -12,7 +12,7 @@
 		1A0529C2214279A500C847CA /* UnsignerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0529C1214279A500C847CA /* UnsignerTests.swift */; };
 		1A23CB002175A295001FECD6 /* appchain-tests in Resources */ = {isa = PBXBuildFile; fileRef = 1A23CAFE2175A271001FECD6 /* appchain-tests */; };
 		1A42225E212AA59700DF1994 /* AppChain+API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A42225D212AA59700DF1994 /* AppChain+API.swift */; };
-		1A58853A211DC759007043F1 /* AppChainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A588539211DC759007043F1 /* AppChainTests.swift */; };
+		1A58853A211DC759007043F1 /* RPCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A588539211DC759007043F1 /* RPCTests.swift */; };
 		1A64297D211C5E0700352209 /* NervosProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A64297C211C5E0700352209 /* NervosProvider.swift */; };
 		1A64297F211C63E000352209 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A64297E211C63E000352209 /* Config.swift */; };
 		1A67ED38211BEAFD00DCE871 /* AppChain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A67ED2E211BEAFC00DCE871 /* AppChain.framework */; };
@@ -69,7 +69,7 @@
 		1A0529C1214279A500C847CA /* UnsignerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsignerTests.swift; sourceTree = "<group>"; };
 		1A23CAFE2175A271001FECD6 /* appchain-tests */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "appchain-tests"; sourceTree = "<group>"; };
 		1A42225D212AA59700DF1994 /* AppChain+API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppChain+API.swift"; sourceTree = "<group>"; };
-		1A588539211DC759007043F1 /* AppChainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppChainTests.swift; sourceTree = "<group>"; };
+		1A588539211DC759007043F1 /* RPCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPCTests.swift; sourceTree = "<group>"; };
 		1A64297C211C5E0700352209 /* NervosProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NervosProvider.swift; sourceTree = "<group>"; };
 		1A64297E211C63E000352209 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		1A67ED2E211BEAFC00DCE871 /* AppChain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppChain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -162,8 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				1A67ED57211D14F200DCE871 /* Utils */,
-				1A67ED4E211D117B00DCE871 /* JSONRPC */,
-				1A67ED49211D089000DCE871 /* AppChain */,
+				1A67ED49211D089000DCE871 /* RPC */,
 				1AD65F95212294AD00AA4C84 /* Signer */,
 				1A6B2B2521533EFA003420A0 /* Nervos */,
 				1A67ED31211BEAFD00DCE871 /* AppChain.h */,
@@ -177,7 +176,7 @@
 			children = (
 				1A23CAFE2175A271001FECD6 /* appchain-tests */,
 				1AA6F63321527B08001DA165 /* Utils */,
-				1AD65FA22122AF0E00AA4C84 /* AppChain */,
+				1AD65FA22122AF0E00AA4C84 /* RPC */,
 				1AD65FA32122AF1700AA4C84 /* Signer */,
 				1A6B2B2A21534CD1003420A0 /* Nervos */,
 				1A64297E211C63E000352209 /* Config.swift */,
@@ -187,18 +186,19 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
-		1A67ED49211D089000DCE871 /* AppChain */ = {
+		1A67ED49211D089000DCE871 /* RPC */ = {
 			isa = PBXGroup;
 			children = (
+				1A67ED4E211D117B00DCE871 /* Request */,
 				1AB5C6DD2121760800148587 /* Structures */,
 				1A67ED5A211D1C3C00DCE871 /* AppChain.swift */,
 				1A42225D212AA59700DF1994 /* AppChain+API.swift */,
 				1AB5C6D7212112DA00148587 /* AppChain+Promises.swift */,
 			);
-			path = AppChain;
+			path = RPC;
 			sourceTree = "<group>";
 		};
-		1A67ED4E211D117B00DCE871 /* JSONRPC */ = {
+		1A67ED4E211D117B00DCE871 /* Request */ = {
 			isa = PBXGroup;
 			children = (
 				1A67ED55211D12A200DCE871 /* Params.swift */,
@@ -207,7 +207,7 @@
 				1A67ED51211D11D100DCE871 /* Response.swift */,
 				1A67ED4C211D0AA600DCE871 /* RequestDispatcher.swift */,
 			);
-			path = JSONRPC;
+			path = Request;
 			sourceTree = "<group>";
 		};
 		1A67ED57211D14F200DCE871 /* Utils */ = {
@@ -277,12 +277,12 @@
 			path = Signer;
 			sourceTree = "<group>";
 		};
-		1AD65FA22122AF0E00AA4C84 /* AppChain */ = {
+		1AD65FA22122AF0E00AA4C84 /* RPC */ = {
 			isa = PBXGroup;
 			children = (
-				1A588539211DC759007043F1 /* AppChainTests.swift */,
+				1A588539211DC759007043F1 /* RPCTests.swift */,
 			);
-			path = AppChain;
+			path = RPC;
 			sourceTree = "<group>";
 		};
 		1AD65FA32122AF1700AA4C84 /* Signer */ = {
@@ -556,7 +556,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A67ED3D211BEAFD00DCE871 /* NervosProviderTests.swift in Sources */,
-				1A58853A211DC759007043F1 /* AppChainTests.swift in Sources */,
+				1A58853A211DC759007043F1 /* RPCTests.swift in Sources */,
 				893532F2217DA03300404C0B /* ETHMessageSignerTests.swift in Sources */,
 				1A0529C2214279A500C847CA /* UnsignerTests.swift in Sources */,
 				1AD65FA62122AF4400AA4C84 /* SignerTest.swift in Sources */,
