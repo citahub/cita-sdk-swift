@@ -1,36 +1,36 @@
-# NervosSwift
+# AppChainSwift
 
-[![Travis](https://travis-ci.com/cryptape/nervos-swift.svg?branch=develop)](https://travis-ci.com/cryptape/nervos-swift)
+[![Travis](https://travis-ci.com/cryptape/appchain-swift.svg?branch=develop)](https://travis-ci.com/cryptape/appchain-swift)
 [![Swift](https://img.shields.io/badge/Swift-4.2-orange.svg?style=flat)](https://developer.apple.com/swift/)
 [![AppChain](https://img.shields.io/badge/made%20for-Nervos%20AppChain-blue.svg)](https://appchain.nervos.org)
 
-NervosSwift is a native Swift framework for working with Smart Contract and integrating with clients on Nervos network.
+AppChainSwift is a native Swift framework for integrating with Nervos AppChain network.
 
 ## Features
 
-* HTTP provider for connecting to Nervos testnet or any AppChain network.
-* Implementation of Nervos JSON-RPC API over HTTP.
-* Signer for signing a Nervos transaction.
+* HTTP provider for connecting to Nervos AppChain networks.
+* Implementation of Nervos AppChain (CITA) JSON-RPC API over HTTP.
+* Signer for signing transaction.
 
 ## RPC API
 
-Refer to [docs.nervos.org/cita](https://docs.nervos.org/cita/#/rpc_guide/rpc) for a complete list of Nervos JSON-RPC API.
+Refer to [docs.nervos.org/cita](https://docs.nervos.org/cita/#/rpc_guide/rpc) for a complete list of CITA JSON-RPC API.
 
 ## Get Started
 
 ### System Requirements
 
-To build NervosSwift, you'll need:
+To build AppChainSwift, you'll need:
 
-* Swift 4.2 or later
-* Xcode 10 or later
+* Swift 4.2 and later
+* Xcode 10 and later
 * [CocoaPods](https://cocoapods.org)
 
-NervosSwift supports iOS 10 and newer versions.
+AppChainSwift supports iOS 10 and newer versions.
 
 ### Installation
 
-To integrate NervosSwift into your Xcode project using CocoaPods, specify it in your `Podfile`:
+To integrate AppChainSwift into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
@@ -39,7 +39,7 @@ platform :ios, '10.0'
 target 'YourTargetName' do
   use_frameworks!
 
-  pod 'NervosSwift', git: 'https://github.com/cryptape/nervos-swift'
+  pod 'AppChain', git: 'https://github.com/cryptape/appchain-swift'
 end
 ```
 
@@ -51,26 +51,26 @@ $ pod install
 
 ### Development
 
-To build NervosSwift, first run `pod install`, then open `Nervos.xcworkspace` with Xcode and build.
+To build AppChainSwift, first run `pod install`, then open `AppChain.xcworkspace` with Xcode and build.
 
 #### Running Tests
 
-Copy `Tests/Config.example.json` to `Tests/Config.json`, then run tests from `NervosTests` target. Update `rpcServer` value of `Tests/Config.json` file if you want to test against an AppChain of your choice. By default `http://127.0.0.1:1337` is used.
+Copy `Tests/Config.example.json` to `Tests/Config.json`, then run tests from `AppChainTests` target. Update `rpcServer` value of `Tests/Config.json` file if you want to test against an AppChain of your choice. By default `http://127.0.0.1:1337` is used.
 
 Note: serveral tests depend on onchain data and would fail when running on your own chain. We're going to improve the tests and fix that in the near future.
 
 ### web3swift
 
-NervosSwift is built upon [matterinc/web3swift](https://github.com/matterinc/web3swift). While it's not required to import `web3swift` when using NervosSwift, please note the following classes are simply typealias of web3swift's Ethereum types:
+AppChainSwift is built upon [matterinc/web3swift](https://github.com/matterinc/web3swift). While it's not required to import `web3swift` when using AppChainSwift, please note the following classes are simply typealias of web3swift's Ethereum types:
 
-| NervosSwift Type  | web3swift Type      |
-|:-----------------:|:-------------------:|
-| Web3Utils         | Web3Utils           |
-| NervosError       | Web3Error           |
-| NervosOptions     | Web3Options         |
-| EthereumAddress   | EthereumAddress     |
-| EventLog          | EventLog            |
-| BloomFilter       | EthereumBloomFilter |
+| AppChainSwift Type | web3swift Type      |
+|:------------------:|:-------------------:|
+| Web3Utils          | Web3Utils           |
+| NervosError        | Web3Error           |
+| NervosOptions      | Web3Options         |
+| EthereumAddress    | EthereumAddress     |
+| EventLog           | EventLog            |
+| BloomFilter        | EthereumBloomFilter |
 
 ### Testnet
 
@@ -137,7 +137,7 @@ case .failure(let error):
 
 ### Important Notices
 
-All JSON-RPC API functions are synchronous. But the underlying HTTP request might take some time to return, and in NervosSwift they're usually implemented in some `promise` way. It's generally better to call API function in a background queue so it won't block the main thread.
+All JSON-RPC API functions are synchronous. But the underlying HTTP request might take some time to return, and in AppChainSwift they're usually implemented in some `promise` way. It's generally better to call API function in a background queue so it won't block the main thread.
 
 * [peerCount](#peercount)
 * [blockNumber](#blocknumber)
@@ -421,4 +421,4 @@ func getStateProof(address: String, key: String, blockNumber: String = "latest")
 
 ## License
 
-NervosSwift is released under the [MIT License](https://github.com/cryptape/NervosSwift/blob/master/LICENSE).
+AppChainSwift is released under the [MIT License](https://github.com/cryptape/appchain-swift/blob/master/LICENSE).

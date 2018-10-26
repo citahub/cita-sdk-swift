@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Nervos.xcodeproj">
+      location = "self:AppChain.xcodeproj">
    </FileRef>
 </Workspace>

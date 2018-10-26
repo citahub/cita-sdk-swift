@@ -1,6 +1,6 @@
 //
 //  NervosTransactionUnsignerTests.swift
-//  NervosTests
+//  AppChainTests
 //
 //  Created by James Chen on 2018/09/07.
 //  Copyright © 2018 Cryptape. All rights reserved.
@@ -8,7 +8,7 @@
 
 import XCTest
 import BigInt
-@testable import Nervos
+@testable import AppChain
 
 class NervosTransactionUnsignerTests: XCTestCase {
     func testUnsignTx() {

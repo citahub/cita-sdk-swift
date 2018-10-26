@@ -1,6 +1,6 @@
 //
 //  Int+Extension.swift
-//  Nervos
+//  AppChain
 //
 //  Created by Yate Fulham on 2018/08/13.
 //  Copyright © 2018 Cryptape. All rights reserved.

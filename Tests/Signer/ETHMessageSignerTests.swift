@@ -1,13 +1,13 @@
 //
 //  ETHMessageSignerTests.swift
-//  NervosTests
+//  AppChainTests
 //
 //  Created by XiaoLu on 2018/10/22.
 //  Copyright © 2018 Cryptape. All rights reserved.
 //
 
 import XCTest
-@testable import Nervos
+@testable import AppChain
 
 class ETHMessageSignerTest: XCTestCase {
     func testSignMessage() {

@@ -1,6 +1,6 @@
 //
 //  AppChainTests.swift
-//  NervosTests
+//  AppChainTests
 //
 //  Created by Yate Fulham on 2018/08/10.
 //  Copyright © 2018 Cryptape. All rights reserved.
@@ -8,7 +8,7 @@
 
 import XCTest
 import BigInt
-@testable import Nervos
+@testable import AppChain
 
 class AppChainTests: XCTestCase {
     func testPeerCount() {
