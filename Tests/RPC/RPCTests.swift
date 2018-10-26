@@ -312,7 +312,7 @@ class RPCTests: XCTestCase {
     }
 }
 
-extension AppChainTests {
+extension RPCTests {
     func xtestInvalidNode() {
         let result = nobody.appChain.peerCount()
         switch result {
