@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1A67ED2D211BEAFC00DCE871"
-               BuildableName = "Nervos.framework"
-               BlueprintName = "Nervos"
-               ReferencedContainer = "container:Nervos.xcodeproj">
+               BuildableName = "AppChain.framework"
+               BlueprintName = "AppChain"
+               ReferencedContainer = "container:AppChain.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1A67ED36211BEAFD00DCE871"
-               BuildableName = "NervosTests.xctest"
-               BlueprintName = "NervosTests"
-               ReferencedContainer = "container:Nervos.xcodeproj">
+               BuildableName = "AppChainTests.xctest"
+               BlueprintName = "AppChainTests"
+               ReferencedContainer = "container:AppChain.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1A67ED2D211BEAFC00DCE871"
-            BuildableName = "Nervos.framework"
-            BlueprintName = "Nervos"
-            ReferencedContainer = "container:Nervos.xcodeproj">
+            BuildableName = "AppChain.framework"
+            BlueprintName = "AppChain"
+            ReferencedContainer = "container:AppChain.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -65,9 +65,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1A67ED2D211BEAFC00DCE871"
-            BuildableName = "Nervos.framework"
-            BlueprintName = "Nervos"
-            ReferencedContainer = "container:Nervos.xcodeproj">
+            BuildableName = "AppChain.framework"
+            BlueprintName = "AppChain"
+            ReferencedContainer = "container:AppChain.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -83,9 +83,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1A67ED2D211BEAFC00DCE871"
-            BuildableName = "Nervos.framework"
-            BlueprintName = "Nervos"
-            ReferencedContainer = "container:Nervos.xcodeproj">
+            BuildableName = "AppChain.framework"
+            BlueprintName = "AppChain"
+            ReferencedContainer = "container:AppChain.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

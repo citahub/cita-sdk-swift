@@ -1,6 +1,6 @@
 //
 //  ETHMessageSigner.swift
-//  Nervos
+//  AppChain
 //
 //  Created by XiaoLu on 2018/10/22.
 //  Copyright © 2018 Cryptape. All rights reserved.

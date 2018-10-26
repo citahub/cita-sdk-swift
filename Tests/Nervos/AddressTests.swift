@@ -1,13 +1,13 @@
 //
 //  AddressTests.swift
-//  NervosTests
+//  AppChainTests
 //
 //  Created by James Chen on 2018/09/20.
 //  Copyright © 2018 Cryptape. All rights reserved.
 //
 
 import XCTest
-@testable import Nervos
+@testable import AppChain
 
 class AddressTests: XCTestCase {
     func testIsValid() {

@@ -1,6 +1,6 @@
 //
 //  NervosMessageSigner.swift
-//  Nervos
+//  AppChain
 //
 //  Created by XiaoLu on 2018/10/23.
 //  Copyright © 2018 Cryptape. All rights reserved.

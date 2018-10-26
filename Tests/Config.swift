@@ -1,6 +1,6 @@
 //
 //  Config.swift
-//  NervosTests
+//  AppChainTests
 //
 //  Created by Yate Fulham on 2018/08/09.
 //  Copyright © 2018 Cryptape. All rights reserved.
@@ -8,7 +8,7 @@
 
 import Foundation
 import XCTest
-@testable import Nervos
+@testable import AppChain
 
 extension NervosProvider {
     static var testnetProviderURL: URL {
