@@ -17,7 +17,7 @@
 		1A64297F211C63E000352209 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A64297E211C63E000352209 /* Config.swift */; };
 		1A67ED38211BEAFD00DCE871 /* AppChain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A67ED2E211BEAFC00DCE871 /* AppChain.framework */; };
 		1A67ED3D211BEAFD00DCE871 /* NervosProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A67ED3C211BEAFD00DCE871 /* NervosProviderTests.swift */; };
-		1A67ED3F211BEAFD00DCE871 /* Nervos.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A67ED31211BEAFD00DCE871 /* Nervos.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A67ED3F211BEAFD00DCE871 /* AppChain.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A67ED31211BEAFD00DCE871 /* AppChain.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A67ED4B211D08A700DCE871 /* Nervos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A67ED4A211D08A700DCE871 /* Nervos.swift */; };
 		1A67ED4D211D0AA600DCE871 /* RequestDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A67ED4C211D0AA600DCE871 /* RequestDispatcher.swift */; };
 		1A67ED50211D11C600DCE871 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A67ED4F211D11C600DCE871 /* Request.swift */; };
@@ -73,7 +73,7 @@
 		1A64297C211C5E0700352209 /* NervosProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NervosProvider.swift; sourceTree = "<group>"; };
 		1A64297E211C63E000352209 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		1A67ED2E211BEAFC00DCE871 /* AppChain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppChain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1A67ED31211BEAFD00DCE871 /* Nervos.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Nervos.h; sourceTree = "<group>"; };
+		1A67ED31211BEAFD00DCE871 /* AppChain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppChain.h; sourceTree = "<group>"; };
 		1A67ED32211BEAFD00DCE871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A67ED37211BEAFD00DCE871 /* AppChainTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppChainTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A67ED3C211BEAFD00DCE871 /* NervosProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NervosProviderTests.swift; sourceTree = "<group>"; };
@@ -106,20 +106,14 @@
 		1AD65F9E21229AF500AA4C84 /* NervosTransactionSigner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NervosTransactionSigner.swift; sourceTree = "<group>"; };
 		1AD65FA02122A1F900AA4C84 /* TransactionSendingResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSendingResult.swift; sourceTree = "<group>"; };
 		1AD65FA42122AF2F00AA4C84 /* NervosTransactionSignerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NervosTransactionSignerTest.swift; sourceTree = "<group>"; };
-		2592D768976DDA03188738F7 /* Pods-NervosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NervosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NervosTests/Pods-NervosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		52649428F467A7C12F27B336 /* Pods-AppChainTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppChainTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AppChainTests/Pods-AppChainTests.release.xcconfig"; sourceTree = "<group>"; };
-		624397CF46A1E8EBCAD0932D /* Pods-Nervos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nervos.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nervos/Pods-Nervos.release.xcconfig"; sourceTree = "<group>"; };
 		69F270D62F7F19A30770BD03 /* Pods-AppChainTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppChainTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppChainTests/Pods-AppChainTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6A425B554C4D9A6E8284FEAC /* Pods_AppChain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppChain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6B2550BBCC89EE6098537770 /* Pods_NervosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NervosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6EC1BC44472A0BC7ED1CA017 /* Pods_Nervos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nervos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FF8D9768BC7235E22EC11C8 /* Pods-AppChain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppChain.release.xcconfig"; path = "Pods/Target Support Files/Pods-AppChain/Pods-AppChain.release.xcconfig"; sourceTree = "<group>"; };
-		80F25F15A48449F02D1BECE8 /* Pods-NervosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NervosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NervosTests/Pods-NervosTests.release.xcconfig"; sourceTree = "<group>"; };
 		893532ED217D7D9B00404C0B /* ETHMessageSigner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETHMessageSigner.swift; sourceTree = "<group>"; };
 		893532F1217DA03300404C0B /* ETHMessageSignerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETHMessageSignerTests.swift; sourceTree = "<group>"; };
 		89733040217EB559001B8D93 /* NervosMessageSigner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NervosMessageSigner.swift; sourceTree = "<group>"; };
 		8990CDB62160682F00205129 /* Config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Config.json; sourceTree = "<group>"; };
-		97660DCBF57208A1791D7CED /* Pods-Nervos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nervos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Nervos/Pods-Nervos.debug.xcconfig"; sourceTree = "<group>"; };
 		D9D78017E61E65184F73D1F8 /* Pods-AppChain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppChain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppChain/Pods-AppChain.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -172,7 +166,7 @@
 				1A67ED49211D089000DCE871 /* AppChain */,
 				1AD65F95212294AD00AA4C84 /* Signer */,
 				1A6B2B2521533EFA003420A0 /* Nervos */,
-				1A67ED31211BEAFD00DCE871 /* Nervos.h */,
+				1A67ED31211BEAFD00DCE871 /* AppChain.h */,
 				1A67ED32211BEAFD00DCE871 /* Info.plist */,
 			);
 			path = Source;
@@ -304,10 +298,6 @@
 		A710FAD6940A0E7AB63E759E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				97660DCBF57208A1791D7CED /* Pods-Nervos.debug.xcconfig */,
-				624397CF46A1E8EBCAD0932D /* Pods-Nervos.release.xcconfig */,
-				2592D768976DDA03188738F7 /* Pods-NervosTests.debug.xcconfig */,
-				80F25F15A48449F02D1BECE8 /* Pods-NervosTests.release.xcconfig */,
 				D9D78017E61E65184F73D1F8 /* Pods-AppChain.debug.xcconfig */,
 				7FF8D9768BC7235E22EC11C8 /* Pods-AppChain.release.xcconfig */,
 				69F270D62F7F19A30770BD03 /* Pods-AppChainTests.debug.xcconfig */,
@@ -319,8 +309,6 @@
 		AAF837EC28C7AC4FCFA94F1E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6EC1BC44472A0BC7ED1CA017 /* Pods_Nervos.framework */,
-				6B2550BBCC89EE6098537770 /* Pods_NervosTests.framework */,
 				6A425B554C4D9A6E8284FEAC /* Pods_AppChain.framework */,
 				0EB2AACC437439C121F94134 /* Pods_AppChainTests.framework */,
 			);
@@ -334,7 +322,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A67ED3F211BEAFD00DCE871 /* Nervos.h in Headers */,
+				1A67ED3F211BEAFD00DCE871 /* AppChain.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,7 +345,7 @@
 			dependencies = (
 			);
 			name = AppChain;
-			productName = Nervos;
+			productName = AppChain;
 			productReference = 1A67ED2E211BEAFC00DCE871 /* AppChain.framework */;
 			productType = "com.apple.product-type.framework";
 		};
@@ -377,7 +365,7 @@
 				1A67ED3A211BEAFD00DCE871 /* PBXTargetDependency */,
 			);
 			name = AppChainTests;
-			productName = NervosTests;
+			productName = AppChainTests;
 			productReference = 1A67ED37211BEAFD00DCE871 /* AppChainTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -469,7 +457,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		AFEC11B188AD712CF03892D9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
