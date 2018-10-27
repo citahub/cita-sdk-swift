@@ -12,11 +12,11 @@ import BigInt
 public struct Signer {
     // Sign a transaction using private key.
     // Value of transaction may not exceed max of UInt256.
-    public func sign(transaction: NervosTransaction, with privateKey: String) throws -> String {
+    public func sign(transaction: Transaction, with privateKey: String) throws -> String {
         guard let value = Signer.convert(value: transaction.value) else {
             throw TransactionError.valueOverflow
         }
-        var tx = Transaction()
+        var tx = CitaTransaction()
 
         tx.nonce = transaction.nonce
         if let to = transaction.to {
@@ -39,7 +39,7 @@ public struct Signer {
             throw TransactionError.signatureIncorrect
         }
 
-        var unverifiedTx = UnverifiedTransaction()
+        var unverifiedTx = CitaUnverifiedTransaction()
         unverifiedTx.transaction = tx
         unverifiedTx.signature = signature
         unverifiedTx.crypto = .secp

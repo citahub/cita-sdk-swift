@@ -13,7 +13,7 @@ import BigInt
 class SignerTests: XCTestCase {
     func testSignTx() {
         let privateKey = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
-        let tx = NervosTransaction(
+        let tx = Transaction(
             nonce: "12345",
             quota: 1_000_000,
             validUntilBlock: 999_999,
@@ -29,7 +29,7 @@ class SignerTests: XCTestCase {
 
     func testSignAnotherTx() {
         let privateKey = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
-        let tx = NervosTransaction(
+        let tx = Transaction(
             nonce: "57a4558948eb422bab36f1ca0f0354e7",
             quota: 1_000_000,
             validUntilBlock: 1_470_441,
@@ -44,7 +44,7 @@ class SignerTests: XCTestCase {
     }
 
     func testSignTxWithWrongPrivateKey() {
-        let tx = NervosTransaction(
+        let tx = Transaction(
             to: Address("0x0000000000000000000000000000000000000000"),
             nonce: "12345",
             quota: 1_000_000,
@@ -62,7 +62,7 @@ class SignerTests: XCTestCase {
     }
 
     func testSignTxWithOverflowValue() {
-        let tx = NervosTransaction(
+        let tx = Transaction(
             to: Address("0x0000000000000000000000000000000000000000"),
             nonce: "12345",
             quota: 1_000_000,
@@ -99,7 +99,7 @@ class SignerTests: XCTestCase {
                 data = nil
             }
 
-            let tx = NervosTransaction(
+            let tx = Transaction(
                 to: address,
                 nonce: txData["nonce"] as? String ?? UUID().uuidString,
                 quota: UInt64(txData["quota"] as? String ?? "1000000")!,

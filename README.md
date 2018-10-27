@@ -99,14 +99,14 @@ let nervos = Nervos(provider)
 let peerCount = nervos.appChain.peerCount().value!
 ```
 
-### NervosTransaction and NervosTransactionSigner
+### Transaction and Signer
 
-Before sending a raw transaction over JSON-RPC API, create a `NervosTransaction` object and sign it with private key using `NervosTransactionSigner`:
+Before sending a raw transaction over JSON-RPC API, create a `Transaction` object and sign it with private key using `Signer`:
 
 ```swift
 let privateKey = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
 let currentBlock = nervos.appChain.blockNumber().value!
-let tx = NervosTransaction(
+let tx = Transaction(
     to: Address("0x0000000000000000000000000000000000000000"),
     nonce: UUID().uuidString, // Generate a random/unique nonce string
     quota: 1_000_000, // Use 1,000,000 as default quota for sending a transaction
@@ -114,7 +114,7 @@ let tx = NervosTransaction(
     data: Data.fromHex("6060604...")!,
     chainId: 1
 )
-guard let signed = try? NervosTransactionSigner.sign(transaction: tx, with: privateKey) else {
+guard let signed = try? Signer().sign(transaction: tx, with: privateKey) else {
     print("Sign fail")
 }
 ```

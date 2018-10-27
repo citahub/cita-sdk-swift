@@ -16,7 +16,7 @@ public struct Unsigner {
             throw TransactionError.signatureIncorrect
         }
 
-        let unverifiedTransaction = try UnverifiedTransaction(serializedData: data)
+        let unverifiedTransaction = try CitaUnverifiedTransaction(serializedData: data)
         let binaryData = try! unverifiedTransaction.transaction.serializedData()
         let hash = binaryData.sha3(.keccak256)
 
@@ -24,7 +24,7 @@ public struct Unsigner {
             throw TransactionError.signatureIncorrect
         }
 
-        return UnsignedTransaction(unverifiedTransaction: unverifiedTransaction.transaction, publicKey: publicKey)
+        return UnsignedTransaction(tx: unverifiedTransaction.transaction, publicKey: publicKey)
     }
 }
 
@@ -34,11 +34,11 @@ public struct UnsignedTransaction {
         public let publicKey: Data
     }
 
-    public let transaction: NervosTransaction
+    public let transaction: Transaction
     public let sender: Sender
 
-    init(unverifiedTransaction tx: Transaction, publicKey: Data) {
-        transaction = NervosTransaction(
+    init(tx: CitaTransaction, publicKey: Data) {
+        transaction = Transaction(
             to: Address(tx.to.addHexPrefix()),
             nonce: tx.nonce,
             quota: tx.quota,

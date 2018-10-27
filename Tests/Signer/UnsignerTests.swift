@@ -13,7 +13,7 @@ import BigInt
 class UnsignerTests: XCTestCase {
     func testUnsignTx() {
         let privateKey = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
-        let tx = NervosTransaction(
+        let tx = Transaction(
             to: Address("0x0000000000000000000000000000000000000000")!,
             nonce: "12345",
             validUntilBlock: 999999,
@@ -42,7 +42,7 @@ class UnsignerTests: XCTestCase {
             BigUInt(10).power(18)
         ]
         values.forEach { value in
-            let tx = NervosTransaction(nonce: "\(value)", validUntilBlock: 999_999, value: value, chainId: 1)
+            let tx = Transaction(nonce: "\(value)", validUntilBlock: 999_999, value: value, chainId: 1)
             let signed = try! Signer().sign(transaction: tx, with: privateKey)
             let unsiged = try! Unsigner().unsign(signed: signed)
             XCTAssertEqual(unsiged.transaction.value, tx.value)

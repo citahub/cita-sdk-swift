@@ -42,8 +42,7 @@
 		1AD65F8E2121795B00AA4C84 /* TransactionReceipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65F8D2121795B00AA4C84 /* TransactionReceipt.swift */; };
 		1AD65F9021217AC000AA4C84 /* DecodeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65F8F21217AC000AA4C84 /* DecodeUtils.swift */; };
 		1AD65F922121822600AA4C84 /* TransactionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65F912121822600AA4C84 /* TransactionDetails.swift */; };
-		1AD65F97212294C800AA4C84 /* NervosTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65F96212294C800AA4C84 /* NervosTransaction.swift */; };
-		1AD65F9B2122983A00AA4C84 /* Transaction.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65F9A2122983A00AA4C84 /* Transaction.pb.swift */; };
+		1AD65F97212294C800AA4C84 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65F96212294C800AA4C84 /* Transaction.swift */; };
 		1AD65F9D2122999900AA4C84 /* Secp251k1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65F9C2122999900AA4C84 /* Secp251k1.swift */; };
 		1AD65F9F21229AF500AA4C84 /* Signer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65F9E21229AF500AA4C84 /* Signer.swift */; };
 		1AD65FA12122A1F900AA4C84 /* TransactionSendingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65FA02122A1F900AA4C84 /* TransactionSendingResult.swift */; };
@@ -102,8 +101,7 @@
 		1AD65F8D2121795B00AA4C84 /* TransactionReceipt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionReceipt.swift; sourceTree = "<group>"; };
 		1AD65F8F21217AC000AA4C84 /* DecodeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeUtils.swift; sourceTree = "<group>"; };
 		1AD65F912121822600AA4C84 /* TransactionDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetails.swift; sourceTree = "<group>"; };
-		1AD65F96212294C800AA4C84 /* NervosTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NervosTransaction.swift; sourceTree = "<group>"; };
-		1AD65F9A2122983A00AA4C84 /* Transaction.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.pb.swift; sourceTree = "<group>"; };
+		1AD65F96212294C800AA4C84 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		1AD65F9C2122999900AA4C84 /* Secp251k1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secp251k1.swift; sourceTree = "<group>"; };
 		1AD65F9E21229AF500AA4C84 /* Signer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signer.swift; sourceTree = "<group>"; };
 		1AD65FA02122A1F900AA4C84 /* TransactionSendingResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSendingResult.swift; sourceTree = "<group>"; };
@@ -278,8 +276,7 @@
 		1AD65F95212294AD00AA4C84 /* Signer */ = {
 			isa = PBXGroup;
 			children = (
-				1AD65F9A2122983A00AA4C84 /* Transaction.pb.swift */,
-				1AD65F96212294C800AA4C84 /* NervosTransaction.swift */,
+				1AD65F96212294C800AA4C84 /* Transaction.swift */,
 				1AD65F9E21229AF500AA4C84 /* Signer.swift */,
 				1A0529BF214258EC00C847CA /* Unsigner.swift */,
 				89733040217EB559001B8D93 /* NervosMessageSigner.swift */,
@@ -535,14 +532,13 @@
 				1A67ED59211D151100DCE871 /* String+Extension.swift in Sources */,
 				89733041217EB559001B8D93 /* NervosMessageSigner.swift in Sources */,
 				1A9204E02161B20B004B54DC /* Utils.swift in Sources */,
-				1AD65F9B2122983A00AA4C84 /* Transaction.pb.swift in Sources */,
 				1AB5C6DC2121751400148587 /* Block.swift in Sources */,
 				1A67ED4B211D08A700DCE871 /* Nervos.swift in Sources */,
 				1A67ED56211D12A200DCE871 /* Params.swift in Sources */,
 				1A67ED5B211D1C3C00DCE871 /* AppChain.swift in Sources */,
 				1ACBC9AD2184152E00F20B8B /* Blockchain.pb.swift in Sources */,
 				1AD65F8E2121795B00AA4C84 /* TransactionReceipt.swift in Sources */,
-				1AD65F97212294C800AA4C84 /* NervosTransaction.swift in Sources */,
+				1AD65F97212294C800AA4C84 /* Transaction.swift in Sources */,
 				1A6B2B2921533FA5003420A0 /* Address.swift in Sources */,
 				1A67ED5F211D55E500DCE871 /* MetaData.swift in Sources */,
 				1A67ED50211D11C600DCE871 /* Request.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  NervosTransaction.swift
+//  Transaction.swift
 //  AppChain
 //
 //  Created by Yate Fulham on 2018/08/14.
@@ -16,7 +16,7 @@ public enum TransactionError: Error {
     case unknownError
 }
 
-public struct NervosTransaction: CustomStringConvertible {
+public struct Transaction: CustomStringConvertible {
     public var to: Address?
     public var nonce: String
     public var quota: UInt64

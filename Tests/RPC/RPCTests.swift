@@ -36,7 +36,7 @@ class RPCTests: XCTestCase {
         guard case .success(let metaData) = nervos.appChain.getMetaData() else { return XCTFail() }
 
         let privateKey = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
-        let tx = NervosTransaction(
+        let tx = Transaction(
             to: Address("0x0000000000000000000000000000000000000000"),
             nonce: UUID().uuidString,
             validUntilBlock: currentBlock + 88,
