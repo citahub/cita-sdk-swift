@@ -12,11 +12,11 @@ import PromiseKit
 
 // MARK: - Promise helpers
 private extension RPC {
-    func responseError(_ response: Response) -> NervosError {
+    func responseError(_ response: Response) -> AppChainError {
         if let error = response.error {
-            return NervosError.nodeError(desc: error.message)
+            return AppChainError.nodeError(desc: error.message)
         }
-        return NervosError.nodeError(desc: "Invalid value from AppChain node")
+        return AppChainError.nodeError(desc: "Invalid value from AppChain node")
     }
 
     func apiPromise<T>(_ method: Method, parameters: [Encodable]) -> Promise<T> {

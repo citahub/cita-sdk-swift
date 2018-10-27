@@ -35,30 +35,30 @@ public struct BlockHeader: Decodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        guard let timestamp = try DecodeUtils.decodeIntToBigUInt(container, key: .timestamp) else { throw NervosError.dataError }
+        guard let timestamp = try DecodeUtils.decodeIntToBigUInt(container, key: .timestamp) else { throw AppChainError.dataError }
         self.timestamp = timestamp
 
-        guard let prevHash = try DecodeUtils.decodeHexToData(container, key: .prevHash) else { throw NervosError.dataError }
+        guard let prevHash = try DecodeUtils.decodeHexToData(container, key: .prevHash) else { throw AppChainError.dataError }
         self.prevHash = prevHash
 
         proof = try? container.decode(BftProof.self, forKey: .proof)
 
-        guard let stateRoot = try DecodeUtils.decodeHexToData(container, key: .stateRoot) else { throw NervosError.dataError }
+        guard let stateRoot = try DecodeUtils.decodeHexToData(container, key: .stateRoot) else { throw AppChainError.dataError }
         self.stateRoot = stateRoot
 
-        guard let transactionsRoot = try DecodeUtils.decodeHexToData(container, key: .transactionsRoot) else { throw NervosError.dataError }
+        guard let transactionsRoot = try DecodeUtils.decodeHexToData(container, key: .transactionsRoot) else { throw AppChainError.dataError }
         self.transactionsRoot = transactionsRoot
 
-        guard let receiptsRoot = try DecodeUtils.decodeHexToData(container, key: .receiptsRoot) else { throw NervosError.dataError }
+        guard let receiptsRoot = try DecodeUtils.decodeHexToData(container, key: .receiptsRoot) else { throw AppChainError.dataError }
         self.receiptsRoot = receiptsRoot
 
-        guard let gasUsed = try DecodeUtils.decodeHexToBigUInt(container, key: .gasUsed) else { throw NervosError.dataError }
+        guard let gasUsed = try DecodeUtils.decodeHexToBigUInt(container, key: .gasUsed) else { throw AppChainError.dataError }
         self.gasUsed = gasUsed
 
-        guard let number = try DecodeUtils.decodeHexToBigUInt(container, key: .number) else { throw NervosError.dataError }
+        guard let number = try DecodeUtils.decodeHexToBigUInt(container, key: .number) else { throw AppChainError.dataError }
         self.number = number
 
-        guard let proposer = try DecodeUtils.decodeHexToData(container, key: .proposer) else { throw NervosError.dataError }
+        guard let proposer = try DecodeUtils.decodeHexToData(container, key: .proposer) else { throw AppChainError.dataError }
         self.proposer = proposer
     }
 }

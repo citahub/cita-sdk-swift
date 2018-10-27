@@ -18,10 +18,10 @@ public struct BlockTransaction: Decodable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard let hash = try DecodeUtils.decodeHexToData(container, key: .hash) else { throw NervosError.dataError }
+        guard let hash = try DecodeUtils.decodeHexToData(container, key: .hash) else { throw AppChainError.dataError }
         self.hash = hash
 
-        guard let content = try DecodeUtils.decodeHexToData(container, key: .content) else { throw NervosError.dataError }
+        guard let content = try DecodeUtils.decodeHexToData(container, key: .content) else { throw AppChainError.dataError }
         self.content = content
     }
 }

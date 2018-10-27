@@ -39,13 +39,13 @@ public class RequestDispatcher {
 
         func add(_ request: Request, maxWaitTime: TimeInterval) throws -> Promise<Response> {
             if triggered {
-                throw NervosError.nodeError(desc: "Batch is already in flight")
+                throw AppChainError.nodeError(desc: "Batch is already in flight")
             }
             let requestID = request.id
             let promiseToReturn = Promise<Response>.pending()
             lockQueue.async {
                 if self.promisesDict[requestID] != nil {
-                    promiseToReturn.resolver.reject(NervosError.processingError(desc: "Request ID collision"))
+                    promiseToReturn.resolver.reject(AppChainError.processingError(desc: "Request ID collision"))
                 }
                 self.promisesDict[requestID] = promiseToReturn
                 self.requests.append(request)
@@ -72,7 +72,7 @@ public class RequestDispatcher {
                     for response in batch.responses {
                         if self.promisesDict[UInt64(response.id)] == nil {
                             for k in self.promisesDict.keys {
-                                self.promisesDict[k]?.resolver.reject(NervosError.nodeError(desc: "Unknown request id"))
+                                self.promisesDict[k]?.resolver.reject(AppChainError.nodeError(desc: "Unknown request id"))
                             }
                             return
                         }
@@ -99,7 +99,7 @@ public class RequestDispatcher {
 
     func getBatch() throws -> Batch {
         guard case .batch(let batchLength) = policy else {
-            throw NervosError.inputError(desc: "Trying to batch a request when policy is not to batch")
+            throw AppChainError.inputError(desc: "Trying to batch a request when policy is not to batch")
         }
         let currentBatch = batches.last!
         if currentBatch.requests.count % batchLength == 0 || currentBatch.triggered {

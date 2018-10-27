@@ -38,16 +38,16 @@ public struct TransactionReceipt: Decodable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard let blockNumber = try DecodeUtils.decodeHexToBigUInt(container, key: .blockNumber) else { throw NervosError.dataError }
+        guard let blockNumber = try DecodeUtils.decodeHexToBigUInt(container, key: .blockNumber) else { throw AppChainError.dataError }
         self.blockNumber = blockNumber
 
-        guard let blockHash = try DecodeUtils.decodeHexToData(container, key: .blockHash) else { throw NervosError.dataError }
+        guard let blockHash = try DecodeUtils.decodeHexToData(container, key: .blockHash) else { throw AppChainError.dataError }
         self.blockHash = blockHash
 
-        guard let transactionIndex = try DecodeUtils.decodeHexToBigUInt(container, key: .transactionIndex) else { throw NervosError.dataError }
+        guard let transactionIndex = try DecodeUtils.decodeHexToBigUInt(container, key: .transactionIndex) else { throw AppChainError.dataError }
         self.transactionIndex = transactionIndex
 
-        guard let transactionHash = try DecodeUtils.decodeHexToData(container, key: .transactionHash) else { throw NervosError.dataError }
+        guard let transactionHash = try DecodeUtils.decodeHexToData(container, key: .transactionHash) else { throw AppChainError.dataError }
         self.transactionHash = transactionHash
 
         let contractAddress = try container.decodeIfPresent(EthereumAddress.self, forKey: .contractAddress)
@@ -55,10 +55,10 @@ public struct TransactionReceipt: Decodable {
             self.contractAddress = contractAddress
         }
 
-        guard let cumulativeGasUsed = try DecodeUtils.decodeHexToBigUInt(container, key: .cumulativeGasUsed) else { throw NervosError.dataError }
+        guard let cumulativeGasUsed = try DecodeUtils.decodeHexToBigUInt(container, key: .cumulativeGasUsed) else { throw AppChainError.dataError }
         self.cumulativeGasUsed = cumulativeGasUsed
 
-        guard let gasUsed = try DecodeUtils.decodeHexToBigUInt(container, key: .gasUsed) else { throw NervosError.dataError }
+        guard let gasUsed = try DecodeUtils.decodeHexToBigUInt(container, key: .gasUsed) else { throw AppChainError.dataError }
         self.gasUsed = gasUsed
 
         let logsData = try DecodeUtils.decodeHexToData(container, key: .logsBloom, allowOptional: true)

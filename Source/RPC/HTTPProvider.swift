@@ -28,7 +28,7 @@ public class HTTPProvider {
 
     public func sendAsync(_ request: Request, queue: DispatchQueue = .main) -> Promise<Response> {
         guard request.isValid else {
-            return Promise(error: NervosError.nodeError(desc: "RPC request is invalid.Perhaps method is nil?"))
+            return Promise(error: AppChainError.nodeError(desc: "RPC request is invalid.Perhaps method is nil?"))
         }
 
         return HTTPProvider.post(request, providerURL: url, queue: queue, session: session)
@@ -58,7 +58,7 @@ extension HTTPProvider {
                         return
                     }
                     guard data != nil else {
-                        rp.resolver.reject(NervosError.nodeError(desc: "Node response is empty"))
+                        rp.resolver.reject(AppChainError.nodeError(desc: "Node response is empty"))
                         return
                     }
                     rp.resolver.fulfill(data!)
@@ -71,7 +71,7 @@ extension HTTPProvider {
         return rp.promise.ensure(on: queue) { task = nil }.map(on: queue) { (data: Data) throws -> Response in
             let parsedResponse = try JSONDecoder().decode(Response.self, from: data)
             if parsedResponse.error != nil {
-                throw NervosError.nodeError(desc: "Received an error message from node\n" + String(describing: parsedResponse.error!))
+                throw AppChainError.nodeError(desc: "Received an error message from node\n" + String(describing: parsedResponse.error!))
             }
             return parsedResponse
         }
@@ -95,7 +95,7 @@ extension HTTPProvider {
                         return
                     }
                     guard data != nil, data!.count != 0 else {
-                        rp.resolver.reject(NervosError.nodeError(desc: "Node response is empty"))
+                        rp.resolver.reject(AppChainError.nodeError(desc: "Node response is empty"))
                         return
                     }
                     rp.resolver.fulfill(data!)

@@ -25,11 +25,11 @@ public struct Block: Decodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard let version = try DecodeUtils.decodeIntToBigUInt(container, key: .version) else {
-            throw NervosError.dataError
+            throw AppChainError.dataError
         }
         self.version = version
 
-        guard let hash = try DecodeUtils.decodeHexToData(container, key: .hash) else { throw NervosError.dataError }
+        guard let hash = try DecodeUtils.decodeHexToData(container, key: .hash) else { throw AppChainError.dataError }
         self.hash = hash
 
         let header = try container.decode(BlockHeader.self, forKey: .header)

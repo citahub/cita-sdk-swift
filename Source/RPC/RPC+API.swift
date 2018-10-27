@@ -14,11 +14,11 @@ import Result
 
 // MARK: - API helpers
 private extension RPC {
-    func handle<T>(_ error: Error) -> Result<T, NervosError> {
-        if let err = error as? NervosError {
+    func handle<T>(_ error: Error) -> Result<T, AppChainError> {
+        if let err = error as? AppChainError {
             return Result.failure(err)
         }
-        return Result.failure(NervosError.generalError(err: error))
+        return Result.failure(AppChainError.generalError(err: error))
     }
 }
 
@@ -27,7 +27,7 @@ public extension RPC {
     /// Get the number of AppChain peers currently connected to the client.
     ///
     /// - Returns: Peer count.
-    func peerCount() -> Result<BigUInt, NervosError> {
+    func peerCount() -> Result<BigUInt, AppChainError> {
         do {
             let result = try peerCountPromise().wait()
             return Result(result)
@@ -39,7 +39,7 @@ public extension RPC {
     /// Get the number of most recent block.
     ///
     /// - Returns: Current block height.
-    func blockNumber() -> Result<UInt64, NervosError> {
+    func blockNumber() -> Result<UInt64, AppChainError> {
         do {
             let result = try blockNumberPromise().wait()
             return Result(UInt64(result)) // `blockNumber` returns BigUInt but is cast down to uint64
@@ -53,7 +53,7 @@ public extension RPC {
     /// - Parameter signedTx: Signed transaction data.
     ///
     /// - Returns: Transaction sending result.
-    func sendRawTransaction(signedTx: Data) -> Result<TransactionSendingResult, NervosError> {
+    func sendRawTransaction(signedTx: Data) -> Result<TransactionSendingResult, AppChainError> {
         return sendRawTransaction(signedTx: signedTx.toHexString().addHexPrefix())
     }
 
@@ -62,7 +62,7 @@ public extension RPC {
     /// - Parameter signedTx: Signed transaction hex string.
     ///
     /// - Returns: Transaction sending result.
-    func sendRawTransaction(signedTx: String) -> Result<TransactionSendingResult, NervosError> {
+    func sendRawTransaction(signedTx: String) -> Result<TransactionSendingResult, AppChainError> {
         do {
             let result = try sendRawTransactionPromise(signedTx: signedTx).wait()
             return Result(result)
@@ -78,7 +78,7 @@ public extension RPC {
     ///     - fullTransactions: Whether to include transactions in the block object.
     ///
     /// - Returns: The block object matching the hash.
-    func getBlockByHash(hash: Data, fullTransactions: Bool = false) -> Result<Block, NervosError> {
+    func getBlockByHash(hash: Data, fullTransactions: Bool = false) -> Result<Block, AppChainError> {
         return getBlockByHash(hash: hash.toHexString().addHexPrefix(), fullTransactions: fullTransactions)
     }
 
@@ -89,7 +89,7 @@ public extension RPC {
     ///     - fullTransactions: Whether to include transactions in the block object.
     ///
     /// - Returns: The block object matching the hash.
-    func getBlockByHash(hash: String, fullTransactions: Bool = false) -> Result<Block, NervosError> {
+    func getBlockByHash(hash: String, fullTransactions: Bool = false) -> Result<Block, AppChainError> {
         do {
             let result = try getBlockByHashPromise(hash: hash.addHexPrefix(), fullTransactions: fullTransactions).wait()
             return Result(result)
@@ -105,7 +105,7 @@ public extension RPC {
     ///     - fullTransactions: Whether to include transactions in the block object.
     ///
     /// - Returns: The block object matching the number.
-    func getBlockByNumber(number: UInt64, fullTransactions: Bool = false) -> Result<Block, NervosError> {
+    func getBlockByNumber(number: UInt64, fullTransactions: Bool = false) -> Result<Block, AppChainError> {
         return getBlockByNumber(number: number.toHexString().addHexPrefix(), fullTransactions: fullTransactions)
     }
 
@@ -116,7 +116,7 @@ public extension RPC {
     ///     - fullTransactions: Whether to include transactions in the block object.
     ///
     /// - Returns: The block object matching the number.
-    func getBlockByNumber(number: BigUInt, fullTransactions: Bool = false) -> Result<Block, NervosError> {
+    func getBlockByNumber(number: BigUInt, fullTransactions: Bool = false) -> Result<Block, AppChainError> {
         return getBlockByNumber(number: number.toHexString().addHexPrefix(), fullTransactions: fullTransactions)
     }
 
@@ -127,7 +127,7 @@ public extension RPC {
     ///     - fullTransactions: Whether to include transactions in the block object.
     ///
     /// - Returns: The block object matching the number.
-    func getBlockByNumber(number: String, fullTransactions: Bool = false) -> Result<Block, NervosError> {
+    func getBlockByNumber(number: String, fullTransactions: Bool = false) -> Result<Block, AppChainError> {
         do {
             let result = try getBlockByNumberPromise(number: number.addHexPrefix(), fullTransactions: fullTransactions).wait()
             return Result(result)
@@ -141,7 +141,7 @@ public extension RPC {
     /// - Parameter txhash: transaction hash data.
     ///
     /// - Returns: The receipt of transaction matching the txhash.
-    func getTransactionReceipt(txhash: Data) -> Result<TransactionReceipt, NervosError> {
+    func getTransactionReceipt(txhash: Data) -> Result<TransactionReceipt, AppChainError> {
         return getTransactionReceipt(txhash: txhash.toHexString().addHexPrefix())
     }
 
@@ -150,7 +150,7 @@ public extension RPC {
     /// - Parameter txhash: transaction hash hex string.
     ///
     /// - Returns: The receipt of transaction matching the txhash.
-    func getTransactionReceipt(txhash: String) -> Result<TransactionReceipt, NervosError> {
+    func getTransactionReceipt(txhash: String) -> Result<TransactionReceipt, AppChainError> {
         do {
             let result = try getTransactionReceiptPromise(txhash: txhash.addHexPrefix()).wait()
             return Result(result)
@@ -164,7 +164,7 @@ public extension RPC {
     /// - Parameter filter: The filter object.
     ///
     /// - Returns: An array of all logs matching the filter.
-    func getLogs(filter: Filter) -> Result<[EventLog], NervosError> {
+    func getLogs(filter: Filter) -> Result<[EventLog], AppChainError> {
         do {
             let result = try getLogsPromise(filter: filter).wait()
             return Result(result)
@@ -180,7 +180,7 @@ public extension RPC {
     ///    - blockNumber: A block number
     ///
     /// - Returns: The call result as hex string.
-    func call(request: CallRequest, blockNumber: String = "latest") -> Result<String, NervosError> {
+    func call(request: CallRequest, blockNumber: String = "latest") -> Result<String, AppChainError> {
         do {
             let result = try callPromise(request: request, blockNumber: blockNumber).wait()
             return Result(result)
@@ -194,7 +194,7 @@ public extension RPC {
     /// - Parameter txhash: The transaction hash data.
     ///
     /// - Returns: A transaction details object.
-    func getTransaction(txhash: Data) -> Result<TransactionDetails, NervosError> {
+    func getTransaction(txhash: Data) -> Result<TransactionDetails, AppChainError> {
         return getTransaction(txhash: txhash.toHexString().addHexPrefix())
     }
 
@@ -203,7 +203,7 @@ public extension RPC {
     /// - Parameter txhash: The transaction hash hex string.
     ///
     /// - Returns: A transaction details object.
-    func getTransaction(txhash: String) -> Result<TransactionDetails, NervosError> {
+    func getTransaction(txhash: String) -> Result<TransactionDetails, AppChainError> {
         do {
             let result = try getTransactionPromise(txhash: txhash.addHexPrefix()).wait()
             return Result(result)
@@ -219,7 +219,7 @@ public extension RPC {
     ///    - blockNumber: A block number.
     ///
     /// - Returns: The number of transactions.
-    func getTransactionCount(address: Address, blockNumber: String = "latest") -> Result<BigUInt, NervosError> {
+    func getTransactionCount(address: Address, blockNumber: String = "latest") -> Result<BigUInt, AppChainError> {
         return getTransactionCount(address: address.address.lowercased(), blockNumber: blockNumber)
     }
 
@@ -230,7 +230,7 @@ public extension RPC {
     ///    - blockNumber: A block number.
     ///
     /// - Returns: The number of transactions.
-    func getTransactionCount(address: String, blockNumber: String = "latest") -> Result<BigUInt, NervosError> {
+    func getTransactionCount(address: String, blockNumber: String = "latest") -> Result<BigUInt, AppChainError> {
         do {
             let result = try getTransactionCountlPromise(address: address.lowercased().addHexPrefix(), blockNumber: blockNumber).wait()
             return Result(result)
@@ -246,7 +246,7 @@ public extension RPC {
     ///    - blockNumber: A block number.
     ///
     /// - Returns: The code at the given address.
-    func getCode(address: Address, blockNumber: String = "latest") -> Result<String, NervosError> {
+    func getCode(address: Address, blockNumber: String = "latest") -> Result<String, AppChainError> {
         return getCode(address: address.address.lowercased(), blockNumber: blockNumber)
     }
 
@@ -257,7 +257,7 @@ public extension RPC {
     ///    - blockNumber: A block number.
     ///
     /// - Returns: The code at the given address.
-    func getCode(address: String, blockNumber: String = "latest") -> Result<String, NervosError> {
+    func getCode(address: String, blockNumber: String = "latest") -> Result<String, AppChainError> {
         do {
             let result = try getCodePromise(address: address.lowercased().addHexPrefix(), blockNumber: blockNumber).wait()
             return Result(result)
@@ -273,7 +273,7 @@ public extension RPC {
     ///    - blockNumber: A block number.
     ///
     /// - Returns: The ABI at the given address.
-    func getAbi(address: Address, blockNumber: String = "latest") -> Result<String, NervosError> {
+    func getAbi(address: Address, blockNumber: String = "latest") -> Result<String, AppChainError> {
         return getAbi(address: address.address.lowercased(), blockNumber: blockNumber)
     }
 
@@ -284,7 +284,7 @@ public extension RPC {
     ///    - blockNumber: A block number.
     ///
     /// - Returns: The ABI at the given address.
-    func getAbi(address: String, blockNumber: String = "latest") -> Result<String, NervosError> {
+    func getAbi(address: String, blockNumber: String = "latest") -> Result<String, AppChainError> {
         do {
             let result = try getAbiPromise(address: address.lowercased().addHexPrefix(), blockNumber: blockNumber).wait()
             return Result(result)
@@ -300,7 +300,7 @@ public extension RPC {
     ///    - blockNumber: A block number.
     ///
     /// - Returns: The balance of the account of the give address.
-    func getBalance(address: Address, blockNumber: String = "latest") -> Result<BigUInt, NervosError> {
+    func getBalance(address: Address, blockNumber: String = "latest") -> Result<BigUInt, AppChainError> {
         return getBalance(address: address.address.lowercased(), blockNumber: blockNumber)
     }
 
@@ -311,7 +311,7 @@ public extension RPC {
     ///    - blockNumber: A block number.
     ///
     /// - Returns: The balance of the account of the give address.
-    func getBalance(address: String, blockNumber: String = "latest") -> Result<BigUInt, NervosError> {
+    func getBalance(address: String, blockNumber: String = "latest") -> Result<BigUInt, AppChainError> {
         do {
             let result = try getBalancePromise(address: address.lowercased().addHexPrefix(), blockNumber: blockNumber).wait()
             return Result(result)
@@ -325,7 +325,7 @@ public extension RPC {
     /// - Parameter filter: The filter option object.
     ///
     /// - Returns: ID of the new filter.
-    func newFilter(filter: Filter) -> Result<BigUInt, NervosError> {
+    func newFilter(filter: Filter) -> Result<BigUInt, AppChainError> {
         do {
             let result = try newFilterPromise(filter: filter).wait()
             return Result(result)
@@ -339,7 +339,7 @@ public extension RPC {
     /// - Parameter filter: The filter option object.
     ///
     /// - Returns: ID of the new block filter.
-    func newBlockFilter() -> Result<BigUInt, NervosError> {
+    func newBlockFilter() -> Result<BigUInt, AppChainError> {
         do {
             let result = try newBlockFilterPromise().wait()
             return Result(result)
@@ -354,7 +354,7 @@ public extension RPC {
     /// - Parameter filterID: ID of the filter to uninstall.
     ///
     /// - Returns: True if the filter was successfully uninstalled, otherwise false.
-    func uninstallFilter(filterID: BigUInt) -> Result<Bool, NervosError> {
+    func uninstallFilter(filterID: BigUInt) -> Result<Bool, AppChainError> {
         do {
             let result = try uninstallFilterPromise(filterID: filterID).wait()
             return Result(result)
@@ -368,7 +368,7 @@ public extension RPC {
     /// - Parameter filterID: ID of the filter to get changes from.
     ///
     /// - Returns: An array of logs which occurred since last poll.
-    func getFilterChanges(filterID: BigUInt) -> Result<[EventLog], NervosError> {
+    func getFilterChanges(filterID: BigUInt) -> Result<[EventLog], AppChainError> {
         do {
             let result = try getFilterChangesPromise(filterID: filterID).wait()
             return Result(result)
@@ -382,7 +382,7 @@ public extension RPC {
     /// - Parameter filterID: ID of the filter to get logs from.
     ///
     /// - Returns: An array of logs matching the given filter id.
-    func getFilterLogs(filterID: BigUInt) -> Result<[EventLog], NervosError> {
+    func getFilterLogs(filterID: BigUInt) -> Result<[EventLog], AppChainError> {
         do {
             let result = try getFilterLogsPromise(filterID: filterID).wait()
             return Result(result)
@@ -397,7 +397,7 @@ public extension RPC {
     ///
     /// - Returns: A proof include transaction, receipt, receipt merkle tree proof, block header.
     ///     There will be a tool to verify the proof and extract some info.
-    func getTransactionProof(txhash: Data) -> Result<String, NervosError> {
+    func getTransactionProof(txhash: Data) -> Result<String, AppChainError> {
         return getTransactionProof(txhash: txhash.toHexString())
     }
 
@@ -407,7 +407,7 @@ public extension RPC {
     ///
     /// - Returns: A proof include transaction, receipt, receipt merkle tree proof, block header.
     ///     There will be a tool to verify the proof and extract some info.
-    func getTransactionProof(txhash: String) -> Result<String, NervosError> {
+    func getTransactionProof(txhash: String) -> Result<String, AppChainError> {
         do {
             let result = try getTransactionProofPromise(txhash: txhash.addHexPrefix()).wait()
             return Result(result)
@@ -421,7 +421,7 @@ public extension RPC {
     /// - Parameter blockNumber: The block height.
     ///
     /// - Returns: Metadata of the given block height.
-    func getMetaData(blockNumber: BigUInt) -> Result<MetaData, NervosError> {
+    func getMetaData(blockNumber: BigUInt) -> Result<MetaData, AppChainError> {
         return getMetaData(blockNumber: blockNumber.toHexString())
     }
 
@@ -430,7 +430,7 @@ public extension RPC {
     /// - Parameter blockNumber: The block height, hex string integer or "latest".
     ///
     /// - Returns: Metadata of given block height.
-    func getMetaData(blockNumber: String = "latest") -> Result<MetaData, NervosError> {
+    func getMetaData(blockNumber: String = "latest") -> Result<MetaData, AppChainError> {
         do {
             let result = try getMetaDataPromise(blockNumber: blockNumber).wait()
             return Result(result)
@@ -445,7 +445,7 @@ public extension RPC {
     /// - Parameter blockNumber: The block height.
     ///
     /// - Returns: block header of the given block height.
-    func getBlockHeader(blockNumber: UInt64) -> Result<String, NervosError> {
+    func getBlockHeader(blockNumber: UInt64) -> Result<String, AppChainError> {
         return getBlockHeader(blockNumber: blockNumber.toHexString().addHexPrefix())
     }
 
@@ -455,7 +455,7 @@ public extension RPC {
     /// - Parameter blockNumber: The block height, hex string integer or "latest".
     ///
     /// - Returns: block header of the given block height.
-    func getBlockHeader(blockNumber: String = "latest") -> Result<String, NervosError> {
+    func getBlockHeader(blockNumber: String = "latest") -> Result<String, AppChainError> {
         do {
             let result = try getBlockHeaderPromise(blockNumber: blockNumber).wait()
             return Result(result)
@@ -473,7 +473,7 @@ public extension RPC {
     ///    - blockNumber: The block number, hex string integer, or the string "latest", "earliest".
     ///
     /// - Returns: State proof of special value. Include address, account proof, key, value proof.
-    func getStateProof(address: Address, key: String, blockNumber: String = "latest") -> Result<String, NervosError> {
+    func getStateProof(address: Address, key: String, blockNumber: String = "latest") -> Result<String, AppChainError> {
         return getStateProof(address: address.address.lowercased(), key: key, blockNumber: blockNumber)
     }
 
@@ -486,7 +486,7 @@ public extension RPC {
     ///    - blockNumber: The block number, hex string integer, or the string "latest", "earliest".
     ///
     /// - Returns: State proof of special value. Include address, account proof, key, value proof.
-    func getStateProof(address: String, key: String, blockNumber: String = "latest") -> Result<String, NervosError> {
+    func getStateProof(address: String, key: String, blockNumber: String = "latest") -> Result<String, AppChainError> {
         do {
             let result = try getStateProofPromise(address: address.lowercased().addHexPrefix(), key: key, blockNumber: blockNumber).wait()
             return Result(result)

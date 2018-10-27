@@ -37,21 +37,21 @@ public struct Proof: Decodable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard let proposal = try DecodeUtils.decodeHexToData(container, key: .proposal) else { throw NervosError.dataError }
+        guard let proposal = try DecodeUtils.decodeHexToData(container, key: .proposal) else { throw AppChainError.dataError }
         self.proposal = proposal
 
-        guard let height = try DecodeUtils.decodeIntToBigUInt(container, key: .height) else { throw NervosError.dataError }
+        guard let height = try DecodeUtils.decodeIntToBigUInt(container, key: .height) else { throw AppChainError.dataError }
         self.height = height
 
-        guard let round = try DecodeUtils.decodeIntToBigUInt(container, key: .round) else { throw NervosError.dataError }
+        guard let round = try DecodeUtils.decodeIntToBigUInt(container, key: .round) else { throw AppChainError.dataError }
         self.round = round
 
         let commitsStrings = try container.decode([String: String].self, forKey: .commits)
         var commits = [Data: Data]()
 
         for str in commitsStrings {
-            guard let d = Data.fromHex(str.key) else { throw NervosError.dataError }
-            guard let c = Data.fromHex(str.value) else { throw NervosError.dataError }
+            guard let d = Data.fromHex(str.key) else { throw AppChainError.dataError }
+            guard let c = Data.fromHex(str.value) else { throw AppChainError.dataError }
             commits[d] = c
         }
         self.commits = commits

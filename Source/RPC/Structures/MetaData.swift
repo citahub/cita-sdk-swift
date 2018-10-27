@@ -45,12 +45,12 @@ public struct MetaData: Decodable {
 
         self.website = try container.decode(String.self, forKey: .website)
 
-        guard let genesisTimestamp = try DecodeUtils.decodeIntToBigUInt(container, key: .genesisTimestamp) else { throw NervosError.dataError }
+        guard let genesisTimestamp = try DecodeUtils.decodeIntToBigUInt(container, key: .genesisTimestamp) else { throw AppChainError.dataError }
         self.genesisTimestamp = genesisTimestamp
 
         self.validators = try container.decode([String].self, forKey: .validators)
 
-        guard let blockInterval = try DecodeUtils.decodeIntToBigUInt(container, key: .blockInterval) else { throw NervosError.dataError }
+        guard let blockInterval = try DecodeUtils.decodeIntToBigUInt(container, key: .blockInterval) else { throw AppChainError.dataError }
         self.blockInterval = blockInterval
 
         self.tokenName = try container.decode(String.self, forKey: .tokenName)
