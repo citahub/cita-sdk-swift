@@ -10,7 +10,7 @@ import Foundation
 import PromiseKit
 
 public final class RPC {
-    var provider: HTTPProvider
+    private(set) var provider: HTTPProvider
     private(set) var requestDispatcher: RequestDispatcher
 
     public init(provider: HTTPProvider) {
