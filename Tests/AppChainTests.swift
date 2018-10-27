@@ -11,6 +11,6 @@ import XCTest
 
 class AppChainTests: XCTestCase {
     func testDefaultInstance() {
-        XCTAssertEqual(nervos.provider.url, DefaultNervos.instance.provider.url)
+        XCTAssertEqual(appChain.provider.url, AppChain.default.provider.url)
     }
 }

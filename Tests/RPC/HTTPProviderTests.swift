@@ -11,7 +11,7 @@ import XCTest
 
 class HTTPProviderTests: XCTestCase {
     func testDefaultProvider() {
-        XCTAssertNotNil(HTTPProvider.testnetProviderURL)
+        XCTAssertNotNil(HTTPProvider.testnetURL)
     }
 
     func testOnlySupportHTTP() {

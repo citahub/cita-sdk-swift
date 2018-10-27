@@ -11,27 +11,18 @@ import XCTest
 @testable import AppChain
 
 extension HTTPProvider {
-    static var testnetProviderURL: URL {
+    static var testnetURL: URL {
         let testServer = Config.shared["rpcServer"] ?? "http://127.0.0.1:1337"
         return URL(string: testServer)!
     }
 
-    static var deadProviderURL: URL {
-        return URL(string: "http://111.111.111.111:1111")!
-    }
-
     static var testnetProvider: HTTPProvider {
-        return HTTPProvider(testnetProviderURL)!
-    }
-
-    static var deadProvider: HTTPProvider {
-        return HTTPProvider(deadProviderURL)!
+        return HTTPProvider(testnetURL)!
     }
 }
 
-struct DefaultNervos {
-    static let instance: AppChain = AppChain(provider: HTTPProvider.testnetProvider)
-    static let deadInstance: AppChain = AppChain(provider: HTTPProvider.deadProvider)
+extension AppChain {
+    static var `default` = AppChain(provider: HTTPProvider.testnetProvider)
 }
 
 class Config {
@@ -54,12 +45,8 @@ class Config {
 }
 
 extension XCTestCase {
-    var nervos: AppChain {
-        return DefaultNervos.instance
-    }
-
-    var nobody: AppChain {
-        return DefaultNervos.deadInstance
+    var appChain: AppChain {
+        return AppChain.default
     }
 
     /// Load JSON fixture file from appchain-tests folder.
