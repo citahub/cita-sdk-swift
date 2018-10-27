@@ -76,25 +76,25 @@ For test or development, you can follow the [CITA document](https://docs.nervos.
 
 This testnet supports [CITA](https://github.com/cryptape/cita) version **v0.19**.
 
-### NervosProvider
+### HTTPProvider
 
-`NervosProvider` is the HTTP provider to connect to Nervos AppChain testnet or any other network. To construct a provider:
+`HTTPProvider` connects to Nervos AppChain testnet or any other network. To construct a provider:
 
 ```swift
-import Nervos
+import AppChain
 
-let testnetUrl = URL(string: "http://121.196.200.225:1337")! // Or use any other AppChain network
+let testnetUrl = URL(string: "http://121.196.200.225:1337")! // Or use any other Nervos AppChain network
 // let testnetUrl = URL(string: "https://node.cryptape.com")! // Also available
-let provider = NervosProvider(testnetUrl)
+let provider = HTTPProvider(testnetUrl)
 ```
 
-### Nervos
+### AppChain
 
-`Nervos` is the class that talks to AppChain network through `NervosProvider`. Consume any JSON-RPC API with Nervos' `appChain` property.
+`AppChain` is the class that talks to AppChain network through `HTTPProvider`. Consume any JSON-RPC API with `AppChain`' `rpc` property.
 
 ```swift
-let nervos = Nervos(provider)
-let peerCount = nervos.appChain.peerCount().value!
+let appChain = AppChain(provider: provider)
+let peerCount = appChain.rpc.peerCount().value!
 ```
 
 ### Transaction and Signer
@@ -119,12 +119,12 @@ guard let signed = try? Signer().sign(transaction: tx, with: privateKey) else {
 
 ## RPC API Reference
 
-All JSON-RPC APIs return `Result<Value, NervosError>`, where `Value` is the actual type of the result when the call is successful.
+All JSON-RPC APIs return `Result<Value, AppChainError>`, where `Value` is the actual type of the result when the call is successful.
 
 A common flow to call an API and handle the result is as follows:
 
 ```swift
-let result = nervos.appChain.peerCount()
+let result = appChain.rpc.peerCount()
 switch result {
 case .success(let count):
     print("AppChain peer count: \(count)")
@@ -166,7 +166,7 @@ All JSON-RPC API functions are synchronous. But the underlying HTTP request migh
 /// Get the number of AppChain peers currently connected to the client.
 ///
 /// - Returns: Peer count.
-func peerCount() -> Result<BigUInt, NervosError>
+func peerCount() -> Result<BigUInt, AppChainError>
 ```
 
 ### blockNumber
@@ -175,7 +175,7 @@ func peerCount() -> Result<BigUInt, NervosError>
 /// Get the number of most recent block.
 ///
 /// - Returns: Current block height.
-func blockNumber() -> Result<UInt64, NervosError>
+func blockNumber() -> Result<UInt64, AppChainError>
 ```
 
 ### sendRawTransaction
@@ -186,7 +186,7 @@ func blockNumber() -> Result<UInt64, NervosError>
 /// - Parameter signedTx: Signed transaction hex string.
 ///
 /// - Returns: Transaction sending result.
-func sendRawTransaction(signedTx: String) -> Result<TransactionSendingResult, NervosError>
+func sendRawTransaction(signedTx: String) -> Result<TransactionSendingResult, AppChainError>
 ```
 
 ### getBlockByHash
@@ -199,7 +199,7 @@ func sendRawTransaction(signedTx: String) -> Result<TransactionSendingResult, Ne
 ///     - fullTransactions: Whether to include transactions in the block object.
 ///
 /// - Returns: The block object matching the hash.
-func getBlockByHash(hash: String, fullTransactions: Bool = false) -> Result<Block, NervosError>
+func getBlockByHash(hash: String, fullTransactions: Bool = false) -> Result<Block, AppChainError>
 ```
 
 ### getBlockByNumber
@@ -212,7 +212,7 @@ func getBlockByHash(hash: String, fullTransactions: Bool = false) -> Result<Bloc
 ///     - fullTransactions: Whether to include transactions in the block object.
 ///
 /// - Returns: The block object matching the number.
-func getBlockByNumber(number: BigUInt, fullTransactions: Bool = false) -> Result<Block, NervosError>
+func getBlockByNumber(number: BigUInt, fullTransactions: Bool = false) -> Result<Block, AppChainError>
 ```
 
 ### getTransactionReceipt
@@ -223,7 +223,7 @@ func getBlockByNumber(number: BigUInt, fullTransactions: Bool = false) -> Result
 /// - Parameter txhash: transaction hash hex string.
 ///
 /// - Returns: The receipt of transaction matching the txhash.
-func getTransactionReceipt(txhash: String) -> Result<TransactionReceipt, NervosError>
+func getTransactionReceipt(txhash: String) -> Result<TransactionReceipt, AppChainError>
 ```
 
 ### getLogs
@@ -234,7 +234,7 @@ func getTransactionReceipt(txhash: String) -> Result<TransactionReceipt, NervosE
 /// - Parameter filter: The filter object.
 ///
 /// - Returns: An array of all logs matching the filter.
-func getLogs(filter: Filter) -> Result<[EventLog], NervosError>
+func getLogs(filter: Filter) -> Result<[EventLog], AppChainError>
 ```
 
 ### call
@@ -247,7 +247,7 @@ func getLogs(filter: Filter) -> Result<[EventLog], NervosError>
 ///    - blockNumber: A block number
 ///
 /// - Returns: The call result as hex string.
-func call(request: CallRequest, blockNumber: String = "latest") -> Result<String, NervosError>
+func call(request: CallRequest, blockNumber: String = "latest") -> Result<String, AppChainError>
 ```
 
 ### getTransaction
@@ -258,7 +258,7 @@ func call(request: CallRequest, blockNumber: String = "latest") -> Result<String
 /// - Parameter txhash: The transaction hash hex string.
 ///
 /// - Returns: A transaction details object.
-func getTransaction(txhash: String) -> Result<TransactionDetails, NervosError>
+func getTransaction(txhash: String) -> Result<TransactionDetails, AppChainError>
 ```
 
 ### getTransactionCount
@@ -271,7 +271,7 @@ func getTransaction(txhash: String) -> Result<TransactionDetails, NervosError>
 ///    - blockNumber: A block number.
 ///
 /// - Returns: The number of transactions.
-func getTransactionCount(address: String, blockNumber: String = "latest") -> Result<BigUInt, NervosError>
+func getTransactionCount(address: String, blockNumber: String = "latest") -> Result<BigUInt, AppChainError>
 ```
 
 ### getCode
@@ -284,7 +284,7 @@ func getTransactionCount(address: String, blockNumber: String = "latest") -> Res
 ///    - blockNumber: A block number.
 ///
 /// - Returns: The code at the given address.
-func getCode(address: String, blockNumber: String = "latest") -> Result<String, NervosError>
+func getCode(address: String, blockNumber: String = "latest") -> Result<String, AppChainError>
 ```
 
 ### getAbi
@@ -297,7 +297,7 @@ func getCode(address: String, blockNumber: String = "latest") -> Result<String, 
 ///    - blockNumber: A block number.
 ///
 /// - Returns: The ABI at the given address.
-func getAbi(address: String, blockNumber: String = "latest") -> Result<String, NervosError>
+func getAbi(address: String, blockNumber: String = "latest") -> Result<String, AppChainError>
 ```
 
 ### getBalance
@@ -310,7 +310,7 @@ func getAbi(address: String, blockNumber: String = "latest") -> Result<String, N
 ///    - blockNumber: A block number.
 ///
 /// - Returns: The balance of the account of the give address.
-func getBalance(address: String, blockNumber: String = "latest") -> Result<BigUInt, NervosError>
+func getBalance(address: String, blockNumber: String = "latest") -> Result<BigUInt, AppChainError>
 ```
 
 ### newFilter
@@ -321,7 +321,7 @@ func getBalance(address: String, blockNumber: String = "latest") -> Result<BigUI
 /// - Parameter filter: The filter option object.
 ///
 /// - Returns: ID of the new filter.
-func newFilter(filter: Filter) -> Result<BigUInt, NervosError>
+func newFilter(filter: Filter) -> Result<BigUInt, AppChainError>
 ```
 
 ### newBlockFilter
@@ -332,7 +332,7 @@ func newFilter(filter: Filter) -> Result<BigUInt, NervosError>
 /// - Parameter filter: The filter option object.
 ///
 /// - Returns: ID of the new block filter.
-func newBlockFilter() -> Result<BigUInt, NervosError>
+func newBlockFilter() -> Result<BigUInt, AppChainError>
 ```
 
 ### uninstallFilter
@@ -344,7 +344,7 @@ func newBlockFilter() -> Result<BigUInt, NervosError>
 /// - Parameter filterID: ID of the filter to uninstall.
 ///
 /// - Returns: True if the filter was successfully uninstalled, otherwise false.
-func uninstallFilter(filterID: BigUInt) -> Result<Bool, NervosError>
+func uninstallFilter(filterID: BigUInt) -> Result<Bool, AppChainError>
 ```
 
 ### getFilterChanges
@@ -355,7 +355,7 @@ func uninstallFilter(filterID: BigUInt) -> Result<Bool, NervosError>
 /// - Parameter filterID: ID of the filter to get changes from.
 ///
 /// - Returns: An array of logs which occurred since last poll.
-func getFilterChanges(filterID: BigUInt) -> Result<[EventLog], NervosError>
+func getFilterChanges(filterID: BigUInt) -> Result<[EventLog], AppChainError>
 ```
 
 ### getFilterLogs
@@ -366,7 +366,7 @@ func getFilterChanges(filterID: BigUInt) -> Result<[EventLog], NervosError>
 /// - Parameter filterID: ID of the filter to get logs from.
 ///
 /// - Returns: An array of logs matching the given filter id.
-func getFilterLogs(filterID: BigUInt) -> Result<[EventLog], NervosError>
+func getFilterLogs(filterID: BigUInt) -> Result<[EventLog], AppChainError>
 ```
 
 ### getTransactionProof
@@ -378,7 +378,7 @@ func getFilterLogs(filterID: BigUInt) -> Result<[EventLog], NervosError>
 ///
 /// - Returns: A proof include transaction, receipt, receipt merkle tree proof, block header.
 ///     There will be a tool to verify the proof and extract some info.
-func getTransactionProof(txhash: String) -> Result<String, NervosError>
+func getTransactionProof(txhash: String) -> Result<String, AppChainError>
 ```
 
 ### getMetaData
@@ -389,7 +389,7 @@ func getTransactionProof(txhash: String) -> Result<String, NervosError>
 /// - Parameter blockNumber: The block height, hex string integer or "latest".
 ///
 /// - Returns: Metadata of given block height.
-func getMetaData(blockNumber: String = "latest") -> Result<MetaData, NervosError>
+func getMetaData(blockNumber: String = "latest") -> Result<MetaData, AppChainError>
 ```
 
 ### getBlockHeader
@@ -400,7 +400,7 @@ func getMetaData(blockNumber: String = "latest") -> Result<MetaData, NervosError
 /// - Parameter blockNumber: The block height, hex string integer or "latest".
 ///
 /// - Returns: block header of the given block height.
-func getBlockHeader(blockNumber: String = "latest") -> Result<String, NervosError>
+func getBlockHeader(blockNumber: String = "latest") -> Result<String, AppChainError>
 ```
 
 ### getStateProof
@@ -414,7 +414,7 @@ func getBlockHeader(blockNumber: String = "latest") -> Result<String, NervosErro
 ///    - blockNumber: The block number, hex string integer, or the string "latest", "earliest".
 ///
 /// - Returns: State proof of special value. Include address, account proof, key, value proof.
-func getStateProof(address: String, key: String, blockNumber: String = "latest") -> Result<String, NervosError>
+func getStateProof(address: String, key: String, blockNumber: String = "latest") -> Result<String, AppChainError>
 ```
 
 ## License
