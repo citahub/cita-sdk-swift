@@ -7,7 +7,7 @@ target 'AppChain' do
   inhibit_all_warnings!
 
   pod 'web3swift', git: 'https://github.com/matterinc/web3swift', tag: '1.1.10'
-  pod 'SwiftProtobuf', git: 'https://github.com/apple/swift-protobuf.git', tag: '1.0.3'
+  pod 'SwiftProtobuf', '~> 1.2.0'
 
   target 'AppChainTests' do
     inherit! :search_paths
