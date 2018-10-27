@@ -1,5 +1,5 @@
 //
-//  NervosProviderTests.swift
+//  HTTPProviderTests.swift
 //  AppChainTests
 //
 //  Created by Yate Fulham on 2018/08/09.
@@ -9,12 +9,12 @@
 import XCTest
 @testable import AppChain
 
-class NervosProviderTests: XCTestCase {
+class HTTPProviderTests: XCTestCase {
     func testDefaultProvider() {
-        XCTAssertNotNil(NervosProvider.testnetProviderURL)
+        XCTAssertNotNil(HTTPProvider.testnetProviderURL)
     }
 
     func testOnlySupportHTTP() {
-        XCTAssertNil(NervosProvider(URL(string: "ftp://127.0.0.1")!))
+        XCTAssertNil(HTTPProvider(URL(string: "ftp://127.0.0.1")!))
     }
 }

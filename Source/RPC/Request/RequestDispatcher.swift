@@ -15,11 +15,11 @@ public class RequestDispatcher {
     public var policy: DispatchPolicy
     public var queue: DispatchQueue
 
-    private var provider: NervosProvider
+    private var provider: HTTPProvider
     private var lockQueue: DispatchQueue
     private var batches: [Batch] = []
 
-    init(provider: NervosProvider, queue: DispatchQueue, policy: DispatchPolicy) {
+    init(provider: HTTPProvider, queue: DispatchQueue, policy: DispatchPolicy) {
         self.provider = provider
         self.queue = queue
         self.policy = policy
@@ -32,7 +32,7 @@ public class RequestDispatcher {
         var promisesDict: [UInt64: (promise: Promise<Response>, resolver: Resolver<Response>)] = [:]
         var requests: [Request] = []
         var pendingTrigger: Guarantee<Void>?
-        var provider: NervosProvider
+        var provider: HTTPProvider
         var queue: DispatchQueue
         var lockQueue: DispatchQueue
         var triggered = false
@@ -89,7 +89,7 @@ public class RequestDispatcher {
             }
         }
 
-        init (provider: NervosProvider, capacity: Int, queue: DispatchQueue, lockQueue: DispatchQueue) {
+        init (provider: HTTPProvider, capacity: Int, queue: DispatchQueue, lockQueue: DispatchQueue) {
             self.provider = provider
             self.capacity = capacity
             self.queue = queue

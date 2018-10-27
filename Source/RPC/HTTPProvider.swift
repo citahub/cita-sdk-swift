@@ -1,5 +1,5 @@
 //
-//  NervosProvider.swift
+//  HTTPProvider.swift
 //  AppChain
 //
 //  Created by Yate Fulham on 2018/08/09.
@@ -7,12 +7,10 @@
 //
 
 import Foundation
-import web3swift
 import PromiseKit
 
-/// Nervos HTTP Provider.
-public class NervosProvider {
-    public var attachedKeystoreManager: KeystoreManager?
+/// Nervos AppChain HTTP Provider.
+public class HTTPProvider {
     public let url: URL
 
     public var session: URLSession = { () -> URLSession in
@@ -21,12 +19,11 @@ public class NervosProvider {
         return urlSession
     }()
 
-    public init?(_ url: URL, keystoreManager: KeystoreManager? = nil) {
+    public init?(_ url: URL) {
         guard ["http", "https"].contains(url.scheme) else {
             return nil
         }
         self.url = url
-        attachedKeystoreManager = keystoreManager
     }
 
     public func sendAsync(_ request: Request, queue: DispatchQueue = .main) -> Promise<Response> {
@@ -34,15 +31,15 @@ public class NervosProvider {
             return Promise(error: NervosError.nodeError(desc: "RPC request is invalid.Perhaps method is nil?"))
         }
 
-        return NervosProvider.post(request, providerURL: url, queue: queue, session: session)
+        return HTTPProvider.post(request, providerURL: url, queue: queue, session: session)
     }
 
     public func sendAsync(_ requests: RequestBatch, queue: DispatchQueue = .main) -> Promise<ResponseBatch> {
-        return NervosProvider.post(requests, providerURL: url, queue: queue, session: session)
+        return HTTPProvider.post(requests, providerURL: url, queue: queue, session: session)
     }
 }
 
-extension NervosProvider {
+extension HTTPProvider {
     static func post(_ request: Request, providerURL: URL, queue: DispatchQueue, session: URLSession) -> Promise<Response> {
         let rp = Promise<Data>.pending()
         var task: URLSessionTask?

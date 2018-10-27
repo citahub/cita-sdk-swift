@@ -11,7 +11,7 @@ import BigInt
 import Result
 
 public struct Utils {
-    static func getQuotaPrice(nervos: Nervos) -> Result<BigUInt, NervosError> {
+    static func getQuotaPrice(nervos: AppChain) -> Result<BigUInt, NervosError> {
         let result = ContractCall.request(.getQuotaPrice, nervos: nervos)
         switch result {
         case .success(let quotaPrice):
@@ -36,8 +36,8 @@ extension Utils {
             }
         }
 
-        static func request(_ requestType: RequestType, nervos: Nervos) -> Result<String, NervosError> {
-            return nervos.appChain.call(request: requestType.rawValue)
+        static func request(_ requestType: RequestType, nervos: AppChain) -> Result<String, NervosError> {
+            return nervos.rpc.call(request: requestType.rawValue)
         }
     }
 }

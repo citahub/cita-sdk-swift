@@ -1,5 +1,5 @@
 //
-//  AppChain+API.swift
+//  RPC+API.swift
 //  AppChain
 //
 //  Created by Yate Fulham on 2018/08/20.
@@ -13,7 +13,7 @@ import Result
 // swiftlint:disable file_length
 
 // MARK: - API helpers
-private extension AppChain {
+private extension RPC {
     func handle<T>(_ error: Error) -> Result<T, NervosError> {
         if let err = error as? NervosError {
             return Result.failure(err)
@@ -23,7 +23,7 @@ private extension AppChain {
 }
 
 // MARK: - API
-public extension AppChain {
+public extension RPC {
     /// Get the number of AppChain peers currently connected to the client.
     ///
     /// - Returns: Peer count.

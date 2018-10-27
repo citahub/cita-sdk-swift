@@ -8,8 +8,8 @@
 
 import Foundation
 
-/// Nervos Address
-/// A Nervos address has same format as Ethereum, but doesn't support EIP55 checksum.
+/// AppChain Address
+/// An AppChain address has same format as Ethereum, but doesn't support EIP55 checksum.
 public struct Address: Equatable {
     private let addressString: String
 

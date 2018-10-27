@@ -67,7 +67,6 @@ AppChainSwift is built upon [matterinc/web3swift](https://github.com/matterinc/w
 |:------------------:|:-------------------:|
 | Web3Utils          | Web3Utils           |
 | NervosError        | Web3Error           |
-| NervosOptions      | Web3Options         |
 | EthereumAddress    | EthereumAddress     |
 | EventLog           | EventLog            |
 | BloomFilter        | EthereumBloomFilter |

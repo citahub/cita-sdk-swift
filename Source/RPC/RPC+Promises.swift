@@ -1,5 +1,5 @@
 //
-//  AppChain+Promises.swift
+//  RPC+Promises.swift
 //  AppChain
 //
 //  Created by Yate Fulham on 2018/08/13.
@@ -11,17 +11,17 @@ import BigInt
 import PromiseKit
 
 // MARK: - Promise helpers
-private extension AppChain {
+private extension RPC {
     func responseError(_ response: Response) -> NervosError {
         if let error = response.error {
             return NervosError.nodeError(desc: error.message)
         }
-        return NervosError.nodeError(desc: "Invalid value from Nervos node")
+        return NervosError.nodeError(desc: "Invalid value from AppChain node")
     }
 
     func apiPromise<T>(_ method: Method, parameters: [Encodable]) -> Promise<T> {
         let request = RequestFabric.prepareRequest(method, parameters: parameters)
-        return nervos!.dispatch(request).map(on: nervos!.requestDispatcher.queue) { response in
+        return dispatch(request).map(on: requestDispatcher.queue) { response in
             guard let value: T = response.getValue() else {
                 throw self.responseError(response)
             }
@@ -32,7 +32,7 @@ private extension AppChain {
 }
 
 // MARK: - API Promises
-internal extension AppChain {
+internal extension RPC {
     func peerCountPromise() -> Promise<BigUInt> {
         return apiPromise(.peerCount, parameters: [])
     }

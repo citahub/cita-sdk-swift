@@ -1,5 +1,5 @@
 //
-//  NervosTests.swift
+//  AppChainTests.swift
 //  AppChainTests
 //
 //  Created by Yate Fulham on 2018/08/10.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import AppChain
 
-class NervosTests: XCTestCase {
+class AppChainTests: XCTestCase {
     func testDefaultInstance() {
         XCTAssertEqual(nervos.provider.url, DefaultNervos.instance.provider.url)
     }

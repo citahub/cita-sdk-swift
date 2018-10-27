@@ -10,7 +10,7 @@ import Foundation
 import XCTest
 @testable import AppChain
 
-extension NervosProvider {
+extension HTTPProvider {
     static var testnetProviderURL: URL {
         let testServer = Config.shared["rpcServer"] ?? "http://127.0.0.1:1337"
         return URL(string: testServer)!
@@ -20,18 +20,18 @@ extension NervosProvider {
         return URL(string: "http://111.111.111.111:1111")!
     }
 
-    static var testnetProvider: NervosProvider {
-        return NervosProvider(testnetProviderURL)!
+    static var testnetProvider: HTTPProvider {
+        return HTTPProvider(testnetProviderURL)!
     }
 
-    static var deadProvider: NervosProvider {
-        return NervosProvider(deadProviderURL)!
+    static var deadProvider: HTTPProvider {
+        return HTTPProvider(deadProviderURL)!
     }
 }
 
 struct DefaultNervos {
-    static let instance: Nervos = Nervos(provider: NervosProvider.testnetProvider)
-    static let deadInstance: Nervos = Nervos(provider: NervosProvider.deadProvider)
+    static let instance: AppChain = AppChain(provider: HTTPProvider.testnetProvider)
+    static let deadInstance: AppChain = AppChain(provider: HTTPProvider.deadProvider)
 }
 
 class Config {
@@ -54,11 +54,11 @@ class Config {
 }
 
 extension XCTestCase {
-    var nervos: Nervos {
+    var nervos: AppChain {
         return DefaultNervos.instance
     }
 
-    var nobody: Nervos {
+    var nobody: AppChain {
         return DefaultNervos.deadInstance
     }
 
