@@ -9,7 +9,7 @@
 import Foundation
 import PromiseKit
 
-public class RPC {
+public final class RPC {
     var provider: HTTPProvider
     private(set) var requestDispatcher: RequestDispatcher
 

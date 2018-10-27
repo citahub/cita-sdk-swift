@@ -11,7 +11,7 @@ import secp256k1_swift
 
 // AppChain Message Signer
 struct MessageSigner {
-    // TODO: Nervos sign personal message
+    // TODO: AppChain sign personal message
     public static func sign(message: Data, privateKey: String, useExtraEntropy: Bool = true) throws -> String? {
         return try signHash(EthereumMessageSigner().hashMessage(message), privateKey: privateKey, useExtraEntropy: useExtraEntropy).toHexString().addHexPrefix()
     }

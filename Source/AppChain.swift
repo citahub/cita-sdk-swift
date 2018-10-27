@@ -1,5 +1,5 @@
 //
-//  Nervos.swift
+//  AppChain.swift
 //  AppChain
 //
 //  Created by Yate Fulham on 2018/08/10.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class AppChain {
+public final class AppChain {
     public var provider: HTTPProvider
 
     public lazy var rpc: RPC = {

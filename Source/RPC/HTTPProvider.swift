@@ -10,7 +10,7 @@ import Foundation
 import PromiseKit
 
 /// Nervos AppChain HTTP Provider.
-public class HTTPProvider {
+public final class HTTPProvider {
     public let url: URL
 
     public var session: URLSession = { () -> URLSession in
