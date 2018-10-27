@@ -13,7 +13,7 @@ import secp256k1_swift
 struct MessageSigner {
     // TODO: Nervos sign personal message
     public static func sign(message: Data, privateKey: String, useExtraEntropy: Bool = true) throws -> String? {
-        return try signHash(ETHMessageSigner().hashMessage(message), privateKey: privateKey, useExtraEntropy: useExtraEntropy).toHexString().addHexPrefix()
+        return try signHash(EthereumMessageSigner().hashMessage(message), privateKey: privateKey, useExtraEntropy: useExtraEntropy).toHexString().addHexPrefix()
     }
 
     private static func signHash(_ hash: Data, privateKey: String, useExtraEntropy: Bool = true) throws -> Data {

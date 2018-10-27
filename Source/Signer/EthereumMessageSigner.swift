@@ -1,5 +1,5 @@
 //
-//  ETHMessageSigner.swift
+//  EthereumMessageSigner.swift
 //  AppChain
 //
 //  Created by XiaoLu on 2018/10/22.
@@ -14,7 +14,7 @@ enum SignError: Error {
 }
 
 // Ethereum Message Signer
-public struct ETHMessageSigner {
+public struct EthereumMessageSigner {
     public func signPersonalMessage(message: Data, privateKey: String, useExtraEntropy: Bool = true) throws -> String? {
         return try sign(message: appendPersonalMessagePrefix(for: message), privateKey: privateKey, useExtraEntropy: useExtraEntropy)
     }
@@ -32,7 +32,7 @@ public struct ETHMessageSigner {
     }
 }
 
-private extension ETHMessageSigner {
+private extension EthereumMessageSigner {
     func signHash(_ hash: Data, privateKey: String, useExtraEntropy: Bool) throws -> Data {
         guard let privateKeyData = Data.fromHex(privateKey) else {
             throw SignError.invalidPrivateKey
