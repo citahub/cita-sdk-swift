@@ -9,6 +9,7 @@
 import Foundation
 import BigInt
 
+// AppChain Transaction Unsigner for recovering tx and public key from a signed tx.
 public struct Unsigner {
     /// Unsign a signed transaction.
     public func unsign(signed: String) throws -> UnsignedTransaction {

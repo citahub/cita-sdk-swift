@@ -9,6 +9,7 @@
 import Foundation
 import BigInt
 
+// AppChain Transaction Signer
 public struct Signer {
     // Sign a transaction using private key.
     // Value of transaction may not exceed max of UInt256.

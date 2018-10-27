@@ -16,6 +16,7 @@ public enum TransactionError: Error {
     case unknownError
 }
 
+// AppChain Transaction
 public struct Transaction: CustomStringConvertible {
     public var to: Address?
     public var nonce: String
@@ -51,12 +52,12 @@ public struct Transaction: CustomStringConvertible {
             "Transaction",
             "to: " + (to?.address ?? ""),
             "nonce: " + nonce,
+            "quota: " + String(quota),
+            "validUntilBlock: " + validUntilBlock.description,
             "data: " + (data?.toHexString() ?? "0x"),
             "value: " + value.description,
-            "validUntilBlock: " + validUntilBlock.description,
-            "quota: " + String(quota),
-            "version: " + String(version),
-            "chainId: " + String(chainId)
+            "chainId: " + String(chainId),
+            "version: " + String(version)
         ].joined(separator: "\n")
     }
 }

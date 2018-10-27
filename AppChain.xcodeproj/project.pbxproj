@@ -53,7 +53,7 @@
 		1AD65FA62122AF4400AA4C84 /* SignerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65FA42122AF2F00AA4C84 /* SignerTest.swift */; };
 		893532EE217D7D9B00404C0B /* ETHMessageSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893532ED217D7D9B00404C0B /* ETHMessageSigner.swift */; };
 		893532F2217DA03300404C0B /* ETHMessageSignerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893532F1217DA03300404C0B /* ETHMessageSignerTests.swift */; };
-		89733041217EB559001B8D93 /* NervosMessageSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89733040217EB559001B8D93 /* NervosMessageSigner.swift */; };
+		89733041217EB559001B8D93 /* MessageSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89733040217EB559001B8D93 /* MessageSigner.swift */; };
 		A761B95773C2431357D1B0B9 /* Pods_AppChain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A425B554C4D9A6E8284FEAC /* Pods_AppChain.framework */; };
 /* End PBXBuildFile section */
 
@@ -120,7 +120,7 @@
 		7FF8D9768BC7235E22EC11C8 /* Pods-AppChain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppChain.release.xcconfig"; path = "Pods/Target Support Files/Pods-AppChain/Pods-AppChain.release.xcconfig"; sourceTree = "<group>"; };
 		893532ED217D7D9B00404C0B /* ETHMessageSigner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETHMessageSigner.swift; sourceTree = "<group>"; };
 		893532F1217DA03300404C0B /* ETHMessageSignerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETHMessageSignerTests.swift; sourceTree = "<group>"; };
-		89733040217EB559001B8D93 /* NervosMessageSigner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NervosMessageSigner.swift; sourceTree = "<group>"; };
+		89733040217EB559001B8D93 /* MessageSigner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSigner.swift; sourceTree = "<group>"; };
 		8990CDB62160682F00205129 /* Config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Config.json; sourceTree = "<group>"; };
 		D9D78017E61E65184F73D1F8 /* Pods-AppChain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppChain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppChain/Pods-AppChain.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -291,7 +291,7 @@
 				1AD65F96212294C800AA4C84 /* Transaction.swift */,
 				1AD65F9E21229AF500AA4C84 /* Signer.swift */,
 				1A0529BF214258EC00C847CA /* Unsigner.swift */,
-				89733040217EB559001B8D93 /* NervosMessageSigner.swift */,
+				89733040217EB559001B8D93 /* MessageSigner.swift */,
 				893532ED217D7D9B00404C0B /* ETHMessageSigner.swift */,
 			);
 			path = Signer;
@@ -542,7 +542,7 @@
 			files = (
 				1AB5C6D8212112DA00148587 /* AppChain+Promises.swift in Sources */,
 				1A67ED59211D151100DCE871 /* String+Extension.swift in Sources */,
-				89733041217EB559001B8D93 /* NervosMessageSigner.swift in Sources */,
+				89733041217EB559001B8D93 /* MessageSigner.swift in Sources */,
 				1A9204E02161B20B004B54DC /* Utils.swift in Sources */,
 				1AB5C6DC2121751400148587 /* Block.swift in Sources */,
 				1A67ED4B211D08A700DCE871 /* Nervos.swift in Sources */,
