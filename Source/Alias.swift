@@ -8,5 +8,3 @@
 
 import Foundation
 import web3swift
-
-public typealias Web3Utils = Web3.Utils

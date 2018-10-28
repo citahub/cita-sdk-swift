@@ -50,7 +50,7 @@ public struct UnsignedTransaction {
             version: tx.version
         )
         sender = Sender(
-            address: Web3Utils.publicToAddress(publicKey)!.address.lowercased(),
+            address: Utils.publicToAddress(publicKey)!.address.lowercased(),
             publicKey: publicKey
         )
     }

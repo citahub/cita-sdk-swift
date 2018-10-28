@@ -61,11 +61,7 @@ Note: serveral tests depend on onchain data and would fail when running on your 
 
 ### web3swift
 
-AppChainSwift is built upon [matterinc/web3swift](https://github.com/matterinc/web3swift). While it's not required to import `web3swift` when using AppChainSwift, please note the following classes are simply typealias of web3swift's Ethereum types:
-
-| AppChainSwift Type | web3swift Type      |
-|:------------------:|:-------------------:|
-| Web3Utils          | Web3Utils           |
+AppChainSwift was built upon [matterinc/web3swift](https://github.com/matterinc/web3swift).
 
 ### Testnet
 
