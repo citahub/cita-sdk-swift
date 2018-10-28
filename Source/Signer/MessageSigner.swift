@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import secp256k1_swift
 
 // AppChain Message Signer
 struct MessageSigner {
@@ -20,7 +19,7 @@ struct MessageSigner {
         guard let privateKeyData = Data.fromHex(privateKey) else {
             throw SignError.invalidPrivateKey
         }
-        let serializedSignature = SECP256K1.signForRecovery(hash: hash, privateKey: privateKeyData, useExtraEntropy: useExtraEntropy).serializedSignature
+        let serializedSignature = Secp256k1.signForRecovery(hash: hash, privateKey: privateKeyData, useExtraEntropy: useExtraEntropy).serializedSignature
         guard let signature = serializedSignature else {
             throw SignError.invalidSignature
         }
