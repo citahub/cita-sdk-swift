@@ -10,6 +10,9 @@
 		0DC2B760B0374C6B5BDD0C98 /* Pods_AppChainTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EB2AACC437439C121F94134 /* Pods_AppChainTests.framework */; };
 		1A0529C0214258EC00C847CA /* Unsigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0529BF214258EC00C847CA /* Unsigner.swift */; };
 		1A0529C2214279A500C847CA /* UnsignerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0529C1214279A500C847CA /* UnsignerTests.swift */; };
+		1A0D0C032185A717003E680D /* EventLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0D0C022185A717003E680D /* EventLog.swift */; };
+		1A0D0C052185A861003E680D /* BloomFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0D0C042185A861003E680D /* BloomFilter.swift */; };
+		1A0D0C072185A8EF003E680D /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0D0C062185A8EF003E680D /* Data+Extension.swift */; };
 		1A23CB002175A295001FECD6 /* appchain-tests in Resources */ = {isa = PBXBuildFile; fileRef = 1A23CAFE2175A271001FECD6 /* appchain-tests */; };
 		1A42225E212AA59700DF1994 /* RPC+API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A42225D212AA59700DF1994 /* RPC+API.swift */; };
 		1A58853A211DC759007043F1 /* RPCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A588539211DC759007043F1 /* RPCTests.swift */; };
@@ -72,6 +75,9 @@
 		0EB2AACC437439C121F94134 /* Pods_AppChainTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppChainTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A0529BF214258EC00C847CA /* Unsigner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unsigner.swift; sourceTree = "<group>"; };
 		1A0529C1214279A500C847CA /* UnsignerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsignerTests.swift; sourceTree = "<group>"; };
+		1A0D0C022185A717003E680D /* EventLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLog.swift; sourceTree = "<group>"; };
+		1A0D0C042185A861003E680D /* BloomFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloomFilter.swift; sourceTree = "<group>"; };
+		1A0D0C062185A8EF003E680D /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
 		1A23CAFE2175A271001FECD6 /* appchain-tests */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "appchain-tests"; sourceTree = "<group>"; };
 		1A42225D212AA59700DF1994 /* RPC+API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RPC+API.swift"; sourceTree = "<group>"; };
 		1A588539211DC759007043F1 /* RPCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPCTests.swift; sourceTree = "<group>"; };
@@ -227,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				1A67ED58211D151100DCE871 /* String+Extension.swift */,
+				1A0D0C062185A8EF003E680D /* Data+Extension.swift */,
 				1AB5C6D9212125A200148587 /* Int+Extension.swift */,
 				1AD65F8F21217AC000AA4C84 /* DecodeUtils.swift */,
 				1AD65F9C2122999900AA4C84 /* Secp251k1.swift */,
@@ -259,6 +266,8 @@
 				1AD65F8D2121795B00AA4C84 /* TransactionReceipt.swift */,
 				1AD65F912121822600AA4C84 /* TransactionDetails.swift */,
 				1AD65FA02122A1F900AA4C84 /* TransactionSendingResult.swift */,
+				1A0D0C022185A717003E680D /* EventLog.swift */,
+				1A0D0C042185A861003E680D /* BloomFilter.swift */,
 			);
 			path = Structures;
 			sourceTree = "<group>";
@@ -540,10 +549,13 @@
 				1ACBC9AD2184152E00F20B8B /* Blockchain.pb.swift in Sources */,
 				1AD65F8E2121795B00AA4C84 /* TransactionReceipt.swift in Sources */,
 				1AD65F97212294C800AA4C84 /* Transaction.swift in Sources */,
+				1A0D0C032185A717003E680D /* EventLog.swift in Sources */,
 				1ACBC9B52184596300F20B8B /* Proof.swift in Sources */,
 				1A6B2B2921533FA5003420A0 /* Address.swift in Sources */,
 				1A67ED5F211D55E500DCE871 /* MetaData.swift in Sources */,
+				1A0D0C072185A8EF003E680D /* Data+Extension.swift in Sources */,
 				1A67ED50211D11C600DCE871 /* Request.swift in Sources */,
+				1A0D0C052185A861003E680D /* BloomFilter.swift in Sources */,
 				893532EE217D7D9B00404C0B /* EthereumMessageSigner.swift in Sources */,
 				1AD65F9021217AC000AA4C84 /* DecodeUtils.swift in Sources */,
 				1AD65F9F21229AF500AA4C84 /* Signer.swift in Sources */,

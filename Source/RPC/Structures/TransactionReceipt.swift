@@ -14,7 +14,7 @@ public struct TransactionReceipt: Decodable {
     public var blockHash: Data
     public var blockNumber: BigUInt
     public var transactionIndex: BigUInt
-    public var contractAddress: EthereumAddress?
+    public var contractAddress: Address?
     public var cumulativeGasUsed: BigUInt
     public var gasUsed: BigUInt
     public var logs: [EventLog]
@@ -50,7 +50,7 @@ public struct TransactionReceipt: Decodable {
         guard let transactionHash = try DecodeUtils.decodeHexToData(container, key: .transactionHash) else { throw AppChainError.dataError }
         self.transactionHash = transactionHash
 
-        let contractAddress = try container.decodeIfPresent(EthereumAddress.self, forKey: .contractAddress)
+        let contractAddress = try container.decodeIfPresent(Address.self, forKey: .contractAddress)
         if contractAddress != nil {
             self.contractAddress = contractAddress
         }
@@ -71,7 +71,7 @@ public struct TransactionReceipt: Decodable {
         errorMessage = try container.decodeIfPresent(String.self, forKey: .errorMessage)
     }
 
-    public init(transactionHash: Data, blockHash: Data, blockNumber: BigUInt, transactionIndex: BigUInt, contractAddress: EthereumAddress?,
+    public init(transactionHash: Data, blockHash: Data, blockNumber: BigUInt, transactionIndex: BigUInt, contractAddress: Address?,
                 cumulativeGasUsed: BigUInt, gasUsed: BigUInt, logs: [EventLog], logsBloom: BloomFilter?, root: String?, errorMessage: String?) {
         self.transactionHash = transactionHash
         self.blockHash = blockHash

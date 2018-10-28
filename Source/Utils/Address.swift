@@ -10,7 +10,7 @@ import Foundation
 
 /// AppChain Address
 /// An AppChain address has same format as Ethereum, but doesn't support EIP55 checksum.
-public struct Address: Equatable {
+public struct Address: Equatable, Codable {
     private let addressString: String
 
     public init?(_ addressString: String) {
@@ -23,6 +23,18 @@ public struct Address: Equatable {
 
     public init?(_ data: Data) {
         self.init(data.toHexString())
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let stringValue = try container.decode(String.self)
+        self.init(stringValue)!
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        let value = address.lowercased()
+        var signleValuedCont = encoder.singleValueContainer()
+        try signleValuedCont.encode(value)
     }
 
     public var address: String {

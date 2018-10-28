@@ -66,9 +66,6 @@ AppChainSwift is built upon [matterinc/web3swift](https://github.com/matterinc/w
 | AppChainSwift Type | web3swift Type      |
 |:------------------:|:-------------------:|
 | Web3Utils          | Web3Utils           |
-| EthereumAddress    | EthereumAddress     |
-| EventLog           | EventLog            |
-| BloomFilter        | EthereumBloomFilter |
 
 ### Testnet
 

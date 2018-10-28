@@ -126,9 +126,9 @@ public struct Response: Decodable {
             guard let string = self.result as? String else { return nil }
             guard let value = Data.fromHex(string) else { return nil }
             return value as? T
-        } else if slf == EthereumAddress.self {
+        } else if slf == Address.self {
             guard let string = self.result as? String else { return nil }
-            guard let value = EthereumAddress(string, ignoreChecksum: true) else { return nil }
+            guard let value = Address(string) else { return nil }
             return value as? T
         } else if slf == [BigUInt].self {
             guard let string = self.result as? [String] else { return nil }
@@ -148,10 +148,10 @@ public struct Response: Decodable {
                 return Data.fromHex(str)
             }
             return values as? T
-        } else if slf == [EthereumAddress].self {
+        } else if slf == [Address].self {
             guard let string = self.result as? [String] else { return nil }
-            let values = string.compactMap { (str) -> EthereumAddress? in
-                return EthereumAddress(str, ignoreChecksum: true)
+            let values = string.compactMap { (str) -> Address? in
+                return Address(str)
             }
             return values as? T
         }
