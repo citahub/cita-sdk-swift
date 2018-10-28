@@ -11,7 +11,7 @@ target 'AppChain' do
   pod "CryptoSwift", "~> 0.13"
   pod "BigInt", "~> 3.1"
   pod "Result", "~> 4.0"
-  pod "PromiseKit", "~> 6.4"
+  pod "PromiseKit", "~> 6.5"
 
   target 'AppChainTests' do
     inherit! :search_paths

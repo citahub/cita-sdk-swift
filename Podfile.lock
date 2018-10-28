@@ -2,14 +2,14 @@ PODS:
   - BigInt (3.1.0):
     - SipHash (~> 1.2)
   - CryptoSwift (0.13.0)
-  - PromiseKit (6.4.1):
-    - PromiseKit/CorePromise (= 6.4.1)
-    - PromiseKit/Foundation (= 6.4.1)
-    - PromiseKit/UIKit (= 6.4.1)
-  - PromiseKit/CorePromise (6.4.1)
-  - PromiseKit/Foundation (6.4.1):
+  - PromiseKit (6.5.2):
+    - PromiseKit/CorePromise (= 6.5.2)
+    - PromiseKit/Foundation (= 6.5.2)
+    - PromiseKit/UIKit (= 6.5.2)
+  - PromiseKit/CorePromise (6.5.2)
+  - PromiseKit/Foundation (6.5.2):
     - PromiseKit/CorePromise
-  - PromiseKit/UIKit (6.4.1):
+  - PromiseKit/UIKit (6.5.2):
     - PromiseKit/CorePromise
   - Result (4.0.0)
   - secp256k1_swift (1.0.3)
@@ -19,7 +19,7 @@ PODS:
 DEPENDENCIES:
   - BigInt (~> 3.1)
   - CryptoSwift (~> 0.13)
-  - PromiseKit (~> 6.4)
+  - PromiseKit (~> 6.5)
   - Result (~> 4.0)
   - secp256k1_swift (~> 1.0.3)
   - SwiftProtobuf (~> 1.2.0)
@@ -37,12 +37,12 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   BigInt: 76b5dfdfa3e2e478d4ffdf161aeede5502e2742f
   CryptoSwift: 16e78bebf567bad1c87b2d58f6547f25b74c31aa
-  PromiseKit: 4c76a6506638034e3d7bede97b2ff7743f7bd2dc
+  PromiseKit: 27c1601bfb73405871b805bcb8cf7e55c4dad3db
   Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713
   secp256k1_swift: 4fc5c4b2d2c6d21ee8ccb868cdc92da12f38bed9
   SipHash: fad90a4683e420c52ef28063063dbbce248ea6d4
   SwiftProtobuf: 91a9856079044ef4ec762b2344c763cd9e5a73c1
 
-PODFILE CHECKSUM: 044b6d418d580fdea4df46e4d535f1ef07a2c21e
+PODFILE CHECKSUM: 5c0e0a6c0aae2dfccdb8e7fabb3a87e22bfb70b5
 
 COCOAPODS: 1.5.3

@@ -25,5 +25,5 @@ Pod::Spec.new do |s|
   s.dependency 'CryptoSwift', '~> 0.13'
   s.dependency 'BigInt', '~> 3.1'
   s.dependency 'Result', '~> 4.0'
-  s.dependency 'PromiseKit', '~> 6.4'
+  s.dependency 'PromiseKit', '~> 6.5'
 end
