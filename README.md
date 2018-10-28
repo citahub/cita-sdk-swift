@@ -61,7 +61,7 @@ Note: serveral tests depend on onchain data and would fail when running on your 
 
 ### web3swift
 
-AppChainSwift was built upon [matterinc/web3swift](https://github.com/matterinc/web3swift).
+AppChainSwift was initially built upon [matterinc/web3swift](https://github.com/matterinc/web3swift). Then we want to keep AppChainSwift a simple RPC client and transaction signer (this means no keystore management and other features) so web3swift dependency was removed, but some utils, foundation extensions and HTTP request implementations were taken and modified from it.
 
 ### Testnet
 

@@ -6,8 +6,12 @@ target 'AppChain' do
   use_modular_headers!
   inhibit_all_warnings!
 
-  pod 'web3swift', git: 'https://github.com/matterinc/web3swift', tag: '1.1.10'
-  pod 'SwiftProtobuf', '~> 1.2.0'
+  pod "SwiftProtobuf", "~> 1.2.0"
+  pod "secp256k1_swift", "~> 1.0.3", modular_headers: true
+  pod "CryptoSwift", "~> 0.13"
+  pod "BigInt", "~> 3.1"
+  pod "Result", "~> 4.0"
+  pod "PromiseKit", "~> 6.4"
 
   target 'AppChainTests' do
     inherit! :search_paths

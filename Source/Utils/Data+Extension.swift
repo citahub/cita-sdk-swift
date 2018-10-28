@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import CryptoSwift
 
 extension Data {
     func setLengthLeft(_ toBytes: UInt64, isNegative: Bool = false ) -> Data? {
-        let existingLength = UInt64(self.count)
+        let existingLength = UInt64(count)
         if existingLength == toBytes {
             return Data(self)
         } else if existingLength > toBytes {
@@ -27,7 +28,7 @@ extension Data {
     }
 
     func setLengthRight(_ toBytes: UInt64, isNegative: Bool = false ) -> Data? {
-        let existingLength = UInt64(self.count)
+        let existingLength = UInt64(count)
         if existingLength == toBytes {
             return Data(self)
         } else if existingLength > toBytes {
@@ -41,5 +42,31 @@ extension Data {
             data.append(Data(repeating: UInt8(0), count: Int(toBytes - existingLength)))
         }
         return data
+    }
+
+    public static func randomBytes(length: Int) -> Data? {
+        for _ in 0...1024 {
+            var data = Data(repeating: 0, count: length)
+            let result = data.withUnsafeMutableBytes { (mutableBytes: UnsafeMutablePointer<UInt8>) -> Int32 in
+                SecRandomCopyBytes(kSecRandomDefault, 32, mutableBytes)
+            }
+            if result == errSecSuccess {
+                return data
+            }
+        }
+        return nil
+    }
+
+    public static func fromHex(_ hex: String) -> Data? {
+        let string = hex.lowercased().stripHexPrefix()
+        let array = [UInt8](hex: string)
+        if array.count == 0 {
+            if hex == "0x" || hex == "" {
+                return Data()
+            } else {
+                return nil
+            }
+        }
+        return Data(array)
     }
 }

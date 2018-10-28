@@ -31,7 +31,6 @@
 		1A67ED5B211D1C3C00DCE871 /* RPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A67ED5A211D1C3C00DCE871 /* RPC.swift */; };
 		1A67ED5D211D1FF900DCE871 /* AppChainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A67ED5C211D1FF900DCE871 /* AppChainTests.swift */; };
 		1A67ED5F211D55E500DCE871 /* MetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A67ED5E211D55E500DCE871 /* MetaData.swift */; };
-		1A6B2B2721533F43003420A0 /* Alias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6B2B2621533F43003420A0 /* Alias.swift */; };
 		1A6B2B2921533FA5003420A0 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6B2B2821533FA5003420A0 /* Address.swift */; };
 		1A6B2B2C21534CEF003420A0 /* AddressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6B2B2B21534CEF003420A0 /* AddressTests.swift */; };
 		1A6B55072160EEBE001BA711 /* Config.json in Resources */ = {isa = PBXBuildFile; fileRef = 8990CDB62160682F00205129 /* Config.json */; };
@@ -99,7 +98,6 @@
 		1A67ED5A211D1C3C00DCE871 /* RPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPC.swift; sourceTree = "<group>"; };
 		1A67ED5C211D1FF900DCE871 /* AppChainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppChainTests.swift; sourceTree = "<group>"; };
 		1A67ED5E211D55E500DCE871 /* MetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaData.swift; sourceTree = "<group>"; };
-		1A6B2B2621533F43003420A0 /* Alias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alias.swift; sourceTree = "<group>"; };
 		1A6B2B2821533FA5003420A0 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		1A6B2B2B21534CEF003420A0 /* AddressTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTests.swift; sourceTree = "<group>"; };
 		1A9204DF2161B20B004B54DC /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -181,7 +179,6 @@
 				1A67ED57211D14F200DCE871 /* Utils */,
 				1A67ED49211D089000DCE871 /* RPC */,
 				1AD65F95212294AD00AA4C84 /* Signer */,
-				1A6B2B2621533F43003420A0 /* Alias.swift */,
 				1A67ED4A211D08A700DCE871 /* AppChain.swift */,
 				1A67ED31211BEAFD00DCE871 /* AppChain.h */,
 				1A67ED32211BEAFD00DCE871 /* Info.plist */,
@@ -506,10 +503,7 @@
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SipHash/SipHash.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftProtobuf/SwiftProtobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftRLP/SwiftRLP.framework",
-				"${BUILT_PRODUCTS_DIR}/scrypt/scrypt.framework",
 				"${BUILT_PRODUCTS_DIR}/secp256k1_swift/secp256k1_swift.framework",
-				"${BUILT_PRODUCTS_DIR}/web3swift/web3swift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -519,10 +513,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SipHash.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftProtobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftRLP.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/scrypt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/secp256k1_swift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/web3swift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -562,7 +553,6 @@
 				1A67ED54211D122000DCE871 /* Method.swift in Sources */,
 				1A0529C0214258EC00C847CA /* Unsigner.swift in Sources */,
 				1A42225E212AA59700DF1994 /* RPC+API.swift in Sources */,
-				1A6B2B2721533F43003420A0 /* Alias.swift in Sources */,
 				1A67ED4D211D0AA600DCE871 /* RequestDispatcher.swift in Sources */,
 				1AD65FA12122A1F900AA4C84 /* TransactionSendingResult.swift in Sources */,
 				1AB5C6DA212125A200148587 /* Int+Extension.swift in Sources */,

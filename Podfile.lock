@@ -1,36 +1,28 @@
 PODS:
   - BigInt (3.1.0):
     - SipHash (~> 1.2)
-  - CryptoSwift (0.12.0)
-  - PromiseKit (6.5.0):
-    - PromiseKit/CorePromise (= 6.5.0)
-    - PromiseKit/Foundation (= 6.5.0)
-    - PromiseKit/UIKit (= 6.5.0)
-  - PromiseKit/CorePromise (6.5.0)
-  - PromiseKit/Foundation (6.5.0):
+  - CryptoSwift (0.13.0)
+  - PromiseKit (6.4.1):
+    - PromiseKit/CorePromise (= 6.4.1)
+    - PromiseKit/Foundation (= 6.4.1)
+    - PromiseKit/UIKit (= 6.4.1)
+  - PromiseKit/CorePromise (6.4.1)
+  - PromiseKit/Foundation (6.4.1):
     - PromiseKit/CorePromise
-  - PromiseKit/UIKit (6.5.0):
+  - PromiseKit/UIKit (6.4.1):
     - PromiseKit/CorePromise
   - Result (4.0.0)
-  - scrypt (2.0):
-    - CryptoSwift (~> 0.11)
   - secp256k1_swift (1.0.3)
   - SipHash (1.2.2)
   - SwiftProtobuf (1.2.0)
-  - SwiftRLP (1.0.1):
-    - BigInt (~> 3.1)
-  - web3swift (1.1.10):
-    - BigInt (~> 3.1)
-    - CryptoSwift (~> 0.11)
-    - PromiseKit (~> 6.3)
-    - Result (~> 4.0)
-    - scrypt (~> 2.0)
-    - secp256k1_swift (~> 1.0.3)
-    - SwiftRLP (~> 1.0.1)
 
 DEPENDENCIES:
+  - BigInt (~> 3.1)
+  - CryptoSwift (~> 0.13)
+  - PromiseKit (~> 6.4)
+  - Result (~> 4.0)
+  - secp256k1_swift (~> 1.0.3)
   - SwiftProtobuf (~> 1.2.0)
-  - web3swift (from `https://github.com/matterinc/web3swift`, tag `1.1.10`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -38,34 +30,19 @@ SPEC REPOS:
     - CryptoSwift
     - PromiseKit
     - Result
-    - scrypt
     - secp256k1_swift
     - SipHash
     - SwiftProtobuf
-    - SwiftRLP
-
-EXTERNAL SOURCES:
-  web3swift:
-    :git: https://github.com/matterinc/web3swift
-    :tag: 1.1.10
-
-CHECKOUT OPTIONS:
-  web3swift:
-    :git: https://github.com/matterinc/web3swift
-    :tag: 1.1.10
 
 SPEC CHECKSUMS:
   BigInt: 76b5dfdfa3e2e478d4ffdf161aeede5502e2742f
-  CryptoSwift: 1c07ca50843dd48bc54e6ea53d7a4dba3b645716
-  PromiseKit: 54ed7e56768b7e8d29072afe9384101c64a2b7ff
+  CryptoSwift: 16e78bebf567bad1c87b2d58f6547f25b74c31aa
+  PromiseKit: 4c76a6506638034e3d7bede97b2ff7743f7bd2dc
   Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713
-  scrypt: 3fe5b1a3b0976f97cd87488673a8f7c65708cc84
   secp256k1_swift: 4fc5c4b2d2c6d21ee8ccb868cdc92da12f38bed9
   SipHash: fad90a4683e420c52ef28063063dbbce248ea6d4
   SwiftProtobuf: 91a9856079044ef4ec762b2344c763cd9e5a73c1
-  SwiftRLP: 9de2c9512a9a6bf0909cd84cc143a7ff1aff7820
-  web3swift: 843dd5295d2ae755e6f80e9e0bdabe2868a5c7d8
 
-PODFILE CHECKSUM: 6911b6a4974c8f305b22c038abad6594f4f612e7
+PODFILE CHECKSUM: 044b6d418d580fdea4df46e4d535f1ef07a2c21e
 
 COCOAPODS: 1.5.3
