@@ -8,13 +8,15 @@
 
 import Foundation
 
-enum SignError: Error {
+public enum SignError: Error {
     case invalidPrivateKey
     case invalidSignature
 }
 
 // Ethereum Message Signer
 public struct EthereumMessageSigner {
+    public init() {}
+
     public func signPersonalMessage(message: Data, privateKey: String, useExtraEntropy: Bool = true) throws -> String? {
         return try sign(message: appendPersonalMessagePrefix(for: message), privateKey: privateKey, useExtraEntropy: useExtraEntropy)
     }
