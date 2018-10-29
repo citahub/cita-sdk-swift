@@ -10,12 +10,14 @@ import Foundation
 
 // AppChain Message Signer
 struct MessageSigner {
+    public init() {}
+
     // TODO: AppChain sign personal message
-    public static func sign(message: Data, privateKey: String, useExtraEntropy: Bool = true) throws -> String? {
+    public func sign(message: Data, privateKey: String, useExtraEntropy: Bool = true) throws -> String? {
         return try signHash(EthereumMessageSigner().hashMessage(message), privateKey: privateKey, useExtraEntropy: useExtraEntropy).toHexString().addHexPrefix()
     }
 
-    private static func signHash(_ hash: Data, privateKey: String, useExtraEntropy: Bool = true) throws -> Data {
+    private func signHash(_ hash: Data, privateKey: String, useExtraEntropy: Bool = true) throws -> Data {
         guard let privateKeyData = Data.fromHex(privateKey) else {
             throw SignError.invalidPrivateKey
         }

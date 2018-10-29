@@ -11,6 +11,8 @@ import BigInt
 
 // AppChain Transaction Signer
 public struct Signer {
+    public init() {}
+
     // Sign a transaction using private key.
     // Value of transaction may not exceed max of UInt256.
     public func sign(transaction: Transaction, with privateKey: String) throws -> String {

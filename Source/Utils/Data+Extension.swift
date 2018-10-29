@@ -44,7 +44,7 @@ extension Data {
         return data
     }
 
-    public static func randomBytes(length: Int) -> Data? {
+    static func randomBytes(length: Int) -> Data? {
         for _ in 0...1024 {
             var data = Data(repeating: 0, count: length)
             let result = data.withUnsafeMutableBytes { (mutableBytes: UnsafeMutablePointer<UInt8>) -> Int32 in
@@ -57,7 +57,7 @@ extension Data {
         return nil
     }
 
-    public static func fromHex(_ hex: String) -> Data? {
+    static func fromHex(_ hex: String) -> Data? {
         let string = hex.lowercased().stripHexPrefix()
         let array = [UInt8](hex: string)
         if array.count == 0 {
