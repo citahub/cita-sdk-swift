@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "AppChainSwift"
-  s.version      = "0.19.3"
+  s.version      = "0.19.4"
   s.summary      = "Nervos AppChain SDK implementation in Swift for iOS"
 
   s.description  = <<-DESC
@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   s.public_header_files = "Source/**/*.{h}"
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
 
-  s.dependency 'SwiftProtobuf', '~> 1.0.3'
+  s.dependency 'SwiftProtobuf', '~> 1.2.0'
   s.dependency 'secp256k1_swift', '~> 1.0.3'
   s.dependency 'CryptoSwift', '~> 0.13'
   s.dependency 'BigInt', '~> 3.1'
