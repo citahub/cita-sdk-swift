@@ -14,13 +14,13 @@ struct DecodeUtils {
         if allowOptional {
             let string = try? container.decode(String.self, forKey: key)
             if string != nil {
-                guard let number = BigUInt(string!.stripHexPrefix(), radix: 16) else { throw NervosError.dataError }
+                guard let number = BigUInt(string!.stripHexPrefix(), radix: 16) else { throw AppChainError.dataError }
                 return number
             }
             return nil
         } else {
             let string = try container.decode(String.self, forKey: key)
-            guard let number = BigUInt(string.stripHexPrefix(), radix: 16) else { throw NervosError.dataError }
+            guard let number = BigUInt(string.stripHexPrefix(), radix: 16) else { throw AppChainError.dataError }
             return number
         }
     }
@@ -29,7 +29,7 @@ struct DecodeUtils {
         if allowOptional {
             let string = try? container.decode(String.self, forKey: key)
             if string != nil {
-                guard let number = BigUInt(string!.stripHexPrefix(), radix: 16) else { throw NervosError.dataError }
+                guard let number = BigUInt(string!.stripHexPrefix(), radix: 16) else { throw AppChainError.dataError }
                 return number
             }
             return nil
@@ -43,13 +43,13 @@ struct DecodeUtils {
         if allowOptional {
             let string = try? container.decode(String.self, forKey: key)
             if string != nil {
-                guard let data = Data.fromHex(string!) else { throw NervosError.dataError }
+                guard let data = Data.fromHex(string!) else { throw AppChainError.dataError }
                 return data
             }
             return nil
         } else {
             let string = try container.decode(String.self, forKey: key)
-            guard let data = Data.fromHex(string) else { throw NervosError.dataError }
+            guard let data = Data.fromHex(string) else { throw AppChainError.dataError }
             return data
         }
     }

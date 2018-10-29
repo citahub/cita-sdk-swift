@@ -11,7 +11,7 @@ import XCTest
 
 class UtilsTests: XCTestCase {
     func testGetQuotaPrice() {
-        let result = Utils.getQuotaPrice(nervos: nervos)
+        let result = Utils.getQuotaPrice(appChain: appChain)
         switch result {
         case .success(let quotaPrice):
             XCTAssertTrue(quotaPrice >= 0)
