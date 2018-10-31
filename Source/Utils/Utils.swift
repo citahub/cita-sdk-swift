@@ -11,7 +11,7 @@ import BigInt
 import Result
 
 public struct Utils {
-    static func getQuotaPrice(appChain: AppChain) -> Result<BigUInt, AppChainError> {
+    public static func getQuotaPrice(appChain: AppChain) -> Result<BigUInt, AppChainError> {
         let result = ContractCall.request(.getQuotaPrice, appChain: appChain)
         switch result {
         case .success(let quotaPrice):
