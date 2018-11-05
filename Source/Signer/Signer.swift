@@ -41,7 +41,7 @@ public struct Signer {
             }
             tx.chainIDV1 = chainIDV1
             if let to = transaction.to {
-                tx.toV1 = Data.fromHex(to.toUInt256Hex())!
+                tx.toV1 = Data.fromHex(to.address)!
             }
         } else {
             throw TransactionError.versionNotSupported
