@@ -48,7 +48,7 @@ public struct UnsignedTransaction {
             validUntilBlock: tx.validUntilBlock,
             data: tx.data,
             value: BigUInt.fromHex(tx.value.toHexString())!,
-            chainId: tx.chainID,
+            chainId: tx.parsedChainId,
             version: tx.version
         )
         sender = Sender(

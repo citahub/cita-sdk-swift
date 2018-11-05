@@ -22,15 +22,30 @@ public struct Signer {
         var tx = CitaTransaction()
 
         tx.nonce = transaction.nonce
-        if let to = transaction.to {
-            tx.to = to.address.stripHexPrefix().lowercased()
-        }
         tx.quota = transaction.quota
         tx.data = transaction.data ?? Data()
-        tx.version = transaction.version
         tx.value = value
-        tx.chainID = transaction.chainId
         tx.validUntilBlock = transaction.validUntilBlock
+
+        tx.version = transaction.version
+        if transaction.version == 0 {
+            tx.chainID = UInt32(transaction.chainId)!
+            if let to = transaction.to {
+                tx.to = to.address.stripHexPrefix().lowercased()
+            }
+        } else if transaction.version == 1 {
+            guard let chainId = BigUInt.fromHex(transaction.chainId),
+                let chainIdU256 = chainId.toUInt256Hex(),
+                let chainIDV1 = Data.fromHex(chainIdU256) else {
+                throw TransactionError.chainIdInvalid
+            }
+            tx.chainIDV1 = chainIDV1
+            if let to = transaction.to {
+                tx.toV1 = Data.fromHex(to.toUInt256Hex())!
+            }
+        } else {
+            throw TransactionError.versionNotSupported
+        }
 
         let binaryData = try! tx.serializedData()
         guard let privateKeyData = Data.fromHex(privateKey) else {
@@ -59,5 +74,12 @@ public struct Signer {
         }
 
         return nil
+    }
+}
+
+extension Address {
+    func toUInt256Hex() -> String {
+        let bigint = BigUInt.fromHex(address)!
+        return bigint.toUInt256Hex()!
     }
 }
