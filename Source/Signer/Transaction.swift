@@ -65,6 +65,16 @@ public struct Transaction: CustomStringConvertible {
 }
 
 extension CitaTransaction {
+    var parsedTo: String {
+        switch version {
+        case 0:
+            return to
+        case 1:
+            return toV1.toHexString()
+        default:
+            assert(false, "Transaction version not supported")
+        }
+    }
     var parsedChainId: String {
         switch version {
         case 0:

@@ -42,7 +42,7 @@ public struct UnsignedTransaction {
 
     init(tx: CitaTransaction, publicKey: Data) {
         transaction = Transaction(
-            to: Address(tx.to.addHexPrefix()),
+            to: Address(tx.parsedTo.addHexPrefix()),
             nonce: tx.nonce,
             quota: tx.quota,
             validUntilBlock: tx.validUntilBlock,
