@@ -40,7 +40,7 @@ public struct Transaction: CustomStringConvertible {
         version: UInt32 = 1
     ) {
         self.to = to
-        self.nonce = nonce
+        self.nonce = nonce.isEmpty ? UUID().uuidString : nonce
         self.quota = quota
         self.validUntilBlock = validUntilBlock
         self.data = data
