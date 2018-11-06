@@ -81,7 +81,8 @@ class SignerTests: XCTestCase {
 
     // Load and test all JSON fixtures
     func testJSONFixtures() {
-        jsonFiles(in: "transactions").forEach { (file) in
+        let txFixtures = jsonFiles(in: "transactions") + jsonFiles(in: "transactions/v1")
+        txFixtures.forEach { (file) in
             let json = load(jsonFile: file) as! [String: Any]
             let txData = json["tx"] as! [String: String?]
 
