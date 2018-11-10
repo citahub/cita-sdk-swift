@@ -38,8 +38,9 @@ class RPCTests: XCTestCase {
             return XCTFail("Sign tx failed")
         }
 
-        let result = try appChain.rpc.sendRawTransaction(signedTx: signed)
-        XCTAssertEqual(32, result.hash.count)
+        let txhash = try appChain.rpc.sendRawTransaction(signedTx: signed)
+        XCTAssert(txhash.hasPrefix("0x"))
+        XCTAssertEqual(66, txhash.count)
     }
 
     func testSendRawTransactionPaddingValue() throws {

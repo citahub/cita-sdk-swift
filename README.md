@@ -183,8 +183,8 @@ func blockNumber() throws -> UInt64
 ///
 /// - Parameter signedTx: Signed transaction hex string.
 ///
-/// - Returns: Transaction sending result.
-func sendRawTransaction(signedTx: String) throws -> TransactionSendingResult
+/// - Returns: Transaction hash.
+func sendRawTransaction(signedTx: String) throws -> String
 ```
 
 ### getBlockByHash

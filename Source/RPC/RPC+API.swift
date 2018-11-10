@@ -9,8 +9,6 @@
 import Foundation
 import BigInt
 
-// swiftlint:disable file_length
-
 // MARK: - API
 
 public extension RPC {
@@ -32,8 +30,8 @@ public extension RPC {
     ///
     /// - Parameter signedTx: Signed transaction data.
     ///
-    /// - Returns: Transaction sending result.
-    func sendRawTransaction(signedTx: Data) throws -> TransactionSendingResult {
+    /// - Returns: Transaction hash.
+    func sendRawTransaction(signedTx: Data) throws -> String {
         return try sendRawTransaction(signedTx: signedTx.toHexString().addHexPrefix())
     }
 
@@ -41,9 +39,9 @@ public extension RPC {
     ///
     /// - Parameter signedTx: Signed transaction hex string.
     ///
-    /// - Returns: Transaction sending result.
-    func sendRawTransaction(signedTx: String) throws -> TransactionSendingResult {
-        return try sendRawTransactionPromise(signedTx: signedTx).wait()
+    /// - Returns: Transaction hash.
+    func sendRawTransaction(signedTx: String) throws -> String {
+        return try sendRawTransactionPromise(signedTx: signedTx).wait().hash.toHexString().addHexPrefix()
     }
 
     /// Get a block by hash.
