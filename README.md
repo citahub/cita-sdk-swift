@@ -114,23 +114,26 @@ guard let signed = try? Signer().sign(transaction: tx, with: privateKey) else {
 
 ## RPC API Reference
 
-All JSON-RPC APIs return `Result<Value, AppChainError>`, where `Value` is the actual type of the result when the call is successful.
+All JSON-RPC APIs would return result when the call is successful, or throw `AppChainError` exception when not.
 
-A common flow to call an API and handle the result is as follows:
+JSON-RPC API functions are synchronous. But the underlying HTTP request might take some time to return, and in AppChainSwift they're usually implemented in some `promise` way. It's generally better to call API function in a background queue so it won't block the main thread.
+
+A common flow to call an API and handle the result is as follows.
 
 ```swift
-let result = appChain.rpc.peerCount()
-switch result {
-case .success(let count):
-    print("AppChain peer count: \(count)")
-case .failure(let error):
-    print(error.localizedDescription)
+DispatchQueue.global().async {
+    do {
+        let peerCount = try appChain.rpc.peerCount()
+        DispatchQueue.main.async {
+            print("AppChain peer count: \(count)")
+        }
+    } catch let error {
+        DispatchQueue.main.async {
+            print(error.localizedDescription)
+        }
+    }
 }
 ```
-
-### Important Notices
-
-All JSON-RPC API functions are synchronous. But the underlying HTTP request might take some time to return, and in AppChainSwift they're usually implemented in some `promise` way. It's generally better to call API function in a background queue so it won't block the main thread.
 
 * [peerCount](#peercount)
 * [blockNumber](#blocknumber)
@@ -161,7 +164,7 @@ All JSON-RPC API functions are synchronous. But the underlying HTTP request migh
 /// Get the number of AppChain peers currently connected to the client.
 ///
 /// - Returns: Peer count.
-func peerCount() -> Result<BigUInt, AppChainError>
+func peerCount() throws -> BigUInt
 ```
 
 ### blockNumber
@@ -170,7 +173,7 @@ func peerCount() -> Result<BigUInt, AppChainError>
 /// Get the number of most recent block.
 ///
 /// - Returns: Current block height.
-func blockNumber() -> Result<UInt64, AppChainError>
+func blockNumber() throws -> UInt64
 ```
 
 ### sendRawTransaction
@@ -181,7 +184,7 @@ func blockNumber() -> Result<UInt64, AppChainError>
 /// - Parameter signedTx: Signed transaction hex string.
 ///
 /// - Returns: Transaction sending result.
-func sendRawTransaction(signedTx: String) -> Result<TransactionSendingResult, AppChainError>
+func sendRawTransaction(signedTx: String) throws -> TransactionSendingResult
 ```
 
 ### getBlockByHash
@@ -194,7 +197,7 @@ func sendRawTransaction(signedTx: String) -> Result<TransactionSendingResult, Ap
 ///     - fullTransactions: Whether to include transactions in the block object.
 ///
 /// - Returns: The block object matching the hash.
-func getBlockByHash(hash: String, fullTransactions: Bool = false) -> Result<Block, AppChainError>
+func getBlockByHash(hash: String, fullTransactions: Bool = false) throws -> Block
 ```
 
 ### getBlockByNumber
@@ -207,7 +210,7 @@ func getBlockByHash(hash: String, fullTransactions: Bool = false) -> Result<Bloc
 ///     - fullTransactions: Whether to include transactions in the block object.
 ///
 /// - Returns: The block object matching the number.
-func getBlockByNumber(number: BigUInt, fullTransactions: Bool = false) -> Result<Block, AppChainError>
+func getBlockByNumber(number: BigUInt, fullTransactions: Bool = false) throws -> Block
 ```
 
 ### getTransactionReceipt
@@ -218,7 +221,7 @@ func getBlockByNumber(number: BigUInt, fullTransactions: Bool = false) -> Result
 /// - Parameter txhash: transaction hash hex string.
 ///
 /// - Returns: The receipt of transaction matching the txhash.
-func getTransactionReceipt(txhash: String) -> Result<TransactionReceipt, AppChainError>
+func getTransactionReceipt(txhash: String) throws -> TransactionReceipt
 ```
 
 ### getLogs
@@ -229,7 +232,7 @@ func getTransactionReceipt(txhash: String) -> Result<TransactionReceipt, AppChai
 /// - Parameter filter: The filter object.
 ///
 /// - Returns: An array of all logs matching the filter.
-func getLogs(filter: Filter) -> Result<[EventLog], AppChainError>
+func getLogs(filter: Filter) throws -> [EventLog]
 ```
 
 ### call
@@ -242,7 +245,7 @@ func getLogs(filter: Filter) -> Result<[EventLog], AppChainError>
 ///    - blockNumber: A block number
 ///
 /// - Returns: The call result as hex string.
-func call(request: CallRequest, blockNumber: String = "latest") -> Result<String, AppChainError>
+func call(request: CallRequest, blockNumber: String = "latest") throws -> String
 ```
 
 ### getTransaction
@@ -253,7 +256,7 @@ func call(request: CallRequest, blockNumber: String = "latest") -> Result<String
 /// - Parameter txhash: The transaction hash hex string.
 ///
 /// - Returns: A transaction details object.
-func getTransaction(txhash: String) -> Result<TransactionDetails, AppChainError>
+func getTransaction(txhash: String) throws -> TransactionDetails
 ```
 
 ### getTransactionCount
@@ -266,7 +269,7 @@ func getTransaction(txhash: String) -> Result<TransactionDetails, AppChainError>
 ///    - blockNumber: A block number.
 ///
 /// - Returns: The number of transactions.
-func getTransactionCount(address: String, blockNumber: String = "latest") -> Result<BigUInt, AppChainError>
+func getTransactionCount(address: String, blockNumber: String = "latest") throws -> BigUInt
 ```
 
 ### getCode
@@ -279,7 +282,7 @@ func getTransactionCount(address: String, blockNumber: String = "latest") -> Res
 ///    - blockNumber: A block number.
 ///
 /// - Returns: The code at the given address.
-func getCode(address: String, blockNumber: String = "latest") -> Result<String, AppChainError>
+func getCode(address: String, blockNumber: String = "latest") throws -> String
 ```
 
 ### getAbi
@@ -292,7 +295,7 @@ func getCode(address: String, blockNumber: String = "latest") -> Result<String, 
 ///    - blockNumber: A block number.
 ///
 /// - Returns: The ABI at the given address.
-func getAbi(address: String, blockNumber: String = "latest") -> Result<String, AppChainError>
+func getAbi(address: String, blockNumber: String = "latest") throws -> String
 ```
 
 ### getBalance
@@ -305,7 +308,7 @@ func getAbi(address: String, blockNumber: String = "latest") -> Result<String, A
 ///    - blockNumber: A block number.
 ///
 /// - Returns: The balance of the account of the give address.
-func getBalance(address: String, blockNumber: String = "latest") -> Result<BigUInt, AppChainError>
+func getBalance(address: String, blockNumber: String = "latest") throws -> BigUInt
 ```
 
 ### newFilter
@@ -316,7 +319,7 @@ func getBalance(address: String, blockNumber: String = "latest") -> Result<BigUI
 /// - Parameter filter: The filter option object.
 ///
 /// - Returns: ID of the new filter.
-func newFilter(filter: Filter) -> Result<BigUInt, AppChainError>
+func newFilter(filter: Filter) throws -> BigUInt
 ```
 
 ### newBlockFilter
@@ -327,7 +330,7 @@ func newFilter(filter: Filter) -> Result<BigUInt, AppChainError>
 /// - Parameter filter: The filter option object.
 ///
 /// - Returns: ID of the new block filter.
-func newBlockFilter() -> Result<BigUInt, AppChainError>
+func newBlockFilter() throws -> BigUInt
 ```
 
 ### uninstallFilter
@@ -339,7 +342,7 @@ func newBlockFilter() -> Result<BigUInt, AppChainError>
 /// - Parameter filterID: ID of the filter to uninstall.
 ///
 /// - Returns: True if the filter was successfully uninstalled, otherwise false.
-func uninstallFilter(filterID: BigUInt) -> Result<Bool, AppChainError>
+func uninstallFilter(filterID: BigUInt) throws -> Bool
 ```
 
 ### getFilterChanges
@@ -350,7 +353,7 @@ func uninstallFilter(filterID: BigUInt) -> Result<Bool, AppChainError>
 /// - Parameter filterID: ID of the filter to get changes from.
 ///
 /// - Returns: An array of logs which occurred since last poll.
-func getFilterChanges(filterID: BigUInt) -> Result<[EventLog], AppChainError>
+func getFilterChanges(filterID: BigUInt) throws -> [EventLog]
 ```
 
 ### getFilterLogs
@@ -361,7 +364,7 @@ func getFilterChanges(filterID: BigUInt) -> Result<[EventLog], AppChainError>
 /// - Parameter filterID: ID of the filter to get logs from.
 ///
 /// - Returns: An array of logs matching the given filter id.
-func getFilterLogs(filterID: BigUInt) -> Result<[EventLog], AppChainError>
+func getFilterLogs(filterID: BigUInt) throws -> [EventLog]
 ```
 
 ### getTransactionProof
@@ -373,7 +376,7 @@ func getFilterLogs(filterID: BigUInt) -> Result<[EventLog], AppChainError>
 ///
 /// - Returns: A proof include transaction, receipt, receipt merkle tree proof, block header.
 ///     There will be a tool to verify the proof and extract some info.
-func getTransactionProof(txhash: String) -> Result<String, AppChainError>
+func getTransactionProof(txhash: String) throws -> String
 ```
 
 ### getMetaData
@@ -384,7 +387,7 @@ func getTransactionProof(txhash: String) -> Result<String, AppChainError>
 /// - Parameter blockNumber: The block height, hex string integer or "latest".
 ///
 /// - Returns: Metadata of given block height.
-func getMetaData(blockNumber: String = "latest") -> Result<MetaData, AppChainError>
+func getMetaData(blockNumber: String = "latest") throws -> MetaData
 ```
 
 ### getBlockHeader
@@ -395,7 +398,7 @@ func getMetaData(blockNumber: String = "latest") -> Result<MetaData, AppChainErr
 /// - Parameter blockNumber: The block height, hex string integer or "latest".
 ///
 /// - Returns: block header of the given block height.
-func getBlockHeader(blockNumber: String = "latest") -> Result<String, AppChainError>
+func getBlockHeader(blockNumber: String = "latest") throws -> String
 ```
 
 ### getStateProof
@@ -409,7 +412,7 @@ func getBlockHeader(blockNumber: String = "latest") -> Result<String, AppChainEr
 ///    - blockNumber: The block number, hex string integer, or the string "latest", "earliest".
 ///
 /// - Returns: State proof of special value. Include address, account proof, key, value proof.
-func getStateProof(address: String, key: String, blockNumber: String = "latest") -> Result<String, AppChainError>
+func getStateProof(address: String, key: String, blockNumber: String = "latest") throws -> String
 ```
 
 ## License
