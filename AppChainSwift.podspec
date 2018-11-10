@@ -24,6 +24,5 @@ Pod::Spec.new do |s|
   s.dependency 'secp256k1_swift', '~> 1.0.3'
   s.dependency 'CryptoSwift', '~> 0.13'
   s.dependency 'BigInt', '~> 3.1'
-  s.dependency 'Result', '~> 4.0'
   s.dependency 'PromiseKit', '~> 6.5'
 end

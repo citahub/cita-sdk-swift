@@ -10,7 +10,6 @@ target 'AppChain' do
   pod "secp256k1_swift", "~> 1.0.3", modular_headers: true
   pod "CryptoSwift", "~> 0.13"
   pod "BigInt", "~> 3.1"
-  pod "Result", "~> 4.0"
   pod "PromiseKit", "~> 6.5"
 
   target 'AppChainTests' do
