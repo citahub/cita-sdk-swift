@@ -103,7 +103,9 @@ let tx = Transaction(
     quota: 1_000_000, // Use 1,000,000 as default quota for sending a transaction
     validUntilBlock: currentBlock + 88,
     data: Data.fromHex("6060604...")!,
-    chainId: 1
+    chainId: "1", // Should get proper chainId from [getMetaData](#getmetadata) or chain info
+    version: 1,   // Should get proper version from [getMetaData](#getmetadata)
+
 )
 guard let signed = try? Signer().sign(transaction: tx, with: privateKey) else {
     print("Sign fail")

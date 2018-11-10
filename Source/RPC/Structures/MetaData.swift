@@ -10,7 +10,7 @@ import Foundation
 import BigInt
 
 public struct MetaData: Decodable {
-    public var chainId: UInt32
+    public var chainId: String
     public var chainName: String
     public var `operator`: String
     public var website: String
@@ -20,9 +20,11 @@ public struct MetaData: Decodable {
     public var tokenName: String
     public var tokenSymbol: String
     public var tokenAvatar: String
+    public var version: UInt32
 
     enum CodingKeys: String, CodingKey {
         case chainId
+        case chainIdV1
         case chainName
         case `operator`
         case website
@@ -32,12 +34,19 @@ public struct MetaData: Decodable {
         case tokenName
         case tokenSymbol
         case tokenAvatar
+        case version
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        self.chainId = try container.decode(UInt32.self, forKey: .chainId)
+        self.version = try container.decode(UInt32.self, forKey: .version)
+
+        if version == 0 {
+            self.chainId = String(try container.decode(UInt32.self, forKey: .chainId))
+        } else {
+            self.chainId = try container.decode(String.self, forKey: .chainIdV1)
+        }
 
         self.chainName = try container.decode(String.self, forKey: .chainName)
 
