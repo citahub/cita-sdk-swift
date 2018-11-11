@@ -15,8 +15,8 @@ public struct TransactionReceipt: Decodable {
     public var blockNumber: BigUInt
     public var transactionIndex: BigUInt
     public var contractAddress: Address?
-    public var cumulativeGasUsed: BigUInt
-    public var gasUsed: BigUInt
+    public var cumulativeQuotaUsed: BigUInt
+    public var quotaUsed: BigUInt
     public var logs: [EventLog]
     public var logsBloom: BloomFilter?
     public var root: String?
@@ -28,8 +28,10 @@ public struct TransactionReceipt: Decodable {
         case transactionHash
         case transactionIndex
         case contractAddress
-        case cumulativeGasUsed
-        case gasUsed
+        case cumulativeGasUsed  // Version 0
+        case gasUsed            // Version 0
+        case cumulativeQuotaUsed
+        case quotaUsed
         case logs
         case logsBloom
         case root
@@ -55,11 +57,23 @@ public struct TransactionReceipt: Decodable {
             self.contractAddress = contractAddress
         }
 
-        guard let cumulativeGasUsed = try DecodeUtils.decodeHexToBigUInt(container, key: .cumulativeGasUsed) else { throw AppChainError.dataError }
-        self.cumulativeGasUsed = cumulativeGasUsed
+        var cumulativeQuotaUsed = try DecodeUtils.decodeHexToBigUInt(container, key: .cumulativeQuotaUsed, allowOptional: true)
+        if cumulativeQuotaUsed == nil {
+            cumulativeQuotaUsed = try DecodeUtils.decodeHexToBigUInt(container, key: .cumulativeGasUsed, allowOptional: true)
+        }
+        if cumulativeQuotaUsed == nil {
+            throw AppChainError.dataError
+        }
+        self.cumulativeQuotaUsed = cumulativeQuotaUsed!
 
-        guard let gasUsed = try DecodeUtils.decodeHexToBigUInt(container, key: .gasUsed) else { throw AppChainError.dataError }
-        self.gasUsed = gasUsed
+        var quotaUsed = try DecodeUtils.decodeHexToBigUInt(container, key: .quotaUsed, allowOptional: true)
+        if quotaUsed == nil {
+            quotaUsed = try DecodeUtils.decodeHexToBigUInt(container, key: .gasUsed, allowOptional: true)
+        }
+        if quotaUsed == nil {
+            throw AppChainError.dataError
+        }
+        self.quotaUsed = quotaUsed!
 
         let logsData = try DecodeUtils.decodeHexToData(container, key: .logsBloom, allowOptional: true)
         if logsData != nil && logsData!.count > 0 {
@@ -72,14 +86,14 @@ public struct TransactionReceipt: Decodable {
     }
 
     public init(transactionHash: Data, blockHash: Data, blockNumber: BigUInt, transactionIndex: BigUInt, contractAddress: Address?,
-                cumulativeGasUsed: BigUInt, gasUsed: BigUInt, logs: [EventLog], logsBloom: BloomFilter?, root: String?, errorMessage: String?) {
+                cumulativeQuotaUsed: BigUInt, quotaUsed: BigUInt, logs: [EventLog], logsBloom: BloomFilter?, root: String?, errorMessage: String?) {
         self.transactionHash = transactionHash
         self.blockHash = blockHash
         self.blockNumber = blockNumber
         self.transactionIndex = transactionIndex
         self.contractAddress = contractAddress
-        self.cumulativeGasUsed = cumulativeGasUsed
-        self.gasUsed = gasUsed
+        self.cumulativeQuotaUsed = cumulativeQuotaUsed
+        self.quotaUsed = quotaUsed
         self.logs = logs
         self.logsBloom = logsBloom
         self.root = root
