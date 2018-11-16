@@ -70,9 +70,7 @@ public struct Address: Equatable, Codable {
 
         var checksum: String {
             let lowercased = address.stripHexPrefix().lowercased()
-            let hash = Data(bytes: SHA3(variant: .keccak256)
-                .calculate(for: lowercased.data(using: .utf8)!.bytes))
-                .toHexString()
+            let hash = lowercased.sha3(.keccak256)
 
             let checksumed = lowercased.enumerated().map { (idx, ch) -> String in
                 let string = String(ch)
