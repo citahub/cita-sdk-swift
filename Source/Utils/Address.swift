@@ -7,9 +7,9 @@
 //
 
 import Foundation
+import CryptoSwift
 
-/// AppChain Address
-/// An AppChain address has same format as Ethereum, but doesn't support EIP55 checksum.
+/// AppChain Address (same fromat as Ethereum address).
 public struct Address: Equatable, Codable {
     private let addressString: String
 
@@ -41,16 +41,49 @@ public struct Address: Equatable, Codable {
         return addressString.addHexPrefix()
     }
 
+    public var checksumAddress: String {
+        return ChecksumMaker(address: addressString).checksum
+    }
+
     public static func isValid(_ address: String) -> Bool {
         if address == "0x" {
             return true
         }
 
-        let predicate = NSPredicate(format: "SELF MATCHES[c] %@", "^[0-9a-f]{40}$")
-        return predicate.evaluate(with: address.stripHexPrefix())
+        if !NSPredicate(format: "SELF MATCHES %@", "^(0x)?[0-9a-fA-F]{40}$").evaluate(with: address) {
+            return false
+        }
+
+        let prefixRemoved = address.stripHexPrefix()
+        if prefixRemoved == prefixRemoved.uppercased() || prefixRemoved == prefixRemoved.lowercased() {
+            return true
+        }
+        return ChecksumMaker(address: address).checksum == prefixRemoved.addHexPrefix()
     }
 
     public static func == (lhs: Address, rhs: Address) -> Bool {
         return lhs.address.lowercased() == rhs.address.lowercased()
+    }
+
+    struct ChecksumMaker {
+        let address: String
+
+        var checksum: String {
+            let lowercased = address.stripHexPrefix().lowercased()
+            let hash = Data(bytes: SHA3(variant: .keccak256)
+                .calculate(for: lowercased.data(using: .utf8)!.bytes))
+                .toHexString()
+
+            let checksumed = lowercased.enumerated().map { (idx, ch) -> String in
+                let string = String(ch)
+                if Int(hash.substring(from: idx).substring(to: 1), radix: 16)! >= 8 {
+                    return string.uppercased()
+                } else {
+                    return string
+                }
+            }
+
+            return checksumed.joined().addHexPrefix()
+        }
     }
 }

@@ -23,4 +23,12 @@ extension String {
         }
         return self
     }
+
+    func substring(from: Int) -> String {
+        return String(dropFirst(from))
+    }
+
+    func substring(to: Int) -> String {
+        return String(dropLast(count - to))
+    }
 }
