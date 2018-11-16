@@ -9,7 +9,7 @@
 import Foundation
 import CryptoSwift
 
-/// AppChain Address (same fromat as Ethereum address).
+/// AppChain Address (same format as Ethereum address).
 public struct Address: Equatable, Codable {
     private let addressString: String
 
