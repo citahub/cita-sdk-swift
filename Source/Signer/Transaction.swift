@@ -72,7 +72,7 @@ extension CitaTransaction {
         case 1:
             return toV1.toHexString()
         default:
-            assert(false, "Transaction version not supported")
+            fatalError("Transaction version not supported")
         }
     }
     var parsedChainId: String {
@@ -82,7 +82,7 @@ extension CitaTransaction {
         case 1:
             return chainIDV1.toHexString()
         default:
-            assert(false, "Transaction version not supported")
+            fatalError("Transaction version not supported")
         }
     }
 }
