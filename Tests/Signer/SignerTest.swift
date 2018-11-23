@@ -18,7 +18,7 @@ class SignerTests: XCTestCase {
             quota: 1_000_000,
             validUntilBlock: 999_999,
             data: Data.fromHex("6060604052341561000f57600080fd5b60d38061001d6000396000f3006060604052600436106049576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806360fe47b114604e5780636d4ce63c14606e575b600080fd5b3415605857600080fd5b606c60048080359060200190919050506094565b005b3415607857600080fd5b607e609e565b6040518082815260200191505060405180910390f35b8060008190555050565b600080549050905600a165627a7a723058202d9a0979adf6bf48461f24200e635bc19cd1786efbcfc0608eb1d76114d405860029")!,
-            chainId: 1,
+            chainId: "1",
             version: 0
         )
         guard let signed = try? Signer().sign(transaction: tx, with: privateKey) else {
@@ -34,7 +34,7 @@ class SignerTests: XCTestCase {
             quota: 1_000_000,
             validUntilBlock: 1_470_441,
             data: Data.fromHex("6060604052341561000f57600080fd5b60d38061001d6000396000f3006060604052600436106049576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806360fe47b114604e5780636d4ce63c14606e575b600080fd5b3415605857600080fd5b606c60048080359060200190919050506094565b005b3415607857600080fd5b607e609e565b6040518082815260200191505060405180910390f35b8060008190555050565b600080549050905600a165627a7a723058202d9a0979adf6bf48461f24200e635bc19cd1786efbcfc0608eb1d76114d405860029")!,
-            chainId: 1,
+            chainId: "1",
             version: 0
         )
         guard let signed = try? Signer().sign(transaction: tx, with: privateKey) else {
@@ -50,7 +50,7 @@ class SignerTests: XCTestCase {
             quota: 1_000_000,
             validUntilBlock: 999_999,
             data: Data.fromHex("6060604052341561000f57600080fd5b60d38061001d6000396000f3006060604052600436106049576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806360fe47b114604e5780636d4ce63c14606e575b600080fd5b3415605857600080fd5b606c60048080359060200190919050506094565b005b3415607857600080fd5b607e609e565b6040518082815260200191505060405180910390f35b8060008190555050565b600080549050905600a165627a7a723058202d9a0979adf6bf48461f24200e635bc19cd1786efbcfc0608eb1d76114d405860029")!,
-            chainId: 1,
+            chainId: "1",
             version: 0
         )
         do {
@@ -68,7 +68,7 @@ class SignerTests: XCTestCase {
             quota: 1_000_000,
             validUntilBlock: 999_999,
             value: BigUInt("10", radix: 2)!.power(256),
-            chainId: 1,
+            chainId: "1",
             version: 0
         )
         do {
@@ -81,7 +81,8 @@ class SignerTests: XCTestCase {
 
     // Load and test all JSON fixtures
     func testJSONFixtures() {
-        jsonFiles(in: "transactions").forEach { (file) in
+        let txFixtures = jsonFiles(in: "transactions") + jsonFiles(in: "transactions/v1")
+        txFixtures.forEach { (file) in
             let json = load(jsonFile: file) as! [String: Any]
             let txData = json["tx"] as! [String: String?]
 
@@ -106,7 +107,7 @@ class SignerTests: XCTestCase {
                 validUntilBlock: UInt64(txData["validUntilBlock"] as? String ?? "999999")!,
                 data: data,
                 value: BigUInt(txData["value"] as? String ?? "0")!,
-                chainId: UInt32(txData["chainId"] as? String ?? "1")!,
+                chainId: txData["chainId"] as? String ?? "1",
                 version: UInt32(txData["version"] as? String ?? "0")!
             )
             if let hasError = json["hasError"] as? Bool, hasError {

@@ -16,7 +16,7 @@ public struct BlockHeader: Decodable {
     public var stateRoot: Data
     public var transactionsRoot: Data
     public var receiptsRoot: Data
-    public var gasUsed: BigUInt
+    public var quotaUsed: BigUInt
     public var number: BigUInt
     public var proposer: Data
 
@@ -27,7 +27,8 @@ public struct BlockHeader: Decodable {
         case stateRoot
         case transactionsRoot
         case receiptsRoot
-        case gasUsed
+        case quotaUsed
+        case gasUsed  // Version 0
         case number
         case proposer
     }
@@ -52,8 +53,14 @@ public struct BlockHeader: Decodable {
         guard let receiptsRoot = try DecodeUtils.decodeHexToData(container, key: .receiptsRoot) else { throw AppChainError.dataError }
         self.receiptsRoot = receiptsRoot
 
-        guard let gasUsed = try DecodeUtils.decodeHexToBigUInt(container, key: .gasUsed) else { throw AppChainError.dataError }
-        self.gasUsed = gasUsed
+        var quotaUsed = try DecodeUtils.decodeHexToBigUInt(container, key: .quotaUsed, allowOptional: true)
+        if quotaUsed == nil {
+            quotaUsed = try DecodeUtils.decodeHexToBigUInt(container, key: .gasUsed, allowOptional: true)
+        }
+        if quotaUsed == nil {
+            throw AppChainError.dataError
+        }
+        self.quotaUsed = quotaUsed!
 
         guard let number = try DecodeUtils.decodeHexToBigUInt(container, key: .number) else { throw AppChainError.dataError }
         self.number = number

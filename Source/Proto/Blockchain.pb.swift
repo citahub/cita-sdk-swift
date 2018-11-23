@@ -152,14 +152,14 @@ struct CitaBlockHeader {
     set {_uniqueStorage()._receiptsRoot = newValue}
   }
 
-  var gasUsed: UInt64 {
-    get {return _storage._gasUsed}
-    set {_uniqueStorage()._gasUsed = newValue}
+  var quotaUsed: UInt64 {
+    get {return _storage._quotaUsed}
+    set {_uniqueStorage()._quotaUsed = newValue}
   }
 
-  var gasLimit: UInt64 {
-    get {return _storage._gasLimit}
-    set {_uniqueStorage()._gasLimit = newValue}
+  var quotaLimit: UInt64 {
+    get {return _storage._quotaLimit}
+    set {_uniqueStorage()._quotaLimit = newValue}
   }
 
   var proof: CitaProof {
@@ -202,9 +202,9 @@ struct CitaAccountGasLimit {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  var commonGasLimit: UInt64 = 0
+  var commonQuotaLimit: UInt64 = 0
 
-  var specificGasLimit: Dictionary<String,UInt64> = [:]
+  var specificQuotaLimit: Dictionary<String,UInt64> = [:]
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -225,6 +225,8 @@ struct CitaRichStatus {
   var interval: UInt64 = 0
 
   var version: UInt32 = 0
+
+  var validators: [Data] = []
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -251,6 +253,10 @@ struct CitaTransaction {
   var chainID: UInt32 = 0
 
   var version: UInt32 = 0
+
+  var toV1: Data = SwiftProtobuf.Internal.emptyData
+
+  var chainIDV1: Data = SwiftProtobuf.Internal.emptyData
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -514,8 +520,8 @@ extension CitaBlockHeader: SwiftProtobuf.Message, SwiftProtobuf._MessageImplemen
     4: .standard(proto: "state_root"),
     5: .standard(proto: "transactions_root"),
     6: .standard(proto: "receipts_root"),
-    7: .standard(proto: "gas_used"),
-    8: .standard(proto: "gas_limit"),
+    7: .standard(proto: "quota_used"),
+    8: .standard(proto: "quota_limit"),
     9: .same(proto: "proof"),
     10: .same(proto: "proposer"),
   ]
@@ -527,8 +533,8 @@ extension CitaBlockHeader: SwiftProtobuf.Message, SwiftProtobuf._MessageImplemen
     var _stateRoot: Data = SwiftProtobuf.Internal.emptyData
     var _transactionsRoot: Data = SwiftProtobuf.Internal.emptyData
     var _receiptsRoot: Data = SwiftProtobuf.Internal.emptyData
-    var _gasUsed: UInt64 = 0
-    var _gasLimit: UInt64 = 0
+    var _quotaUsed: UInt64 = 0
+    var _quotaLimit: UInt64 = 0
     var _proof: CitaProof? = nil
     var _proposer: Data = SwiftProtobuf.Internal.emptyData
 
@@ -543,8 +549,8 @@ extension CitaBlockHeader: SwiftProtobuf.Message, SwiftProtobuf._MessageImplemen
       _stateRoot = source._stateRoot
       _transactionsRoot = source._transactionsRoot
       _receiptsRoot = source._receiptsRoot
-      _gasUsed = source._gasUsed
-      _gasLimit = source._gasLimit
+      _quotaUsed = source._quotaUsed
+      _quotaLimit = source._quotaLimit
       _proof = source._proof
       _proposer = source._proposer
     }
@@ -568,8 +574,8 @@ extension CitaBlockHeader: SwiftProtobuf.Message, SwiftProtobuf._MessageImplemen
         case 4: try decoder.decodeSingularBytesField(value: &_storage._stateRoot)
         case 5: try decoder.decodeSingularBytesField(value: &_storage._transactionsRoot)
         case 6: try decoder.decodeSingularBytesField(value: &_storage._receiptsRoot)
-        case 7: try decoder.decodeSingularUInt64Field(value: &_storage._gasUsed)
-        case 8: try decoder.decodeSingularUInt64Field(value: &_storage._gasLimit)
+        case 7: try decoder.decodeSingularUInt64Field(value: &_storage._quotaUsed)
+        case 8: try decoder.decodeSingularUInt64Field(value: &_storage._quotaLimit)
         case 9: try decoder.decodeSingularMessageField(value: &_storage._proof)
         case 10: try decoder.decodeSingularBytesField(value: &_storage._proposer)
         default: break
@@ -598,11 +604,11 @@ extension CitaBlockHeader: SwiftProtobuf.Message, SwiftProtobuf._MessageImplemen
       if !_storage._receiptsRoot.isEmpty {
         try visitor.visitSingularBytesField(value: _storage._receiptsRoot, fieldNumber: 6)
       }
-      if _storage._gasUsed != 0 {
-        try visitor.visitSingularUInt64Field(value: _storage._gasUsed, fieldNumber: 7)
+      if _storage._quotaUsed != 0 {
+        try visitor.visitSingularUInt64Field(value: _storage._quotaUsed, fieldNumber: 7)
       }
-      if _storage._gasLimit != 0 {
-        try visitor.visitSingularUInt64Field(value: _storage._gasLimit, fieldNumber: 8)
+      if _storage._quotaLimit != 0 {
+        try visitor.visitSingularUInt64Field(value: _storage._quotaLimit, fieldNumber: 8)
       }
       if let v = _storage._proof {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
@@ -625,8 +631,8 @@ extension CitaBlockHeader: SwiftProtobuf.Message, SwiftProtobuf._MessageImplemen
         if _storage._stateRoot != rhs_storage._stateRoot {return false}
         if _storage._transactionsRoot != rhs_storage._transactionsRoot {return false}
         if _storage._receiptsRoot != rhs_storage._receiptsRoot {return false}
-        if _storage._gasUsed != rhs_storage._gasUsed {return false}
-        if _storage._gasLimit != rhs_storage._gasLimit {return false}
+        if _storage._quotaUsed != rhs_storage._quotaUsed {return false}
+        if _storage._quotaLimit != rhs_storage._quotaLimit {return false}
         if _storage._proof != rhs_storage._proof {return false}
         if _storage._proposer != rhs_storage._proposer {return false}
         return true
@@ -676,33 +682,33 @@ extension CitaStatus: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
 extension CitaAccountGasLimit: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = "AccountGasLimit"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "common_gas_limit"),
-    2: .standard(proto: "specific_gas_limit"),
+    1: .standard(proto: "common_quota_limit"),
+    2: .standard(proto: "specific_quota_limit"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
-      case 1: try decoder.decodeSingularUInt64Field(value: &self.commonGasLimit)
-      case 2: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufUInt64>.self, value: &self.specificGasLimit)
+      case 1: try decoder.decodeSingularUInt64Field(value: &self.commonQuotaLimit)
+      case 2: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufUInt64>.self, value: &self.specificQuotaLimit)
       default: break
       }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.commonGasLimit != 0 {
-      try visitor.visitSingularUInt64Field(value: self.commonGasLimit, fieldNumber: 1)
+    if self.commonQuotaLimit != 0 {
+      try visitor.visitSingularUInt64Field(value: self.commonQuotaLimit, fieldNumber: 1)
     }
-    if !self.specificGasLimit.isEmpty {
-      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufUInt64>.self, value: self.specificGasLimit, fieldNumber: 2)
+    if !self.specificQuotaLimit.isEmpty {
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufUInt64>.self, value: self.specificQuotaLimit, fieldNumber: 2)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   static func ==(lhs: CitaAccountGasLimit, rhs: CitaAccountGasLimit) -> Bool {
-    if lhs.commonGasLimit != rhs.commonGasLimit {return false}
-    if lhs.specificGasLimit != rhs.specificGasLimit {return false}
+    if lhs.commonQuotaLimit != rhs.commonQuotaLimit {return false}
+    if lhs.specificQuotaLimit != rhs.specificQuotaLimit {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -716,6 +722,7 @@ extension CitaRichStatus: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
     3: .same(proto: "nodes"),
     4: .same(proto: "interval"),
     5: .same(proto: "version"),
+    6: .same(proto: "validators"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -726,6 +733,7 @@ extension CitaRichStatus: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
       case 3: try decoder.decodeRepeatedBytesField(value: &self.nodes)
       case 4: try decoder.decodeSingularUInt64Field(value: &self.interval)
       case 5: try decoder.decodeSingularUInt32Field(value: &self.version)
+      case 6: try decoder.decodeRepeatedBytesField(value: &self.validators)
       default: break
       }
     }
@@ -747,6 +755,9 @@ extension CitaRichStatus: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
     if self.version != 0 {
       try visitor.visitSingularUInt32Field(value: self.version, fieldNumber: 5)
     }
+    if !self.validators.isEmpty {
+      try visitor.visitRepeatedBytesField(value: self.validators, fieldNumber: 6)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -756,6 +767,7 @@ extension CitaRichStatus: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
     if lhs.nodes != rhs.nodes {return false}
     if lhs.interval != rhs.interval {return false}
     if lhs.version != rhs.version {return false}
+    if lhs.validators != rhs.validators {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -772,6 +784,8 @@ extension CitaTransaction: SwiftProtobuf.Message, SwiftProtobuf._MessageImplemen
     6: .same(proto: "value"),
     7: .standard(proto: "chain_id"),
     8: .same(proto: "version"),
+    9: .standard(proto: "to_v1"),
+    10: .standard(proto: "chain_id_v1"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -785,6 +799,8 @@ extension CitaTransaction: SwiftProtobuf.Message, SwiftProtobuf._MessageImplemen
       case 6: try decoder.decodeSingularBytesField(value: &self.value)
       case 7: try decoder.decodeSingularUInt32Field(value: &self.chainID)
       case 8: try decoder.decodeSingularUInt32Field(value: &self.version)
+      case 9: try decoder.decodeSingularBytesField(value: &self.toV1)
+      case 10: try decoder.decodeSingularBytesField(value: &self.chainIDV1)
       default: break
       }
     }
@@ -815,6 +831,12 @@ extension CitaTransaction: SwiftProtobuf.Message, SwiftProtobuf._MessageImplemen
     if self.version != 0 {
       try visitor.visitSingularUInt32Field(value: self.version, fieldNumber: 8)
     }
+    if !self.toV1.isEmpty {
+      try visitor.visitSingularBytesField(value: self.toV1, fieldNumber: 9)
+    }
+    if !self.chainIDV1.isEmpty {
+      try visitor.visitSingularBytesField(value: self.chainIDV1, fieldNumber: 10)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -827,6 +849,8 @@ extension CitaTransaction: SwiftProtobuf.Message, SwiftProtobuf._MessageImplemen
     if lhs.value != rhs.value {return false}
     if lhs.chainID != rhs.chainID {return false}
     if lhs.version != rhs.version {return false}
+    if lhs.toV1 != rhs.toV1 {return false}
+    if lhs.chainIDV1 != rhs.chainIDV1 {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

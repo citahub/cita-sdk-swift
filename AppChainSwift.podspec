@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "AppChainSwift"
-  s.version      = "0.19.5"
+  s.version      = "0.20.3"
   s.summary      = "Nervos AppChain SDK implementation in Swift for iOS"
 
   s.description  = <<-DESC
@@ -24,6 +24,5 @@ Pod::Spec.new do |s|
   s.dependency 'secp256k1_swift', '~> 1.0.3'
   s.dependency 'CryptoSwift', '~> 0.13'
   s.dependency 'BigInt', '~> 3.1'
-  s.dependency 'Result', '~> 4.0'
   s.dependency 'PromiseKit', '~> 6.5'
 end
