@@ -96,15 +96,18 @@ Before sending a raw transaction over JSON-RPC API, create a `Transaction` objec
 
 ```swift
 let privateKey = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
-let currentBlock = nervos.appChain.blockNumber().value!
+guard let metaData = try? appChain.rpc.getMetaData(), let blockNumber = try? appChain.rpc.blockNumber() else {
+    return
+}
+let metaData = try? appChain.rpc.getMetaData()
 let tx = Transaction(
     to: Address("0x0000000000000000000000000000000000000000"),
     nonce: UUID().uuidString, // Generate a random/unique nonce string
     quota: 1_000_000, // Use 1,000,000 as default quota for sending a transaction
-    validUntilBlock: currentBlock + 88,
+    validUntilBlock: blockNumber + 88,
     data: Data.fromHex("6060604...")!,
-    chainId: "1", // Should get proper chainId from [getMetaData](#getmetadata) or chain info
-    version: 1,   // Should get proper version from [getMetaData](#getmetadata)
+    chainId: metaData.chainId,
+    version: metaData.version
 
 )
 guard let signed = try? Signer().sign(transaction: tx, with: privateKey) else {
