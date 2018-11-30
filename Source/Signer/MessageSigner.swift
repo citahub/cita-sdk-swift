@@ -8,13 +8,18 @@
 
 import Foundation
 
+public enum SignError: Error {
+    case invalidPrivateKey
+    case invalidSignature
+}
+
 // AppChain Message Signer
 struct MessageSigner {
     public init() {}
 
     // TODO: AppChain sign personal message
     public func sign(message: Data, privateKey: String, useExtraEntropy: Bool = true) throws -> String? {
-        return try signHash(EthereumMessageSigner().hashMessage(message), privateKey: privateKey, useExtraEntropy: useExtraEntropy).toHexString().addHexPrefix()
+        return try signHash(hashMessage(message), privateKey: privateKey, useExtraEntropy: useExtraEntropy).toHexString().addHexPrefix()
     }
 
     private func signHash(_ hash: Data, privateKey: String, useExtraEntropy: Bool = true) throws -> Data {
@@ -26,5 +31,25 @@ struct MessageSigner {
             throw SignError.invalidSignature
         }
         return signature
+    }
+
+    public func hashMessage(_ message: Data) -> Data {
+        return message.sha3(.keccak256)
+    }
+
+    public func hashPersonalMessage(_ personalMessage: Data) -> Data? {
+        return hashMessage(appendPersonalMessagePrefix(for: personalMessage))
+    }
+}
+
+extension MessageSigner {
+    func appendPersonalMessagePrefix(for message: Data) -> Data {
+        let prefix = "\u{19}Ethereum Signed Message:\n\(message.count)"
+        let prefixData = prefix.data(using: .ascii)!
+        if message.count >= prefixData.count && prefixData == message[0 ..< prefixData.count] {
+            return message
+        } else {
+            return prefixData + message
+        }
     }
 }
