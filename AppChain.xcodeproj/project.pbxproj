@@ -54,8 +54,6 @@
 		1AD65F9F21229AF500AA4C84 /* Signer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65F9E21229AF500AA4C84 /* Signer.swift */; };
 		1AD65FA12122A1F900AA4C84 /* TransactionSendingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65FA02122A1F900AA4C84 /* TransactionSendingResult.swift */; };
 		1AD65FA62122AF4400AA4C84 /* SignerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65FA42122AF2F00AA4C84 /* SignerTest.swift */; };
-		893532EE217D7D9B00404C0B /* EthereumMessageSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893532ED217D7D9B00404C0B /* EthereumMessageSigner.swift */; };
-		893532F2217DA03300404C0B /* EthereumMessageSignerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893532F1217DA03300404C0B /* EthereumMessageSignerTests.swift */; };
 		89733041217EB559001B8D93 /* MessageSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89733040217EB559001B8D93 /* MessageSigner.swift */; };
 		A761B95773C2431357D1B0B9 /* Pods_AppChain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A425B554C4D9A6E8284FEAC /* Pods_AppChain.framework */; };
 /* End PBXBuildFile section */
@@ -124,8 +122,6 @@
 		69F270D62F7F19A30770BD03 /* Pods-AppChainTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppChainTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppChainTests/Pods-AppChainTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6A425B554C4D9A6E8284FEAC /* Pods_AppChain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppChain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FF8D9768BC7235E22EC11C8 /* Pods-AppChain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppChain.release.xcconfig"; path = "Pods/Target Support Files/Pods-AppChain/Pods-AppChain.release.xcconfig"; sourceTree = "<group>"; };
-		893532ED217D7D9B00404C0B /* EthereumMessageSigner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumMessageSigner.swift; sourceTree = "<group>"; };
-		893532F1217DA03300404C0B /* EthereumMessageSignerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumMessageSignerTests.swift; sourceTree = "<group>"; };
 		89733040217EB559001B8D93 /* MessageSigner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSigner.swift; sourceTree = "<group>"; };
 		8990CDB62160682F00205129 /* Config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Config.json; sourceTree = "<group>"; };
 		D9D78017E61E65184F73D1F8 /* Pods-AppChain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppChain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppChain/Pods-AppChain.debug.xcconfig"; sourceTree = "<group>"; };
@@ -284,7 +280,6 @@
 				1AD65F9E21229AF500AA4C84 /* Signer.swift */,
 				1A0529BF214258EC00C847CA /* Unsigner.swift */,
 				89733040217EB559001B8D93 /* MessageSigner.swift */,
-				893532ED217D7D9B00404C0B /* EthereumMessageSigner.swift */,
 			);
 			path = Signer;
 			sourceTree = "<group>";
@@ -303,7 +298,6 @@
 			children = (
 				1AD65FA42122AF2F00AA4C84 /* SignerTest.swift */,
 				1A0529C1214279A500C847CA /* UnsignerTests.swift */,
-				893532F1217DA03300404C0B /* EthereumMessageSignerTests.swift */,
 			);
 			path = Signer;
 			sourceTree = "<group>";
@@ -545,7 +539,6 @@
 				1A0D0C072185A8EF003E680D /* Data+Extension.swift in Sources */,
 				1A67ED50211D11C600DCE871 /* Request.swift in Sources */,
 				1A0D0C052185A861003E680D /* BloomFilter.swift in Sources */,
-				893532EE217D7D9B00404C0B /* EthereumMessageSigner.swift in Sources */,
 				1AD65F9021217AC000AA4C84 /* DecodeUtils.swift in Sources */,
 				1AD65F9F21229AF500AA4C84 /* Signer.swift in Sources */,
 				1A67ED54211D122000DCE871 /* Method.swift in Sources */,
@@ -569,7 +562,6 @@
 			files = (
 				1A67ED3D211BEAFD00DCE871 /* HTTPProviderTests.swift in Sources */,
 				1A58853A211DC759007043F1 /* RPCTests.swift in Sources */,
-				893532F2217DA03300404C0B /* EthereumMessageSignerTests.swift in Sources */,
 				1A0529C2214279A500C847CA /* UnsignerTests.swift in Sources */,
 				1AD65FA62122AF4400AA4C84 /* SignerTest.swift in Sources */,
 				1A64297F211C63E000352209 /* Config.swift in Sources */,
