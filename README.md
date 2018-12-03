@@ -1,10 +1,10 @@
-# AppChainSwift
+# AppChain Swift
 
 [![Travis](https://travis-ci.com/cryptape/appchain-swift.svg?branch=develop)](https://travis-ci.com/cryptape/appchain-swift)
 [![Swift](https://img.shields.io/badge/Swift-4.2-orange.svg?style=flat)](https://developer.apple.com/swift/)
 [![AppChain](https://img.shields.io/badge/made%20for-Nervos%20AppChain-blue.svg)](https://appchain.nervos.org)
 
-AppChainSwift is a native Swift framework for integrating with Nervos AppChain network.
+AppChain is a native Swift framework for integrating with Nervos AppChain network.
 
 ## Features
 
@@ -20,17 +20,17 @@ Refer to [docs.nervos.org/cita](https://docs.nervos.org/cita/#/rpc_guide/rpc) fo
 
 ### System Requirements
 
-To build AppChainSwift, you'll need:
+To build AppChain, you'll need:
 
 * Swift 4.2 and later
 * Xcode 10 and later
 * [CocoaPods](https://cocoapods.org)
 
-AppChainSwift supports iOS 10 and newer versions.
+AppChain supports iOS 10 and newer versions.
 
 ### Installation
 
-To integrate AppChainSwift into your Xcode project using CocoaPods, specify it in your `Podfile`:
+To integrate AppChain into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
@@ -51,7 +51,7 @@ $ pod install
 
 ### Development
 
-To build AppChainSwift, first run `pod install`, then open `AppChain.xcworkspace` with Xcode and build.
+To build AppChain, first run `pod install`, then open `AppChain.xcworkspace` with Xcode and build.
 
 #### Running Tests
 
@@ -61,7 +61,7 @@ Note: serveral tests depend on onchain data and would fail when running on your 
 
 ### web3swift
 
-AppChainSwift was initially built upon [matterinc/web3swift](https://github.com/matterinc/web3swift). Then we want to keep AppChainSwift a simple RPC client and transaction signer (this means no keystore management and other features) so web3swift dependency was removed, but some utils, foundation extensions and HTTP request implementations were taken and modified from it.
+AppChain was initially built upon [matterinc/web3swift](https://github.com/matterinc/web3swift). Then we want to keep AppChain a simple RPC client and transaction signer (this means no keystore management and other features) so web3swift dependency was removed, but some utils, foundation extensions and HTTP request implementations were taken and modified from it.
 
 ### Testnet
 
@@ -96,15 +96,18 @@ Before sending a raw transaction over JSON-RPC API, create a `Transaction` objec
 
 ```swift
 let privateKey = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
-let currentBlock = nervos.appChain.blockNumber().value!
+guard let metaData = try? appChain.rpc.getMetaData(), let blockNumber = try? appChain.rpc.blockNumber() else {
+    return
+}
+let metaData = try? appChain.rpc.getMetaData()
 let tx = Transaction(
     to: Address("0x0000000000000000000000000000000000000000"),
     nonce: UUID().uuidString, // Generate a random/unique nonce string
     quota: 1_000_000, // Use 1,000,000 as default quota for sending a transaction
-    validUntilBlock: currentBlock + 88,
+    validUntilBlock: blockNumber + 88,
     data: Data.fromHex("6060604...")!,
-    chainId: "1", // Should get proper chainId from [getMetaData](#getmetadata) or chain info
-    version: 1,   // Should get proper version from [getMetaData](#getmetadata)
+    chainId: metaData.chainId,
+    version: metaData.version
 
 )
 guard let signed = try? Signer().sign(transaction: tx, with: privateKey) else {
@@ -116,7 +119,7 @@ guard let signed = try? Signer().sign(transaction: tx, with: privateKey) else {
 
 All JSON-RPC APIs would return result when the call is successful, or throw `AppChainError` exception when not.
 
-JSON-RPC API functions are synchronous. But the underlying HTTP request might take some time to return, and in AppChainSwift they're usually implemented in some `promise` way. It's generally better to call API function in a background queue so it won't block the main thread.
+JSON-RPC API functions are synchronous. But the underlying HTTP request might take some time to return, and in AppChain they're usually implemented in some `promise` way. It's generally better to call API function in a background queue so it won't block the main thread.
 
 A common flow to call an API and handle the result is as follows.
 
@@ -417,4 +420,4 @@ func getStateProof(address: String, key: String, blockNumber: String = "latest")
 
 ## License
 
-AppChainSwift is released under the [MIT License](https://github.com/cryptape/appchain-swift/blob/master/LICENSE).
+AppChain is released under the [MIT License](https://github.com/cryptape/appchain-swift/blob/master/LICENSE).

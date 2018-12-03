@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "AppChainSwift"
-  s.version      = "0.20.3"
+  s.version      = "0.20.5"
   s.summary      = "Nervos AppChain SDK implementation in Swift for iOS"
 
   s.description  = <<-DESC

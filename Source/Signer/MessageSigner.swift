@@ -8,13 +8,21 @@
 
 import Foundation
 
+public enum SignError: Error {
+    case invalidPrivateKey
+    case invalidSignature
+}
+
 // AppChain Message Signer
-struct MessageSigner {
+public struct MessageSigner {
     public init() {}
 
-    // TODO: AppChain sign personal message
     public func sign(message: Data, privateKey: String, useExtraEntropy: Bool = true) throws -> String? {
-        return try signHash(EthereumMessageSigner().hashMessage(message), privateKey: privateKey, useExtraEntropy: useExtraEntropy).toHexString().addHexPrefix()
+        return try signHash(hashMessage(message), privateKey: privateKey, useExtraEntropy: useExtraEntropy).toHexString().addHexPrefix()
+    }
+
+    public func hashMessage(_ message: Data) -> Data {
+        return message.sha3(.keccak256)
     }
 
     private func signHash(_ hash: Data, privateKey: String, useExtraEntropy: Bool = true) throws -> Data {
