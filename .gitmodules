@@ -1,6 +1,6 @@
-[submodule "Tests/appchain-tests"]
-	path = Tests/appchain-tests
-	url = https://github.com/cryptape/appchain-tests.git
 [submodule "cita-proto"]
 	path = cita-proto
 	url = https://github.com/cryptape/cita-proto.git
+[submodule "Tests/cita-sdk-tests"]
+	path = Tests/cita-sdk-tests
+	url = https://github.com/cryptape/cita-sdk-tests.git

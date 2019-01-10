@@ -13,7 +13,7 @@
 		1A0D0C032185A717003E680D /* EventLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0D0C022185A717003E680D /* EventLog.swift */; };
 		1A0D0C052185A861003E680D /* BloomFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0D0C042185A861003E680D /* BloomFilter.swift */; };
 		1A0D0C072185A8EF003E680D /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0D0C062185A8EF003E680D /* Data+Extension.swift */; };
-		1A23CB002175A295001FECD6 /* appchain-tests in Resources */ = {isa = PBXBuildFile; fileRef = 1A23CAFE2175A271001FECD6 /* appchain-tests */; };
+		1A23CB002175A295001FECD6 /* cita-sdk-tests in Resources */ = {isa = PBXBuildFile; fileRef = 1A23CAFE2175A271001FECD6 /* cita-sdk-tests */; };
 		1A42225E212AA59700DF1994 /* RPC+API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A42225D212AA59700DF1994 /* RPC+API.swift */; };
 		1A58853A211DC759007043F1 /* RPCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A588539211DC759007043F1 /* RPCTests.swift */; };
 		1A64297D211C5E0700352209 /* HTTPProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A64297C211C5E0700352209 /* HTTPProvider.swift */; };
@@ -75,7 +75,7 @@
 		1A0D0C022185A717003E680D /* EventLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLog.swift; sourceTree = "<group>"; };
 		1A0D0C042185A861003E680D /* BloomFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloomFilter.swift; sourceTree = "<group>"; };
 		1A0D0C062185A8EF003E680D /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
-		1A23CAFE2175A271001FECD6 /* appchain-tests */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "appchain-tests"; sourceTree = "<group>"; };
+		1A23CAFE2175A271001FECD6 /* cita-sdk-tests */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "cita-sdk-tests"; sourceTree = "<group>"; };
 		1A42225D212AA59700DF1994 /* RPC+API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RPC+API.swift"; sourceTree = "<group>"; };
 		1A588539211DC759007043F1 /* RPCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPCTests.swift; sourceTree = "<group>"; };
 		1A64297C211C5E0700352209 /* HTTPProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPProvider.swift; sourceTree = "<group>"; };
@@ -185,7 +185,7 @@
 		1A67ED3B211BEAFD00DCE871 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				1A23CAFE2175A271001FECD6 /* appchain-tests */,
+				1A23CAFE2175A271001FECD6 /* cita-sdk-tests */,
 				1AA6F63321527B08001DA165 /* Utils */,
 				1AD65FA22122AF0E00AA4C84 /* RPC */,
 				1AD65FA32122AF1700AA4C84 /* Signer */,
@@ -426,7 +426,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A23CB002175A295001FECD6 /* appchain-tests in Resources */,
+				1A23CB002175A295001FECD6 /* cita-sdk-tests in Resources */,
 				1A6B55072160EEBE001BA711 /* Config.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
