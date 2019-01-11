@@ -9,7 +9,7 @@
 import Foundation
 import PromiseKit
 
-/// Nervos CITA HTTP Provider.
+/// CITA HTTP Provider.
 public final class HTTPProvider {
     public let url: URL
 

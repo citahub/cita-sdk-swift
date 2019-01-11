@@ -18,7 +18,7 @@ public enum TransactionError: Error {
     case chainIdInvalid
 }
 
-// CITA (CITA) Transaction
+// CITA Transaction
 public struct Transaction: CustomStringConvertible {
     public var to: Address?
     public var nonce: String
