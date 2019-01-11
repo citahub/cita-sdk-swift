@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import AppChain
+@testable import CITA
 
 class AddressTests: XCTestCase {
     func testChecksum() {

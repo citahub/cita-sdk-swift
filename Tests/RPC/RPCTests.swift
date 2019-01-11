@@ -8,7 +8,7 @@
 
 import XCTest
 import BigInt
-@testable import AppChain
+@testable import CITA
 
 class RPCTests: XCTestCase {
     private static var txHashRecentSent: String!

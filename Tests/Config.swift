@@ -8,7 +8,7 @@
 
 import Foundation
 import XCTest
-@testable import AppChain
+@testable import CITA
 
 extension HTTPProvider {
     static var testnetURL: URL {

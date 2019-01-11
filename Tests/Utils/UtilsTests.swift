@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import AppChain
+@testable import CITA
 
 class UtilsTests: XCTestCase {
     func testGetQuotaPrice() throws {

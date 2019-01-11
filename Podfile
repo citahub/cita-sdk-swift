@@ -1,7 +1,7 @@
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '10.0'
 
-target 'AppChain' do
+target 'CITA' do
   use_frameworks!
   use_modular_headers!
   inhibit_all_warnings!
@@ -12,7 +12,7 @@ target 'AppChain' do
   pod "BigInt", "~> 3.1"
   pod "PromiseKit", "~> 6.5"
 
-  target 'AppChainTests' do
+  target 'CITATests' do
     inherit! :search_paths
   end
 end
