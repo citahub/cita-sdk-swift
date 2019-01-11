@@ -1,20 +1,19 @@
 Pod::Spec.new do |s|
-  s.name         = "AppChainSwift"
+  s.name         = "CITASwift"
   s.version      = "0.20.5"
-  s.summary      = "Nervos AppChain SDK implementation in Swift for iOS"
+  s.summary      = "CITA SDK implementation in Swift for iOS"
 
   s.description  = <<-DESC
-  Nervos AppChain SDK implementation in Swift for iOS, intended for mobile developers of wallets and Dapps.
+  CITA SDK implementation in Swift for iOS, intended for mobile developers of wallets and Dapps.
   DESC
 
   s.homepage     = "https://github.com/cryptape/appchain-swift"
   s.license      = "MIT"
   s.author       = { "Cryptape" => "contact@cryptape.com" }
   s.source       = { git: "https://github.com/cryptape/appchain-swift.git", tag: "v#{s.version.to_s}" }
-  s.social_media_url = 'https://twitter.com/nervosnetwork'
 
   s.swift_version = '4.2'
-  s.module_name = 'AppChain'
+  s.module_name = 'CITA'
   s.ios.deployment_target = "10.0"
   s.source_files = "Source/**/*.{h,swift}"
   s.public_header_files = "Source/**/*.{h}"
