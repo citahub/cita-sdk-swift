@@ -64,7 +64,7 @@
 			containerPortal = 1A67ED25211BEAFC00DCE871 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 1A67ED2D211BEAFC00DCE871;
-			remoteInfo = Nervos;
+			remoteInfo = CITA;
 		};
 /* End PBXContainerItemProxy section */
 
