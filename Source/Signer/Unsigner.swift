@@ -1,6 +1,6 @@
 //
 //  Unsigner.swift
-//  AppChain
+//  CITA
 //
 //  Created by James Chen on 2018/09/07.
 //  Copyright © 2018 Cryptape. All rights reserved.
@@ -9,7 +9,7 @@
 import Foundation
 import BigInt
 
-// AppChain Transaction Unsigner for recovering tx and public key from a signed tx.
+// CITA Transaction Unsigner for recovering tx and public key from a signed tx.
 public struct Unsigner {
     public init() {}
 

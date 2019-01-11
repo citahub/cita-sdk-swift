@@ -1,6 +1,6 @@
 //
 //  BlockTransaction.swift
-//  AppChain
+//  CITA
 //
 //  Created by James Chen on 2018/10/27.
 //  Copyright © 2018 Cryptape. All rights reserved.
@@ -18,10 +18,10 @@ public struct BlockTransaction: Decodable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard let hash = try DecodeUtils.decodeHexToData(container, key: .hash) else { throw AppChainError.dataError }
+        guard let hash = try DecodeUtils.decodeHexToData(container, key: .hash) else { throw CITAError.dataError }
         self.hash = hash
 
-        guard let content = try DecodeUtils.decodeHexToData(container, key: .content) else { throw AppChainError.dataError }
+        guard let content = try DecodeUtils.decodeHexToData(container, key: .content) else { throw CITAError.dataError }
         self.content = content
     }
 }

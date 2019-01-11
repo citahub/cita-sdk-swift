@@ -1,6 +1,6 @@
 //
 //  MetaData.swift
-//  AppChain
+//  CITA
 //
 //  Created by Yate Fulham on 2018/08/10.
 //  Copyright © 2018 Cryptape. All rights reserved.
@@ -54,12 +54,12 @@ public struct MetaData: Decodable {
 
         self.website = try container.decode(String.self, forKey: .website)
 
-        guard let genesisTimestamp = try DecodeUtils.decodeIntToBigUInt(container, key: .genesisTimestamp) else { throw AppChainError.dataError }
+        guard let genesisTimestamp = try DecodeUtils.decodeIntToBigUInt(container, key: .genesisTimestamp) else { throw CITAError.dataError }
         self.genesisTimestamp = genesisTimestamp
 
         self.validators = try container.decode([String].self, forKey: .validators)
 
-        guard let blockInterval = try DecodeUtils.decodeIntToBigUInt(container, key: .blockInterval) else { throw AppChainError.dataError }
+        guard let blockInterval = try DecodeUtils.decodeIntToBigUInt(container, key: .blockInterval) else { throw CITAError.dataError }
         self.blockInterval = blockInterval
 
         self.tokenName = try container.decode(String.self, forKey: .tokenName)

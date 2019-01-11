@@ -1,13 +1,13 @@
 //
 //  HTTPProviderTests.swift
-//  AppChainTests
+//  CITATests
 //
 //  Created by Yate Fulham on 2018/08/09.
 //  Copyright © 2018 Cryptape. All rights reserved.
 //
 
 import XCTest
-@testable import AppChain
+@testable import CITA
 
 class HTTPProviderTests: XCTestCase {
     func testDefaultProvider() {

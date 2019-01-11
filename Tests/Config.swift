@@ -1,6 +1,6 @@
 //
 //  Config.swift
-//  AppChainTests
+//  CITATests
 //
 //  Created by Yate Fulham on 2018/08/09.
 //  Copyright © 2018 Cryptape. All rights reserved.
@@ -8,7 +8,7 @@
 
 import Foundation
 import XCTest
-@testable import AppChain
+@testable import CITA
 
 extension HTTPProvider {
     static var testnetURL: URL {
@@ -21,8 +21,8 @@ extension HTTPProvider {
     }
 }
 
-extension AppChain {
-    static var `default` = AppChain(provider: HTTPProvider.testnetProvider)
+extension CITA {
+    static var `default` = CITA(provider: HTTPProvider.testnetProvider)
 }
 
 class Config {
@@ -45,8 +45,8 @@ class Config {
 }
 
 extension XCTestCase {
-    var appChain: AppChain {
-        return AppChain.default
+    var cita: CITA {
+        return CITA.default
     }
 
     /// Load JSON fixture file from cita-sdk-tests folder.

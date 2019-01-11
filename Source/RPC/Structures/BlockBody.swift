@@ -1,6 +1,6 @@
 //
 //  BlockBody.swift
-//  AppChain
+//  CITA
 //
 //  Created by James Chen on 2018/10/27.
 //  Copyright © 2018 Cryptape. All rights reserved.

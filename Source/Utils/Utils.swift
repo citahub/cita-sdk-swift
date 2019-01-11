@@ -1,6 +1,6 @@
 //
 //  Utils.swift
-//  AppChain
+//  CITA
 //
 //  Created by James Chen on 2018/10/01.
 //  Copyright © 2018 Cryptape. All rights reserved.
@@ -10,8 +10,8 @@ import Foundation
 import BigInt
 
 public struct Utils {
-    public static func getQuotaPrice(appChain: AppChain) throws -> BigUInt {
-        let result = try ContractCall.request(.getQuotaPrice, appChain: appChain)
+    public static func getQuotaPrice(cita: CITA) throws -> BigUInt {
+        let result = try ContractCall.request(.getQuotaPrice, cita: cita)
         return BigUInt.fromHex(result)!
     }
 }
@@ -66,8 +66,8 @@ extension Utils {
             }
         }
 
-        static func request(_ requestType: RequestType, appChain: AppChain) throws -> String {
-            return try appChain.rpc.call(request: requestType.rawValue)
+        static func request(_ requestType: RequestType, cita: CITA) throws -> String {
+            return try cita.rpc.call(request: requestType.rawValue)
         }
     }
 }
