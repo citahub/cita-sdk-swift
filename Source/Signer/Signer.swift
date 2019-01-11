@@ -1,6 +1,6 @@
 //
 //  Signer.swift
-//  AppChain
+//  CITA
 //
 //  Created by Yate Fulham on 2018/08/14.
 //  Copyright © 2018 Cryptape. All rights reserved.
@@ -9,7 +9,7 @@
 import Foundation
 import BigInt
 
-// AppChain Transaction Signer
+// CITA Transaction Signer
 public struct Signer {
     public init() {}
 

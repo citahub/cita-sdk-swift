@@ -51,10 +51,10 @@
 		1AD65FA12122A1F900AA4C84 /* TransactionSendingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65FA02122A1F900AA4C84 /* TransactionSendingResult.swift */; };
 		1AD65FA62122AF4400AA4C84 /* SignerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD65FA42122AF2F00AA4C84 /* SignerTest.swift */; };
 		89733041217EB559001B8D93 /* MessageSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89733040217EB559001B8D93 /* MessageSigner.swift */; };
-		89CDA5F121E848F00049A244 /* AppChainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CDA5F021E848F00049A244 /* AppChainError.swift */; };
-		89CDA5F421E848FD0049A244 /* AppChain.h in Headers */ = {isa = PBXBuildFile; fileRef = 89CDA5F221E848FD0049A244 /* AppChain.h */; };
-		89CDA5F521E848FD0049A244 /* AppChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CDA5F321E848FD0049A244 /* AppChain.swift */; };
-		89CDA5F821E849570049A244 /* AppChainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CDA5F621E849220049A244 /* AppChainTests.swift */; };
+		89CDA5F121E848F00049A244 /* CITAError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CDA5F021E848F00049A244 /* CITAError.swift */; };
+		89CDA5F421E848FD0049A244 /* CITA.h in Headers */ = {isa = PBXBuildFile; fileRef = 89CDA5F221E848FD0049A244 /* CITA.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		89CDA5F521E848FD0049A244 /* CITA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CDA5F321E848FD0049A244 /* CITA.swift */; };
+		89CDA5F821E849570049A244 /* CITATests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CDA5F621E849220049A244 /* CITATests.swift */; };
 		A761B95773C2431357D1B0B9 /* Pods_CITA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A425B554C4D9A6E8284FEAC /* Pods_CITA.framework */; };
 /* End PBXBuildFile section */
 
@@ -120,10 +120,10 @@
 		7FF8D9768BC7235E22EC11C8 /* Pods-CITA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CITA.release.xcconfig"; path = "Pods/Target Support Files/Pods-CITA/Pods-CITA.release.xcconfig"; sourceTree = "<group>"; };
 		89733040217EB559001B8D93 /* MessageSigner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSigner.swift; sourceTree = "<group>"; };
 		8990CDB62160682F00205129 /* Config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Config.json; sourceTree = "<group>"; };
-		89CDA5F021E848F00049A244 /* AppChainError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppChainError.swift; sourceTree = "<group>"; };
-		89CDA5F221E848FD0049A244 /* AppChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppChain.h; sourceTree = "<group>"; };
-		89CDA5F321E848FD0049A244 /* AppChain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppChain.swift; sourceTree = "<group>"; };
-		89CDA5F621E849220049A244 /* AppChainTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppChainTests.swift; sourceTree = "<group>"; };
+		89CDA5F021E848F00049A244 /* CITAError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CITAError.swift; sourceTree = "<group>"; };
+		89CDA5F221E848FD0049A244 /* CITA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CITA.h; sourceTree = "<group>"; };
+		89CDA5F321E848FD0049A244 /* CITA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CITA.swift; sourceTree = "<group>"; };
+		89CDA5F621E849220049A244 /* CITATests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CITATests.swift; sourceTree = "<group>"; };
 		D9D78017E61E65184F73D1F8 /* Pods-CITA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CITA.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CITA/Pods-CITA.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -175,8 +175,8 @@
 				1A67ED57211D14F200DCE871 /* Utils */,
 				1A67ED49211D089000DCE871 /* RPC */,
 				1AD65F95212294AD00AA4C84 /* Signer */,
-				89CDA5F221E848FD0049A244 /* AppChain.h */,
-				89CDA5F321E848FD0049A244 /* AppChain.swift */,
+				89CDA5F221E848FD0049A244 /* CITA.h */,
+				89CDA5F321E848FD0049A244 /* CITA.swift */,
 				1A67ED32211BEAFD00DCE871 /* Info.plist */,
 			);
 			path = Source;
@@ -189,7 +189,7 @@
 				1AA6F63321527B08001DA165 /* Utils */,
 				1AD65FA22122AF0E00AA4C84 /* RPC */,
 				1AD65FA32122AF1700AA4C84 /* Signer */,
-				89CDA5F621E849220049A244 /* AppChainTests.swift */,
+				89CDA5F621E849220049A244 /* CITATests.swift */,
 				1A64297E211C63E000352209 /* Config.swift */,
 				8990CDB62160682F00205129 /* Config.json */,
 				1A67ED3E211BEAFD00DCE871 /* Info.plist */,
@@ -231,7 +231,7 @@
 				1AD65F8F21217AC000AA4C84 /* DecodeUtils.swift */,
 				1AD65F9C2122999900AA4C84 /* Secp251k1.swift */,
 				1A6B2B2821533FA5003420A0 /* Address.swift */,
-				89CDA5F021E848F00049A244 /* AppChainError.swift */,
+				89CDA5F021E848F00049A244 /* CITAError.swift */,
 				1A9204DF2161B20B004B54DC /* Utils.swift */,
 			);
 			path = Utils;
@@ -329,7 +329,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89CDA5F421E848FD0049A244 /* AppChain.h in Headers */,
+				89CDA5F421E848FD0049A244 /* CITA.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,7 +523,7 @@
 				1A67ED59211D151100DCE871 /* String+Extension.swift in Sources */,
 				89733041217EB559001B8D93 /* MessageSigner.swift in Sources */,
 				1A9204E02161B20B004B54DC /* Utils.swift in Sources */,
-				89CDA5F521E848FD0049A244 /* AppChain.swift in Sources */,
+				89CDA5F521E848FD0049A244 /* CITA.swift in Sources */,
 				1AB5C6DC2121751400148587 /* Block.swift in Sources */,
 				1A67ED56211D12A200DCE871 /* Params.swift in Sources */,
 				1ACBC9AF2184589D00F20B8B /* BlockHeader.swift in Sources */,
@@ -536,7 +536,7 @@
 				1A6B2B2921533FA5003420A0 /* Address.swift in Sources */,
 				1A67ED5F211D55E500DCE871 /* MetaData.swift in Sources */,
 				1A0D0C072185A8EF003E680D /* Data+Extension.swift in Sources */,
-				89CDA5F121E848F00049A244 /* AppChainError.swift in Sources */,
+				89CDA5F121E848F00049A244 /* CITAError.swift in Sources */,
 				1A67ED50211D11C600DCE871 /* Request.swift in Sources */,
 				1A0D0C052185A861003E680D /* BloomFilter.swift in Sources */,
 				1AD65F9021217AC000AA4C84 /* DecodeUtils.swift in Sources */,
@@ -560,7 +560,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89CDA5F821E849570049A244 /* AppChainTests.swift in Sources */,
+				89CDA5F821E849570049A244 /* CITATests.swift in Sources */,
 				1A67ED3D211BEAFD00DCE871 /* HTTPProviderTests.swift in Sources */,
 				1A58853A211DC759007043F1 /* RPCTests.swift in Sources */,
 				1A0529C2214279A500C847CA /* UnsignerTests.swift in Sources */,

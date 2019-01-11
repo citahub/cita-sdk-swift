@@ -1,6 +1,6 @@
 //
 //  IntExtensionTests.swift
-//  AppChainTests
+//  CITATests
 //
 //  Created by James Chen on 2018/09/19.
 //  Copyright © 2018 Cryptape. All rights reserved.

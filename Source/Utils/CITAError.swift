@@ -1,6 +1,6 @@
 //
-//  AppChainError.swift
-//  AppChain
+//  CITAError.swift
+//  CITA
 //
 //  Created by James Chen on 2018/10/27.
 //  Copyright © 2018 Cryptape. All rights reserved.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum AppChainError: Error {
+public enum CITAError: Error {
     case transactionSerializationError
     case connectionError
     case dataError

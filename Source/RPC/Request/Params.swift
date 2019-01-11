@@ -1,6 +1,6 @@
 //
 //  Params.swift
-//  AppChain
+//  CITA
 //
 //  Created by Yate Fulham on 2018/08/10.
 //  Copyright © 2018 Cryptape. All rights reserved.
@@ -21,7 +21,7 @@ public struct CallRequest: Codable {
     }
 }
 
-/// Event filter parameters JSON structure for interaction with AppChain.
+/// Event filter parameters JSON structure for interaction with CITA.
 public struct Filter: Codable {
     public var fromBlock: String?
     public var toBlock: String?

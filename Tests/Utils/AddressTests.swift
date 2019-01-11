@@ -1,6 +1,6 @@
 //
 //  AddressTests.swift
-//  AppChainTests
+//  CITATests
 //
 //  Created by James Chen on 2018/09/20.
 //  Copyright © 2018 Cryptape. All rights reserved.

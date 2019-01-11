@@ -1,6 +1,6 @@
 //
 //  RPC+API.swift
-//  AppChain
+//  CITA
 //
 //  Created by Yate Fulham on 2018/08/20.
 //  Copyright © 2018 Cryptape. All rights reserved.
@@ -12,7 +12,7 @@ import BigInt
 // MARK: - API
 
 public extension RPC {
-    /// Get the number of AppChain peers currently connected to the client.
+    /// Get the number of CITA peers currently connected to the client.
     ///
     /// - Returns: Peer count.
     func peerCount() throws -> BigUInt {
@@ -26,7 +26,7 @@ public extension RPC {
         return UInt64(try blockNumberPromise().wait())  // `blockNumber` returns BigUInt but is cast down to uint64
     }
 
-    /// Send signed transaction to AppChain.
+    /// Send signed transaction to CITA.
     ///
     /// - Parameter signedTx: Signed transaction data.
     ///
@@ -35,7 +35,7 @@ public extension RPC {
         return try sendRawTransaction(signedTx: signedTx.toHexString().addHexPrefix())
     }
 
-    /// Send signed transaction to AppChain.
+    /// Send signed transaction to CITA.
     ///
     /// - Parameter signedTx: Signed transaction hex string.
     ///
@@ -309,7 +309,7 @@ public extension RPC {
         return try getTransactionProofPromise(txhash: txhash.addHexPrefix()).wait()
     }
 
-    /// Get AppChain metadata by a given block height.
+    /// Get CITA metadata by a given block height.
     ///
     /// - Parameter blockNumber: The block height.
     ///
@@ -318,7 +318,7 @@ public extension RPC {
         return try getMetaData(blockNumber: blockNumber.toHexString())
     }
 
-    /// Get AppChain metadata by a given block height.
+    /// Get CITA metadata by a given block height.
     ///
     /// - Parameter blockNumber: The block height, hex string integer or "latest".
     ///

@@ -1,6 +1,6 @@
 //
 //  BloomFilter.swift
-//  AppChain
+//  CITA
 //
 //  Created by James Chen on 2018/10/28.
 //  Copyright © 2018 Cryptape. All rights reserved.
