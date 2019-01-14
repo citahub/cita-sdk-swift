@@ -1,6 +1,6 @@
 # CITA Swift SDK
 
-[![Travis](https://travis-ci.com/cryptape/appchain-swift.svg?branch=develop)](https://travis-ci.com/cryptape/appchain-swift)
+[![Travis](https://travis-ci.com/cryptape/cita-sdk-swift.svg?branch=develop)](https://travis-ci.com/cryptape/cita-sdk-swift)
 [![Swift](https://img.shields.io/badge/Swift-4.2-orange.svg?style=flat)](https://developer.apple.com/swift/)
 
 Native Swift SDK for integrating with [CITA](https://www.citahub.com/).
@@ -36,7 +36,7 @@ platform :ios, '10.0'
 target 'YourTargetName' do
   use_frameworks!
 
-  pod 'CITA', git: 'https://github.com/cryptape/appchain-swift'
+  pod 'CITA', git: 'https://github.com/cryptape/cita-sdk-swift'
 end
 ```
 
@@ -48,11 +48,19 @@ $ pod install
 
 ### Development
 
-To build this project, first run `pod install`, then open `CITA.xcworkspace` with Xcode and build.
+Fetch the source code:
+
+```shell
+git clone --recursive https://github.com/cryptape/cita-sdk-swift.git
+pod install
+cp Tests/Config.example.json Tests/Config.json
+```
+
+Then open `CITA.xcworkspace` with Xcode and build.
 
 #### Running Tests
 
-Copy `Tests/Config.example.json` to `Tests/Config.json`, then run tests from `CITATests` target. Update `rpcServer` value of `Tests/Config.json` file if you want to test against another CITA node or chain of your choice. By default `http://127.0.0.1:1337` is used.
+Run tests from `CITATests` target. Update `rpcServer` value of `Tests/Config.json` file if you want to test against another CITA node or chain of your choice. By default `http://127.0.0.1:1337` is used.
 
 Note: serveral tests depend on onchain data and would fail when running on your own chain. We're going to improve the tests and fix that in the near future.
 
@@ -417,4 +425,4 @@ func getStateProof(address: String, key: String, blockNumber: String = "latest")
 
 ## License
 
-CITA SDK is released under the [MIT License](https://github.com/cryptape/appchain-swift/blob/master/LICENSE).
+CITA SDK is released under the [MIT License](https://github.com/cryptape/cita-sdk-swift/blob/master/LICENSE).

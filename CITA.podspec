@@ -7,10 +7,10 @@ Pod::Spec.new do |s|
   CITA SDK implementation in Swift for iOS, intended for mobile developers of wallets and Dapps.
   DESC
 
-  s.homepage     = "https://github.com/cryptape/appchain-swift"
+  s.homepage     = "https://github.com/cryptape/cita-sdk-swift"
   s.license      = "MIT"
   s.author       = { "Cryptape" => "contact@cryptape.com" }
-  s.source       = { git: "https://github.com/cryptape/appchain-swift.git", tag: "v#{s.version.to_s}" }
+  s.source       = { git: "https://github.com/cryptape/cita-sdk-swift.git", tag: "v#{s.version.to_s}" }
 
   s.swift_version = '4.2'
   s.module_name = 'CITA'
