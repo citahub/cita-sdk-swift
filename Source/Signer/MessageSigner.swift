@@ -1,6 +1,6 @@
 //
 //  MessageSigner.swift
-//  AppChain
+//  CITA
 //
 //  Created by XiaoLu on 2018/10/23.
 //  Copyright © 2018 Cryptape. All rights reserved.
@@ -13,7 +13,7 @@ public enum SignError: Error {
     case invalidSignature
 }
 
-// AppChain Message Signer
+// CITA Message Signer
 public struct MessageSigner {
     public init() {}
 

@@ -1,6 +1,6 @@
 //
-//  AppChain.swift
-//  AppChain
+//  CITA.swift
+//  CITA
 //
 //  Created by Yate Fulham on 2018/08/10.
 //  Copyright © 2018 Cryptape. All rights reserved.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public final class AppChain {
+public final class CITA {
     public var provider: HTTPProvider
 
     public lazy var rpc: RPC = {

@@ -1,6 +1,6 @@
 //
 //  BlockHeader.swift
-//  AppChain
+//  CITA
 //
 //  Created by James Chen on 2018/10/27.
 //  Copyright © 2018 Cryptape. All rights reserved.
@@ -36,21 +36,21 @@ public struct BlockHeader: Decodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        guard let timestamp = try DecodeUtils.decodeIntToBigUInt(container, key: .timestamp) else { throw AppChainError.dataError }
+        guard let timestamp = try DecodeUtils.decodeIntToBigUInt(container, key: .timestamp) else { throw CITAError.dataError }
         self.timestamp = timestamp
 
-        guard let prevHash = try DecodeUtils.decodeHexToData(container, key: .prevHash) else { throw AppChainError.dataError }
+        guard let prevHash = try DecodeUtils.decodeHexToData(container, key: .prevHash) else { throw CITAError.dataError }
         self.prevHash = prevHash
 
         proof = try? container.decode(BftProof.self, forKey: .proof)
 
-        guard let stateRoot = try DecodeUtils.decodeHexToData(container, key: .stateRoot) else { throw AppChainError.dataError }
+        guard let stateRoot = try DecodeUtils.decodeHexToData(container, key: .stateRoot) else { throw CITAError.dataError }
         self.stateRoot = stateRoot
 
-        guard let transactionsRoot = try DecodeUtils.decodeHexToData(container, key: .transactionsRoot) else { throw AppChainError.dataError }
+        guard let transactionsRoot = try DecodeUtils.decodeHexToData(container, key: .transactionsRoot) else { throw CITAError.dataError }
         self.transactionsRoot = transactionsRoot
 
-        guard let receiptsRoot = try DecodeUtils.decodeHexToData(container, key: .receiptsRoot) else { throw AppChainError.dataError }
+        guard let receiptsRoot = try DecodeUtils.decodeHexToData(container, key: .receiptsRoot) else { throw CITAError.dataError }
         self.receiptsRoot = receiptsRoot
 
         var quotaUsed = try DecodeUtils.decodeHexToBigUInt(container, key: .quotaUsed, allowOptional: true)
@@ -58,14 +58,14 @@ public struct BlockHeader: Decodable {
             quotaUsed = try DecodeUtils.decodeHexToBigUInt(container, key: .gasUsed, allowOptional: true)
         }
         if quotaUsed == nil {
-            throw AppChainError.dataError
+            throw CITAError.dataError
         }
         self.quotaUsed = quotaUsed!
 
-        guard let number = try DecodeUtils.decodeHexToBigUInt(container, key: .number) else { throw AppChainError.dataError }
+        guard let number = try DecodeUtils.decodeHexToBigUInt(container, key: .number) else { throw CITAError.dataError }
         self.number = number
 
-        guard let proposer = try DecodeUtils.decodeHexToData(container, key: .proposer) else { throw AppChainError.dataError }
+        guard let proposer = try DecodeUtils.decodeHexToData(container, key: .proposer) else { throw CITAError.dataError }
         self.proposer = proposer
     }
 }

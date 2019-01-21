@@ -1,6 +1,6 @@
 //
 //  RPC+Promises.swift
-//  AppChain
+//  CITA
 //
 //  Created by Yate Fulham on 2018/08/13.
 //  Copyright © 2018 Cryptape. All rights reserved.
@@ -12,11 +12,11 @@ import PromiseKit
 
 // MARK: - Promise helpers
 private extension RPC {
-    func responseError(_ response: Response) -> AppChainError {
+    func responseError(_ response: Response) -> CITAError {
         if let error = response.error {
-            return AppChainError.nodeError(desc: error.message)
+            return CITAError.nodeError(desc: error.message)
         }
-        return AppChainError.nodeError(desc: "Invalid value from AppChain node")
+        return CITAError.nodeError(desc: "Invalid value from CITA node")
     }
 
     func apiPromise<T>(_ method: Method, parameters: [Encodable]) -> Promise<T> {

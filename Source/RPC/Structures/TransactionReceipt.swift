@@ -1,6 +1,6 @@
 //
 //  TransactionReceipt.swift
-//  AppChain
+//  CITA
 //
 //  Created by Yate Fulham on 2018/08/13.
 //  Copyright © 2018 Cryptape. All rights reserved.
@@ -40,16 +40,16 @@ public struct TransactionReceipt: Decodable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard let blockNumber = try DecodeUtils.decodeHexToBigUInt(container, key: .blockNumber) else { throw AppChainError.dataError }
+        guard let blockNumber = try DecodeUtils.decodeHexToBigUInt(container, key: .blockNumber) else { throw CITAError.dataError }
         self.blockNumber = blockNumber
 
-        guard let blockHash = try DecodeUtils.decodeHexToData(container, key: .blockHash) else { throw AppChainError.dataError }
+        guard let blockHash = try DecodeUtils.decodeHexToData(container, key: .blockHash) else { throw CITAError.dataError }
         self.blockHash = blockHash
 
-        guard let transactionIndex = try DecodeUtils.decodeHexToBigUInt(container, key: .transactionIndex) else { throw AppChainError.dataError }
+        guard let transactionIndex = try DecodeUtils.decodeHexToBigUInt(container, key: .transactionIndex) else { throw CITAError.dataError }
         self.transactionIndex = transactionIndex
 
-        guard let transactionHash = try DecodeUtils.decodeHexToData(container, key: .transactionHash) else { throw AppChainError.dataError }
+        guard let transactionHash = try DecodeUtils.decodeHexToData(container, key: .transactionHash) else { throw CITAError.dataError }
         self.transactionHash = transactionHash
 
         let contractAddress = try container.decodeIfPresent(Address.self, forKey: .contractAddress)
@@ -62,7 +62,7 @@ public struct TransactionReceipt: Decodable {
             cumulativeQuotaUsed = try DecodeUtils.decodeHexToBigUInt(container, key: .cumulativeGasUsed, allowOptional: true)
         }
         if cumulativeQuotaUsed == nil {
-            throw AppChainError.dataError
+            throw CITAError.dataError
         }
         self.cumulativeQuotaUsed = cumulativeQuotaUsed!
 
@@ -71,7 +71,7 @@ public struct TransactionReceipt: Decodable {
             quotaUsed = try DecodeUtils.decodeHexToBigUInt(container, key: .gasUsed, allowOptional: true)
         }
         if quotaUsed == nil {
-            throw AppChainError.dataError
+            throw CITAError.dataError
         }
         self.quotaUsed = quotaUsed!
 

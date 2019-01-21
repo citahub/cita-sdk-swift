@@ -1,6 +1,6 @@
 //
 //  Address.swift
-//  AppChain
+//  CITA
 //
 //  Created by James Chen on 2018/09/20.
 //  Copyright © 2018 Cryptape. All rights reserved.
@@ -9,7 +9,7 @@
 import Foundation
 import CryptoSwift
 
-/// AppChain Address (same format as Ethereum address).
+/// CITA Address (same format as Ethereum address).
 public struct Address: Equatable, Codable {
     private let addressString: String
 

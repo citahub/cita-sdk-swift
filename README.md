@@ -1,15 +1,14 @@
-# AppChain Swift
+# CITA Swift SDK
 
-[![Travis](https://travis-ci.com/cryptape/appchain-swift.svg?branch=develop)](https://travis-ci.com/cryptape/appchain-swift)
+[![Travis](https://travis-ci.com/cryptape/cita-sdk-swift.svg?branch=develop)](https://travis-ci.com/cryptape/cita-sdk-swift)
 [![Swift](https://img.shields.io/badge/Swift-4.2-orange.svg?style=flat)](https://developer.apple.com/swift/)
-[![AppChain](https://img.shields.io/badge/made%20for-Nervos%20AppChain-blue.svg)](https://appchain.nervos.org)
 
-AppChain is a native Swift framework for integrating with Nervos AppChain network.
+Native Swift SDK for integrating with [CITA](https://www.citahub.com/).
 
 ## Features
 
-* HTTP provider for connecting to Nervos AppChain networks.
-* Implementation of Nervos AppChain (CITA) JSON-RPC API over HTTP.
+* HTTP provider for connecting to CITA networks.
+* Implementation of CITA JSON-RPC API over HTTP.
 * Signer for signing transaction.
 
 ## RPC API
@@ -20,17 +19,15 @@ Refer to [docs.nervos.org/cita](https://docs.nervos.org/cita/#/rpc_guide/rpc) fo
 
 ### System Requirements
 
-To build AppChain, you'll need:
+To build CITA SDK, you'll need:
 
 * Swift 4.2 and later
 * Xcode 10 and later
 * [CocoaPods](https://cocoapods.org)
 
-AppChain supports iOS 10 and newer versions.
-
 ### Installation
 
-To integrate AppChain into your Xcode project using CocoaPods, specify it in your `Podfile`:
+To integrate CITA SDK into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
@@ -39,7 +36,7 @@ platform :ios, '10.0'
 target 'YourTargetName' do
   use_frameworks!
 
-  pod 'AppChain', git: 'https://github.com/cryptape/appchain-swift'
+  pod 'CITA', git: 'https://github.com/cryptape/cita-sdk-swift'
 end
 ```
 
@@ -51,43 +48,51 @@ $ pod install
 
 ### Development
 
-To build AppChain, first run `pod install`, then open `AppChain.xcworkspace` with Xcode and build.
+Fetch the source code:
+
+```shell
+git clone --recursive https://github.com/cryptape/cita-sdk-swift.git
+pod install
+cp Tests/Config.example.json Tests/Config.json
+```
+
+Then open `CITA.xcworkspace` with Xcode and build.
 
 #### Running Tests
 
-Copy `Tests/Config.example.json` to `Tests/Config.json`, then run tests from `AppChainTests` target. Update `rpcServer` value of `Tests/Config.json` file if you want to test against an AppChain of your choice. By default `http://127.0.0.1:1337` is used.
+Run tests from `CITATests` target. Update `rpcServer` value of `Tests/Config.json` file if you want to test against another CITA node or chain of your choice. By default `http://127.0.0.1:1337` is used.
 
 Note: serveral tests depend on onchain data and would fail when running on your own chain. We're going to improve the tests and fix that in the near future.
 
 ### web3swift
 
-AppChain was initially built upon [matterinc/web3swift](https://github.com/matterinc/web3swift). Then we want to keep AppChain a simple RPC client and transaction signer (this means no keystore management and other features) so web3swift dependency was removed, but some utils, foundation extensions and HTTP request implementations were taken and modified from it.
+CITA SDK was initially built upon [matterinc/web3swift](https://github.com/matterinc/web3swift). Then we want to keep this a simple RPC client and transaction signer (this means no keystore management and other features) so web3swift dependency was removed, but some utils, foundation extensions and HTTP request implementations were taken and modified from it.
 
 ### Testnet
 
-For test or development, you can follow the [CITA document](https://docs.nervos.org/cita/) to run a local chain. We also provide a Nervos AppChain testnet at http://121.196.200.225:1337 (or use https://node.cryptape.com).
+For test or development, you can follow the [CITA document](https://docs.nervos.org/cita/) to run a local chain. We also provide a public testnet at http://121.196.200.225:1337 (or use https://node.cryptape.com).
 
 This testnet supports [CITA](https://github.com/cryptape/cita) version **v0.20**.
 
 ### HTTPProvider
 
-`HTTPProvider` connects to Nervos AppChain testnet or any other network. To construct a provider:
+`HTTPProvider` connects to CITA testnet or any other network. To construct a provider:
 
 ```swift
-import AppChain
+import CITA
 
-let testnetUrl = URL(string: "http://121.196.200.225:1337")! // Or use any other Nervos AppChain network
+let testnetUrl = URL(string: "http://121.196.200.225:1337")! // Or use any other network
 // let testnetUrl = URL(string: "https://node.cryptape.com")! // Also available
 let provider = HTTPProvider(testnetUrl)
 ```
 
-### AppChain
+### CITA
 
-`AppChain` is the class that talks to AppChain network through `HTTPProvider`. Consume any JSON-RPC API with `AppChain`' `rpc` property.
+`CITA` is the class that talks to CITA network through `HTTPProvider`. Consume any JSON-RPC API with `CITA` instance's `rpc` property.
 
 ```swift
-let appChain = AppChain(provider: provider)
-let peerCount = appChain.rpc.peerCount().value!
+let cita = CITA(provider: provider)
+let peerCount = cita.rpc.peerCount().value!
 ```
 
 ### Transaction and Signer
@@ -96,10 +101,10 @@ Before sending a raw transaction over JSON-RPC API, create a `Transaction` objec
 
 ```swift
 let privateKey = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
-guard let metaData = try? appChain.rpc.getMetaData(), let blockNumber = try? appChain.rpc.blockNumber() else {
+guard let metaData = try? cita.rpc.getMetaData(), let blockNumber = try? cita.rpc.blockNumber() else {
     return
 }
-let metaData = try? appChain.rpc.getMetaData()
+let metaData = try? cita.rpc.getMetaData()
 let tx = Transaction(
     to: Address("0x0000000000000000000000000000000000000000"),
     nonce: UUID().uuidString, // Generate a random/unique nonce string
@@ -117,18 +122,18 @@ guard let signed = try? Signer().sign(transaction: tx, with: privateKey) else {
 
 ## RPC API Reference
 
-All JSON-RPC APIs would return result when the call is successful, or throw `AppChainError` exception when not.
+All JSON-RPC APIs would return result when the call is successful, or throw `CITAError` exception when not.
 
-JSON-RPC API functions are synchronous. But the underlying HTTP request might take some time to return, and in AppChain they're usually implemented in some `promise` way. It's generally better to call API function in a background queue so it won't block the main thread.
+JSON-RPC API functions are synchronous. But the underlying HTTP request might take some time to return, and in this project they're usually implemented in some `promise` way. It's generally better to call API function in a background queue so it won't block the main thread.
 
 A common flow to call an API and handle the result is as follows.
 
 ```swift
 DispatchQueue.global().async {
     do {
-        let peerCount = try appChain.rpc.peerCount()
+        let peerCount = try cita.rpc.peerCount()
         DispatchQueue.main.async {
-            print("AppChain peer count: \(count)")
+            print("CITA peer count: \(count)")
         }
     } catch let error {
         DispatchQueue.main.async {
@@ -164,7 +169,7 @@ DispatchQueue.global().async {
 ### peerCount
 
 ```swift
-/// Get the number of AppChain peers currently connected to the client.
+/// Get the number of CITA peers currently connected to the client.
 ///
 /// - Returns: Peer count.
 func peerCount() throws -> BigUInt
@@ -182,7 +187,7 @@ func blockNumber() throws -> UInt64
 ### sendRawTransaction
 
 ```swift
-/// Send signed transaction to AppChain.
+/// Send signed transaction to CITA.
 ///
 /// - Parameter signedTx: Signed transaction hex string.
 ///
@@ -385,7 +390,7 @@ func getTransactionProof(txhash: String) throws -> String
 ### getMetaData
 
 ```swift
-/// Get AppChain metadata by a given block height.
+/// Get CITA metadata by a given block height.
 ///
 /// - Parameter blockNumber: The block height, hex string integer or "latest".
 ///
@@ -420,4 +425,4 @@ func getStateProof(address: String, key: String, blockNumber: String = "latest")
 
 ## License
 
-AppChain is released under the [MIT License](https://github.com/cryptape/appchain-swift/blob/master/LICENSE).
+CITA SDK is released under the [MIT License](https://github.com/cryptape/cita-sdk-swift/blob/master/LICENSE).

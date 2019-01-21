@@ -1,6 +1,6 @@
 //
 //  Proof.swift
-//  AppChain
+//  CITA
 //
 //  Created by James Chen on 2018/10/27.
 //  Copyright © 2018 Cryptape. All rights reserved.
@@ -37,21 +37,21 @@ public struct Proof: Decodable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard let proposal = try DecodeUtils.decodeHexToData(container, key: .proposal) else { throw AppChainError.dataError }
+        guard let proposal = try DecodeUtils.decodeHexToData(container, key: .proposal) else { throw CITAError.dataError }
         self.proposal = proposal
 
-        guard let height = try DecodeUtils.decodeIntToBigUInt(container, key: .height) else { throw AppChainError.dataError }
+        guard let height = try DecodeUtils.decodeIntToBigUInt(container, key: .height) else { throw CITAError.dataError }
         self.height = height
 
-        guard let round = try DecodeUtils.decodeIntToBigUInt(container, key: .round) else { throw AppChainError.dataError }
+        guard let round = try DecodeUtils.decodeIntToBigUInt(container, key: .round) else { throw CITAError.dataError }
         self.round = round
 
         let commitsStrings = try container.decode([String: String].self, forKey: .commits)
         var commits = [Data: Data]()
 
         for str in commitsStrings {
-            guard let d = Data.fromHex(str.key) else { throw AppChainError.dataError }
-            guard let c = Data.fromHex(str.value) else { throw AppChainError.dataError }
+            guard let d = Data.fromHex(str.key) else { throw CITAError.dataError }
+            guard let c = Data.fromHex(str.value) else { throw CITAError.dataError }
             commits[d] = c
         }
         self.commits = commits
