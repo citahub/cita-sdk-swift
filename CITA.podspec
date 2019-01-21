@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "CITA"
-  s.version      = "0.20.5"
+  s.version      = "0.20.6"
   s.summary      = "CITA SDK implementation in Swift for iOS"
 
   s.description  = <<-DESC
