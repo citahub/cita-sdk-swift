@@ -65,26 +65,26 @@ extension CitaProofType: CaseIterable {
 
 enum CitaCrypto: SwiftProtobuf.Enum {
   typealias RawValue = Int
-  case secp // = 0
-  case sm2 // = 1
+  case `default` // = 0
+  case reserved // = 1
   case UNRECOGNIZED(Int)
 
   init() {
-    self = .secp
+    self = .default
   }
 
   init?(rawValue: Int) {
     switch rawValue {
-    case 0: self = .secp
-    case 1: self = .sm2
+    case 0: self = .default
+    case 1: self = .reserved
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
 
   var rawValue: Int {
     switch self {
-    case .secp: return 0
-    case .sm2: return 1
+    case .default: return 0
+    case .reserved: return 1
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -96,8 +96,8 @@ enum CitaCrypto: SwiftProtobuf.Enum {
 extension CitaCrypto: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
   static var allCases: [CitaCrypto] = [
-    .secp,
-    .sm2,
+    .default,
+    .reserved,
   ]
 }
 
@@ -471,8 +471,8 @@ extension CitaProofType: SwiftProtobuf._ProtoNameProviding {
 
 extension CitaCrypto: SwiftProtobuf._ProtoNameProviding {
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "SECP"),
-    1: .same(proto: "SM2"),
+    0: .same(proto: "DEFAULT"),
+    1: .same(proto: "RESERVED"),
   ]
 }
 
@@ -867,7 +867,7 @@ extension CitaUnverifiedTransaction: SwiftProtobuf.Message, SwiftProtobuf._Messa
   fileprivate class _StorageClass {
     var _transaction: CitaTransaction? = nil
     var _signature: Data = SwiftProtobuf.Internal.emptyData
-    var _crypto: CitaCrypto = .secp
+    var _crypto: CitaCrypto = .default
 
     static let defaultInstance = _StorageClass()
 
@@ -909,7 +909,7 @@ extension CitaUnverifiedTransaction: SwiftProtobuf.Message, SwiftProtobuf._Messa
       if !_storage._signature.isEmpty {
         try visitor.visitSingularBytesField(value: _storage._signature, fieldNumber: 2)
       }
-      if _storage._crypto != .secp {
+      if _storage._crypto != .default {
         try visitor.visitSingularEnumField(value: _storage._crypto, fieldNumber: 3)
       }
     }
