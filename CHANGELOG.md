@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 * Rename the project to `cita-sdk-swift`. Change top module from `AppChain` to `CITA`.
 
 
-# [v0.21](https://github.com/cryptape/cita-sdk-swift/compare/v0.20.6...v0.21) (2019-02-12)
+# [v0.21](https://github.com/cryptape/cita-sdk-swift/compare/v0.20.6...v0.21) (2019-02-18)
 
 ### CHANGES
 
