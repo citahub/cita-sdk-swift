@@ -65,26 +65,26 @@ extension CitaProofType: CaseIterable {
 
 enum CitaCrypto: SwiftProtobuf.Enum {
   typealias RawValue = Int
-  case secp // = 0
-  case sm2 // = 1
+  case `default` // = 0
+  case reserved // = 1
   case UNRECOGNIZED(Int)
 
   init() {
-    self = .secp
+    self = .default
   }
 
   init?(rawValue: Int) {
     switch rawValue {
-    case 0: self = .secp
-    case 1: self = .sm2
+    case 0: self = .default
+    case 1: self = .reserved
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
 
   var rawValue: Int {
     switch self {
-    case .secp: return 0
-    case .sm2: return 1
+    case .default: return 0
+    case .reserved: return 1
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -96,8 +96,8 @@ enum CitaCrypto: SwiftProtobuf.Enum {
 extension CitaCrypto: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
   static var allCases: [CitaCrypto] = [
-    .secp,
-    .sm2,
+    .default,
+    .reserved,
   ]
 }
 
@@ -339,6 +339,18 @@ struct CitaBlockBody {
   init() {}
 }
 
+struct CitaCompactBlockBody {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var txHashes: [Data] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
 struct CitaBlock {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -360,6 +372,41 @@ struct CitaBlock {
 
   var body: CitaBlockBody {
     get {return _storage._body ?? CitaBlockBody()}
+    set {_uniqueStorage()._body = newValue}
+  }
+  /// Returns true if `body` has been explicitly set.
+  var hasBody: Bool {return _storage._body != nil}
+  /// Clears the value of `body`. Subsequent reads from it will return its default value.
+  mutating func clearBody() {_uniqueStorage()._body = nil}
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+struct CitaCompactBlock {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var version: UInt32 {
+    get {return _storage._version}
+    set {_uniqueStorage()._version = newValue}
+  }
+
+  var header: CitaBlockHeader {
+    get {return _storage._header ?? CitaBlockHeader()}
+    set {_uniqueStorage()._header = newValue}
+  }
+  /// Returns true if `header` has been explicitly set.
+  var hasHeader: Bool {return _storage._header != nil}
+  /// Clears the value of `header`. Subsequent reads from it will return its default value.
+  mutating func clearHeader() {_uniqueStorage()._header = nil}
+
+  var body: CitaCompactBlockBody {
+    get {return _storage._body ?? CitaCompactBlockBody()}
     set {_uniqueStorage()._body = newValue}
   }
   /// Returns true if `body` has been explicitly set.
@@ -471,8 +518,8 @@ extension CitaProofType: SwiftProtobuf._ProtoNameProviding {
 
 extension CitaCrypto: SwiftProtobuf._ProtoNameProviding {
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "SECP"),
-    1: .same(proto: "SM2"),
+    0: .same(proto: "DEFAULT"),
+    1: .same(proto: "RESERVED"),
   ]
 }
 
@@ -867,7 +914,7 @@ extension CitaUnverifiedTransaction: SwiftProtobuf.Message, SwiftProtobuf._Messa
   fileprivate class _StorageClass {
     var _transaction: CitaTransaction? = nil
     var _signature: Data = SwiftProtobuf.Internal.emptyData
-    var _crypto: CitaCrypto = .secp
+    var _crypto: CitaCrypto = .default
 
     static let defaultInstance = _StorageClass()
 
@@ -909,7 +956,7 @@ extension CitaUnverifiedTransaction: SwiftProtobuf.Message, SwiftProtobuf._Messa
       if !_storage._signature.isEmpty {
         try visitor.visitSingularBytesField(value: _storage._signature, fieldNumber: 2)
       }
-      if _storage._crypto != .secp {
+      if _storage._crypto != .default {
         try visitor.visitSingularEnumField(value: _storage._crypto, fieldNumber: 3)
       }
     }
@@ -1039,6 +1086,35 @@ extension CitaBlockBody: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
   }
 }
 
+extension CitaCompactBlockBody: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = "CompactBlockBody"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "tx_hashes"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeRepeatedBytesField(value: &self.txHashes)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.txHashes.isEmpty {
+      try visitor.visitRepeatedBytesField(value: self.txHashes, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: CitaCompactBlockBody, rhs: CitaCompactBlockBody) -> Bool {
+    if lhs.txHashes != rhs.txHashes {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
 extension CitaBlock: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = "Block"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -1100,6 +1176,83 @@ extension CitaBlock: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementation
   }
 
   static func ==(lhs: CitaBlock, rhs: CitaBlock) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._version != rhs_storage._version {return false}
+        if _storage._header != rhs_storage._header {return false}
+        if _storage._body != rhs_storage._body {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension CitaCompactBlock: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = "CompactBlock"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "version"),
+    2: .same(proto: "header"),
+    3: .same(proto: "body"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _version: UInt32 = 0
+    var _header: CitaBlockHeader? = nil
+    var _body: CitaCompactBlockBody? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _version = source._version
+      _header = source._header
+      _body = source._body
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularUInt32Field(value: &_storage._version)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._header)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._body)
+        default: break
+        }
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._version != 0 {
+        try visitor.visitSingularUInt32Field(value: _storage._version, fieldNumber: 1)
+      }
+      if let v = _storage._header {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if let v = _storage._body {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: CitaCompactBlock, rhs: CitaCompactBlock) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

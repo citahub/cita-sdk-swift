@@ -60,7 +60,7 @@ public struct Signer {
         var unverifiedTx = CitaUnverifiedTransaction()
         unverifiedTx.transaction = tx
         unverifiedTx.signature = signature
-        unverifiedTx.crypto = .secp
+        unverifiedTx.crypto = .default
         let unverifiedData = try! unverifiedTx.serializedData()
         return unverifiedData.toHexString().addHexPrefix()
     }
