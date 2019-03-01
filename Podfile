@@ -11,8 +11,9 @@ target 'CITA' do
   pod "CryptoSwift", "~> 0.13"
   pod "BigInt", "~> 3.1"
   pod "PromiseKit", "~> 6.5"
+end
 
-  target 'CITATests' do
-    inherit! :search_paths
-  end
+target 'CITATests' do
+  use_frameworks!
+  inherit! :search_paths
 end
