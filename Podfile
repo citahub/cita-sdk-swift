@@ -12,7 +12,10 @@ target 'CITA' do
   pod "BigInt", "~> 3.1"
   pod "PromiseKit", "~> 6.5"
 
-  target 'CITATests' do
-    inherit! :search_paths
-  end
+  pod "SwiftLint"
+end
+
+target 'CITATests' do
+  use_frameworks!
+  inherit! :search_paths
 end
