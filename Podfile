@@ -11,6 +11,8 @@ target 'CITA' do
   pod "CryptoSwift", "~> 0.13"
   pod "BigInt", "~> 3.1"
   pod "PromiseKit", "~> 6.5"
+
+  pod "SwiftLint"
 end
 
 target 'CITATests' do
