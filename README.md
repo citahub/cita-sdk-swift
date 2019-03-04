@@ -3,6 +3,8 @@
 [![Travis](https://travis-ci.com/cryptape/cita-sdk-swift.svg?branch=develop)](https://travis-ci.com/cryptape/cita-sdk-swift)
 [![Swift](https://img.shields.io/badge/Swift-4.2-orange.svg?style=flat)](https://developer.apple.com/swift/)
 
+English | [简体中文](./README_CN.md)
+
 Native Swift SDK for integrating with [CITA](https://www.citahub.com/).
 
 ## Features
