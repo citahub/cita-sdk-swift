@@ -3,34 +3,29 @@
 [![Travis](https://travis-ci.com/cryptape/cita-sdk-swift.svg?branch=develop)](https://travis-ci.com/cryptape/cita-sdk-swift)
 [![Swift](https://img.shields.io/badge/Swift-4.2-orange.svg?style=flat)](https://developer.apple.com/swift/)
 
-English | [简体中文](./README_CN.md)
+[English](./README.md) | 简体中文
 
-Native Swift SDK for integrating with [CITA](https://www.citahub.com/).
+cita-sdk-swift 是用于集成 [CITA](https://www.citahub.com/) 的原生 Swift SDK.
 
-## Features
+## 特性
+* 连接到 [CITA](https://www.citahub.com/) 网络的HTTP提供程序。
+* 通过 HTTP 协议，实现了 CITA 所定义的所有 JSON-RPC 方法。
+* 对交易进行签名
 
-* HTTP provider for connecting to CITA networks.
-* Implementation of CITA JSON-RPC API over HTTP.
-* Signer for signing transaction.
+## RPC 接口
+请参考[docs.nervos.org/cita](https://docs.nervos.org/cita/#/rpc_guide/rpc)来查看 CITA 的 JSON-RPC 接口列表。
 
-## RPC API
 
-Refer to [docs.nervos.org/cita](https://docs.nervos.org/cita/#/rpc_guide/rpc) for a complete list of CITA JSON-RPC API.
+## 开始
 
-## Get Started
-
-### System Requirements
-
-To build CITA SDK, you'll need:
-
-* Swift 4.2 and later
-* Xcode 10 and later
+### 系统要求
+如果你想构建 CITA SDK，你需要：
+* Swift 4.2 及以后。
+* Xcode 10 及以后
 * [CocoaPods](https://cocoapods.org)
 
-### Installation
-
-To integrate CITA SDK into your Xcode project using CocoaPods, specify it in your `Podfile`:
-
+### 安装
+通过 [CocoaPods](https://cocoapods.org) 把 CITA SDK 集成到你的项目中，你需要在你的 `Podfile` 指定：
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '10.0'
@@ -41,44 +36,42 @@ target 'YourTargetName' do
   pod 'CITA', git: 'https://github.com/cryptape/cita-sdk-swift'
 end
 ```
-
-Then, run the following command:
+然后在 `Podfile` 文件目录下运行：
 
 ```bash
 $ pod install
 ```
+### 开发
 
-### Development
-
-Fetch the source code:
-
+下载源码：
 ```shell
 git clone --recursive https://github.com/cryptape/cita-sdk-swift.git
 pod install
 cp Tests/Config.example.json Tests/Config.json
 ```
+使用 Xcode 打开 `CITA.xcworkspace` 进行构建。
 
-Then open `CITA.xcworkspace` with Xcode and build.
+### 运行测试代码
+运行 `CITATests` target。如果你要自定义 CITA 的节点或者链，请配置 `Tests/Config.json` 文件中的 `rpcServer` 的值。默认值是 `http://127.0.0.1:1337` 。
 
-#### Running Tests
-
-Run tests from `CITATests` target. Update `rpcServer` value of `Tests/Config.json` file if you want to test against another CITA node or chain of your choice. By default `http://127.0.0.1:1337` is used.
-
-Note: serveral tests depend on onchain data and would fail when running on your own chain. We're going to improve the tests and fix that in the near future.
+注意：有多个测试实例依赖于链上的数据，这可能会造成在您自己的链上运行失败。我们将来会改进测试并解决这个问题。
 
 ### web3swift
+CITA SDK 原来是基于 [matterinc/web3swift](https://github.com/matterinc/web3swift) 的，但是我们希望 CITA SDK 是一个简单的能管理 RPC 接口和
+进行交易签名的工具（这意味着我们就不需要 `keystore` 管理和其他的一些功能），所以我们移除了 `web3swift` 的依赖，不过一些工具类、类扩展和 HTTP 请求的
+实现都参考了 web3swift 。
 
-CITA SDK was initially built upon [matterinc/web3swift](https://github.com/matterinc/web3swift). Then we want to keep this a simple RPC client and transaction signer (this means no keystore management and other features) so web3swift dependency was removed, but some utils, foundation extensions and HTTP request implementations were taken and modified from it.
+### 测试网络
 
-### Testnet
+使用 CITA 测试网络（推荐）：  
+http://121.196.200.225:1337  
 
-For test or development, you can follow the [CITA document](https://docs.nervos.org/cita/) to run a local chain. We also provide a public testnet at http://121.196.200.225:1337 (or use https://node.cryptape.com).
-
-This testnet supports [CITA](https://github.com/cryptape/cita) version **v0.20**.
+或者可以部署你自己的 CITA：  
+如果需要了解怎么部署 CITA 网络，请查阅[CITA](https://github.com/cryptape/cita)。
 
 ### HTTPProvider
 
-`HTTPProvider` connects to CITA testnet or any other network. To construct a provider:
+通过 `HTTPProvider` 你可以连接到 CITA 测试网或者其他任何网络，使用方法如下：
 
 ```swift
 import CITA
@@ -90,16 +83,17 @@ let provider = HTTPProvider(testnetUrl)
 
 ### CITA
 
-`CITA` is the class that talks to CITA network through `HTTPProvider`. Consume any JSON-RPC API with `CITA` instance's `rpc` property.
+`CITA` 是一个通过 `HTTPProvider` 跟 CITA 网络进行通信的类。通过 `CITA.rpc` 可以访问任何 JSON-RPC 接口。
 
 ```swift
 let cita = CITA(provider: provider)
 let peerCount = cita.rpc.peerCount().value!
 ```
 
-### Transaction and Signer
 
-Before sending a raw transaction over JSON-RPC API, create a `Transaction` object and sign it with private key using `Signer`:
+### 交易和签名
+
+在通过 JSON-RPC 接口发送原始交易之前，请创建一个 `Transaction` 对象并且用 `Signer` 类进行签名：
 
 ```swift
 let privateKey = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
@@ -122,13 +116,13 @@ guard let signed = try? Signer().sign(transaction: tx, with: privateKey) else {
 }
 ```
 
-## RPC API Reference
+## RPC 接口参考
+如果请求成功，所有的 JSON-RPC 接口都会返回结果，否则抛出 `CITAError` 。
 
-All JSON-RPC APIs would return result when the call is successful, or throw `CITAError` exception when not.
+因为 JSON-RPC 接口请求方法是同步的，所以底层的 HTTP 请求可能会需要一些时间来返回结果，在这个项目中，请求通常通过 `promise` 来实现。
+所以尽量不要在主线程中调用 RPC 接口，防止阻塞主线程。
 
-JSON-RPC API functions are synchronous. But the underlying HTTP request might take some time to return, and in this project they're usually implemented in some `promise` way. It's generally better to call API function in a background queue so it won't block the main thread.
-
-A common flow to call an API and handle the result is as follows.
+常用的调用接口、处理结果的方式如下：
 
 ```swift
 DispatchQueue.global().async {
@@ -168,14 +162,6 @@ DispatchQueue.global().async {
 * [getBlockHeader](#getblockheader)
 * [getStateProof](#getstateproof)
 
-### peerCount
-
-```swift
-/// Get the number of CITA peers currently connected to the client.
-///
-/// - Returns: Peer count.
-func peerCount() throws -> BigUInt
-```
 
 ### blockNumber
 
@@ -425,6 +411,9 @@ func getBlockHeader(blockNumber: String = "latest") throws -> String
 func getStateProof(address: String, key: String, blockNumber: String = "latest") throws -> String
 ```
 
-## License
+## 许可证明
 
-CITA SDK is released under the [MIT License](https://github.com/cryptape/cita-sdk-swift/blob/master/LICENSE).
+CITA SDK 遵守 [MIT License](https://github.com/cryptape/cita-sdk-swift/blob/master/LICENSE) 协议。
+
+
+
