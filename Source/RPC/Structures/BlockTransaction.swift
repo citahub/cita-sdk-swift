@@ -9,11 +9,13 @@
 import Foundation
 
 public struct BlockTransaction: Decodable {
-    public var hash: Data?
+    public var hash: Data
     public var content: Data?
+    public var from: String?
     enum CodingKeys: String, CodingKey {
         case hash
         case content
+        case from
     }
 
     public init(from decoder: Decoder) throws {
@@ -21,7 +23,8 @@ public struct BlockTransaction: Decodable {
         guard let hash = try DecodeUtils.decodeHexToData(container, key: .hash) else { throw CITAError.dataError }
         self.hash = hash
 
-        guard let content = try DecodeUtils.decodeHexToData(container, key: .content) else { throw CITAError.dataError }
-        self.content = content
+        self.content = try DecodeUtils.decodeHexToData(container, key: .content, allowOptional: true)
+
+        self.from = try? container.decode(String.self, forKey: .from)
     }
 }
