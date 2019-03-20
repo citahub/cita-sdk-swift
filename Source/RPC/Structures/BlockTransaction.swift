@@ -9,7 +9,7 @@
 import Foundation
 
 public struct BlockTransaction: Decodable {
-    public var hash: Data?
+    public var hash: Data
     public var content: Data?
     public var from: String?
     enum CodingKeys: String, CodingKey {
@@ -20,7 +20,8 @@ public struct BlockTransaction: Decodable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.hash = try DecodeUtils.decodeHexToData(container, key: .hash, allowOptional: true)
+        guard let hash = try DecodeUtils.decodeHexToData(container, key: .hash) else { throw CITAError.dataError }
+        self.hash = hash
 
         self.content = try DecodeUtils.decodeHexToData(container, key: .content, allowOptional: true)
 
