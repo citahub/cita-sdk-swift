@@ -20,13 +20,10 @@ public struct BlockTransaction: Decodable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard let hash = try DecodeUtils.decodeHexToData(container, key: .hash) else { throw CITAError.dataError }
-        self.hash = hash
+        self.hash = try DecodeUtils.decodeHexToData(container, key: .hash, allowOptional: true)
 
-        guard let content = try DecodeUtils.decodeHexToData(container, key: .content) else { throw CITAError.dataError }
-        self.content = content
+        self.content = try DecodeUtils.decodeHexToData(container, key: .content, allowOptional: true)
 
-        guard let from = try? container.decode(String.self, forKey: .from) else { throw CITAError.dataError }
-        self.from = from
+        self.from = try? container.decode(String.self, forKey: .from)
     }
 }
