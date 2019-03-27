@@ -1,8 +1,8 @@
 language: objective-c
-osx_image: xcode10.1
+osx_image: xcode10.2
 xcode_workspace: CITA.xcworkspace
 xcode_scheme: CITA
-xcode_destination: platform=iOS Simulator,OS=11.3,name=iPhone X
+xcode_destination: platform=iOS Simulator,OS=12.2,name=iPhone X
 before_install:
   - echo "{\"rpcServer\":\"$TEST_RPC_SERVER\"}" > Tests/Config.json
   - travis_wait pod repo update --silent
