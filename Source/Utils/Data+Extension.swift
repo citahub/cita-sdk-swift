@@ -45,16 +45,18 @@ extension Data {
     }
 
     static func randomBytes(length: Int) -> Data? {
-        for _ in 0...1024 {
-            var data = Data(repeating: 0, count: length)
-            let result = data.withUnsafeMutableBytes { (mutableBytes: UnsafeMutablePointer<UInt8>) -> Int32 in
-                SecRandomCopyBytes(kSecRandomDefault, 32, mutableBytes)
-            }
-            if result == errSecSuccess {
-                return data
-            }
+        var data = Data(repeating: 0, count: length)
+
+        let result = data.withUnsafeMutableBytes { (mutableBytes: UnsafeMutableRawBufferPointer) -> Int32 in
+            let mutableBytesPointer = mutableBytes.baseAddress?.assumingMemoryBound(to: UInt8.self)
+            return SecRandomCopyBytes(kSecRandomDefault, length, mutableBytesPointer!)
         }
-        return nil
+
+        if result == errSecSuccess {
+            return data
+        } else {
+            return nil
+        }
     }
 
     static func fromHex(_ hex: String) -> Data? {
