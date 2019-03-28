@@ -20,8 +20,8 @@ cita-sdk-swift 是用于集成 [CITA](https://www.citahub.com/) 的原生 Swift 
 
 ### 系统要求
 如果你想构建 CITA SDK，你需要：
-* Swift 4.2 及以后。
-* Xcode 10 及以后
+* Swift 5.0 及以后。
+* Xcode 10.2 及以后
 * [CocoaPods](https://cocoapods.org)
 
 ### 安装
