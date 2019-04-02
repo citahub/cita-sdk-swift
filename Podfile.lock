@@ -11,7 +11,7 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (6.5.2):
     - PromiseKit/CorePromise
-  - secp256k1_swift (1.0.3)
+  - secp256k1.swift (0.1.4)
   - SipHash (1.2.2)
   - SwiftLint (0.31.0)
   - SwiftProtobuf (1.2.0)
@@ -20,7 +20,7 @@ DEPENDENCIES:
   - BigInt (~> 3.1)
   - CryptoSwift (~> 0.13)
   - PromiseKit (~> 6.5)
-  - secp256k1_swift (~> 1.0.3)
+  - secp256k1.swift (~> 0.1.4)
   - SwiftLint
   - SwiftProtobuf (~> 1.2.0)
 
@@ -29,7 +29,7 @@ SPEC REPOS:
     - BigInt
     - CryptoSwift
     - PromiseKit
-    - secp256k1_swift
+    - secp256k1.swift
     - SipHash
     - SwiftLint
     - SwiftProtobuf
@@ -38,11 +38,11 @@ SPEC CHECKSUMS:
   BigInt: 76b5dfdfa3e2e478d4ffdf161aeede5502e2742f
   CryptoSwift: 16e78bebf567bad1c87b2d58f6547f25b74c31aa
   PromiseKit: 27c1601bfb73405871b805bcb8cf7e55c4dad3db
-  secp256k1_swift: 4fc5c4b2d2c6d21ee8ccb868cdc92da12f38bed9
+  secp256k1.swift: a7e7a214f6db6ce5db32cc6b2b45e5c4dd633634
   SipHash: fad90a4683e420c52ef28063063dbbce248ea6d4
   SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
   SwiftProtobuf: 91a9856079044ef4ec762b2344c763cd9e5a73c1
 
-PODFILE CHECKSUM: cf438304f8b025b5d1c4d4dadd53cdaa4a9ca640
+PODFILE CHECKSUM: 6c0144b0b3972b2e1abcf8da5af7ed150c7e9104
 
 COCOAPODS: 1.6.1

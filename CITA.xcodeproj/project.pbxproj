@@ -55,6 +55,7 @@
 		89CDA5F421E848FD0049A244 /* CITA.h in Headers */ = {isa = PBXBuildFile; fileRef = 89CDA5F221E848FD0049A244 /* CITA.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		89CDA5F521E848FD0049A244 /* CITA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CDA5F321E848FD0049A244 /* CITA.swift */; };
 		89CDA5F821E849570049A244 /* CITATests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CDA5F621E849220049A244 /* CITATests.swift */; };
+		89CE3F9E22530042001DF3F3 /* Secp256k1Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CE3F9D22530042001DF3F3 /* Secp256k1Error.swift */; };
 		A761B95773C2431357D1B0B9 /* Pods_CITA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A425B554C4D9A6E8284FEAC /* Pods_CITA.framework */; };
 /* End PBXBuildFile section */
 
@@ -124,6 +125,7 @@
 		89CDA5F221E848FD0049A244 /* CITA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CITA.h; sourceTree = "<group>"; };
 		89CDA5F321E848FD0049A244 /* CITA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CITA.swift; sourceTree = "<group>"; };
 		89CDA5F621E849220049A244 /* CITATests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CITATests.swift; sourceTree = "<group>"; };
+		89CE3F9D22530042001DF3F3 /* Secp256k1Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secp256k1Error.swift; sourceTree = "<group>"; };
 		D9D78017E61E65184F73D1F8 /* Pods-CITA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CITA.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CITA/Pods-CITA.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -230,6 +232,7 @@
 				1AB5C6D9212125A200148587 /* Int+Extension.swift */,
 				1AD65F8F21217AC000AA4C84 /* DecodeUtils.swift */,
 				1AD65F9C2122999900AA4C84 /* Secp251k1.swift */,
+				89CE3F9D22530042001DF3F3 /* Secp256k1Error.swift */,
 				1A6B2B2821533FA5003420A0 /* Address.swift */,
 				89CDA5F021E848F00049A244 /* CITAError.swift */,
 				1A9204DF2161B20B004B54DC /* Utils.swift */,
@@ -480,7 +483,7 @@
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SipHash/SipHash.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftProtobuf/SwiftProtobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/secp256k1_swift/secp256k1_swift.framework",
+				"${BUILT_PRODUCTS_DIR}/secp256k1.swift/secp256k1.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -491,7 +494,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SipHash.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftProtobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/secp256k1_swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/secp256k1.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -536,6 +539,7 @@
 				1AD65F8E2121795B00AA4C84 /* TransactionReceipt.swift in Sources */,
 				1AD65F97212294C800AA4C84 /* Transaction.swift in Sources */,
 				1A0D0C032185A717003E680D /* EventLog.swift in Sources */,
+				89CE3F9E22530042001DF3F3 /* Secp256k1Error.swift in Sources */,
 				1ACBC9B52184596300F20B8B /* Proof.swift in Sources */,
 				1A6B2B2921533FA5003420A0 /* Address.swift in Sources */,
 				1A67ED5F211D55E500DCE871 /* MetaData.swift in Sources */,
