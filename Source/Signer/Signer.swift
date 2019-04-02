@@ -52,14 +52,16 @@ public struct Signer {
             throw TransactionError.privateKeyIsNull
         }
         let protobufHash = binaryData.sha3(.keccak256)
-        let (compressedSignature, _) = Secp256k1.signForRecovery(hash: protobufHash, privateKey: privateKeyData, useExtraEntropy: false)
-        guard let signature = compressedSignature else {
+        let (compressedSignature, _): (Data, Data)
+        do {
+            (compressedSignature, _) = try Secp256k1.signForRecovery(hash: protobufHash, privateKey: privateKeyData, useExtraEntropy: false)
+        } catch {
             throw TransactionError.signatureIncorrect
         }
 
         var unverifiedTx = CitaUnverifiedTransaction()
         unverifiedTx.transaction = tx
-        unverifiedTx.signature = signature
+        unverifiedTx.signature = compressedSignature
         unverifiedTx.crypto = .default
         let unverifiedData = try! unverifiedTx.serializedData()
         return unverifiedData.toHexString().addHexPrefix()

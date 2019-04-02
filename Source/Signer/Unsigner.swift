@@ -23,7 +23,7 @@ public struct Unsigner {
         let binaryData = try! unverifiedTransaction.transaction.serializedData()
         let hash = binaryData.sha3(.keccak256)
 
-        guard let publicKey = Secp256k1.recoverPublicKey(hash: hash, signature: unverifiedTransaction.signature) else {
+        guard let publicKey = try? Secp256k1.recoverPublicKey(hash: hash, signature: unverifiedTransaction.signature) else {
             throw TransactionError.signatureIncorrect
         }
 

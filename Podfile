@@ -7,7 +7,7 @@ target 'CITA' do
   inhibit_all_warnings!
 
   pod "SwiftProtobuf", "~> 1.2.0"
-  pod "secp256k1_swift", "~> 1.0.3", modular_headers: true
+  pod "secp256k1.swift", "~> 0.1.4"
   pod "CryptoSwift", "~> 0.13"
   pod "BigInt", "~> 3.1"
   pod "PromiseKit", "~> 6.5"
