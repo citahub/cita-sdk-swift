@@ -29,7 +29,7 @@ public struct MessageSigner {
         guard let privateKeyData = Data.fromHex(privateKey) else {
             throw SignError.invalidPrivateKey
         }
-        let serializedSignature = Secp256k1.signForRecovery(hash: hash, privateKey: privateKeyData, useExtraEntropy: useExtraEntropy).serializedSignature
+        let serializedSignature = try? Secp256k1.signForRecovery(hash: hash, privateKey: privateKeyData, useExtraEntropy: useExtraEntropy).serializedSignature
         guard let signature = serializedSignature else {
             throw SignError.invalidSignature
         }

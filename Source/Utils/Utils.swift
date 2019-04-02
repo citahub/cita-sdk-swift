@@ -18,12 +18,12 @@ public struct Utils {
 
 extension Utils {
     public static func privateToPublic(_ privateKey: Data) -> Data? {
-        return Secp256k1.privateToPublic(privateKey: privateKey)
+        return try? Secp256k1.privateToPublic(privateKey: privateKey)
     }
 
     public static func publicToAddressData(_ publicKey: Data) -> Data? {
         if publicKey.count == 33 {
-            guard let decompressedKey = Secp256k1.combineSerializedPublicKeys(keys: [publicKey], outputCompressed: false) else {
+            guard let decompressedKey = try? Secp256k1.combineSerializedPublicKeys(keys: [publicKey], outputCompressed: false) else {
                 return nil
             }
             return publicToAddressData(decompressedKey)
