@@ -44,6 +44,12 @@ class RPCTests: XCTestCase {
         XCTAssertTrue(peerCount > 0)
     }
 
+    func testPeerInfo() throws {
+        let peersInfo = try cita.rpc.peersInfo()
+        XCTAssertTrue(peersInfo.amount > 0)
+        XCTAssertEqual(Int(peersInfo.amount), peersInfo.peers.count)
+    }
+
     func testBlockNumber() throws {
         let blockNumber = try cita.rpc.blockNumber()
         XCTAssertTrue(blockNumber > 100)
@@ -69,6 +75,11 @@ class RPCTests: XCTestCase {
         let txhash = try cita.rpc.sendRawTransaction(signedTx: signed)
         XCTAssert(txhash.hasPrefix("0x"))
         XCTAssertEqual(66, txhash.count)
+    }
+
+    func testGetVersion() throws {
+        let version = try cita.rpc.getVersion()
+        XCTAssertNil(version.softwareVersion)
     }
 
     func testGetBlockByHash() throws {
