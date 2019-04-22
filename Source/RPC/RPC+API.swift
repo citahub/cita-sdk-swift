@@ -19,6 +19,13 @@ public extension RPC {
         return try peerCountPromise().wait()
     }
 
+    /// Obtain other node information connected to the node, including the `address` of the node and the node `ip`.
+    ///
+    /// - Returns: PeerInfo
+    func peersInfo() throws -> PeerInfo {
+        return try peersInfoPromise().wait()
+    }
+
     /// Get the number of most recent block.
     ///
     /// - Returns: Current block height.
@@ -33,6 +40,13 @@ public extension RPC {
     /// - Returns: Transaction hash.
     func sendRawTransaction(signedTx: Data) throws -> String {
         return try sendRawTransaction(signedTx: signedTx.toHexString().addHexPrefix())
+    }
+
+    /// Get the version number of the current CITA.
+    ///
+    /// - Returns: Version
+    func getVersion() throws -> Version {
+        return try getVersionPromise().wait()
     }
 
     /// Send signed transaction to CITA.
