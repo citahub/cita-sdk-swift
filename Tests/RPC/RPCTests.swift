@@ -44,7 +44,7 @@ class RPCTests: XCTestCase {
         XCTAssertTrue(peerCount > 0)
     }
 
-    func testPeerInfo() throws {
+    func skip_testPeerInfo() throws {
         let peersInfo = try cita.rpc.peersInfo()
         XCTAssertTrue(peersInfo.amount > 0)
         XCTAssertEqual(Int(peersInfo.amount), peersInfo.peers.count)
@@ -77,7 +77,7 @@ class RPCTests: XCTestCase {
         XCTAssertEqual(66, txhash.count)
     }
 
-    func testGetVersion() throws {
+    func skip_testGetVersion() throws {
         let version = try cita.rpc.getVersion()
         XCTAssertNotNil(version.softwareVersion)
     }
