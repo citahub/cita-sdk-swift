@@ -79,7 +79,7 @@ class RPCTests: XCTestCase {
 
     func testGetVersion() throws {
         let version = try cita.rpc.getVersion()
-        XCTAssertNil(version.softwareVersion)
+        XCTAssertNotNil(version.softwareVersion)
     }
 
     func testGetBlockByHash() throws {
