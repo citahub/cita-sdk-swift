@@ -10,8 +10,10 @@ import Foundation
 
 public enum Method: String, Encodable {
     case peerCount
+    case peersInfo
     case blockNumber
     case sendRawTransaction
+    case getVersion
     case getBlockByHash
     case getBlockByNumber
     case getTransactionReceipt
@@ -35,8 +37,10 @@ public enum Method: String, Encodable {
     var requiredNumOfParameters: Int {
         let mapping: [Method: Int] = [
             .peerCount: 0,
+            .peersInfo: 0,
             .blockNumber: 0,
             .sendRawTransaction: 1,
+            .getVersion: 0,
             .getBlockByHash: 2,
             .getBlockByNumber: 2,
             .getTransactionReceipt: 1,

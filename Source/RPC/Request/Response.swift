@@ -46,6 +46,8 @@ public struct Response: Decodable {
         [String].self,
         [Int].self,
         [Bool].self,
+        PeerInfo.self,
+        Version.self,
         EventLog.self,
         TransactionDetails.self,
         TransactionReceipt.self,
@@ -74,6 +76,10 @@ public struct Response: Decodable {
         } else if let rawValue = try? container.decodeIfPresent(Int.self, forKey: .result) {
             result = rawValue
         } else if let rawValue = try? container.decodeIfPresent(Bool.self, forKey: .result) {
+            result = rawValue
+        } else if let rawValue = try? container.decodeIfPresent(PeerInfo.self, forKey: .result) {
+            result = rawValue
+        } else if let rawValue = try? container.decodeIfPresent(Version.self, forKey: .result) {
             result = rawValue
         } else if let rawValue = try? container.decodeIfPresent(EventLog.self, forKey: .result) {
             result = rawValue
