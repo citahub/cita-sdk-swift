@@ -35,11 +35,28 @@ public extension RPC {
 
     /// Send signed transaction to CITA.
     ///
-    /// - Parameter signedTx: Signed transaction data.
+    /// - Parameters:
+    ///   - signedTx: Signed transaction hex string.
+    ///   - returnHash: return Hash or data json.
     ///
-    /// - Returns: Transaction hash.
-    func sendRawTransaction(signedTx: Data) throws -> String {
-        return try sendRawTransaction(signedTx: signedTx.toHexString().addHexPrefix())
+    /// - Returns: Transaction hash or data json.
+    func sendRawTransaction(signedTx: Data, returnHash: Bool = true) throws -> String {
+        return try sendRawTransaction(signedTx: signedTx.toHexString().addHexPrefix(), returnHash: returnHash)
+    }
+
+    /// Send signed transaction to CITA.
+    ///
+    /// - Parameters:
+    ///   - signedTx: Signed transaction hex string.
+    ///   - returnHash: return Hash or data json.
+    ///
+    /// - Returns: Transaction hash or data json.
+    func sendRawTransaction(signedTx: String, returnHash: Bool = true) throws -> String {
+        if returnHash {
+            return try sendRawTransactionPromise(signedTx: signedTx).wait().hash.toHexString().addHexPrefix()
+        } else {
+            return try sendRawTransactionPromise(signedTx: signedTx).wait().json()
+        }
     }
 
     /// Get the version number of the current CITA.
@@ -47,15 +64,6 @@ public extension RPC {
     /// - Returns: Version
     func getVersion() throws -> Version {
         return try getVersionPromise().wait()
-    }
-
-    /// Send signed transaction to CITA.
-    ///
-    /// - Parameter signedTx: Signed transaction hex string.
-    ///
-    /// - Returns: Transaction hash.
-    func sendRawTransaction(signedTx: String) throws -> String {
-        return try sendRawTransactionPromise(signedTx: signedTx).wait().hash.toHexString().addHexPrefix()
     }
 
     /// Get a block by hash.
