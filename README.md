@@ -23,8 +23,8 @@ Refer to [docs.nervos.org/cita](https://docs.nervos.org/cita/#/rpc_guide/rpc) fo
 
 To build CITA SDK, you'll need:
 
-* Swift 4.2 and later
-* Xcode 10 and later
+* Swift 5 and later
+* Xcode 10.2 and later
 * [CocoaPods](https://cocoapods.org)
 
 ### Installation

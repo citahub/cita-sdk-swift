@@ -37,12 +37,20 @@ internal extension RPC {
         return apiPromise(.peerCount, parameters: [])
     }
 
+    func peersInfoPromise() -> Promise<PeerInfo> {
+        return apiPromise(.peersInfo, parameters: [])
+    }
+
     func blockNumberPromise() -> Promise<BigUInt> {
         return apiPromise(.blockNumber, parameters: [])
     }
 
     func sendRawTransactionPromise(signedTx: String) -> Promise<TransactionSendingResult> {
         return apiPromise(.sendRawTransaction, parameters: [signedTx])
+    }
+
+    func getVersionPromise() -> Promise<Version> {
+        return apiPromise(.getVersion, parameters: [])
     }
 
     func getBlockByHashPromise(hash: String, fullTransactions: Bool) -> Promise<Block> {
