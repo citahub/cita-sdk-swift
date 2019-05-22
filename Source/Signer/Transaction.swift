@@ -37,7 +37,7 @@ public struct Transaction: CustomStringConvertible {
         data: Data? = nil,
         value: BigUInt = 0,
         chainId: String,
-        version: UInt32 = 1
+        version: UInt32 = 2
     ) {
         self.to = to
         self.nonce = nonce.isEmpty ? UUID().uuidString : nonce
@@ -69,7 +69,7 @@ extension CitaTransaction {
         switch version {
         case 0:
             return to
-        case 1:
+        case 1, 2:
             return toV1.toHexString()
         default:
             fatalError("Transaction version not supported")
@@ -79,7 +79,7 @@ extension CitaTransaction {
         switch version {
         case 0:
             return String(chainID)
-        case 1:
+        case 1, 2:
             return chainIDV1.toHexString()
         default:
             fatalError("Transaction version not supported")
