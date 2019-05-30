@@ -1,5 +1,11 @@
 All notable changes to this project will be documented in this file.
 
+# [v0.24](https://github.com/cryptape/cita-sdk-swift/compare/v0.23...v0.24) (2019-05-30)
+
+### CHANGES
+
+* [Optimization] Support new protocol version 2
+
 # [v0.23](https://github.com/cryptape/cita-sdk-swift/compare/v0.22...v0.23) (2019-04-30)
 
 ### CHANGES

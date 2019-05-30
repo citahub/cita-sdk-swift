@@ -28,22 +28,23 @@ public struct Signer {
         tx.validUntilBlock = transaction.validUntilBlock
 
         tx.version = transaction.version
-        if transaction.version == 0 {
+        switch transaction.version {
+        case 0:
             tx.chainID = UInt32(transaction.chainId)!
             if let to = transaction.to {
                 tx.to = to.address.stripHexPrefix().lowercased()
             }
-        } else if transaction.version == 1 {
+        case 1, 2:
             guard let chainId = BigUInt.fromHex(transaction.chainId),
                 let chainIdU256 = chainId.toUInt256Hex(),
                 let chainIDV1 = Data.fromHex(chainIdU256) else {
-                throw TransactionError.chainIdInvalid
+                    throw TransactionError.chainIdInvalid
             }
             tx.chainIDV1 = chainIDV1
             if let to = transaction.to {
                 tx.toV1 = Data.fromHex(to.address)!
             }
-        } else {
+        default:
             throw TransactionError.versionNotSupported
         }
 
