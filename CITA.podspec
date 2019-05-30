@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
 
   s.dependency 'SwiftProtobuf', '~> 1.2.0'
   s.dependency "secp256k1.swift", "~> 0.1.4"
-  s.dependency 'CryptoSwift', '~> 0.13'
+  s.dependency 'CryptoSwift', '~> 1.0.0'
   s.dependency 'BigInt', '~> 3.1'
   s.dependency 'PromiseKit', '~> 6.8.4'
 end
