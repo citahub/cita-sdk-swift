@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "CITA"
-  s.version      = "0.24.0"
+  s.version      = "0.24.1"
   s.summary      = "CITA SDK implementation in Swift for iOS"
 
   s.description  = <<-DESC
@@ -20,8 +20,8 @@ Pod::Spec.new do |s|
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
 
   s.dependency 'SwiftProtobuf', '~> 1.2.0'
-  s.dependency 'secp256k1_swift', '~> 1.0.3'
-  s.dependency 'CryptoSwift', '~> 0.13'
+  s.dependency "secp256k1.swift", "~> 0.1.4"
+  s.dependency 'CryptoSwift', '~> 1.0.0'
   s.dependency 'BigInt', '~> 3.1'
-  s.dependency 'PromiseKit', '~> 6.5'
+  s.dependency 'PromiseKit', '~> 6.8.4'
 end
