@@ -5,4 +5,6 @@ xcode_scheme: CITA
 xcode_destination: platform=iOS Simulator,OS=12.2,name=iPhone X
 before_install:
   - echo "{\"rpcServer\":\"$TEST_RPC_SERVER\"}" > Tests/Config.json
+  - gem install cocoapods -N
+  - pod --version
   - travis_wait pod repo update --silent
