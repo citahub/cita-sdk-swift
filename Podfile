@@ -8,9 +8,9 @@ target 'CITA' do
 
   pod "SwiftProtobuf", "~> 1.2.0"
   pod "secp256k1.swift", "~> 0.1.4"
-  pod "CryptoSwift", "~> 0.13"
+  pod "CryptoSwift", "~> 1.0.0"
   pod "BigInt", "~> 3.1"
-  pod "PromiseKit", "~> 6.5"
+  pod "PromiseKit", "~> 6.8.4"
 
   pod "SwiftLint"
 end
