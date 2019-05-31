@@ -1,6 +1,6 @@
 All notable changes to this project will be documented in this file.
 
-# [v0.24.1](https://github.com/cryptape/cita-sdk-swift/compare/v0.24...v0.24.1) (2019-05-30)
+# [v0.24.1](https://github.com/cryptape/cita-sdk-swift/compare/v0.24...v0.24.1) (2019-05-31)
 
 ### FIX
 
