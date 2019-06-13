@@ -1,5 +1,5 @@
 import Foundation
-import secp256k1
+import secp256k1_swift
 import BigInt
 
 func toByteArray<T>(_ value: T) -> [UInt8] {
